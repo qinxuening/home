@@ -1,0 +1,100 @@
+<link rel="stylesheet" href="__PUBLIC__/resource/common/css/bootstrap.min.css"><link rel="stylesheet" href="css/non-responsive.css">
+<link rel="stylesheet" href="__PUBLIC__/resource/common/css/non-responsive.css">
+<link rel="stylesheet" href="__PUBLIC__/resource/common/css/style.css">
+<script src="__PUBLIC__/resource/common/js/jquery.js"></script>
+<nav class="navbar-fixed-top">
+<nav class="top-header">
+	<div class="container">
+        <div class="row">
+            <div class="col-xs-5  left_top" >
+                <a href="http://HOST_URL/"><img src="__PUBLIC__/user/images/logo.png" alt=""></a>
+                <h3>{$Think.lang.SHLB}</h3>
+            </div>
+            <div class="col-xs-7 top-header-right">
+	                  <span class="Welcome"><img src="__PUBLIC__/resource/common/images/Welcome.png"></span>
+					<eq name="langue" value="cn">
+					  <empty name="_SESSION['wUseID']">
+						      <a href="http://REG_URL/?l=zh-cn">{$Think.lang.Login}</a>
+			                  <span>|</span>
+			                  <a href="http://REG_URL/index.php/Login/?l=zh-cn">{$Think.lang.Register}</a>
+						<else /> 
+							<a href="__APP__/User/" class="username"><php> echo $_SESSION['wUseID'];</php></a>
+						    <a href="__APP__/User/out/" class="logout">{$Think.lang.Logout}</a>
+					  </empty> 
+	                  <a class="btn-sm langw" href="./?l=zh-cn">中 文</a>
+	                  <a class="btn-sm" href="./?l=en-us">E N</a>
+					<else/>
+						 <empty name="_SESSION['wUseID']">
+							      <a href="http://REG_URL/?l=en-us">{$Think.lang.Login}</a>
+				                  <span>|</span>
+				                  <a href="http://REG_URL/index.php/Login/?l=en-us">{$Think.lang.Register}</a>
+							<else /> 
+								<a href="__APP__/User/" class="username"><php> echo $_SESSION['wUseID'];</php></a>
+							    <a href="__APP__/User/out/" class="logout">{$Think.lang.Logout}</a>
+						  </empty> 
+		                  <a class="btn-sm langw" href="./?l=zh-cn">中 文</a>
+		                  <a class="btn-sm" href="./?l=en-us">E N</a>
+					</eq>
+            </div>
+        </div>
+	</div>
+</nav>
+
+<nav class="top-header-tow">
+    <div class="container" style="clear:both;">
+        <div class="row" >
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+            <div class="col-xs-12"  style="padding:0;">
+			<eq name="langue" value="cn">
+                <ul>
+                    <li class="dropdown">
+                       <a href="http://HOST_URL/?l=zh-cn" class="main-a active">{$Think.lang.Home}</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="http://HOST_URL/index.php?c=article&a=type&tid=24" class="main-a ">{$Think.lang.Solution}</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="http://HOST_URL/index.php?c=channel&a=type&tid=33" class="main-a">{$Think.lang.Products}</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="http://HOST_URL/index.php?c=product&a=type&tid=25" class="main-a">{$Think.lang.Download}</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="http://HOST_URL/index.php?c=article&a=type&tid=26" class="main-a">{$Think.lang.Join_Us}</a>                        
+                    </li>
+                    <li class="dropdown">
+                       <a href="http://HOST_URL/index.php?c=article&a=type&tid=27" class="main-a">{$Think.lang.About_Us}</a>
+                    </li>
+                </ul>
+			<else/>
+			      <ul>
+                    <li class="dropdown">
+                       <a href="http://HOST_ENURL/?l=en-us" class="main-a active">{$Think.lang.Home}</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="http://HOST_ENURL/index.php?c=article&a=type&tid=24" class="main-a ">{$Think.lang.Solution}</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="http://HOST_ENURL/index.php?c=channel&a=type&tid=33" class="main-a">{$Think.lang.Products}</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="http://HOST_ENURL/index.php?c=product&a=type&tid=25" class="main-a">{$Think.lang.Download}</a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="http://HOST_ENURL/index.php?c=article&a=type&tid=26" class="main-a">{$Think.lang.Join_Us}</a>                        
+                    </li>
+                    <li class="dropdown">
+                       <a href="http://HOST_ENURL/index.php?c=article&a=type&tid=27" class="main-a">{$Think.lang.About_Us}</a>
+                    </li>
+                </ul>
+			</eq>
+            </div>
+        </div>
+    </div>
+</nav>
+</nav>
+<div class="jumppage_bg" style="display:none;"></div>

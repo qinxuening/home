@@ -1,0 +1,25 @@
+<div class="sidebox">
+			<div class="tit">
+				<span class="t">热门文章</span>
+			</div>
+			<div class="con">
+				<ul>
+					<volist name="hotlist" id="vo" offset="0" length='10'>
+					<li><a href="{:U('Article/read/',array('id'=>$vo['id']))}">{$vo.title|msubstr=0,17}</a></li>
+					</volist>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="sidebox mt10">
+			<div class="tit">
+				<span class="t">推荐文章</span>
+			</div>
+			<div class="con">
+				<ul>
+					<volist name="hotlist" id="vo" offset="0" length='10'>
+					<li><a href="{:U('Article/read/',array('id'=>$vo['id']))}">{$vo.title|msubstr=0,17}</a></li>
+					</volist>
+				</ul>
+			</div>
+		</div>

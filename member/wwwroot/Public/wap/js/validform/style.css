@@ -1,0 +1,26 @@
+/*==========validform===========*/
+.Validform_checktip { margin-left: 8px; line-height: 20px; height: 20px; overflow: hidden; color: #999; font-size: 18px; }
+.valid_item .Validform_checktip{ margin-left:0}
+.Validform_right { color: #60bc07;}
+.Validform_wrong { color: #ff2a00;white-space: nowrap;  }
+.Validform_checktip i{ display:inline-block; width:18px; height:18px; vertical-align:middle}
+.Validform_checktip span{ vertical-align:middle}
+.Validform_right i{background: url("img/right.png") no-repeat left center;}
+.Validform_wrong i{background: url("img/error.png") no-repeat left center;}
+.Validform_loading { padding-left: 20px; background: url("img/onLoad.gif") no-repeat left center; }
+.Validform_error { background-color: #ffe7e7; }
+#Validform_msg { color: #7d8289; font: 12px/1.5 tahoma, arial, \5b8b\4f53, sans-serif; width: 280px; -webkit-box-shadow: 2px 2px 3px #aaa; -moz-box-shadow: 2px 2px 3px #aaa; background: #fff; position: absolute; top: 0px; right: 50px; z-index: 99999; display: none; filter: progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#999999');
+}
+#Validform_msg .iframe { position: absolute; left: 0px; top: -1px; z-index: -1; }
+#Validform_msg .Validform_title { line-height: 25px; height: 25px; text-align: left; font-weight: bold; padding: 0 8px; color: #fff; position: relative; background-color: #000; }
+#Validform_msg a.Validform_close:link, #Validform_msg a.Validform_close:visited { line-height: 22px; position: absolute; right: 8px; top: 0px; color: #fff; text-decoration: none; }
+#Validform_msg a.Validform_close:hover { color: #cc0; }
+#Validform_msg .Validform_info { padding: 8px; border: 1px solid #000; border-top: none; text-align: left; }
+
+.valid_item{ position:relative}
+.valid_item .msg_pop_r{ position:absolute; top:-42px; right:0; background:url("img/msg_pop_r.png") no-repeat right top; height:40px; padding-right:15px; line-height:32px; overflow:visible}
+.valid_item .msg_pop_l{background:url("img/msg_pop_l.png") no-repeat; display:inline-block; height:40px; padding-left:10px; margin-left:-2px}
+.valid_item .Validform_loading{ padding-left:0}
+.valid_item .Validform_right{ display:none!important}
+.valid_item .Validform_loading i{ background:url("img/onLoad.gif") no-repeat}
+.Validform_right_hide  .Validform_right{ display:none!important}

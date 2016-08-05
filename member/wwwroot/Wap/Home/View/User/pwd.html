@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no"/>
+<script>
+var _width = parseInt(window.screen.width);
+var scale = _width/640;
+var ua = navigator.userAgent.toLowerCase();
+var result = /android (\d+\.\d+)/.exec(ua);
+if (result){
+var version = parseFloat(result[1]);
+if(version>2.3){
+document.write('<meta name="viewport" content="width=640, minimum-scale = '+scale+', maximum-scale = '+scale+', target-densitydpi=device-dpi">');
+}else{
+document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+}
+} else {
+document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+}
+</script>
+<title>{$Think.lang.Change_password}</title>
+<link rel="stylesheet" href="__PUBLIC__/wap/css/css_wap2.css" >
+<link rel="stylesheet" href="__PUBLIC__/resource/common/js/validform/style.css" >
+<link rel="shortcut icon" href="__PUBLIC__/resource/common/images/favicon.ico" type="image/x-icon" />
+</head>
+
+<body>
+<!--header-->
+<include file="Public:header" />
+<!--end header-->
+<div class="jumppage" style="display:none;">
+    <div class="t_1">提示信息</div>
+    <div class="tx1">保存成功。</div>
+    <div class="btn1">确&#12288;&#12288;定</div>
+</div>
+
+<include file="Public:top" />
+
+<div class="con_index">
+    <div class="mainpage">
+    <div class="chengyuan_con">
+    	
+        <include file="Public:menu" />
+        <div class="tb1">
+        	<form method="post" action="__APP__/User/pwdsave/" enctype="multipart/form-data" class="formuser">
+                <div class="title1">{$Think.lang.Change_password}</div>
+                
+                <div class="tb2">
+                    <div class="t_">{$Think.lang.Original_pw}：</div>
+                    <div class="s_1 Validform_checktip"></div>
+                    <input type="password" datatype="*" nullmsg="{$Think.lang.Cpass_n}"  sucmsg="{$Think.lang.Crepass}" class="inp1" name="oldpwd" value="" tabindex="1" maxlength="25">
+                </div>
+                
+                <div class="tb2">
+                    <div class="t_">{$Think.lang.New_pw}：</div>
+                    <div class="s_1 Validform_checktip"></div>
+                    <input type="password" datatype="*6-16"   nullmsg="{$Think.lang.Cpass_n}"  sucmsg="{$Think.lang.Crepass}"  errormsg="{$Think.lang.Cpass_e}" class="inp1" name="pwd" value="" tabindex="1" maxlength="16">
+                </div>
+                
+                <div class="tb2">
+                    <div class="t_">{$Think.lang.Sure_pw}：</div>
+                    <div class="s_2 Validform_checktip"></div>
+                    <input type="password" datatype="*6-16"  recheck="pwd"  errormsg="{$Think.lang.Cpass_c}" sucmsg="{$Think.lang.Crepass}"  nullmsg="{$Think.lang.Cpass_n}" class="inp1" name="repwd" value="" tabindex="1" maxlength="16">
+                </div>
+                <input type="submit" class="btn3"  value="{$Think.lang.Save}">
+        	</form>
+        </div>
+    
+    </div>
+    
+    </div>
+</div>
+<!--footer-->
+<include file="Public:footer" />
+<script src="__PUBLIC__/resource/common/js/Validform.js"></script>
+<script type="text/javascript">
+$(function(){
+var demo=$(".formuser").Validform({
+		tiptype:3,
+		label:".m_label",
+		showAllError:false,
+		datatype:{
+			"zh1-6":/^[\u4E00-\u9FA5\uf900-\ufa2d]{1,6}$/,
+		},
+		ajaxPost:false
+	});
+})
+</script>
+<!--end footer--> 
+</body>
+</html>

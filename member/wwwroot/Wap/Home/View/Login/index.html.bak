@@ -1,0 +1,364 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no"/>
+<script type="text/javascript">
+var _width = parseInt(window.screen.width);
+var scale = _width/640;
+var ua = navigator.userAgent.toLowerCase();
+var result = /android (\d+\.\d+)/.exec(ua);
+if (result){
+var version = parseFloat(result[1]);
+if(version>2.3){
+document.write('<meta name="viewport" content="width=640, minimum-scale = '+scale+', maximum-scale = '+scale+', target-densitydpi=device-dpi">');
+}else{
+document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+}
+} else {
+document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+}
+</script>
+
+<title>{$Think.lang.Registered}</title>
+<link rel="stylesheet" href="__PUBLIC__/wap/css/css_wap2.css">
+<link rel="stylesheet" href="__PUBLIC__/resource/common/js/validform/style.css" >
+</head>
+<style> 
+body{
+	{$Think.lang.font}
+}
+</style>
+<body>
+
+<div class="jumppage_lang" style="display:none;">
+    <div class="til_">Language</div>
+    <div class="btn1"><a href="./?l=zh-cn" style="color:#000">Chinese</a></div>
+    <div class="btn2"><a href="./?l=en-us" style="color:#000">English</a></div>
+</div>
+<div class="jumppage_bg" style="display:none;"></div>
+
+<div class="jumppage_su" style="display:none;">
+<div class="btn2">服务器1号机</div>
+</div>
+
+<div class="topper">
+	<div class="con">
+		<div class="back_btn"><a href="javascript:history.go(-1);" title="返回" style="display:inline-block; width:120px; height:57px"></a></div>
+		<div class="t_1">{$Think.lang.Registered}</div>
+        <div style="float:left;height: 57px; line-height:57px"><a id="Jq_change_l" href="javascript:;" style="color:#FFF">Language</a></div>
+	</div>
+</div>
+
+
+<div class="con_index">
+    <div class="mainpage">
+        <div class="login_con">
+        <!--<div class="img2"><a href="http://m.loysmarthome.com/" class="logo_btn0"></a></div>-->
+        <div class="img2" style="background:url(__PUBLIC__/wap/css/images/{$Think.lang.p_rg_cn}) no-repeat 50% 50%;">
+        	<a href="{$Think.lang.langue_link}" class="logo_btn0"></a>
+        </div>
+        <form method="post" action="__URL__/regcheck/" class="regform JQ_sub"  id="regform">
+        
+        <style>.t_{ min-width:120px}</style>
+        <div class="c1" style="display:none;">
+        	<div class="t_">选择服务器：</div>
+        	<div class="s_1 Validform_checktip">选择服务器</div>
+            <div class="inp3">
+                <select name="serverID" id="serverID" style="width:150px;" datatype="*" class="m_input" nullmsg="请选择服务器">
+                    <volist name="serverlist" id="vo" >
+                        <option value="{$vo.pid}">{$vo.wname}</option>
+                    </volist>
+                </select>
+            </div>
+        </div>
+        
+        <div class="c1">
+            <div class="t_">{$Think.lang.User}：</div>
+            <div class="s_1 Validform_checktip">{$Think.lang.Cuser}</div>
+            <input type="text" class="inp4" id="regneme" name="regneme" datatype="z3-16" ajaxurl="__URL__/ckuser/" sucmsg="{$Think.lang.Crepass}" maxlength="16" errormsg="{$Think.lang.Cuser_e}" nullmsg="{$Think.lang.Cuser_n}">
+            <input type="hidden" name="wUseID" id="wUseID">
+        </div>
+        
+        <div class="c1">
+            <div class="t_">{$Think.lang.Pass}：</div>
+            <div class="s_1 Validform_checktip">{$Think.lang.Cpass}</div>
+            <input type="password" class="inp4" id="password" name="password" datatype="*6-16" sucmsg="{$Think.lang.Crepass}"   nullmsg="{$Think.lang.Cpass_n}" maxlength="16" errormsg="{$Think.lang.Cpass_e}">
+            <input type="hidden" name="wPassWord" id="wPassWord">
+            <!--<div class="passwordStrength" style="display:none;"><b>密码强度：</b> <span>弱</span><span>中</span><span class="last">强</span></div>-->
+        </div>
+        
+        <div class="c1">
+            <div class="t_">{$Think.lang.Repass}：</div>
+            <div class="s_1 Validform_checktip"></div>
+            <input type="password" class="inp4" id="password2" name="password2" datatype="*6-16"  sucmsg="{$Think.lang.Crepass}" recheck="password" maxlength="16"  errormsg="{$Think.lang.Cpass_c}" nullmsg="{$Think.lang.Cpass_n}">
+			<input type="hidden" name="pwd" id="pwd">
+		</div>
+        
+        <div class="c1">
+            <div class="t_">{$Think.lang.City}：</div>
+            <div class="s_1 Validform_checktip"></div>
+            <div class="inp3" id="Jq_g" dataVal="" style="color:">
+            	{$Think.lang.Select_City}
+            </div>
+            <select name="intl" id="intl"   class="m_input none" nullmsg="请选国家">
+                    <option value>{$Think.lang.Select_City}</option>
+                    <volist name="intllist" id="vo">
+                    	<option value="{$vo.intl}">
+                        	 <eq name="langue" value="cn">
+                             	{$vo.cnname}
+                             <else/>
+                             	{$vo.enname}
+                             </eq>
+                        </option>
+                    </volist>
+            </select>
+            <div class="jumppage_su" id="Jq_gv" style="display:none;">
+            	<volist name="intllist" id="vo" >
+                	<a class="" href="javascript:change_show({$vo.intl},'<eq name="langue" value="cn">{$vo.cnname}<else/>{$vo.enname}</eq>',this);" id="s_{$vo.intl}" dataInt="{$vo.intl}"><eq name="langue" value="cn">{$vo.cnname}<else/>{$vo.enname}</eq></a>
+                    
+                </volist>
+            </div>
+        
+        </div>
+        
+        <div class="c1">
+        	<div style="width:307px; float:left">
+                <div class="t_">{$Think.lang.Mobile}：</div>
+                <div class="s_1 Validform_checktip" id="Jq_sj" style="padding-right:0px"></div>
+                <input type="text" class="inp5" id="mobile" name="mobile" sucmsg="&nbsp;"  ajax  style="color:#666666; margin-right:20px; width:307px" datatype="n6-15"   errormsg="{$Think.lang.Cmobile_e}" nullmsg="{$Think.lang.Cmobile_n}">
+				<input type="hidden" name="wMB" id="wMB">
+            </div>
+            
+            <div style="float:left; margin-left:40px; margin-top:26px">
+            	
+                <div class="btn3" style="display:inline-block; width:170px">
+                    <input class="btn btn-primary btn-lg btn-block" style=" font-size:20px; background-color:#83ccff; padding:18px 0;" type="button" value="{$Think.lang.Gain_Code}" id="btnSubmit" onClick="getvcode(120);">
+                </div>
+                <div class="btn3_a" style="display:none;">120秒后过期</div>
+            </div>
+        </div>
+        
+        <div class="c1">
+            <div class="t_">{$Think.lang.Code}：</div>
+            <div class="s_1 Validform_checktip"></div>
+            <input type="text" class="inp4" id="code" maxlength="6" name="code"  ajaxurl="__URL__/ckvercode/" sucmsg="{$Think.lang.Crepass}"  datatype="n6-6"  errormsg="{$Think.lang.Ccode_e}" nullmsg="{$Think.lang.Ccode_n}">
+        </div>
+        
+        <div class="c1">
+            <div class="t_">{$Think.lang.Name}：</div>
+            
+            <div class="s_1 Validform_checktip"></div>
+            <input type="text" class="inp4" id="realname" name="realname" sucmsg="{$Think.lang.Crepass}" datatype="zh1-16" maxlength="16" errormsg="{$Think.lang.Cname_e}" nullmsg="{$Think.lang.Cname_n}">
+			<input type="hidden" name="wName" id="wName">
+        </div>
+        
+        <div class="c1" >
+            <!--<div class="" style="background-image:none; float:left; " >
+            	<input type="checkbox" datatype="checkbox"  errormsg="必须同意才能注册"  value="1"  nullmsg="请选择" checked   style="width:18px; height:18px" />
+            </div>-->
+            <div class="tx1" style="line-height:25px; padding-left:2px"> 
+            <input type="checkbox" value="agree"  checked style="width:18px; height:18px; position: relative;top: -4px;left: 0px;" id="m_userProtocol" >
+            {$Think.lang.Igree}
+            <a href="__URL__/tk/" class="tx4" target="_blank">{$Think.lang.Terms}</a>
+            <div class="Validform_checktip" style=" float:left"></div>
+            <p><a href="__APP__/"  class="tx4" style=" text-decoration:none">{$Think.lang.landing}&gt;&gt;</a></p>
+            </div>
+            <div id="Jq_ck" style=" color:#ff2a00"></div>
+        </div>
+        <!--<input type="submit" class="btn1" id="u_btn_blue_3" value="注&nbsp;&nbsp;册">-->
+        <a href="javascript:submitForm();" class="btn1">{$Think.lang.Registered}</a>
+        </form>
+        </div>
+    </div>
+</div>
+
+<include file="Public:footer" />
+
+<script language="JavaScript" type="text/javascript" src="__PUBLIC__/resource/js/jsbn.js"></script>
+<script language="JavaScript" type="text/javascript" src="__PUBLIC__/resource/js/prng4.js"></script>
+<script language="JavaScript" type="text/javascript" src="__PUBLIC__/resource/js/rng.js"></script>
+<script language="JavaScript" type="text/javascript" src="__PUBLIC__/resource/js/rsa.js"></script>
+<script language="JavaScript" type="text/javascript" src="__PUBLIC__/resource/js/base64.js"></script>
+<script language="JavaScript" type="text/javascript" src="__PUBLIC__/resource/js/md5.js"></script>
+
+<script language="JavaScript"> 
+//publc key  and public length 16 binary data
+var public_key="{$Think.config.public_key}";
+var public_length="{$Think.config.public_length}";
+function do_encrypt() {
+  var before = new Date();
+  var rsa = new RSAKey();
+  rsa.setPublic(public_key, public_length);
+  
+  document.getElementById("wUseID").value = rsa.encrypt(document.getElementById("regneme").value);
+  //document.getElementById("regneme").value ='';
+  document.getElementById("wPassWord").value = hex_md5(document.getElementById("password").value);
+  //document.getElementById("password").value ='';
+  document.getElementById("pwd").value = hex_md5(document.getElementById("password2").value);
+  //document.getElementById("password2").value ='';
+  document.getElementById("wMB").value = rsa.encrypt(document.getElementById("mobile").value);
+  //document.getElementById("mobile").value ='';
+  document.getElementById("wName").value = rsa.encrypt(document.getElementById("realname").value);
+  //document.getElementById("realname").value='';
+ 
+  //document.form1.submit
+  //ajax验证用户名
+  if(checkCK() == false){
+	//window.location.href= window.location.href; 
+	return false;
+  };
+  
+  emp();
+  //return false;
+}
+
+//验证码
+function getvcode(time){
+	
+    var mobile= $('#mobile').val();
+	//var intl= $('#intl').find("option:selected").val();
+	var intl= $('#Jq_g').attr("dataval");
+	
+	if(intl ==''){
+		$('#Jq_g').click();
+		return false;
+	}else if(mobile =='' || $('#Jq_sj').hasClass('Validform_wrong')){
+		$('#mobile').focus();
+		return false;
+	}else{
+		
+		$("#btnSubmit").attr({disabled: true}).css({"background-color": "#666666"}).parent().addClass('btn3_a');
+		$("#btnSubmit").val('{$Think.lang.Cmobile_check}');
+		
+		
+		var url = window.location.href;
+		$.ajax({
+			//url: url+'ckmob/',
+			//url: 'http://localhost/m/index.php/Login/ckmob/',
+			url: '/index.php/Login/ckmob/',
+			data: "param="+$('#mobile').val(),
+			type: "POST",
+			cache: false,
+			dataType:"text",
+			success: function(data){
+				if(data == 'y'){
+					
+					$('#Jq_sj').html('{$Think.lang.Crepass}');
+					
+					var time;
+					
+					$("#btnSubmit").attr({disabled: true}).css({"background-color": "#666666"}).parent().addClass('btn3_a');
+					$("#btnSubmit").val('120{$Think.lang.Cmobile_send}');
+					var url = window.location.href;
+					
+					$.ajax({
+						//url: url+'mob/',
+						url: 'http://localhost/m/index.php/Login/mob/',
+						//url: '/index.php/Login/mob/',
+						data: "mobile="+mobile+"&intl="+intl,
+						type: "POST",
+						cache: false,
+						dataType:"text",
+						success: function(data){
+							//alert(data);
+							//$('#Jq_sj').empty().html(data);
+						}
+					});
+					
+					gettimeout(120);
+					
+				}else{
+					
+					$('#Jq_sj').addClass('Validform_wrong').html('{$Think.lang.Cmobile_ajx}');
+					$("#btnSubmit").attr({disabled: false}).css({"background-color": "#83ccff"}).parent().removeClass('btn3_a');
+					$("#btnSubmit").val('{$Think.lang.Gain_Code}');
+					return false;
+						
+				}
+			}
+		});	
+	}
+}
+
+function gettimeout(time){
+	var time;
+	$("#btnSubmit").attr({disabled: true});
+	$("#btnSubmit").val(time+'{$Think.lang.Cmobile_send}');
+	if(time==0){
+		$("#btnSubmit").attr({disabled: false}).css({"background-color": "#83ccff"}).parent().removeClass('btn3_a');
+		$("#btnSubmit").val('{$Think.lang.Gain_Code}');
+	}else{
+		time--;
+		setTimeout("gettimeout(" + time + ")",1000);
+	}
+}
+
+$(document).ready(function() {
+     $('#regform input').keyup(trimkeyup);
+});
+function trimkeyup(e) {
+    lucene_objInput = $(this);
+    if (e.keyCode != 38 && e.keyCode != 40 && e.keyCode != 13) {
+        var im = $.trim(lucene_objInput.val());
+        lucene_objInput.val(im); 
+    }
+} 
+</script>
+<script src="__PUBLIC__/resource/common/js/Validform.js"></script>
+<script type="text/javascript">
+
+$('#Jq_g').on("click",function(){
+	$('.jumppage_bg').show();
+	$('#Jq_gv').show();	
+});
+
+function change_show(k1,val,obj){
+	$('#Jq_gv').find("a").removeClass('selected');
+	$('#s_'+k1).addClass('selected');	
+	$('#Jq_g').html(val).attr('dataVal',k1);
+	
+	$("#intl").find("option:selected").attr("selected",false);
+	//alert($("#intl").find('option[value='+k1+']').html());
+	$("#intl").find('option[value='+k1+']').attr("selected","selected");
+	//document.getElementById("intl").options[value='+k1+'].setAttribute("selected", true);
+	
+	$("#intl").focusout();
+	$('#Jq_gv').hide();
+	$('.jumppage_bg').hide();
+	$('#mobile').focus();
+};
+
+
+$("#m_userProtocol").blur(function(){
+	//alert(111111111);
+	checkCK();
+});
+function checkCK(){
+	if($('#m_userProtocol').is(':checked')){
+		$('#Jq_ck').empty();
+	}else{
+		$('#Jq_ck').focus().html("{$Think.lang.Cclause}");
+		return false;
+	}
+}
+function emp(){
+	$('.Validform_checktip').empty();	
+}
+$(function(){
+	$.Tipmsg.c="{$Think.lang.Cmobile_check}";
+	var demo=$(".regform").Validform({
+		tiptype:3,
+		showAllError:true,
+		datatype:{
+			"zh1-6":/^[\u4E00-\u9FA5\uf900-\ufa2da-zA-Z]{1,16}$/,
+             "z4-16":/^[\w+]{4,16}$/,
+		},
+		beforeSubmit:do_encrypt
+		//ajaxPost:false
+	});
+	
+})
+</script>
+</body>
+</html>

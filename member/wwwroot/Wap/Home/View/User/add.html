@@ -1,0 +1,115 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no"/>
+<script>
+var _width = parseInt(window.screen.width);
+var scale = _width/640;
+var ua = navigator.userAgent.toLowerCase();
+var result = /android (\d+\.\d+)/.exec(ua);
+if (result){
+var version = parseFloat(result[1]);
+if(version>2.3){
+document.write('<meta name="viewport" content="width=640, minimum-scale = '+scale+', maximum-scale = '+scale+', target-densitydpi=device-dpi">');
+}else{
+document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+}
+} else {
+document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+}
+</script>
+
+<title>{$Think.lang.Add_member}</title>
+<link rel="stylesheet" href="__PUBLIC__/wap/css/css_wap2.css" >
+<link rel="stylesheet" href="__PUBLIC__/resource/common/js/validform/style.css" >
+<link rel="shortcut icon" href="__PUBLIC__/resource/common/images/favicon.ico" type="image/x-icon" />
+</head>
+<body>
+<!--header-->
+<include file="Public:header" />
+<!--end header-->
+<div class="jumppage" style="display:none;">
+    <div class="t_1">{$Think.lang.Box_name}</div>
+    <div class="tx1">{$Think.lang.Success}</div>
+    <div class="btn2 " id="Jq_add">{$Think.lang.Cadd}</div>
+    <div class="btn3 " id="Jq_back" dataUrl = "__APP__/User/">{$Think.lang.Back}</div>
+</div>
+
+<include file="Public:top" />
+
+<div class="con_index">
+	<div class="mainpage">
+		<div class="chengyuan_con">
+        	
+            <include file="Public:menu" />
+            <div class="tb1">
+                <div class="title1">{$Think.lang.Add_member}</div>
+                <form method="post" action="__URL__/familyadd/" enctype="multipart/form-data" class="familyform" id="edituser">
+                    <div class="tb2">
+                    <div class="t_">{$Think.lang.Member_name}：</div>
+                        <div class="s_1 Validform_checktip"></div>
+                        <input type="text" class="inp1" name="familyname" datatype="*1-10" nullmsg="{$Think.lang.Member_name_n}"  sucmsg="{$Think.lang.Crepass}" value="" tabindex="1" maxlength="10">
+                    </div>
+                    <div class="tb2">
+                    <div class="t_">{$Think.lang.Member_id}：</div>
+                    <div class="s_2 Validform_checktip"></div>
+                    <input type="text" class="inp1" name="familyid" datatype="n1-99" nullmsg="{$Think.lang.Member_id_n}"  sucmsg="{$Think.lang.Crepass}" errormsg="{$Think.lang.Member_id_e}" value="" tabindex="1" maxlength="2">
+                    </div>
+                    <input type="submit" class="btn3"  value="{$Think.lang.Save}">
+          		</form>
+            </div>
+		</div>
+	</div>
+</div>
+
+<!--footer-->
+
+<include file="Public:footer" />
+<script language="JavaScript"> 
+$(document).ready(function() {
+        $('#edituser input').keyup(trimkeyup);
+});
+function trimkeyup(e) {
+lucene_objInput = $(this);
+if (e.keyCode != 38 && e.keyCode != 40 && e.keyCode != 13) {
+    var im = $.trim(lucene_objInput.val());
+    lucene_objInput.val(im); 
+}
+} 
+</script>
+<script src="__PUBLIC__/resource/common/js/Validform.js"></script>
+<script type="text/javascript">
+$(function(){
+	var demo=$(".familyform").Validform({
+		tiptype:function(msg,o,cssctl){
+			if(!o.obj.is("form")){
+				var objtip = o.obj.siblings(".Validform_checktip");
+				cssctl(objtip,o.type);
+				objtip.text(msg);
+			}else{
+				$('.jumppage_bg, .jumppage').show();
+				$('#Jq_add').click(function(){
+					var url = window.location.href;
+					window.location.href = url;
+				});
+				$('#Jq_back').click(function(){
+					var url = $('#Jq_back').attr('dataUrl');
+					window.location.href = url;	
+				});
+			}
+		},
+		ajaxPost:true		
+		//callback:function(form){
+//			var check=confirm("您确定要提交表单吗？");
+//			if(check){
+//				form[0].submit();
+//			}
+//			return false;
+//		}
+	});
+})
+</script>
+<!--end footer--> 
+</body>
+</html>

@@ -1,0 +1,293 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no"/>
+<script>
+var _width = parseInt(window.screen.width);
+var scale = _width/640;
+var ua = navigator.userAgent.toLowerCase();
+var result = /android (\d+\.\d+)/.exec(ua);
+if (result){
+var version = parseFloat(result[1]);
+if(version>2.3){
+document.write('<meta name="viewport" content="width=640, minimum-scale = '+scale+', maximum-scale = '+scale+', target-densitydpi=device-dpi">');
+}else{
+document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+}
+} else {
+document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+}
+</script>
+<title>{$Think.lang.Add_time}</title>
+<link rel="stylesheet" href="__PUBLIC__/wap/css/css_wap2.css" >
+<link rel="stylesheet" href="__PUBLIC__/resource/common/js/validform/style.css" >
+<link rel="stylesheet" href="__PUBLIC__/resource/common/js/date/jquery.datetimepicker.css" >
+<link rel="shortcut icon" href="__PUBLIC__/resource/common/images/favicon.ico" type="image/x-icon" />
+</head>
+
+<body>
+<!--header-->
+<include file="Public:header" />
+<!--end header-->
+<div class="jumppage" style="display:none;">
+    <div class="t_1">{$Think.lang.Box_name}</div>
+    <div class="tx1">{$Think.lang.Success}</div>
+    <div class="btn2 " id="Jq_add">{$Think.lang.Cadd}</div>
+	<div class="btn3 " id="Jq_back" dataUrl = "__APP__/Time/">{$Think.lang.Back}</div>
+</div>
+
+<include file="Public:top" />
+
+<div class="con_index">
+    <div class="mainpage">
+            <div class="chengyuan_con">
+            
+            <include file="Public:menu" />
+            
+            <div class="tb1">
+                <div class="title1">{$Think.lang.Add_time}</div>
+            	<form method="post" action="__URL__/typeadd/" enctype="multipart/form-data" class="Machineryfrom">
+                <div class="tb2">
+                    <div class="t_">{$Think.lang.Times_name}：</div>
+                    <div class="s_1 Validform_checktip">{$Think.lang.Model_format}</div>
+                    <input type="text" class="inp1" datatype="*1-10" nullmsg="{$Think.lang.Times_n}" sucmsg="{$Think.lang.Crepass}" name="wName" value="" tabindex="1" maxlength="10">
+                </div>
+            	
+                <div class="line1"></div>
+            
+                <div class="tb2">
+                	<div class="t_">{$Think.lang.Add_equipment}：</div>
+                    	<div class="box1">
+                        
+                        <div>
+                            <volist name="myMobile" id="vo" key="k1">
+                                <label class="Jq_r Jq_m{$k1}" id="radio{$k1}">
+                                    <b class="btn4">{$vo.McName}</b>
+                                </label>
+                            </volist>
+                        </div>
+                        <div class="none">
+                        	<volist name="myMobile" id="vo" key="k2">
+                        		<input type="checkbox" name="wModel[]" id="input{$k2}" value="{$vo.McID}" class="px">{$vo.McName}&nbsp;&nbsp;
+                        	</volist>
+                        </div>
+                    
+                    </div>
+                </div>
+            
+                <div class="line1"></div>
+            
+                <div class="tb2">
+                    <div class="t_">{$Think.lang.Week}</div>
+                    <div class="xq_box">
+                    	
+                        <div class="xq_btn Jq_d1" id="w1">{$Think.lang.SUN}</div>
+                        <div class="xq_btn Jq_d2" id="w2">{$Think.lang.MON}</div>
+                        <div class="xq_btn Jq_d3" id="w3">{$Think.lang.TUE}</div>
+                        <div class="xq_btn Jq_d4" id="w4">{$Think.lang.WED}</div>
+                        <div class="xq_btn Jq_d5" id="w5">{$Think.lang.THU}</div>
+                        <div class="xq_btn Jq_d6" id="w6">{$Think.lang.FRI}</div>
+                        <div class="xq_btn Jq_d7" id="w7">{$Think.lang.SAT}</div>
+                        
+                    	<div class="none">
+                            <input type="checkbox" name="wSunday" id="i1" value="1" class="px">&nbsp;&nbsp;星期日&nbsp;&nbsp;
+                            <input type="checkbox" name="wMon" id="i2" value="1" class="px">&nbsp;&nbsp;星期一&nbsp;&nbsp;
+                            <input type="checkbox" name="wTues" id="i3" value="1" class="px">&nbsp;&nbsp;星期二&nbsp;&nbsp;
+                            <input type="checkbox" name="wWed" id="i4" value="1" class="px">&nbsp;&nbsp;星期三&nbsp;&nbsp;
+                            <input type="checkbox" name="wThur" id="i5" value="1" class="px">&nbsp;&nbsp;星期四&nbsp;&nbsp;
+                            <input type="checkbox" name="wFri" id="i6" value="1" class="px">&nbsp;&nbsp;星期五&nbsp;&nbsp;
+                            <input type="checkbox" name="wSat" id="i7" value="1" class="px">&nbsp;&nbsp;星期六&nbsp;&nbsp;
+                        </div>
+                        
+                    </div>
+                </div>
+            
+                <div class="line1"></div>
+            
+                <div class="tb2">
+                    <div class="t_">{$Think.lang.Times}：</div>
+                    <div class="s_1 Validform_checktip">{$Think.lang.Set_times}</div>
+                    <input type="text" class="inp1" datatype="sj" nullmsg="{$Think.lang.Times_n}" name="wTime" sucmsg="{$Think.lang.Crepass}"  id="datetimepicker" value="" tabindex="1" maxlength="5">
+                </div>
+            
+                <div class="line1"></div>
+            
+                <div class="tb2">
+                    <div class="t_">{$Think.lang.Equ_state}</div>
+                    <div class="fr Jq_tx2" id="Jq_tx">
+						
+                        <div id="JQ_n" class="dx_btn" >{$Think.lang.Off}</div>
+						<div id="JQ_y" class="dx_btn" >{$Think.lang.Open}</div>
+                    	<input type="radio" name="wType" class="none" id="wType" />
+                    </div>
+                    
+                </div>
+            
+                <input type="submit" class="btn3"  value="{$Think.lang.Save}">
+            	<input type="hidden" name="wUseID" value="{$User.wUseID}">
+          		</form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--footer-->
+<include file="Public:footer" />
+<script src="__PUBLIC__/resource/common/js/Validform.js"></script>
+<script src="__PUBLIC__/resource/common/js/date/jquery.datetimepicker.js"></script>
+<script type="text/javascript">
+$(function(){
+	var demo=$(".Machineryfrom").Validform({
+			tiptype:function(msg,o,cssctl){
+				if(!o.obj.is("form")){
+					var objtip = o.obj.siblings(".Validform_checktip");
+					cssctl(objtip,o.type);
+					objtip.text(msg);
+				}else{
+					$('.jumppage_bg, .jumppage').show();
+					$('#Jq_add').click(function(){
+						var url = window.location.href;
+						window.location.href = url;
+					});
+					$('#Jq_back').click(function(){
+						var url = $('#Jq_back').attr('dataUrl');
+						window.location.href = url;	
+					});
+				}
+			},
+			showAllError:false,
+			datatype:{
+				"zh1-6":/^[\u4E00-\u9FA5\uf900-\ufa2d]{1,6}$/,
+				"sj":/^((1|0?)[0-9]|2[0-3]):([0-5][0-9])/,
+				"ip":/^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/
+			},
+			ajaxPost:false
+		});
+	});
+
+	$('#datetimepicker').datetimepicker({
+		datepicker:false,
+		format:'H:i',
+		step:5
+	
+	});
+
+	$(document).ready(function(){	
+		var obj = $('.Jq_r');
+		for(var i = 1; i < obj.length+1; i++){
+			f_bl(i);
+		}
+		//Jq_tx();
+	});
+	
+	function f_bl(k){
+		$('.Jq_m'+k).on("click",function(){
+				
+				$('.Jq_m'+k).find('b').addClass('btn4_a');
+				$('#input'+k).prop("checked",true);
+				$('.Jq_m'+k).off("click");
+				
+				$('#radio'+k).on("click",function(){
+					$('#radio'+k).find('b').removeClass('btn4_a');
+					$('#input'+k).prop("checked",false);
+					$('#radio'+k).off("click");
+					f_bl(k);
+				});	
+		});
+	}
+	
+	/*function Jq_tx(){
+		$('#Jq_tx').on("click",function(){
+			
+				$('#Jq_tx').find('b').addClass('hx_btn_a');
+				$('#wType').attr("value",1);
+				$('#Jq_tx').off("click");
+				
+				$('.Jq_tx2').on("click",function(){
+					$('.Jq_tx2').find('b').removeClass('hx_btn_a');
+					$('#wType').attr("value",0);
+					$('.Jq_tx2').off("click");
+					Jq_tx();
+				});	
+		});	
+	}*/
+	var obj = $('.xq_btn');
+	for(var i = 1; i < obj.length+1; i++){
+		if($('#w'+i).hasClass('xq_btn_a')){
+			fx('w'+i,i);
+		}else{
+			zx('w'+i,i);
+		}
+	}
+
+	//返向
+	function fx(str1,str2){
+		$('#'+str1).on("click",function(){
+			$('#'+str1).removeClass('xq_btn_a').off();
+			$('#i'+str2).prop('checked',false);
+			$('#h'+str2).attr("value",0);
+			
+			$('.Jq_d'+str2).on("click",function(){
+				$('.Jq_d'+str2).addClass('xq_btn_a').off();
+				$('#i'+str2).prop('checked',true);
+				$('#h'+str2).attr("value",1);
+				fx(str1,str2);
+			});
+		});		
+	}
+
+	//正向
+	function zx(str1,str2){
+		$('#'+str1).on("click",function(){
+			$('#'+str1).addClass('xq_btn_a').off();
+			$('#i'+str2).prop('checked',true);
+			//$('#h'+str2).attr("value",1);
+			
+			$('.Jq_d'+str2).on("click",function(){
+				$('.Jq_d'+str2).removeClass('xq_btn_a').off();
+				$('#i'+str2).prop('checked',false);
+				//$('#h'+str2).attr("value",0);
+				zx(str1,str2);
+			});
+		});		
+	}
+	/*rg('w1','wSunday');
+	rg('w2','wMon');
+	rg('w3','wTues');
+	rg('w4','wWed');
+	rg('w5','wThur');
+	rg('w6','wFri');
+	rg('w7','wSat');
+	
+	function rg(str1,str2){
+		$('#'+str1).on("click",function(){
+			$('#'+str1).addClass('xq_btn_a').off();
+			$('#'+str2).prop('checked',true);
+			
+			$('.xq_btn_a').on("click",function(){
+				$('#'+str1).removeClass('xq_btn_a').off();
+				$('#'+str2).prop('checked',false);
+				rg(str1,str2);
+			});
+		});
+	};
+	
+	*/
+	$('#JQ_y').on("click",function(){
+		$('#JQ_y').addClass('dx_btn_a');
+		$('#JQ_n').removeClass('dx_btn_a');
+		$('#wType').attr("value",1);
+		$('#wType').attr("checked","checked" );
+	});
+	
+	$('#JQ_n').on("click",function(){
+		$('#JQ_n').addClass('dx_btn_a');
+		$('#JQ_y').removeClass('dx_btn_a');
+		$('#wType').attr("checked","checked" );
+		$('#wType').attr("value",0);
+	});
+</script>
+<!--end footer-->
+</body>
+</html>

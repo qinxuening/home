@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$Think.lang.UserMobile}</title>
+<link rel="stylesheet" href="__PUBLIC__/resource/common/css/base.css" >
+<link rel="stylesheet" href="__PUBLIC__/resource/common/css/user.css">
+<link rel="shortcut icon" href="__PUBLIC__/resource/common/images/favicon.ico" type="image/x-icon" />
+</head>
+
+<body>
+<!--header-->
+<include file="Public:header" />
+<!--end header--> 
+<div class="jumppage" style="display:none;">
+	<div class="t_1">{$Think.lang.Box_name}</div>
+	<div class="tx1"></div>
+	<input type="button" class="btn2" id="Jq_sure" value="{$Think.lang.Sure}">
+	<input type="button" class="btn3" id="Jq_no" value="{$Think.lang.Cancel}">
+</div>
+<!--main-->
+<div id="wp" class="wp"><link href="__PUBLIC__/user/css/style.css" rel="stylesheet" type="text/css" />
+ <div class="contentmanage">
+    <div class="developer">
+       <div class="appTitle normalTitle" style="padding: 20px;">
+        <h2>{$Think.lang.Center}</h2>
+        <div class="accountInfo">
+        
+        </div>
+        <div class="clr"></div>
+      </div>
+      <div class="tableContent">
+        <!--左侧功能菜单-->
+        <div class="sideBar">
+          <div class="catalogList">
+            <ul>
+				<li class="subCatalogList" > <a href="__APP__/User/">{$Think.lang.Member}</a></li>
+				<li class=" subCatalogList "> <a href="__APP__/User/add/">{$Think.lang.Add_member}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/Mobile/">{$Think.lang.Equipment}</a> </li>
+				
+				<li class=" subCatalogList "> <a href="__APP__/Type/">{$Think.lang.Model}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/Type/add/">{$Think.lang.Add_model}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/Time/">{$Think.lang.Time}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/Time/add/">{$Think.lang.Add_time}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/User/useredit/">{$Think.lang.Information}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/User/pwd/">{$Think.lang.Change_password}</a> </li>
+				<li class=" selected "> <a href="__APP__/Mobile/usermobile/">{$Think.lang.UserMobile}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/User/out/">{$Think.lang.Exit}</a> </li>
+            </ul>
+          </div>
+        </div>
+<div class="content">
+ 		<!--<form method="post" action="__URL__/delall/" enctype="multipart/form-data" class="Machineryfrom">-->
+          <div class="msgWrap">
+            <TABLE class="ListProduct" border="0" cellSpacing="0" cellPadding="0" width="100%">
+              <THEAD>
+                <TR>
+                  <!--<TH><input class="check-all" type="checkbox"></TH>-->
+                  <TH>{$Think.lang.LicensedUser}</TH>
+				  <TH>{$Think.lang.Equipment}</TH>
+				  <TH>{$Think.lang.OneDelete}</TH>
+				  <TH>{$Think.lang.AllDelete}</TH>
+                </TR>
+              </THEAD>
+              <TBODY>
+                <TR></TR>
+                <volist name="UserMobile" id="vo" >
+                 <TR>
+                  <!--<td><label><input class="ids" type="checkbox" value="{$vo.Pid}" name="ids[]"></td>-->
+                  <TD><p>{$vo.wName}</p></TD>
+				  <TD><p>{$vo.McName}</p></TD>
+                  <TD>
+				 		<a href="javascript:Jq_del('{$vo.Pid}')" class="btnGreens btndel" >{$Think.lang.Delete}</a>
+				  </TD>
+				  <TD class="norightborder">
+				  		<a href="javascript:Jq_del2('{$vo.wUseID}')" class="btnGreens btndel" >{$Think.lang.Delete}</a>
+				  </TD>
+                </TR>
+				</volist>
+				<!--<notempty name="UserMobile">
+				<tr>
+                  <td colspan="4"><button type="submit" class="btnGreen" id="saveSetting">{$Think.lang.Delete}</button></td>
+                </tr>
+				</notempty>-->
+              </TBODY>
+            </TABLE>
+          </div>
+          <!--</form>-->
+          <div class="cLine">
+            <div class="pageNavigator right">
+              <div class="pages"></div>
+            </div>
+            <div class="clr"></div>
+          </div>
+        </div>
+        
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+  <!--底部-->
+  	</div>
+<!--end main--> 
+<!--footer-->
+<include file="Public:footer" />
+<script type="text/javascript">
+	$(".check-all").click(function(){
+		$(".ids").prop("checked", this.checked);//prop()方法的功能、定义及获取或者设置匹配元素属性值
+	});
+	$(".ids").click(function(){
+		var option = $(".ids");
+		option.each(function(i){ 
+			if(!this.checked){
+				$(".check-all").prop("checked", false);
+				return false;
+			}else{
+				$(".check-all").prop("checked", true);
+			}
+		});
+	});
+	function Jq_del(Pid){
+		$('.jumppage > .tx1').html('{$Think.lang.Confirm_delete}');
+		$('.jumppage_bg, .jumppage').show();
+		$('#Jq_sure').click(function(){
+			var url = "__URL__/delusermobile/Pid/"+Pid;
+			window.location.href = url;			
+			$(this).attr("disabled","disabled");
+		});
+	};
+	function Jq_del2(wUseID){
+		$('.jumppage > .tx1').html('{$Think.lang.Confirm_delete}');
+		$('.jumppage_bg, .jumppage').show();
+		$('#Jq_sure').click(function(){
+			var url = "__URL__/delall/wUseID/"+wUseID;
+			window.location.href = url;			
+			$(this).attr("disabled","disabled");
+		});
+	};
+	$('#Jq_no').click(function(){
+		$('.jumppage_bg, .jumppage').hide();	
+	});
+</script>
+<!--end footer--> 
+</body>
+</html>

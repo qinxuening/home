@@ -1,0 +1,195 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no"/>
+
+<script>
+var _width = parseInt(window.screen.width);
+var scale = _width/640;
+var ua = navigator.userAgent.toLowerCase();
+var result = /android (\d+\.\d+)/.exec(ua);
+if (result){
+var version = parseFloat(result[1]);
+if(version>2.3){
+document.write('<meta name="viewport" content="width=640, minimum-scale = '+scale+', maximum-scale = '+scale+', target-densitydpi=device-dpi">');
+}else{
+document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+}
+} else {
+document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+}
+</script>
+
+<title>添加模式</title>
+
+
+
+
+<link rel="stylesheet" href="__PUBLIC__/wap/css/css_wap2.css" >
+<link rel="stylesheet" href="__PUBLIC__/resource/common/js/validform/style.css" >
+</head>
+
+<body>
+<!--header-->
+<include file="Public:header" />
+<!--end header-->
+<div class="jumppage" style="display:none;">
+<div class="t_1">提示信息</div>
+<div class="tx1">保存成功！</div>
+<div class="btn2 " id="Jq_add">继续添加</div>
+<div class="btn3 " id="Jq_back" dataUrl = "__APP__/Type/">返回</div>
+</div>
+
+<include file="Public:top" />
+
+<div class="con_index">
+    <div class="mainpage">
+    	<div class="chengyuan_con">
+            
+            <include file="Public:menu" />
+    
+            <div class="tb1">
+            	<div class="title1">添加模式</div>
+            	<form method="post" action="__URL__/typeadd/" enctype="multipart/form-data" class="Machineryfrom">
+                <div class="tb2">
+                    <div class="t_">模式名称：</div>
+                    <div class="s_1 Validform_checktip">1~18个字符</div>
+                    <input type="text" class="inp1" datatype="*1-18" nullmsg="模式不能为空" name="wName" value="" tabindex="1" maxlength="18">
+                </div>
+            
+            	<div class="line1"></div>
+            
+                <div class="tb2">
+                    <div class="t_">添加设备：</div>
+                    <div class="box1">
+                        
+                        <div>
+                            <volist name="myMobile" id="vo" key="k1">
+                                <label class="Jq_r Jq_m{$k1}" id="radio{$k1}">
+                                    <b class="btn4">{$vo.McName}</b>
+                                </label>
+                            </volist>
+                        </div>
+                        <div class="none">
+                        	<volist name="myMobile" id="vo" key="k2">
+                        		<input type="checkbox" name="wModel[]" id="input{$k2}" value="{$vo.McID}" class="px">{$vo.McName}&nbsp;&nbsp;
+                        	</volist>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            	
+            	<div class="line1"></div>
+            
+                <div class="tb2">
+                	<div class="t_">加入模式</div>
+                	<div class="fr Jq_tx2" id="Jq_tx">
+						<!--<b class="hx_btn "></b>-->
+                        <div id="JQ_n" class="dx_btn">否</div>
+						<div id="JQ_y" class="dx_btn">开</div>
+                    	<input type="radio" name="wType" class="none" id="wType" checked value="0" />
+                    </div>
+                </div>
+            
+            	<input type="submit" class="btn3"  value="保&#12288;&#12288;存">
+                	<input type="hidden" name="wUseID" value="{$User.wUseID}">
+  				</form>
+            </div>
+    	</div>
+    </div>
+</div>
+
+<!--footer-->
+
+<include file="Public:footer" />
+<script src="__PUBLIC__/resource/common/js/Validform.js"></script>
+<script type="text/javascript">
+$(function(){
+    var demo=$(".Machineryfrom").Validform({
+		tiptype:function(msg,o,cssctl){
+			if(!o.obj.is("form")){
+				var objtip = o.obj.siblings(".Validform_checktip");
+				cssctl(objtip,o.type);
+				objtip.text(msg);
+			}else{
+				$('.jumppage_bg, .jumppage').show();
+				$('#Jq_add').click(function(){
+					var url = window.location.href;
+					window.location.href = url;
+				});
+				$('#Jq_back').click(function(){
+					var url = $('#Jq_back').attr('dataUrl');
+					window.location.href = url;	
+				});
+			}
+		},
+		
+		showAllError:false,
+		datatype:{
+			"zh1-6":/^[\u4E00-\u9FA5\uf900-\ufa2d]{1,6}$/,
+			"ip":/^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/
+		},
+		ajaxPost:true
+	});
+})
+</script>
+<script type="text/javascript">
+	$(document).ready(function(){	
+		var obj = $('.Jq_r');
+		for(var i = 1; i < obj.length+1; i++){
+			f_bl(i);
+		}
+		//Jq_tx();
+	});
+	
+	function f_bl(k){
+		$('.Jq_m'+k).on("click",function(){
+				
+				$('.Jq_m'+k).find('b').addClass('btn4_a');
+				$('#input'+k).prop("checked",true);
+				$('.Jq_m'+k).off("click");
+				
+				$('#radio'+k).on("click",function(){
+					$('#radio'+k).find('b').removeClass('btn4_a');
+					$('#input'+k).prop("checked",false);
+					$('#radio'+k).off("click");
+					f_bl(k);
+				});	
+		});
+	}
+	
+	
+	$('#JQ_y').on("click",function(){
+		$('#JQ_y').addClass('dx_btn_a');
+		$('#JQ_n').removeClass('dx_btn_a');
+		$('#wType').attr("value",1);
+	});
+	
+	$('#JQ_n').on("click",function(){
+		$('#JQ_n').addClass('dx_btn_a');
+		$('#JQ_y').removeClass('dx_btn_a');
+		$('#wType').attr("value",0);
+	});
+	
+	function Jq_tx(){
+		/*$('#Jq_tx').on("click",function(){
+			
+				$('#Jq_tx').find('b').addClass('hx_btn_a');
+				$('#wType').attr("value",1);
+				$('#Jq_tx').off("click");
+				
+				$('.Jq_tx2').on("click",function(){
+					$('.Jq_tx2').find('b').removeClass('hx_btn_a');
+					$('#wType').attr("value",0);
+					$('.Jq_tx2').off("click");
+					Jq_tx();
+				});	
+		});	*/
+	}
+	
+</script>
+<!--end footer--> 
+</body>
+</html>

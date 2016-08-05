@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$Think.lang.Registered}</title>
+<link rel="stylesheet" href="__PUBLIC__/resource/common/css/base.css" >
+<link rel="stylesheet" href="__PUBLIC__/resource/common/css/user.css">
+<link rel="stylesheet" href="__PUBLIC__/resource/common/js/validform/style.css" >
+<link rel="shortcut icon" href="__PUBLIC__/resource/common/images/favicon.ico" type="image/x-icon" />
+<script language="JavaScript" type="text/javascript" src="__PUBLIC__/resource/js/jsbn.js"></script>
+<script language="JavaScript" type="text/javascript" src="__PUBLIC__/resource/js/prng4.js"></script>
+<script language="JavaScript" type="text/javascript" src="__PUBLIC__/resource/js/rng.js"></script>
+<script language="JavaScript" type="text/javascript" src="__PUBLIC__/resource/js/rsa.js"></script>
+<script language="JavaScript" type="text/javascript" src="__PUBLIC__/resource/js/base64.js"></script>
+<script language="JavaScript" type="text/javascript" src="__PUBLIC__/resource/js/md5.js"></script>
+<script src="__PUBLIC__/resource/common/js/jquery.js"></script>
+<script language="JavaScript" type="text/javascript"> 
+//publc key  and public length 16 binary data
+var public_key="{$Think.config.public_key}";
+var public_length="{$Think.config.public_length}";
+function do_encrypt() {
+  var before = new Date();
+  var rsa = new RSAKey();
+  rsa.setPublic(public_key, public_length);
+  document.getElementById("wUseID").value = rsa.encrypt(document.getElementById("regneme").value);
+  document.getElementById("regneme").value ='';
+  document.getElementById("wPassWord").value = hex_md5(document.getElementById("password").value);
+  document.getElementById("password").value ='';
+  document.getElementById("pwd").value = hex_md5(document.getElementById("password2").value);
+  document.getElementById("password2").value ='';
+  document.getElementById("wMB").value = rsa.encrypt(document.getElementById("mobile").value);
+  document.getElementById("mobile").value ='';
+  document.getElementById("wName").value = rsa.encrypt(document.getElementById("realname").value);
+  document.getElementById("realname").value='';
+
+}
+function checkCK(){
+	if($('#m_userProtocol').is(':checked')){
+		$('#Jq_ck').empty();
+	}else{
+		$('#Jq_ck').focus().html("{$Think.lang.Cclause}");
+		return false;
+	}
+}
+function change_select() {
+	$("#mobile").focus();
+}
+//验证码
+function getvcode(time){	
+		$("#intl").focus();
+	    var mobile= $("#mobile").val();
+		var intl= $('#intl').find("option:selected").val();
+		var partten = /^(1)\d{4,15}$/;
+		if(intl == 0){
+			$("#intl").css("background-color","#ffe7e7");
+			//setTimeout('$("#intl").focus()', 1);
+			//setTimeout('$("#intl").select()', 1);
+			return ;
+			//return alert('{$Think.lang.Select_City}');
+		}
+		$("#intl").css("background-color","#fff");
+		if(!mobile||$("#mobile").hasClass("Validform_error")){
+		    $("#mobile").focus();
+		    return false;
+		}else {
+				var time;
+				$("#btnSubmit").attr({disabled: true});
+				$("#btnSubmit").val('120{$Think.lang.Cmobile_send}');
+				var url = window.location.href;
+				$.ajax({
+					url: '/index.php/Login/mob/',
+					data: "mobile=" + mobile + "&intl=" + intl,
+					type: "POST",
+					cache: false,
+					dataType: "text",
+					success: function(data){
+
+					}
+				});
+				gettimeout(120);
+			}
+
+}
+function gettimeout(time){
+	var time;
+	$("#btnSubmit").attr({disabled: true});
+	$("#btnSubmit").val(time+'{$Think.lang.Cmobile_send}');
+	if(time==0){
+	$("#btnSubmit").attr({disabled: false});
+	$("#btnSubmit").val('{$Think.lang.Gain_Code}');
+	}else{
+	time--;
+	setTimeout("gettimeout(" + time + ")",1000);
+	}
+}
+
+$(document).ready(function() {
+            $('#regform input').keyup(trimkeyup);
+
+});
+function trimkeyup(e) {
+    lucene_objInput = $(this);
+    if (e.keyCode != 38 && e.keyCode != 40 && e.keyCode != 13) {
+        var im = $.trim(lucene_objInput.val());
+        lucene_objInput.val(im); 
+    }
+} 
+</script>
+</head>
+<body>
+<include file="Public:header" />
+	
+<div class="user_wrap">
+  <div class="user_con" id="register_main">
+    <h1>{$Think.lang.Registered}</h1>
+    <div class="user_box clearfix">
+      <div class="user_box_l reg_box_l fl">
+        <p class="reg_slogan">{$Think.lang.Fill}</p>
+        <div id="regTab">
+          <p class="tab_nav"></p>
+          <div class="tab_list_wrap">
+            <div class="tab_con"> 
+            </div>
+            <div class="tab_con reg_email">
+              <form method="post" action="__URL__/regcheck/" class="regform" id="regform">
+			  <!--<div class="m_form_row">
+                  <label class="m_label">选择服务器：</label>
+				  <select name="serverID" id="serverID" style="width:150px;" datatype="*" class="m_input" nullmsg="请选择服务器">
+				  <option value="">请选择</option>
+				  <volist name="serverlist" id="vo" >
+				  <option value="{$vo.pid}">{$vo.wname}</option>
+				  </volist>
+				  </select>
+                </div>-->
+                <div class="m_form_row">
+                  <label class="m_label">{$Think.lang.User}：</label>
+                  <input type="text" class="m_input m_input_email" id="regneme" name="regneme" datatype="z3-16"  ajaxurl="__URL__/ckuser/" autherr="{$Think.lang.S_user_r}" sucmsg="{$Think.lang.Crepass}"  errormsg="{$Think.lang.Cuser_e}" nullmsg="{$Think.lang.Cuser_n}">
+				  <input type="hidden" name="wUseID" id="wUseID">
+                </div>
+                <div class="m_form_row">
+                  <label class="m_label">{$Think.lang.Pass}：</label>
+                  <input type="password" class="m_input" id="password" name="password" datatype="*6-16"   sucmsg="{$Think.lang.Crepass}"  nullmsg="{$Think.lang.Cpass_n}" errormsg="{$Think.lang.Cpass_e}">
+				  <input type="hidden" name="wPassWord" id="wPassWord">
+                  <div class="passwordStrength" style="display:none;"><b>密码强度：</b> <span>弱</span><span>中</span><span class="last">强</span></div>
+                </div>
+                <div class="m_form_row">
+                  <label class="m_label">{$Think.lang.Repass}：</label>
+                  <input type="password" class="m_input" id="password2" name="password2" datatype="*6-16"  recheck="password" sucmsg="{$Think.lang.Crepass}" errormsg="{$Think.lang.Cpass_c}" nullmsg="{$Think.lang.Cpass_n}">
+				<input type="hidden" name="pwd" id="pwd">
+                </div>
+				<div class="m_form_row" >
+                    <label class="m_label">{$Think.lang.Mobile}：</label>
+			    <select name="intl" id="intl"  style="width:100px;" class="m_input">
+                    <option value = "0">{$Think.lang.Select_City}</option>
+                    <volist name="intllist" id="vo">
+                    	<option value="{$vo.intl}">
+                        	 <eq name="langue" value="cn">
+                             	{$vo.cnname}
+                             <else/>
+                             	{$vo.enname}
+                             </eq>
+                        </option>
+                    </volist>
+                  </select>
+                    <input type="text" class="m_input" style="width:170px;" id="mobile" name="mobile" datatype="n5-16" ajaxurl="__URL__/ckmob/" sucmsg="{$Think.lang.Crepass}"  errormsg="{$Think.lang.Cmobile_e}" nullmsg="{$Think.lang.Cmobile_n}">			
+                  </div>
+				  <div class="m_form_row" >
+                    <label class="m_label">{$Think.lang.Code}：</label>
+                    <input type="text" class="m_input" id="code" style="width:60px;" maxlength="6" name="code" sucmsg="{$Think.lang.Crepass}"  datatype="n6-6"   errormsg="{$Think.lang.Ccode_e}" nullmsg="{$Think.lang.Ccode_n}"><input type="hidden" name="wMB" id="wMB">&nbsp;<input class="btn_graylong" type="button" value="{$Think.lang.Gain_Code}" id="btnSubmit" onClick="getvcode(120);">
+                  </div>
+				 <div class="m_form_row" >
+                    <label class="m_label">{$Think.lang.Name}：</label>
+                    <input type="text" class="m_input" id="realname" name="realname" datatype="*"  sucmsg="{$Think.lang.Crepass}"  errormsg="{$Think.lang.Cname_e}" nullmsg="{$Think.lang.Cname_n}">
+					<input type="hidden" name="wName" id="wName">
+                  </div>
+                <div id="serviceProtocol3">
+                  <div class="u_btn_row">
+                    <input type="submit" class="m_btn_blue_l"   id="u_btn_blue_3"  value="{$Think.lang.Registerede}">
+                    <span class="valid_tip"></span> </div>
+                  <p class="u_form_agree">
+                    <input type="checkbox" value="agree" id="m_userProtocol" checked="checked">
+                   {$Think.lang.Igree}<a href="__APP__/Login/tk/">&lt;{$Think.lang.Terms}&gt;</a></p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="user_box_r reg_box_r fr"><i class="sep_and"></i>
+        <!--<p class="user_box_r_title">注册用户：</p>
+        <ul class="reg_desc">
+          <li>广告词</li>
+          <li>广告词</li>
+        </ul>-->
+        <p class="user_box_r_title" style="margin-top:40px">{$Think.lang.ExAcount}</p>
+        <p><a href="__APP__/" >{$Think.lang.Dlogin}&gt;&gt;</a><br>
+        <!--  有问题? <a href="#">寻找帮助</a></p>  -->
+      </div>
+    </div>
+  </div>
+   
+<div class="clear-none"></div>  
+</div>
+<script src="__PUBLIC__/resource/common/js/Validform.js"></script>
+<script type="text/javascript">
+$(function(){
+var demo=$(".regform").Validform({
+		tiptype:3,
+		label:".m_label",
+		showAllError:false,
+		datatype:{
+			//"zh1-6":/^[\u4E00-\u9FA5\uf900-\ufa2d]{1,6}$/,
+                        "z3-16":/^[\w+]{3,16}$/,
+			 "checkservie":function(gets,obj,curform,regxp) {
+				if(!obj.is(':checked')) {
+					//alert(curform);
+					return false;
+				}
+			}
+			
+		},
+		beforeSubmit:do_encrypt,
+		ajaxPost:false
+	});
+	demo.tipmsg.c = "{$Think.lang.Cmobile_check}";
+
+})
+</script>
+<include file="Public:footer" />
+</body>
+</html>

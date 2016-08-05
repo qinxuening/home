@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no"/>
+<script>
+var _width = parseInt(window.screen.width);
+var scale = _width/640;
+var ua = navigator.userAgent.toLowerCase();
+var result = /android (\d+\.\d+)/.exec(ua);
+if (result){
+var version = parseFloat(result[1]);
+if(version>2.3){
+document.write('<meta name="viewport" content="width=640, minimum-scale = '+scale+', maximum-scale = '+scale+', target-densitydpi=device-dpi">');
+}else{
+document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+}
+} else {
+document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+}
+</script>
+<title>{$Think.lang.Time}</title>
+<link rel="stylesheet" href="__PUBLIC__/wap/css/css_wap2.css" >
+<link rel="shortcut icon" href="__PUBLIC__/resource/common/images/favicon.ico" type="image/x-icon" />
+</head>
+
+<body>
+<!--header-->
+<include file="Public:header" />
+<!--end header--> 
+<div class="jumppage" style="display:none;">
+	<div class="t_1">{$Think.lang.Box_name}</div>
+	<div class="tx1"></div>
+    <input type="button" class="btn2" id="Jq_sure" value="{$Think.lang.Sure}">
+	<input type="button" class="btn3" id="Jq_no" value="{$Think.lang.Cancel}">
+</div>
+
+<include file="Public:top" />
+
+<!--main-->
+<div class="con_index">
+	<div class="mainpage">
+        <div class="chengyuan_con">
+        	<include file="Public:menu" />
+            
+            <div class="tb1">
+            	<div class="title">{$Think.lang.Time}</div>
+                
+                <div class="c1">
+                	<div class="tx2_1">{$Think.lang.Times}</div>
+                	<div class="tx3">{$Think.lang.Operation}</div>
+                </div>
+                
+                <volist name="mytype" id="vo" key="k">
+                <div class="c{$k%2+2}" id="data_{$vo.Pid}" dataName="{$vo.wName}">
+                    <div class="tx4_1">{$vo.wName}</div>
+                    <div class="tx6">
+                        <div class="btn1"><a href="__URL__/edit/id/{$vo.Pid}/" >{$Think.lang.Edit}</a></div>
+                        <div class="btn2"><a href="javascript:Jq_del('{$vo.Pid}',this)" >{$Think.lang.Delete}</a></div>
+                    </div>
+                </div>
+                </volist>
+            </div>
+            
+        </div>
+	</div>
+</div>
+<!--end main--> 
+<!--footer-->
+<include file="Public:footer" />
+<script type="text/javascript">
+	function Jq_del(id){
+		//var name = name;
+		var name = $('#data_'+id).attr("dataName");
+		$('.jumppage > .tx1').html('{$Think.lang.Confirm_delete}  '+name);
+		$('.jumppage_bg, .jumppage').show();
+		//ajax_del(id);
+		$('#Jq_sure').click(function(){
+			var url = "__URL__/del/id/"+id;
+			//$('.jumppage_bg, .jumppage').hide();
+			//$('#data_'+id).remove();
+			window.location.href = url;		
+			$(this).attr("disabled","disabled");		
+		});
+	};
+	$('#Jq_no').click(function(){
+		$('.jumppage_bg, .jumppage').hide();	
+	});
+</script>
+<!--end footer--> 
+</body>
+</html>

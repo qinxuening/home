@@ -1,0 +1,328 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no"/>
+<script>
+var _width = parseInt(window.screen.width);
+var scale = _width/640;
+var ua = navigator.userAgent.toLowerCase();
+var result = /android (\d+\.\d+)/.exec(ua);
+if (result){
+var version = parseFloat(result[1]);
+if(version>2.3){
+document.write('<meta name="viewport" content="width=640, minimum-scale = '+scale+', maximum-scale = '+scale+', target-densitydpi=device-dpi">');
+}else{
+document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+}
+} else {
+document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+}
+</script>
+<title>{$Think.lang.Edit_times}</title>
+<link rel="stylesheet" href="__PUBLIC__/wap/css/css_wap2.css" >
+<link rel="stylesheet" href="__PUBLIC__/resource/common/js/validform/style.css" >
+<link rel="stylesheet" href="__PUBLIC__/resource/common/js/date/jquery.datetimepicker.css" >
+<link rel="shortcut icon" href="__PUBLIC__/resource/common/images/favicon.ico" type="image/x-icon" />
+</head>
+<body>
+<!--header-->
+<include file="Public:header" />
+<!--end header--> 
+<div class="jumppage" style="display:none;">
+<div class="t_1">提示信息</div>
+<div class="tx1">保存成功。</div>
+<div class="btn1">确&#12288;&#12288;定</div>
+</div>
+
+<include file="Public:top" />
+
+<div class="con_index">
+    <div class="mainpage">
+        <div class="chengyuan_con">
+        	<include file="Public:menu" />
+        	
+            <div class="tb1">
+            	<div class="title1">{$Think.lang.Edit_times}</div>
+            	<form method="post" action="__URL__/update/id/{$type.Pid}" enctype="multipart/form-data" class="Machineryfrom">
+                <div class="tb2">
+                    <div class="t_">{$Think.lang.Times_name}：</div>
+                    <div class="s_1 Validform_checktip"></div>
+                    <input type="text" class="inp1" datatype="*1-10" nullmsg="{$Think.lang.Times_n}" sucmsg="{$Think.lang.Crepass}" name="wName" value="{$type.wName}" tabindex="1" maxlength="10" >
+                </div>
+            	
+                <div class="line1"></div>
+            
+                <div class="tb2">
+                	<div class="t_">{$Think.lang.Add_equipment}：</div>
+                    <div class="box1">
+                    	
+                        <div>
+                            <volist name="myMobile" id="vo" key="k1">
+                                <label class="Jq_r Jq_m{$k1}" id="radio{$k1}">
+                                    <b class="btn4
+                                    <foreach name="checklist" item="vt">
+                            			<eq name="vt" value="$vo.McID">btn4_a</eq>
+                            		</foreach> 
+                                	 ">{$vo.McName}</b>
+                                </label>
+                            </volist>
+                        </div>
+                        
+                        <div class="none">
+                        	<volist name="myMobile" id="vo" key="k2">
+                        		<input type="checkbox" name="wModel[]" id="input{$k2}" <foreach name="checklist" item="vt">
+                            		<eq name="vt" value="$vo.McID">checked</eq>
+                            	</foreach> 
+                                value="{$vo.McID}" class="px">
+                            	&nbsp;{$vo.McName}&nbsp;
+                        	</volist>
+                        </div>
+                    
+                    </div>
+                </div>
+            
+            	<div class="line1"></div>
+            
+                <div class="tb2">
+                	<div class="t_">{$Think.lang.Week}</div>
+                    <div class="xq_box" id="Jq_d">
+                        
+                        
+                        <div class="xq_btn Jq_d1 <eq name="type['wSunday']" value="1">xq_btn_a</eq>"  id="w1">{$Think.lang.SUN}</div>
+                        <div class="xq_btn Jq_d2 <eq name="type['wMon']" value="1">xq_btn_a</eq>" id="w2">{$Think.lang.MON}</div>
+                        <div class="xq_btn Jq_d3 <eq name="type['wTues']" value="1">xq_btn_a</eq>" id="w3">{$Think.lang.TUE}</div>
+                        <div class="xq_btn Jq_d4 <eq name="type['wWed']" value="1">xq_btn_a</eq>" id="w4">{$Think.lang.WED}</div>
+                        <div class="xq_btn Jq_d5 <eq name="type['wThur']" value="1">xq_btn_a</eq>" id="w5">{$Think.lang.THU}</div>
+                        <div class="xq_btn Jq_d6 <eq name="type['wFri']" value="1">xq_btn_a</eq>" id="w6">{$Think.lang.FRI}</div>
+                        <div class="xq_btn Jq_d7 <eq name="type['wSat']" value="1">xq_btn_a</eq>" id="w7">{$Think.lang.SAT}</div>
+                        
+                    	<div class="none">
+                            <input type="checkbox" name="wSundays" id="i1"   <eq name="type['wSunday']" value="1">checked</eq> class="px">&nbsp;&nbsp;星期日&nbsp;&nbsp;
+                            <input type="checkbox" name="wMons" id="i2"      <eq name="type['wMon']" value="1">checked</eq> class="px">&nbsp;&nbsp;星期一&nbsp;&nbsp;
+                            <input type="checkbox" name="wTuess" id="i3"  <eq name="type['wTues']" value="1">checked</eq> class="px">&nbsp;&nbsp;星期二&nbsp;&nbsp;
+                            <input type="checkbox" name="wWeds" id="i4"  <eq name="type['wWed']" value="1">checked</eq> class="px">&nbsp;&nbsp;星期三&nbsp;&nbsp;
+                            <input type="checkbox" name="wThurs" id="i5"  <eq name="type['wThur']" value="1">checked</eq> class="px">&nbsp;&nbsp;星期四&nbsp;&nbsp;
+                            <input type="checkbox" name="wFris" id="i6"  <eq name="type['wFri']" value="1">checked</eq> class="px">&nbsp;&nbsp;星期五&nbsp;&nbsp;
+                            <input type="checkbox" name="wSats" id="i7" <eq name="type['wSat']" value="1">checked</eq> class="px">&nbsp;&nbsp;星期六&nbsp;&nbsp;
+                        </div>
+                        
+                        <input type="hidden" name="wSunday" id="h1" value="{$type['wSunday']}">
+                        <input type="hidden" name="wMon" id="h2" value="{$type['wMon']}">
+                        <input type="hidden" name="wTues" id="h3" value="{$type['wTues']}">
+                        <input type="hidden" name="wWed" id="h4" value="{$type['wWed']}">
+                        <input type="hidden" name="wThur" id="h5" value="{$type['wThur']}">
+                        <input type="hidden" name="wFri" id="h6" value="{$type['wFri']}"> 
+                        <input type="hidden" name="wSat" id="h7" value="{$type['wSat']}"> 
+                        
+                        
+				   	</div>
+                </div>
+            
+            	<div class="line1"></div>
+            
+                <div class="tb2">
+                    <div class="t_">{$Think.lang.Times}：</div>
+                    <div class="s_1 Validform_checktip"></div>
+                    <input type="text" class="inp1" datatype="sj" nullmsg="{$Think.lang.Times_n}" name="wTime" sucmsg="{$Think.lang.Crepass}"  id="datetimepicker" value="{$type.wTime}" tabindex="1" maxlength="5">
+                </div>
+            
+            	<div class="line1"></div>
+            
+                <div class="tb2">
+                    <div class="t_">{$Think.lang.Equ_state}</div>
+                    
+                    <div class="fr Jq_tx2" id="Jq_tx">
+						<!--<b class="hx_btn <if condition="$type.wType eq 1">hx_btn_a</if>"></b>  -->
+                        <div id="JQ_n" class="dx_btn <php> if($type[wType] =='0' ){echo 'dx_btn_a'; } ;</php>">{$Think.lang.Off}</div>
+						<div id="JQ_y" class="dx_btn <if condition="$type.wType eq 1">dx_btn_a</if>" >{$Think.lang.Open}</div>
+                        <input type="radio" name="wType" class="none" id="wType"  value="{$type.wType}" />
+                    </div>
+                    
+                </div>
+            	
+            	<input type="submit" class="btn3"  value="{$Think.lang.Save}">
+                <input type="hidden" name="wUseID" value="{$User.wUseID}">
+          		</form>
+            </div>
+        </div>
+    </div>
+</div>
+<include file="Public:footer" />
+<!--footer-->
+<script src="__PUBLIC__/resource/common/js/Validform.js"></script>
+<script src="__PUBLIC__/resource/common/js/date/jquery.datetimepicker.js"></script>
+<script type="text/javascript">
+$(function(){
+
+var demo=$(".Machineryfrom").Validform({
+		tiptype:3,
+		label:".m_label",
+		showAllError:false,
+		datatype:{
+			"zh1-6":/^[\u4E00-\u9FA5\uf900-\ufa2d]{1,6}$/,
+			"sj":/^((1|0?)[0-9]|2[0-3]):([0-5][0-9])/,
+			"ip":/^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/
+		},
+		ajaxPost:false
+	});
+})
+
+$('#datetimepicker').datetimepicker({
+	datepicker:false,
+	format:'H:i',
+	step:5
+
+});
+
+$(document).ready(function(){
+	//Jq_tx();
+	var ob1 = $('.Jq_r');
+	for(var i = 1; i < ob1.length+1; i++){
+		if($('.Jq_m'+i).find('b').hasClass('btn4_a')){
+			r_bl('.Jq_m'+i,'#input'+i,'#radio'+i);
+		}else{
+			f_bl('.Jq_m'+i,'#input'+i,'#radio'+i);	
+		};
+	}
+		
+});
+
+//正向
+function f_bl(obj1,obj2,obj3){
+	$(obj1).on("click",function(){
+			
+			$(obj1).find('b').addClass('btn4_a');
+			$(obj2).prop("checked",true);
+			$(obj1).off("click");
+			
+			$(obj3).on("click",function(){
+				$(obj3).find('b').removeClass('btn4_a');
+				$(obj2).prop("checked",false);
+				$(obj3).off("click");
+				f_bl(obj1,obj2,obj3);
+			});	
+	});
+}
+
+function r_bl(obj1,obj2,obj3){
+	$(obj1).on("click",function(){
+			
+			$(obj3).find('b').removeClass('btn4_a');
+			$(obj2).prop("checked",false);
+			$(obj1).off("click");
+			
+			$(obj3).on("click",function(){
+				$(obj1).find('b').addClass('btn4_a');
+				$(obj2).prop("checked",true);
+				$(obj3).off("click");
+				r_bl(obj1,obj2,obj3);
+			});	
+	});
+}
+
+$('#JQ_y').on("click",function(){
+	$('#JQ_y').addClass('dx_btn_a');
+	$('#JQ_n').removeClass('dx_btn_a');
+	$('#wType').attr("value",1);
+	$('#wType').attr("checked","checked" );
+});
+
+$('#JQ_n').on("click",function(){
+	$('#JQ_n').addClass('dx_btn_a');
+	$('#JQ_y').removeClass('dx_btn_a');
+	$('#wType').attr("value",0);
+	$('#wType').attr("checked","checked" );
+});
+
+/*function Jq_tx(){
+	if($('#Jq_tx').find('b').hasClass('hx_btn_a')){
+		 
+		 $('#Jq_tx').on("click",function(){
+		
+			$('#Jq_tx').find('b').removeClass('hx_btn_a');
+			$('#wType').attr("value",0);
+			$('#Jq_tx').off("click");
+			
+			$('.Jq_tx2').on("click",function(){
+				$('.Jq_tx2').find('b').addClass('hx_btn_a');
+				$('#wType').attr("value",1);
+				$('.Jq_tx2').off("click");
+				Jq_tx();
+			});	
+		});	
+		
+		
+	}else{
+		
+		$('#Jq_tx').on("click",function(){
+		
+			$('#Jq_tx').find('b').addClass('hx_btn_a');
+			$('#wType').attr("value",1);
+			$('#Jq_tx').off("click");
+			
+			$('.Jq_tx2').on("click",function(){
+				$('.Jq_tx2').find('b').removeClass('hx_btn_a');
+				$('#wType').attr("value",0);
+				$('.Jq_tx2').off("click");
+				Jq_tx();
+			});	
+		});	
+	}	
+	
+}
+*/
+
+/*fx('w1','wSunday');
+fx('w2','wMon');
+fx('w3','wTues');
+fx('w4','wWed');
+fx('w5','wThur');
+fx('w6','wFri');
+fx('w7','wSat');*/
+
+var obj = $('.xq_btn');
+for(var i = 1; i < obj.length+1; i++){
+	if($('#w'+i).hasClass('xq_btn_a')){
+		fx('w'+i,i);
+	}else{
+		zx('w'+i,i);
+	}
+}
+
+//返向
+function fx(str1,str2){
+	$('#'+str1).on("click",function(){
+		$('#'+str1).removeClass('xq_btn_a').off();
+		$('#i'+str2).prop('checked',false);
+		$('#h'+str2).attr("value",0);
+		
+		$('.Jq_d'+str2).on("click",function(){
+			$('.Jq_d'+str2).addClass('xq_btn_a').off();
+			$('#i'+str2).prop('checked',true);
+			$('#h'+str2).attr("value",1);
+			fx(str1,str2);
+		});
+	});		
+}
+
+//正向
+function zx(str1,str2){
+	$('#'+str1).on("click",function(){
+		$('#'+str1).addClass('xq_btn_a').off();
+		$('#i'+str2).prop('checked',true);
+		$('#h'+str2).attr("value",1);
+		
+		$('.Jq_d'+str2).on("click",function(){
+			$('.Jq_d'+str2).removeClass('xq_btn_a').off();
+			$('#i'+str2).prop('checked',false);
+			$('#h'+str2).attr("value",0);
+			zx(str1,str2);
+		});
+	});		
+}
+
+</script>
+<!--end footer--> 
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8;" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no"/>
+<script type="text/javascript">
+var _width = parseInt(window.screen.width);
+var scale = _width/640;
+var ua = navigator.userAgent.toLowerCase();
+var result = /android (\d+\.\d+)/.exec(ua);
+if (result){
+var version = parseFloat(result[1]);
+if(version>2.3){
+document.write('<meta name="viewport" content="width=640, minimum-scale = '+scale+', maximum-scale = '+scale+', target-densitydpi=device-dpi">');
+}else{
+document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+}
+} else {
+document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+}
+</script>
+<title>{$Think.lang.Find_pw}</title>
+<link rel="stylesheet" href="__PUBLIC__/wap/css/css_wap2.css" >
+<link rel="stylesheet" href="__PUBLIC__/resource/common/js/validform/style.css" >
+<link rel="shortcut icon" href="__PUBLIC__/resource/common/images/favicon.ico" type="image/x-icon" />
+</head>
+<body>
+<!--header-->
+<include file="Public:top2" />
+<!--end header--> 
+<!--main-->
+<div class="con_index">
+	<div class="mainpage">
+    
+    <div class="getkey_con" style="display:block;">
+        <div class="jc">
+            <div class="pa1_a">{$Think.lang.Find_pw} 》</div>
+            <div class="pa1">{$Think.lang.Identity}</div>
+            <div class="pa1">{$Think.lang.Re_pw}</div>
+    	</div>
+    	
+        <div class="c2">
+        	<form method="post" action="__APP__/Lostpassword/mobile/" class="pw_form">
+            <div class="c1">
+                <div class="t_">{$Think.lang.Y_user}：</div>
+                <div class="s_1 Validform_checktip">{$Think.lang.Case_sensitive}</div>
+                <input type="text" class="inp4" ajaxurl="__URL__/CheckMobile/" id="wUseID" name="wUseID" maxlength="16" sucmsg="{$Think.lang.Crepass}"  datatype="s3-16" errormsg="{$Think.lang.Y_user_e}" nullmsg="{$Think.lang.Y_user_n}" >
+            </div>
+        	<input type="submit" id="u_btn_blue" class="btn1" value="{$Think.lang.Next}">
+            </form>
+        </div>
+    </div>
+	
+</div>
+</div>
+<!--footer-->
+<include file="Public:footer" />
+<script src="__PUBLIC__/resource/common/js/Validform.js"></script>
+<script type="text/javascript">
+$(function(){
+var demo=$(".pw_form").Validform({
+		tiptype:3,
+		label:".m_label",
+		showAllError:false,
+		datatype:{
+			"zh1-6":/^[\u4E00-\u9FA5\uf900-\ufa2d]{1,6}$/
+		},
+		//beforeSubmit:do_encrypt,
+		ajaxPost:false
+	});
+})
+</script>
+<!--end footer--> 
+</body>
+</html>

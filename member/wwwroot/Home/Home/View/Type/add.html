@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$Think.lang.Add_model}</title>
+<link rel="stylesheet" href="__PUBLIC__/resource/common/css/base.css" >
+<link rel="stylesheet" href="__PUBLIC__/resource/common/css/user.css">
+<link rel="stylesheet" href="__PUBLIC__/resource/common/js/validform/style.css" >
+<link rel="shortcut icon" href="__PUBLIC__/resource/common/images/favicon.ico" type="image/x-icon" />
+<script src="__PUBLIC__/resource/common/js/jquery.js"></script>
+<script src="__PUBLIC__/resource/js/My97Date/WdatePicker.js"></script>
+<script language="javascript">
+$(document).ready(function(){
+$("#IsAllOpen").click(function(){ 
+     $("#IsAllClose").attr('checked',false);
+     $(this).attr('checked',true);
+});
+$("#IsAllClose").click(function(){ 
+     $("#IsAllOpen").attr('checked',false);
+     $(this).attr('checked',true);
+});
+});
+</script>
+</head>
+
+<body>
+<!--header-->
+<include file="Public:header" />
+<!--end header--> 
+<!--main-->
+<div id="wp" class="wp"><link href="__PUBLIC__/user/css/style.css" rel="stylesheet" type="text/css" />
+ <div class="contentmanage">
+    <div class="developer">
+       <div class="appTitle normalTitle" style="padding: 20px;">
+        <h2>{$Think.lang.Center}</h2>
+        <div class="accountInfo">
+        
+        </div>
+        <div class="clr"></div>
+      </div>
+      <div class="tableContent">
+        <!--左侧功能菜单-->
+        <div class="sideBar">
+          <div class="catalogList">
+            <ul>
+				<li class="subCatalogList" > <a href="__APP__/User/">{$Think.lang.Member}</a></li>
+				<li class=" subCatalogList "> <a href="__APP__/User/add/">{$Think.lang.Add_member}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/Mobile/">{$Think.lang.Equipment}</a> </li>
+				
+				<li class=" subCatalogList "> <a href="__APP__/Type/">{$Think.lang.Model}</a> </li>
+				<li class=" selected "> <a href="__APP__/Type/add/">{$Think.lang.Add_model}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/Time/">{$Think.lang.Time}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/Time/add/">{$Think.lang.Add_time}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/User/useredit/">{$Think.lang.Information}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/User/pwd/">{$Think.lang.Change_password}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/Mobile/usermobile/">{$Think.lang.UserMobile}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/User/out/">{$Think.lang.Exit}</a> </li>
+            </ul>
+          </div>
+        </div>
+
+<div class="content">
+          <div class="cLineB"><h4>{$Think.lang.Add_model}</h4></div>
+          <form method="post" action="__URL__/typeadd/" enctype="multipart/form-data" class="Machineryfrom">
+          <div class="msgWrap">
+            <table class="userinfoArea" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                <tr>
+                  <th><span class="red">*</span>{$Think.lang.Model_name}：</th>
+                  <td><input type="text" class="px" datatype="*1-18" nullmsg="{$Think.lang.Model_n}" sucmsg="{$Think.lang.Crepass}" name="wName" value="" tabindex="1" size="25" maxlength="18">
+                  </td>
+                </tr>
+              </thead>
+			  <tbody>
+                <tr>
+                  <th><span class="red">*</span>{$Think.lang.Add_equipment}：</th>
+                  <td><volist name="myMobile" id="vo" >
+                  	 <span class="bbox1"><label><input type="checkbox" name="wModel[]" id="wModel[]" value="{$vo.McID}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
+					</volist></td>
+                </tr>
+				<tr>
+                  <th><span class="red"></span>{$Think.lang.Equ_state}：</th>
+                  <td align="left"><input type="radio" class="JQ_y" name="wType"  id="wType" value="1"  class="px">&nbsp;{$Think.lang.Open}
+				   &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" class="JQ_n" name="wType" id="wType" value="0" checked class="px">&nbsp;{$Think.lang.Off}
+				  </td>
+				  
+                </tr>
+				
+				<tr>
+                  <th style="width:180px !important;"><span class="red"></span>{$Think.lang.Other_Equ_state}：</th>
+                  <td align="left"><input type="radio" class="wJQ_y" name="wOtherType"  id="wOtherType" value="1"  class="px">&nbsp;<span id="Qopen">{$Think.lang.Open}</span>
+				   &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" class="wJQ_n" name="wOtherType" id="wOtherType" value="0" class="px">&nbsp;<span id="Qoff">{$Think.lang.Off}</span>
+				  </td>
+                </tr>
+				
+				
+                <tr>
+                  <th></th>
+                  <td><button type="submit" class="btnGreen" id="saveSetting">{$Think.lang.Save}</button></td>
+                </tr>
+              </tbody>
+            </table>
+            
+          </div>
+		  <input type="hidden" name="wUseID" value="{$User.wUseID}">
+          </form>
+        </div>
+        
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+  <!--底部-->
+  	</div>
+<!--end main--> 
+<!--footer-->
+<script src="__PUBLIC__/resource/common/js/Validform.js"></script>
+<script type="text/javascript">
+$(function(){
+var demo=$(".Machineryfrom").Validform({
+		tiptype:3,
+		label:".m_label",
+		showAllError:false,
+		datatype:{
+			"zh1-6":/^[\u4E00-\u9FA5\uf900-\ufa2d]{1,6}$/,
+			"ip":/^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/
+		},
+		ajaxPost:false
+	});
+	
+	$('.JQ_y').change(function(){
+		$('#Qopen').html('{$Think.lang.Model_None}');
+		$('#Qoff').html('{$Think.lang.Off}');
+	});
+	
+	$('.JQ_n').change(function(){
+		$('#Qopen').html('{$Think.lang.Open}');
+		$('#Qoff').html('{$Think.lang.Model_None}');
+	});
+
+})
+</script>
+<include file="Public:footer" />
+<!--end footer--> 
+</body>
+</html>
