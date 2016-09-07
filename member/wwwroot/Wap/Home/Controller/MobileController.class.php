@@ -9,10 +9,10 @@ class MobileController extends CommonController{
 	
 	public function _initialize(){
 		parent::_initialize();
-		$this->mobilemanager = D("Home/Mobilemanager");
-		$this->modeltype = D("Home/Modeltype");
-		$this->linklist = D("Home/Linklist");
-		$this->timeaction = D("Home/Timeaction");
+		$this->mobilemanager = D("Mobilemanager");
+		$this->modeltype = D("Modeltype");
+		$this->linklist = D("Linklist");
+		$this->timeaction = D("Timeaction");
 		$this->linklist_s = D("linklist_s");
 	}
 	
