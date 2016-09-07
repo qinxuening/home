@@ -107,23 +107,14 @@ function aa(){
                 </tr>
               </thead>
 			  <tbody>
-                <tr style="border-top:1px solid #eeeeee;background-color:#fcfcfc; padding:20px 0px">
-                  <th><span class="red">*</span>{$Think.lang.equipment_on}：</th>
+                <tr>
+                  <th><span class="red">*</span>{$Think.lang.Add_equipment}：</th>
                   <td><volist name="myMobile" id="vo" >
-             	     	<span class="bbox1"><label><input type="checkbox" name="wModelOn[]" id="wModelOn[]" <foreach name="checklistOn" item="vt"><eq name="vt" value="$vo.McID">checked</eq></foreach> value="{$vo.McID}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>	
-					 </volist>
-				  </td>
+             	     	<span class="bbox1"><label><input type="checkbox" name="wModel[]" id="wModel[]" <foreach name="checklist" item="vt"><eq name="vt" value="$vo.McID">checked</eq></foreach> value="{$vo.McID}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>	
+					</volist></td>
                 </tr>
-				<tr style="margin:20px 0;height:20px;"></tr>
-	            <tr style="border-top:1px solid #eeeeee;background-color:#fcfcfc; padding:20px 0px">
-                  <th><span class="red">*</span>{$Think.lang.equipment_off}：</th>
-                  <td><volist name="myMobile" id="vo" >
-             	     	<span class="bbox1"><label><input type="checkbox" name="wModelOff[]" id="wModelOff[]" <foreach name="checklistOff" item="vt"><eq name="vt" value="$vo.McID">checked</eq></foreach> value="{$vo.McID}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>	
-					 </volist>
-				  </td>
-                </tr>		
-					 
-				<!--<tr>
+				 
+				<tr>
                   <th><span class="red"></span>{$Think.lang.Equ_state}：</th>
                   <td align="left"><input class="JQ_y" type="radio" name="wType" id="wType" value="1" <if condition="$type.wType eq 1">checked</if> class="px">&nbsp;{$Think.lang.Open}
 				   &nbsp;&nbsp;&nbsp;&nbsp;<input class="JQ_n" type="radio" name="wType" id="wType" value="0" <php> if($type[wType] =='0' ){echo 'checked'; } ;</php> class="px">&nbsp;{$Think.lang.Off}
@@ -134,8 +125,9 @@ function aa(){
                   <th style="width:180px !important;"><span class="red"></span>{$Think.lang.Other_Equ_state}：</th>
                   <td align="left" ><input type="radio" class="wJQ_y" name="wOtherType" id="wOtherType" value="1" <if condition="$type.wOtherType eq 1">checked</if> class="px">&nbsp; <span id="Qopen"><if condition="$type.wType eq 1">{$Think.lang.Model_None}<else />{$Think.lang.Open}</if></span>
 				   &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" class="wJQ_n" name="wOtherType" id="wOtherType" value="0" <php> if($type[wOtherType] =='0' ){echo 'checked'; } ;</php> class="px">&nbsp; <span id="Qoff"><if condition="$type.wType eq '0'">{$Think.lang.Model_None}<else />{$Think.lang.Off}</if></span>
+				 
 				  </td>
-                </tr>-->
+                </tr>
 				
                 <tr>
                   <th></th>

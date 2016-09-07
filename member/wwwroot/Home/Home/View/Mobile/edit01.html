@@ -1,0 +1,302 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$Think.lang.Edit_equipment}</title>
+<link rel="stylesheet" href="__PUBLIC__/resource/common/css/base.css" >
+<link rel="stylesheet" href="__PUBLIC__/resource/common/css/user.css">
+<link rel="stylesheet" href="__PUBLIC__/resource/common/js/validform/style.css" >
+<link rel="shortcut icon" href="__PUBLIC__/resource/common/images/favicon.ico" type="image/x-icon" />
+<script src="__PUBLIC__/resource/common/js/jquery.js"></script>
+<script src="__PUBLIC__/resource/js/My97Date/WdatePicker.js"></script>
+<script language="javascript">
+$(document).ready(function(){
+$("#IsAllOpens").click(function(){ 
+     $("#IsAllCloses").attr('checked',false);
+     $(this).attr('checked',true);
+});
+$("#IsAllCloses").click(function(){ 
+     $("#IsAllOpens").attr('checked',false);
+     $(this).attr('checked',true);
+});
+});
+function aa(){
+    var r=document.getElementById("IsMsgs");
+         if(r.checked){
+        // r.value=1;
+		document.getElementById("IsMsg").value=1;
+		 //alert(r.value);
+       }else{
+	  document.getElementById("IsMsg").value=0;
+	  // alert(r.value);
+	   }
+   var m=document.getElementById("IsAllOpens");
+         if(m.checked){
+        // r.value=1;
+		document.getElementById("IsAllOpen").value=1;
+		document.getElementById("IsAllClose").value=0;
+		 //alert(m.value);
+       }else{
+	  document.getElementById("IsAllOpen").value=0;
+	  document.getElementById("IsAllClose").value=1;
+	  // alert(r.value);
+	   }
+	var k=document.getElementById("IsAllCloses");
+         if(k.checked){
+        // r.value=1;
+		document.getElementById("IsAllClose").value=1;
+		document.getElementById("IsAllOpen").value=0;
+		 //alert(r.value);
+       }else{
+	  document.getElementById("IsAllClose").value=0;
+	  document.getElementById("IsAllOpen").value=1;
+	  // alert(r.value);
+	   }
+}
+</script>
+<style>
+	.s_1 {
+	    float: right;
+	    text-align: right;
+	    /* color: #6eb805; */
+	    padding-right: 50px;
+	}
+</style>
+</head>
+
+<body>
+<!--header-->
+<include file="Public:header" />
+<!--end header--> 
+<!--main-->
+<div id="wp" class="wp"><link href="__PUBLIC__/user/css/style.css" rel="stylesheet" type="text/css" />
+ <div class="contentmanage">
+    <div class="developer">
+       <div class="appTitle normalTitle" style="padding: 20px;">
+        <h2>{$Think.lang.Center}</h2>
+        <div class="accountInfo">
+        
+        </div>
+        <div class="clr"></div>
+      </div>
+      <div class="tableContent">
+        <!--左侧功能菜单-->
+        <div class="sideBar">
+          <div class="catalogList">
+            <ul>
+				<li class="subCatalogList" > <a href="__APP__/User/">{$Think.lang.Member}</a></li>
+				<li class=" subCatalogList "> <a href="__APP__/User/add/">{$Think.lang.Add_member}</a> </li>
+				<li class=" selected "> <a href="__APP__/Mobile/">{$Think.lang.Equipment}</a> </li>
+				
+				<li class=" subCatalogList "> <a href="__APP__/Type/">{$Think.lang.Model}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/Type/add/">{$Think.lang.Add_model}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/Time/">{$Think.lang.Time}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/Time/add/">{$Think.lang.Add_time}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/User/useredit/">{$Think.lang.Information}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/User/pwd/">{$Think.lang.Change_password}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/User/out/">{$Think.lang.Exit}</a> </li>
+            </ul>
+          </div>
+        </div>
+
+<div class="content">
+          <div class="cLineB"><h4>{$Think.lang.Edit_equipment}</h4></div>
+          <form method="post" action="__APP__/Mobile/update/id/{$mobile.Pid}" enctype="multipart/form-data" class="Machineryfrom">
+          <div class="msgWrap">
+            <table class="userinfoArea" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                  <tr>
+                  <th><span class="red">*</span><label class="m_label c_label">{$Think.lang.Equipment_position}：</label></th>
+                  <td class="touch1">
+                  	<input type="text" class="px" datatype="*1-30" nullmsg="{$Think.lang.Equipment_position_n}" sucmsg="{$Think.lang.Crepass}" name="McName" value="{$mobile.McName}" tabindex="1" size="25" maxlength="30">
+                  </td>
+				 <notempty name="McID2">
+				  <td class="touch"><label>默认温度:</label>
+				  <input type="hidden" name="McIDIrin" id="McIDIrin" value="{$McID2}">
+				  <select name="KeyVar">
+				  	 <volist name="IrinfoList" id="va" >
+				  		<option value="{$va.KeyVar}" <eq name="KeyVar" value="$va.KeyVar">selected</eq>>{$va.KeyName}</option>
+					</volist> 
+				  </select>
+				  </td>
+				  </notempty>
+                </tr>
+              </thead>
+			  <tbody>
+				 <tr style="border-top:1px solid #eeeeee;background-color:#fcfcfc; padding:10px 0px">
+                  <th>{$Think.lang.SMS}：</th>
+                  <td><input type="checkbox" name="IsMsgs" id="IsMsgs" value="" class="px" <eq name="mobile['IsMsg']" value="1">checked</eq>>&nbsp;{$Think.lang.Sms_notification}
+				  <input type="hidden" name="IsMsg" id="IsMsg">  <div class="s_1" style="color:#6eb805">{$Think.lang.Main_opening}</div></td>
+                </tr>
+				
+				  <tr style="border-top:1px solid #eeeeee;background-color:#fcfcfc; padding:10px 0px">
+                  <th>{$Think.lang.Linkage_opening}：</th>
+                  <td>
+                  	<div style="width:100%;display:inline-block;">
+                  	<eq name="McID1" value="14">
+	                  	<div class="bbox1 touch"><label><input type="checkbox" id="Key01" <notempty name="Key01">checked</notempty> class="px">&nbsp;&nbsp;按键1&nbsp;&nbsp;</label>
+							<input type="hidden" name="hkey01" <notempty name="Key01">value="1"</notempty>>
+							<select name="key01">
+							 <option value ="0">无</option>
+							   <volist name="touch" id="vo1" >
+								  <option value ="{$vo1.Pid}" <eq name="Key01['Key01']" value="$vo1.Pid">selected</eq>>{$vo1.McName}</option>
+							   </volist> 
+							</select>
+						</div>
+						<div class="bbox1 touch"><label><input type="checkbox" id="Key02" <notempty name="Key02">checked</notempty> class="px">&nbsp;&nbsp;按键2&nbsp;&nbsp;</label>
+							<input type="hidden" name="hkey02" <notempty name="Key02">value="1"</notempty>>
+							<select name="key02">
+								<option value ="0">无</option>
+							  <volist name="touch" id="vo1" >
+							 	 <option value ="{$vo1.Pid}" <eq name="Key02['Key02']"  value="$vo1.Pid">selected</eq>>{$vo1.McName}</option>
+							  </volist> 
+							</select>
+						</div>
+						<div class="bbox1 touch"><label><input type="checkbox" id="Key03" <notempty name="Key03">checked</notempty> class="px">&nbsp;&nbsp;按键3&nbsp;&nbsp;</label>
+						 <input type="hidden" name="hkey03" <notempty name="Key03">value="1"</notempty>>
+						 <select name="key03">
+						 	<option value ="0">无</option>
+							  <volist name="touch" id="vo1" >
+								  <option value ="{$vo1.Pid}" <eq name="Key03['Key03']" value="$vo1.Pid">selected</eq>>{$vo1.McName}</option>
+							  </volist> 
+						 </select>
+						</div>
+					</eq>
+					</div>
+                  <volist name="myMobile" id="vo" >
+               	 	   <span class="bbox1"><label><input type="checkbox" name="LinkOn[]" id="LinkOn[]" <foreach name="mLinkOn" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
+                  </volist>
+				  </td>
+                </tr>
+				<tr><th></th><td><div class="s_1" style="color:#6eb805">{$Think.lang.Master_Guan}</div></td></tr>
+				<tr style="border-top:1px solid #eeeeee;background-color:#fcfcfc; padding:10px 0px">
+                  <th>{$Think.lang.Linkage}：</th>
+                  <td>
+                  	<div style="width:100%;display:inline-block;">
+                  	<eq name="McID1" value="14">
+	                  	<div class="bbox1 touch"><label><input type="checkbox" id="KeyOff01" <notempty name="KeyOff01">checked</notempty> class="px">&nbsp;&nbsp;按键1&nbsp;&nbsp;</label>
+							<input type="hidden" name="hkeyOff01" <notempty name="KeyOff01">value="1"</notempty>>
+							<select name="keyOff01">
+							 <option value ="0">无</option>
+							   <volist name="touch" id="vo1" >
+								  <option value ="{$vo1.Pid}" <eq name="KeyOff01['KeyOff01']" value="$vo1.Pid">selected</eq>>{$vo1.McName}</option>
+							   </volist> 
+							</select>
+						</div>
+						<div class="bbox1 touch"><label><input type="checkbox" id="KeyOff02" <notempty name="KeyOff02">checked</notempty> class="px">&nbsp;&nbsp;按键2&nbsp;&nbsp;</label>
+							<input type="hidden" name="hkeyOff02" <notempty name="KeyOff02">value="1"</notempty>>
+							<select name="keyOff02">
+								<option value ="0">无</option>
+							  <volist name="touch" id="vo1" >
+							 	 <option value ="{$vo1.Pid}" <eq name="KeyOff02['KeyOff02']"  value="$vo1.Pid">selected</eq>>{$vo1.McName}</option>
+							  </volist> 
+							</select>
+						</div>
+						<div class="bbox1 touch"><label><input type="checkbox" id="KeyOff03" <notempty name="KeyOff03">checked</notempty> class="px">&nbsp;&nbsp;按键3&nbsp;&nbsp;</label>
+						 <input type="hidden" name="hkeyOff03" <notempty name="KeyOff03">value="1"</notempty>>
+						 <select name="keyOff03">
+						 	<option value ="0">无</option>
+							  <volist name="touch" id="vo1" >
+								  <option value ="{$vo1.Pid}" <eq name="KeyOff03['KeyOff03']" value="$vo1.Pid">selected</eq>>{$vo1.McName}</option>
+							  </volist> 
+						 </select>
+						</div>
+					</eq>
+					</div>
+					<volist name="myMobile" id="vo" >
+                  	 <span class="bbox1"><label><input type="checkbox" name="LinkOff[]" id="LinkOff[]" <foreach name="mLinkOff" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span></volist></td>
+                </tr>
+				<tr><th></th><td><div class="s_1" style="color:#6eb805">{$Think.lang.Main_opening2}</div></td></tr>
+				<tr style="border-top:1px solid #eeeeee;background-color:#fcfcfc; padding:10px 0px">
+                  <th>{$Think.lang.Anti_linkage}：</th>
+                  <td><volist name="myMobile" id="vo" >
+                  	 <span class="bbox1"><label><input type="checkbox" name="LinkOn_Off[]" id="LinkOn_Off[]" <foreach name="mLinkOn_Off" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span></volist></td>
+                </tr>
+                <tr>
+                <tr><th></th><td><div class="s_1" style="color:#6eb805">{$Think.lang.Main_opening3}</div></td></tr>
+				<tr style="border-top:1px solid #eeeeee;background-color:#fcfcfc; padding:10px 0px">
+                  <th>{$Think.lang.Anti_linkage2}：</th>
+                  <td><volist name="myMobile" id="vo" >
+                  	 <span class="bbox1"><label><input type="checkbox" name="LinkOff_On[]" id="LinkOff_On[]" <foreach name="mLinkOff_On" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span></volist></td>
+                </tr>
+                <tr>
+                  <th></th>
+                  <td><button type="submit" class="btnGreen" id="saveSetting" onClick="aa()">{$Think.lang.Save}</button></td>
+                </tr>
+              </tbody>
+            </table>
+            
+          </div>
+		   <input type="hidden" name="wMB" value="{$User.wMB}">
+          </form>
+        </div>
+        
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+  <!--底部-->
+  	</div>
+<!--end main--> 
+<!--footer-->
+<script src="__PUBLIC__/resource/common/js/Validform.js"></script>
+<script type="text/javascript">
+$(function(){
+$("#Key01").click(function(){
+	 if($(this).prop("checked")){
+	 	$("input[name='hkey01']").val('1');
+	 }else{
+	 	$("input[name='hkey01']").val('0');
+	 }
+});
+$("#Key02").click(function(){
+	 if($(this).prop("checked")){
+	 	$("input[name='hkey02']").val('1');
+	 }else{
+	 	$("input[name='hkey02']").val('0');
+	 }
+});
+$("#Key03").click(function(){
+	 if($(this).prop("checked")){
+	 	$("input[name='hkey03']").val('1');
+	 }else{
+	 	$("input[name='hkey03']").val('0');
+	 }
+});
+$("#KeyOff01").click(function(){
+	 if($(this).prop("checked")){
+	 	$("input[name='hkeyOff01']").val('1');
+	 }else{
+	 	$("input[name='hkeyOff01']").val('0');
+	 }
+});
+$("#KeyOff02").click(function(){
+	 if($(this).prop("checked")){
+	 	$("input[name='hkeyOff02']").val('1');
+	 }else{
+	 	$("input[name='hkeyOff02']").val('0');
+	 }
+});
+$("#KeyOff03").click(function(){
+	 if($(this).prop("checked")){
+	 	$("input[name='hkeyOff03']").val('1');
+	 }else{
+	 	$("input[name='hkeyOff03']").val('0');
+	 }
+});
+var demo=$(".Machineryfrom").Validform({
+		tiptype:3,
+		label:".m_label",
+		showAllError:false,
+		datatype:{
+			"zh1-6":/^[\u4E00-\u9FA5\uf900-\ufa2d]{1,6}$/,
+			"ip":/^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/
+		},
+		ajaxPost:false
+	});
+})
+</script>
+<include file="Public:footer" />
+<!--end footer--> 
+</body>
+</html>

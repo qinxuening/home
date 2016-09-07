@@ -45,18 +45,12 @@ class TypeController extends CommonController{
 			$wMB=session('wMB');
 			$wUseID=session('wUseID');
 			$list = $this->mobilemanager->query("select `McID`, `McName` from `mobilemanager` where `wUseID` ='$wUseID' AND `wMB`='$wMB' AND left(`McID`,2) not in ('12')");
+			//$list = $this->mobilemanager->where(array('wUseID' => session('wUseID')))->field('McID, McName')->select();
 			$find=$this->modeltype_head->where(array("Pid" => $Pid))->field("wUseID",true)->find();
 			if($find){
-				$findmodel=$this->modeltype->where(array("wModel" => $find['Pid']))->field('McID ,Type')->select();
-				foreach ($findmodel as $k => $v){
-					if(1 == $v['Type']){
-						$dataOn[] = $v['McID'];
-					}else{
-						$dataOff[] = $v['McID'];
-					}
-				}
-				$this->assign("checklistOn" , $dataOn);
-				$this->assign("checklistOff" , $dataOff);
+				$findmodel=$this->modeltype->where(array("wModel" => $find['Pid']))->field('McID')->select();
+				$m = TarrayToOarray($findmodel, 'McID');
+				$this->assign("checklist",$m);
 				$this->assign("myMobile",$list);
 				$this->assign('type',$find);
 				$this->display();
@@ -77,23 +71,13 @@ class TypeController extends CommonController{
 				$this->modeltype_head->where(array("Pid" => $Pid))->save();
 			}
 			$this->modeltype->where(array("wModel" => $Pid))->delete();
-			$wModelOndata=I('post.wModelOn',null);
-			$wModelOffdata=I('post.wModelOff',null);
-			for($i=0;$i<count($wModelOndata);$i++){
-				$dataOn['wModel']=$Pid;
-				$dataOn['McID']=$wModelOndata[$i];
-				$dataOn['wUseID']=session('wUseID');
-				$dataOn['Type']= 1;
+			$wModeldata=I('post.wModel',null);
+			for($i=0;$i<count($wModeldata);$i++){
+				$data['wModel']=$Pid;
+				$data['McID']=$wModeldata[$i];
+				$data['wUseID']=session('wUseID');
 				$this->modeltype->create();
-				$this->modeltype->add($dataOn);
-			}
-			for($i=0;$i<count($wModelOffdata);$i++){
-				$dataOff['wModel']=$Pid;
-				$dataOff['McID']=$wModelOffdata[$i];
-				$dataOff['wUseID']=session('wUseID');
-				$dataOff['Type']= 0;
-				$this->modeltype->create();
-				$this->modeltype->add($dataOff);
+				$this->modeltype->add($data);
 			}
 			$url = 'http://'.$_SERVER['HTTP_HOST'].__APP__.'/Type/';
 			header("Location:$url");
@@ -106,6 +90,7 @@ class TypeController extends CommonController{
 		$wMB=session('wMB');
 		$wUseID=session('wUseID');
 		$list = $this->mobilemanager->query("select `McID`, `McName` from `mobilemanager` where `wUseID` ='$wUseID' AND `wMB`='$wMB' AND left(`McID`,2) not in ('12')");
+		//$list = $this->mobilemanager->where(array('wUseID' => session('wUseID')))->field('McID, McName')->select();
 		$this->assign("myMobile",$list);
 		$this->display();
 	}
@@ -115,23 +100,14 @@ class TypeController extends CommonController{
 		$HeadInfo['wUseID'] = session('wUseID');
 		if($this->modeltype_head->create($HeadInfo)){
 			$id=$this->modeltype_head->add();
-			$wModelOndata=I('post.wModelOn',null);
-			$wModelOffdata=I('post.wModelOff',null);
-			for($i=0;$i<count($wModelOndata);$i++){
-				$dataOn['wModel']=$id;
-				$dataOn['McID']=$wModelOndata[$i];
-				$dataOn['wUseID']=session('wUseID');
-				$dataOn['Type']= 1;
+			$wModeldata=I('post.wModel',null);
+			$Model=D("modeltype");
+			for($i=0;$i<count($wModeldata);$i++){
+				$data['wModel']=$id;
+				$data['McID']=$wModeldata[$i];
+				$data['wUseID']=session('wUseID');
 				$this->modeltype->create();
-				$this->modeltype->add($dataOn);
-			}
-			for($i=0;$i<count($wModelOffdata);$i++){
-				$dataOff['wModel']=$id;
-				$dataOff['McID']=$wModelOffdata[$i];
-				$dataOff['wUseID']=session('wUseID');
-				$dataOff['Type']= 0;
-				$this->modeltype->create();
-				$this->modeltype->add($dataOff);
+				$this->modeltype->add($data);
 			}
 			$url = 'http://'.$_SERVER['HTTP_HOST'].__APP__.'/Type/';
 			header("Location:$url");

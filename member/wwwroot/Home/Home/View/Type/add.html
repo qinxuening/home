@@ -72,12 +72,20 @@ $("#IsAllClose").click(function(){
                 </tr>
               </thead>
 			  <tbody>
-                <tr>
-                  <th><span class="red">*</span>{$Think.lang.Add_equipment}：</th>
+                <tr style="border-top:1px solid #eeeeee;background-color:#fcfcfc; padding:20px 0px">
+                  <th><span class="red">*</span>{$Think.lang.equipment_on}：</th>
                   <td><volist name="myMobile" id="vo" >
-                  	 <span class="bbox1"><label><input type="checkbox" name="wModel[]" id="wModel[]" value="{$vo.McID}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
+                  	 <span class="bbox1"><label><input type="checkbox" name="wModelOn[]" id="wModelOn[]" value="{$vo.McID}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
 					</volist></td>
                 </tr>
+				<tr style="margin:20px 0;height:20px;"></tr>
+				<tr style="border-top:1px solid #eeeeee;background-color:#fcfcfc; padding:20px 0px">
+                  <th><span class="red">*</span>{$Think.lang.equipment_off}：</th>
+                  <td><volist name="myMobile" id="vo" >
+                  	 <span class="bbox1"><label><input type="checkbox" name="wModelOff[]" id="wModelOff[]" value="{$vo.McID}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
+					</volist></td>
+                </tr>
+				<!--
 				<tr>
                   <th><span class="red"></span>{$Think.lang.Equ_state}：</th>
                   <td align="left"><input type="radio" class="JQ_y" name="wType"  id="wType" value="1"  class="px">&nbsp;{$Think.lang.Open}
@@ -92,7 +100,7 @@ $("#IsAllClose").click(function(){
 				   &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" class="wJQ_n" name="wOtherType" id="wOtherType" value="0" class="px">&nbsp;<span id="Qoff">{$Think.lang.Off}</span>
 				  </td>
                 </tr>
-				
+				-->
 				
                 <tr>
                   <th></th>
