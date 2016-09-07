@@ -312,17 +312,17 @@ input, button, select, textarea {
 	diplay:block;
 	border:solid 1px #dadada;
 	border-radius:2px;
-	width:422px;
-	height:35px;
+	width:572px;
+	height:40px;
 	margin:15px 0;
 	line-height:35px;
 }
 .tab ul li{
 	float:left;
 	cursor:pointer;
-	height:35px;
-	line-height:35px;
-	width:140px;
+	height:40px;
+	line-height:40px;
+	width:190px;
 	border-radius:2px;
 	text-align:center;
 	border-right:solid 1px #dadada;
@@ -330,7 +330,7 @@ input, button, select, textarea {
 .tab ul li.on{
 	background-color: #20b1dd;
 	color: #fff;
-	height:35px;
+	height:40px;
 	-webkit-box-shadow: 0 1px 1px #aaa;
 	border-right:none;
 	border-radius:2px;
