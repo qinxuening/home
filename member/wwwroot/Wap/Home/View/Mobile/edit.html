@@ -53,7 +53,22 @@ document.write('<meta name="viewport" content="width=640, user-scalable=no, targ
                     <div class="s_1 Validform_checktip"></div>
                     <input type="text" class="inp1" datatype="*1-30" nullmsg="{$Think.lang.Equipment_position_n}" sucmsg="{$Think.lang.Crepass}" name="McName" value="{$mobile.McName}" tabindex="1" maxlength="30">
                 </div>
-            
+				<!--默认空调温度-->
+				<notempty name="McID2">
+					<div class="line1"></div>
+					<div class="tb2_Irin">
+	           			 <div class="t_">默认温度：</div>
+						 <div class="KeyVar">
+							 <input type="hidden" name="McIDIrin" id="McIDIrin" value="{$McID2}">
+							  <select name="KeyVar">
+							  	 <volist name="IrinfoList" id="va" >
+							  		<option value="{$va.KeyVar}" <eq name="KeyVar" value="$va.KeyVar">selected</eq>>{$va.KeyName}</option>
+								</volist> 
+							  </select>
+						  </div>
+					</div>
+				 </notempty>
+				 <!--默认空调温度-->
             	<div class="line1"></div>
             
                 <div class="tb2">
@@ -76,9 +91,87 @@ document.write('<meta name="viewport" content="width=640, user-scalable=no, targ
             	<div class="tb2">
                 	<div class="t_">{$Think.lang.Linkage_opening}：</div>
                     <div class="s_1" style="color:#6eb805">{$Think.lang.Main_opening}</div>
-                    <div class="box1">
-                    	
-                        <div>
+					<!--开关联动开-->
+				    <eq name="McID1" value="14">
+				     <div class="box1">
+					 <div id="tabon" class="tab">
+					 	        <ul>
+							        <li class="on">{$Think.lang.key1}</li>
+							        <li class="off" >{$Think.lang.key2}</li>
+							        <li class="off">{$Think.lang.key3}</li>
+						        </ul>
+						
+						<div class="box sho" id="keyon1">
+						  
+                        	<volist name="myMobile" id="vo" key="k1">
+                                <label class="JqOn01_r JqOn01_m{$k1}" id="radioOn01{$k1}">
+                                    <b class="btn4
+                                    <foreach name="mLinkOn01" item="vt">
+                            			<eq name="vt" value="$vo.Pid">btn4_a</eq>
+                            		</foreach> 
+                                	 ">{$vo.McName}</b>
+                                </label>
+                            </volist>
+                        
+                        <span class="none">
+                        	<volist name="myMobile" id="vo" key="k2">
+                        		<input type="checkbox" name="LinkOn01[]" id="inputOn01{$k2}" <foreach name="mLinkOn01" item="vt">
+                            		<eq name="vt" value="$vo.Pid">checked</eq>
+                            	</foreach> 
+                                value="{$vo.Pid}" class="px">
+                            	&nbsp;{$vo.McName}&nbsp;
+                        	</volist>
+                        </span>
+					  </div>
+					  
+					<div class="box hid" id="keyon2">
+                        	<volist name="myMobile" id="vo" key="k1">
+                                <label class="JqOn02_r JqOn02_m{$k1}" id="radioOn02{$k1}">
+                                    <b class="btn4
+                                    <foreach name="mLinkOn02" item="vt">
+                            			<eq name="vt" value="$vo.Pid">btn4_a</eq>
+                            		</foreach> 
+                                	 ">{$vo.McName}</b>
+                                </label>
+                            </volist>
+                        <span class="none">
+                        	<volist name="myMobile" id="vo" key="k2">
+                        		<input type="checkbox" name="LinkOn02[]" id="inputOn02{$k2}" <foreach name="mLinkOn02" item="vt">
+                            		<eq name="vt" value="$vo.Pid">checked</eq>
+                            	</foreach> 
+                                value="{$vo.Pid}" class="px">
+                            	&nbsp;{$vo.McName}&nbsp;
+                        	</volist>
+                        </span>
+					  </div>
+					  
+					 <div class="box hid" id="keyon3">
+                        	<volist name="myMobile" id="vo" key="k1">
+                                <label class="JqOn03_r JqOn03_m{$k1}" id="radioOn03{$k1}">
+                                    <b class="btn4
+                                    <foreach name="mLinkOn03" item="vt">
+                            			<eq name="vt" value="$vo.Pid">btn4_a</eq>
+                            		</foreach> 
+                                	 ">{$vo.McName}</b>
+                                </label>
+                            </volist>
+                        <span class="none">
+                        	<volist name="myMobile" id="vo" key="k2">
+                        		<input type="checkbox" name="LinkOn03[]" id="inputOn03{$k2}" <foreach name="mLinkOn03" item="vt">
+                            		<eq name="vt" value="$vo.Pid">checked</eq>
+                            	</foreach> 
+                                value="{$vo.Pid}" class="px">
+                            	&nbsp;{$vo.McName}&nbsp;
+                        	</volist>
+                        </span>
+					  </div>
+					  </div>
+                    </div>
+					<!--开关联动开-->
+					<else/>
+					<!--非开关联动开-->
+						<div class="box1">
+						   <div>
                         	<volist name="myMobile" id="vo" key="k1">
                                 <label class="Jq_r Jq_m{$k1}" id="radio{$k1}">
                                     <b class="btn4
@@ -99,18 +192,96 @@ document.write('<meta name="viewport" content="width=640, user-scalable=no, targ
                             	&nbsp;{$vo.McName}&nbsp;
                         	</volist>
                         </div>
-                    
                     </div>
+					 </eq>
+					<!--非开关联动开-->
             	</div>
-            
+           
             	<div class="line1"></div>
             	
                 <div class="tb2">
                     <div class="t_">{$Think.lang.Linkage}：</div>
                     <div class="s_1" style="color:#6eb805">{$Think.lang.Master_Guan}</div>
+					<!--开关联动关-->
+				    <eq name="McID1" value="14">
+				     <div class="box1">
+					 <div id="taboff" class="tab">
+					 	        <ul>
+							        <li class="on">{$Think.lang.key1}</li>
+							        <li class="off" >{$Think.lang.key2}</li>
+							        <li class="off">{$Think.lang.key3}</li>
+						        </ul>
+						
+						<div class="box sho" id="keyon1">
+						  
+                        	<volist name="myMobile" id="vo" key="k1">
+                                <label class="JqOff01_r JqOff01_m{$k1}" id="radioOff01{$k1}">
+                                    <b class="btn4
+                                    <foreach name="mLinkOff01" item="vt">
+                            			<eq name="vt" value="$vo.Pid">btn4_a</eq>
+                            		</foreach> 
+                                	 ">{$vo.McName}</b>
+                                </label>
+                            </volist>
+                        
+                        <span class="none">
+                        	<volist name="myMobile" id="vo" key="k2">
+                        		<input type="checkbox" name="LinkOff01[]" id="inputOff01{$k2}" <foreach name="mLinkOff01" item="vt">
+                            		<eq name="vt" value="$vo.Pid">checked</eq>
+                            	</foreach> 
+                                value="{$vo.Pid}" class="px">
+                            	&nbsp;{$vo.McName}&nbsp;
+                        	</volist>
+                        </span>
+					  </div>
+					  
+					<div class="box hid" id="keyon2">
+                        	<volist name="myMobile" id="vo" key="k1">
+                                <label class="JqOff02_r JqOff02_m{$k1}" id="radioOff02{$k1}">
+                                    <b class="btn4
+                                    <foreach name="mLinkOff02" item="vt">
+                            			<eq name="vt" value="$vo.Pid">btn4_a</eq>
+                            		</foreach> 
+                                	 ">{$vo.McName}</b>
+                                </label>
+                            </volist>
+                        <span class="none">
+                        	<volist name="myMobile" id="vo" key="k2">
+                        		<input type="checkbox" name="LinkOff02[]" id="inputOff02{$k2}" <foreach name="mLinkOff02" item="vt">
+                            		<eq name="vt" value="$vo.Pid">checked</eq>
+                            	</foreach> 
+                                value="{$vo.Pid}" class="px">
+                            	&nbsp;{$vo.McName}&nbsp;
+                        	</volist>
+                        </span>
+					  </div>
+					  
+					 <div class="box hid" id="keyon3">
+                        	<volist name="myMobile" id="vo" key="k1">
+                                <label class="JqOff03_r JqOff03_m{$k1}" id="radioOff03{$k1}">
+                                    <b class="btn4
+                                    <foreach name="mLinkOff03" item="vt">
+                            			<eq name="vt" value="$vo.Pid">btn4_a</eq>
+                            		</foreach> 
+                                	 ">{$vo.McName}</b>
+                                </label>
+                            </volist>
+                        <span class="none">
+                        	<volist name="myMobile" id="vo" key="k2">
+                        		<input type="checkbox" name="LinkOff03[]" id="inputOff03{$k2}" <foreach name="mLinkOff03" item="vt">
+                            		<eq name="vt" value="$vo.Pid">checked</eq>
+                            	</foreach> 
+                                value="{$vo.Pid}" class="px">
+                            	&nbsp;{$vo.McName}&nbsp;
+                        	</volist>
+                        </span>
+					  </div>
+					  </div>
+                    </div>					
+					<!--开关联动关-->
+					<else/>
+					<!--非开关联动关-->
                     <div class="box1">
-                    
-                    	
                         <div>
                             <volist name="myMobile" id="vo" key="k1">
                                 <label class="Jq_r1 Jq_m1_{$k1}" id="radio1_{$k1}">
@@ -131,10 +302,9 @@ document.write('<meta name="viewport" content="width=640, user-scalable=no, targ
                             	&nbsp;{$vo.McName}&nbsp;
                         	</volist>
                         </div>
-                        
-                    	
-                        
-                    </div>
+                     </div>
+					</eq>
+				<!--非开关联动关-->
                 </div>
             
             	<div class="line1"></div>
@@ -142,8 +312,83 @@ document.write('<meta name="viewport" content="width=640, user-scalable=no, targ
                 <div class="tb2">
                     <div class="t_">{$Think.lang.Anti_linkage}：</div>
                     <div class="s_1" style="color:#6eb805">{$Think.lang.Main_opening2}</div>
+					<!--开关反联动开-->
+				    <eq name="McID1" value="14">
+				     <div class="box1">
+					 <div id="tabon_off" class="tab">
+					 	        <ul>
+							        <li class="on">{$Think.lang.key1}</li>
+							        <li class="off" >{$Think.lang.key2}</li>
+							        <li class="off">{$Think.lang.key3}</li>
+						        </ul>
+						
+						<div class="box sho" id="keyon1">
+                        	<volist name="myMobile" id="vo" key="k1">
+                                <label class="JqOn_Off01_r JqOn_Off01_m{$k1}" id="radioOn_Off01{$k1}">
+                                    <b class="btn4
+                                    <foreach name="mLinkon_off01" item="vt">
+                            			<eq name="vt" value="$vo.Pid">btn4_a</eq>
+                            		</foreach> 
+                                	 ">{$vo.McName}</b>
+                                </label>
+                            </volist>
+                            <span class="none">
+                        	<volist name="myMobile" id="vo" key="k2">
+                        		<input type="checkbox" name="Linkon_off01[]" id="inputOn_Off01{$k2}" <foreach name="mLinkon_off01" item="vt">
+                            		<eq name="vt" value="$vo.Pid">checked</eq>
+                            	</foreach> 
+                                value="{$vo.Pid}" class="px">
+                            	&nbsp;{$vo.McName}&nbsp;
+                        	</volist>
+                        </span>
+					  </div>
+					  
+					<div class="box hid" id="keyon2">
+                        	<volist name="myMobile" id="vo" key="k1">
+                                <label class="JqOn_Off02_r JqOn_Off02_m{$k1}" id="radioOn_Off02{$k1}">
+                                    <b class="btn4
+                                    <foreach name="mLinkon_off02" item="vt">
+                            			<eq name="vt" value="$vo.Pid">btn4_a</eq>
+                            		</foreach> 
+                                	 ">{$vo.McName}</b>
+                                </label>
+                            </volist>
+                        <span class="none">
+                        	<volist name="myMobile" id="vo" key="k2">
+                        		<input type="checkbox" name="Linkon_off02[]" id="inputOn_Off02{$k2}" <foreach name="mLinkon_off02" item="vt">
+                            		<eq name="vt" value="$vo.Pid">checked</eq>
+                            	</foreach> 
+                                value="{$vo.Pid}" class="px">
+                            	&nbsp;{$vo.McName}&nbsp;
+                        	</volist>
+                        </span>
+					  </div>
+					  
+					 <div class="box hid" id="keyon3">
+                        	<volist name="myMobile" id="vo" key="k1">
+                                <label class="JqOn_Off03_r JqOn_Off03_m{$k1}" id="radioOn_Off03{$k1}">
+                                    <b class="btn4
+                                    <foreach name="mLinkon_off03" item="vt">
+                            			<eq name="vt" value="$vo.Pid">btn4_a</eq>
+                            		</foreach> 
+                                	 ">{$vo.McName}</b>
+                                </label>
+                            </volist>
+                        <span class="none">
+                        	<volist name="myMobile" id="vo" key="k2">
+                        		<input type="checkbox" name="Linkon_off03[]" id="inputOn_Off03{$k2}" <foreach name="mLinkon_off03" item="vt">
+                            		<eq name="vt" value="$vo.Pid">checked</eq>
+                            	</foreach> 
+                                value="{$vo.Pid}" class="px">
+                            	&nbsp;{$vo.McName}&nbsp;
+                        	</volist>
+                        </span>
+					  </div>
+					  </div>
+                    </div>					
+					<!--开关反联动开-->     
+					<else/> 
                     <div class="box1">
-                    
                     	<div>
                             <volist name="myMobile" id="vo" key="k1">
                                 <label class="Jq_r2 Jq_m2_{$k1}" id="radio2_{$k1}">
@@ -164,9 +409,8 @@ document.write('<meta name="viewport" content="width=640, user-scalable=no, targ
                             	&nbsp;{$vo.McName}&nbsp;
                         	</volist>
                         </div>
-                    	
-                        
                     </div>
+				  </eq>
                 </div>
             
             	<div class="line1"></div>
@@ -174,8 +418,83 @@ document.write('<meta name="viewport" content="width=640, user-scalable=no, targ
                 <div class="tb2">
                     <div class="t_">{$Think.lang.Anti_linkage2}：</div>
                     <div class="s_1" style="color:#6eb805">{$Think.lang.Main_opening3}</div>
-                    <div class="box1">
-                        
+ 					<!--开关反联动关-->
+				    <eq name="McID1" value="14">
+				     <div class="box1">
+					 <div id="taboff_on" class="tab">
+					 	        <ul>
+							        <li class="on">{$Think.lang.key1}</li>
+							        <li class="off" >{$Think.lang.key2}</li>
+							        <li class="off">{$Think.lang.key3}</li>
+						        </ul>
+						
+						<div class="box sho" id="keyon1">
+                        	<volist name="myMobile" id="vo" key="k1">
+                                <label class="JqOff_On01_r JqOff_On01_m{$k1}" id="radioOff_On01{$k1}">
+                                    <b class="btn4
+                                    <foreach name="mLinkoff_on01" item="vt">
+                            			<eq name="vt" value="$vo.Pid">btn4_a</eq>
+                            		</foreach> 
+                                	 ">{$vo.McName}</b>
+                                </label>
+                            </volist>
+                            <span class="none">
+                        	<volist name="myMobile" id="vo" key="k2">
+                        		<input type="checkbox" name="Linkoff_on01[]" id="inputOff_On01{$k2}" <foreach name="mLinkoff_on01" item="vt">
+                            		<eq name="vt" value="$vo.Pid">checked</eq>
+                            	</foreach> 
+                                value="{$vo.Pid}" class="px">
+                            	&nbsp;{$vo.McName}&nbsp;
+                        	</volist>
+                        </span>
+					  </div>
+					  
+					<div class="box hid" id="keyon2">
+                        	<volist name="myMobile" id="vo" key="k1">
+                                <label class="JqOff_On02_r JqOff_On02_m{$k1}" id="radioOff_On02{$k1}">
+                                    <b class="btn4
+                                    <foreach name="mLinkoff_on02" item="vt">
+                            			<eq name="vt" value="$vo.Pid">btn4_a</eq>
+                            		</foreach> 
+                                	 ">{$vo.McName}</b>
+                                </label>
+                            </volist>
+                        <span class="none">
+                        	<volist name="myMobile" id="vo" key="k2">
+                        		<input type="checkbox" name="Linkoff_on02[]" id="inputOff_On02{$k2}" <foreach name="mLinkoff_on02" item="vt">
+                            		<eq name="vt" value="$vo.Pid">checked</eq>
+                            	</foreach> 
+                                value="{$vo.Pid}" class="px">
+                            	&nbsp;{$vo.McName}&nbsp;
+                        	</volist>
+                        </span>
+					  </div>
+					  
+					 <div class="box hid" id="keyon3">
+                        	<volist name="myMobile" id="vo" key="k1">
+                                <label class="JqOff_On03_r JqOff_On03_m{$k1}" id="radioOff_On03{$k1}">
+                                    <b class="btn4
+                                    <foreach name="mLinkoff_on03" item="vt">
+                            			<eq name="vt" value="$vo.Pid">btn4_a</eq>
+                            		</foreach> 
+                                	 ">{$vo.McName}</b>
+                                </label>
+                            </volist>
+                        <span class="none">
+                        	<volist name="myMobile" id="vo" key="k2">
+                        		<input type="checkbox" name="Linkoff_on03[]" id="inputOff_On03{$k2}" <foreach name="mLinkoff_on03" item="vt">
+                            		<eq name="vt" value="$vo.Pid">checked</eq>
+                            	</foreach> 
+                                value="{$vo.Pid}" class="px">
+                            	&nbsp;{$vo.McName}&nbsp;
+                        	</volist>
+                        </span>
+					  </div>
+					  </div>
+                    </div>					
+					<!--开关反联动关-->     
+					<else/>   
+					  <div class="box1">               
                         <div>
                             <volist name="myMobile" id="vo" key="k1">
                                 <label class="Jq_r3 Jq_m3_{$k1}" id="radio3_{$k1}">
@@ -196,8 +515,8 @@ document.write('<meta name="viewport" content="width=640, user-scalable=no, targ
                             	&nbsp;{$vo.McName}&nbsp;
                         	</volist>
                         </div>
-                        
                     </div>
+					</eq>
                 </div>
             
             	
@@ -262,6 +581,72 @@ function aa(){
 </script>
 <script src="__PUBLIC__/resource/common/js/Validform.js"></script>
 <script type="text/javascript">
+window.onload = function(){
+	var myTab = document.getElementById("tabon");
+	var myUl = myTab.getElementsByTagName("ul")[0];
+	var myLi = myUl.getElementsByTagName("li");
+	var myDiv = myTab.getElementsByTagName("div");
+	for (var i = 0; i < myLi.length; i++) {
+		myLi[i].index = i;
+		myLi[i].onclick = function(){
+			for (var j = 0; j < myLi.length; j++) {
+				myLi[j].className = "off";
+				myDiv[j].className = "box hid";
+			}
+			this.className = "on";
+			myDiv[this.index].className = "box sho";
+		}
+	}
+	
+ 	var myTaboff = document.getElementById("taboff"); 
+    var myUloff = myTaboff.getElementsByTagName("ul")[0];
+    var myLioff = myUloff.getElementsByTagName("li"); 
+    var myDivoff = myTaboff.getElementsByTagName("div");
+    for(var i = 0; i<myLioff.length;i++){
+        myLioff[i].index = i;
+        myLioff[i].onclick = function(){
+            for(var j = 0; j < myLioff.length; j++){
+                myLioff[j].className="off";
+                myDivoff[j].className = "box hid";
+            }
+            this.className = "on";
+            myDivoff[this.index].className = "box sho";
+        }
+    }
+
+    var myTabon_off = document.getElementById("tabon_off"); 
+    var myUlon_off = myTabon_off.getElementsByTagName("ul")[0];
+    var myLion_off = myUlon_off.getElementsByTagName("li"); 
+    var myDivon_off = myTabon_off.getElementsByTagName("div");
+    for(var i = 0; i<myLion_off.length;i++){
+        myLion_off[i].index = i;
+        myLion_off[i].onclick = function(){
+            for(var j = 0; j < myLion_off.length; j++){
+                myLion_off[j].className="off";
+                myDivon_off[j].className = "box hid";
+            }
+            this.className = "on";
+            myDivon_off[this.index].className = "box sho";
+        }
+    }	
+	
+	
+ 	var myTaboff_on = document.getElementById("taboff_on"); 
+    var myUloff_on = myTaboff_on.getElementsByTagName("ul")[0];
+    var myLioff_on = myUloff_on.getElementsByTagName("li"); 
+    var myDivoff_on = myTaboff_on.getElementsByTagName("div");
+    for(var i = 0; i<myLioff_on.length;i++){
+        myLioff_on[i].index = i;
+        myLioff_on[i].onclick = function(){
+            for(var j = 0; j < myLioff_on.length; j++){
+                myLioff_on[j].className="off";
+                myDivoff_on[j].className = "box hid";
+            }
+            this.className = "on";
+            myDivoff_on[this.index].className = "box sho";
+        }
+    }
+}
 $(function(){
 	var demo=$(".Machineryfrom").Validform({
 		tiptype:3,
@@ -275,8 +660,123 @@ $(function(){
 })
 
 $(document).ready(function(){
-	//Jq_tx();
+	/*开关联动开*/
+	var obOn01 = $('.JqOn01_r');
+	for(var i = 1; i < obOn01.length+1; i++){
+		if($('.JqOn01_m'+i).find('b').hasClass('btn4_a')){
+			r_bl('.JqOn01_m'+i,'#inputOn01'+i,'#radioOn01'+i);
+		}else{
+			f_bl('.JqOn01_m'+i,'#inputOn01'+i,'#radioOn01'+i);	
+		};
+	}
+	
+	var obOn02 = $('.JqOn02_r');
+	for(var i = 1; i < obOn02.length+1; i++){
+		if($('.JqOn02_m'+i).find('b').hasClass('btn4_a')){
+			r_bl('.JqOn02_m'+i,'#inputOn02'+i,'#radioOn02'+i);
+		}else{
+			f_bl('.JqOn02_m'+i,'#inputOn02'+i,'#radioOn02'+i);	
+		};
+	}	
+	
+    var obOn03 = $('.JqOn03_r');
+	for(var i = 1; i < obOn03.length+1; i++){
+		if($('.JqOn03_m'+i).find('b').hasClass('btn4_a')){
+			r_bl('.JqOn03_m'+i,'#inputOn03'+i,'#radioOn03'+i);
+		}else{
+			f_bl('.JqOn03_m'+i,'#inputOn03'+i,'#radioOn03'+i);	
+		};
+	}	
+	/*开关联动开*/
 		
+	/*开关联动关*/
+	var obOff01 = $('.JqOff01_r');
+	for(var i = 1; i < obOff01.length+1; i++){
+		if($('.JqOff01_m'+i).find('b').hasClass('btn4_a')){
+			r_bl('.JqOff01_m'+i,'#inputOff01'+i,'#radioOff01'+i);
+		}else{
+			f_bl('.JqOff01_m'+i,'#inputOff01'+i,'#radioOff01'+i);	
+		};
+	}
+	
+	var obOff02 = $('.JqOff02_r');
+	for(var i = 1; i < obOff02.length+1; i++){
+		if($('.JqOff02_m'+i).find('b').hasClass('btn4_a')){
+			r_bl('.JqOff02_m'+i,'#inputOff02'+i,'#radioOff02'+i);
+		}else{
+			f_bl('.JqOff02_m'+i,'#inputOff02'+i,'#radioOff02'+i);	
+		};
+	}	
+	
+    var obOff03 = $('.JqOff03_r');
+	for(var i = 1; i < obOff03.length+1; i++){
+		if($('.JqOff03_m'+i).find('b').hasClass('btn4_a')){
+			r_bl('.JqOff03_m'+i,'#inputOff03'+i,'#radioOff03'+i);
+		}else{
+			f_bl('.JqOff03_m'+i,'#inputOff03'+i,'#radioOff03'+i);	
+		};
+	}	
+	/*开关联动关*/
+	
+	/*开关反联动关*/
+	var obOn_Off01 = $('.JqOn_Off01_r');
+	for(var i = 1; i < obOn_Off01.length+1; i++){
+		if($('.JqOn_Off01_m'+i).find('b').hasClass('btn4_a')){
+			r_bl('.JqOn_Off01_m'+i,'#inputOn_Off01'+i,'#radioOn_Off01'+i);
+		}else{
+			f_bl('.JqOn_Off01_m'+i,'#inputOn_Off01'+i,'#radioOn_Off01'+i);	
+		};
+	}
+	
+	var obOn_Off02 = $('.JqOn_Off02_r');
+	for(var i = 1; i < obOn_Off02.length+1; i++){
+		if($('.JqOn_Off02_m'+i).find('b').hasClass('btn4_a')){
+			r_bl('.JqOn_Off02_m'+i,'#inputOn_Off02'+i,'#radioOn_Off02'+i);
+		}else{
+			f_bl('.JqOn_Off02_m'+i,'#inputOn_Off02'+i,'#radioOn_Off02'+i);	
+		};
+	}	
+	
+    var obOn_Off03 = $('.JqOn_Off03_r');
+	for(var i = 1; i < obOn_Off03.length+1; i++){
+		if($('.JqOn_Off03_m'+i).find('b').hasClass('btn4_a')){
+			r_bl('.JqOn_Off03_m'+i,'#inputOn_Off03'+i,'#radioOn_Off03'+i);
+		}else{
+			f_bl('.JqOn_Off03_m'+i,'#inputOn_Off03'+i,'#radioOn_Off03'+i);	
+		};
+	}	
+	/*开关反联动关*/		
+	
+	/*开关反联动关*/
+	var obOff_On01 = $('.JqOff_On01_r');
+	for(var i = 1; i < obOff_On01.length+1; i++){
+		if($('.JqOff_On01_m'+i).find('b').hasClass('btn4_a')){
+			r_bl('.JqOff_On01_m'+i,'#inputOff_On01'+i,'#radioOff_On01'+i);
+		}else{
+			f_bl('.JqOff_On01_m'+i,'#inputOff_On01'+i,'#radioOff_On01'+i);	
+		};
+	}
+	
+	var obOff_On02 = $('.JqOff_On02_r');
+	for(var i = 1; i < obOff_On02.length+1; i++){
+		if($('.JqOff_On02_m'+i).find('b').hasClass('btn4_a')){
+			r_bl('.JqOff_On02_m'+i,'#inputOff_On02'+i,'#radioOff_On02'+i);
+		}else{
+			f_bl('.JqOff_On02_m'+i,'#inputOff_On02'+i,'#radioOff_On02'+i);	
+		};
+	}	
+	
+    var obOff_On03 = $('.JqOff_On03_r');
+	for(var i = 1; i < obOff_On03.length+1; i++){
+		if($('.JqOff_On03_m'+i).find('b').hasClass('btn4_a')){
+			r_bl('.JqOff_On03_m'+i,'#inputOff_On03'+i,'#radioOff_On03'+i);
+		}else{
+			f_bl('.JqOff_On03_m'+i,'#inputOff_On03'+i,'#radioOff_On03'+i);	
+		};
+	}	
+	/*开关反联动关*/	
+	
+	
 	var ob1 = $('.Jq_r');
 	for(var i = 1; i < ob1.length+1; i++){
 		if($('.Jq_m'+i).find('b').hasClass('btn4_a')){
@@ -359,7 +859,6 @@ $('#JQ_n').on("click",function(){
 	$('#JQ_y').removeClass('dx_btn_a');
 	$('#IsMsg').attr("value",0);
 });
-
 
 /*function Jq_tx(){
 	if($('#Jq_tx').find('b').hasClass('hx_btn_a')){

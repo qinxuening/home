@@ -61,10 +61,19 @@ class TimeController extends CommonController{
 	public function update(){
 		$Pid=intval(I('get.id'));
 		if($this->timeaction_head->CheckPid($Pid)){
-			$HeadInfo = I('post.');
 			$HeadInfo['wUseID'] = session('wUseID');
-			if($this->timeaction_head->create($HeadInfo)){
-				$this->timeaction_head->where(array('Pid' => $Pid))->save();
+			$HeadInfo['wTime'] = I('post.wTime');
+			$HeadInfo['wName'] = I('post.wName');
+			$HeadInfo['wType'] = I('post.wType')?I('post.wType'):0;
+			$HeadInfo['wMon'] = I('post.wMon')?I('post.wMon'):0;
+			$HeadInfo['wTues'] = I('post.wTues')?I('post.wTues'):0;
+			$HeadInfo['wWed'] = I('post.wWed')?I('post.wWed'):0;
+			$HeadInfo['wThur'] = I('post.wThur')?I('post.wThur'):0;
+			$HeadInfo['wFri'] = I('post.wFri')?I('post.wFri'):0;
+			$HeadInfo['wSat'] = I('post.wSat')?I('post.wSat'):0;
+			$HeadInfo['wSunday'] = I('post.wSunday')?I('post.wSunday'):0;
+			if($this->timeaction_head->create()){
+				$this->timeaction_head->where(array('Pid' => $Pid))->save($HeadInfo);
 			}
 			$this->timeaction->where(array('wModel' => $Pid))->delete();
 			$wModeldata=I('post.wModel',null);

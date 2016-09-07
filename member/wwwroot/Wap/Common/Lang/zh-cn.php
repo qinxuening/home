@@ -332,5 +332,11 @@ return array(
 	'AllDelete' =>'删除整个用户',
 	
 	'Cmobile_check' => '正在检测信息…',
+		
+	'equipment_on' =>'设备开',
+	'equipment_off' =>'设备关',
 
+	'key1' =>'按键1',
+	'key2' =>'按键2',
+	'key3' =>'按键3',
 );

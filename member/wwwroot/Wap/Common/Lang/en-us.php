@@ -331,4 +331,11 @@ return array(
 	'LicensedUser' =>'Licensed User',
 	'OneDelete' =>'Delete',
 	'AllDelete' =>'All Delete',
+		
+	'equipment_on' =>'Equipment On',
+	'equipment_off' =>'Equipment Off',
+		
+	'key1' =>'key01',
+	'key2' =>'key02',
+	'key3' =>'key03',
 );

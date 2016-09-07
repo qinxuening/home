@@ -516,8 +516,21 @@ TABLE.ListProduct .edit{
 
 .userinfoArea td.touch,.userinfoArea td.touch1{
 	display:inline-block !important;
+	padding-left:0;
 }
-
+.userinfoArea td.touch label{
+	color:#333;
+}
+.userinfoArea td.touch select{
+	height: 31px;
+    line-height: 36px;
+	width:140px;
+	color:#333;
+}
+.userinfoArea td.touch option{
+	text-indent:20px;
+		
+}
 .userinfoArea td.touch1{
 	width:320px;
 }
@@ -528,7 +541,7 @@ TABLE.ListProduct .edit{
 }
 
 .userinfoArea td.touch  label{
-	margin:0;color:#797979;font-size:14px;font-weight:normal;
+	margin:0;font-size:14px;font-weight:normal;
 }
 .userinfoArea td {
     display: block;
