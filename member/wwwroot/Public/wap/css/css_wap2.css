@@ -299,11 +299,23 @@ input, button, select, textarea {
     border-radius: 8px;
 	padding: 10px;
 }
+.keyon1{
+	background:#00b7ee;
+	color:#fff;
+}
+.keyon2{
+	background:#f39800 ;
+	color:#fff;
+}
+.keyon3{
+	background:#13b5b1;
+	color:#fff;
+}
 #keyon1{
-	border: solid 1px #f39800;
+	border: solid 1px #00b7ee;
 }
 #keyon2{
-	border: solid 1px #00b7ee;
+	border: solid 1px #f39800;
 }
 #keyon3{
 	border: solid 1px #13b5b1;
@@ -328,12 +340,15 @@ input, button, select, textarea {
 	border-right:solid 1px #dadada;
 }
 .tab ul li.on{
-	background-color: #20b1dd;
+	/*background-color: #20b1dd;*/
 	color: #fff;
 	height:40px;
 	-webkit-box-shadow: 0 1px 1px #aaa;
 	border-right:none;
 	border-radius:2px;
+}
+.tab ul li.active{
+	background-color: #00b7ee;
 }
 .tab ul li.off{
 	background-color:none !important;

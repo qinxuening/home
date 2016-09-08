@@ -96,7 +96,7 @@ document.write('<meta name="viewport" content="width=640, user-scalable=no, targ
 				     <div class="box1">
 					 <div id="tabon" class="tab">
 					 	        <ul>
-							        <li class="on">{$Think.lang.key1}</li>
+							        <li class="on active">{$Think.lang.key1}</li>
 							        <li class="off" >{$Think.lang.key2}</li>
 							        <li class="off">{$Think.lang.key3}</li>
 						        </ul>
@@ -207,7 +207,7 @@ document.write('<meta name="viewport" content="width=640, user-scalable=no, targ
 				     <div class="box1">
 					 <div id="taboff" class="tab">
 					 	        <ul>
-							        <li class="on">{$Think.lang.key1}</li>
+							        <li class="on active">{$Think.lang.key1}</li>
 							        <li class="off" >{$Think.lang.key2}</li>
 							        <li class="off">{$Think.lang.key3}</li>
 						        </ul>
@@ -317,7 +317,7 @@ document.write('<meta name="viewport" content="width=640, user-scalable=no, targ
 				     <div class="box1">
 					 <div id="tabon_off" class="tab">
 					 	        <ul>
-							        <li class="on">{$Think.lang.key1}</li>
+							        <li class="on active">{$Think.lang.key1}</li>
 							        <li class="off" >{$Think.lang.key2}</li>
 							        <li class="off">{$Think.lang.key3}</li>
 						        </ul>
@@ -423,7 +423,7 @@ document.write('<meta name="viewport" content="width=640, user-scalable=no, targ
 				     <div class="box1">
 					 <div id="taboff_on" class="tab">
 					 	        <ul>
-							        <li class="on">{$Think.lang.key1}</li>
+							        <li class="on active">{$Think.lang.key1}</li>
 							        <li class="off" >{$Think.lang.key2}</li>
 							        <li class="off">{$Think.lang.key3}</li>
 						        </ul>
@@ -597,7 +597,15 @@ window.onload = function(){
 			myDiv[this.index].className = "box sho";
 		}
 	}
-	
+	var color = new Array();
+	color[0] = "keyon1";
+	color[1] = "keyon2";
+	color[2] = "keyon3";
+	$("#tabon").find('ul').children('li').each(function(e){
+		  $(this).click(function(){
+				 $(this).addClass(color[e]);
+		 	  });
+	})	
  	var myTaboff = document.getElementById("taboff"); 
     var myUloff = myTaboff.getElementsByTagName("ul")[0];
     var myLioff = myUloff.getElementsByTagName("li"); 
@@ -614,6 +622,12 @@ window.onload = function(){
         }
     }
 
+ 	$("#taboff").find('ul').children('li').each(function(e){
+		  $(this).click(function(){
+				 $(this).addClass(color[e]);
+		 	  });
+	})
+
     var myTabon_off = document.getElementById("tabon_off"); 
     var myUlon_off = myTabon_off.getElementsByTagName("ul")[0];
     var myLion_off = myUlon_off.getElementsByTagName("li"); 
@@ -629,7 +643,11 @@ window.onload = function(){
             myDivon_off[this.index].className = "box sho";
         }
     }	
-	
+ 	$("#tabon_off").find('ul').children('li').each(function(e){
+		  $(this).click(function(){
+				 $(this).addClass(color[e]);
+		 	  });
+	})	
 	
  	var myTaboff_on = document.getElementById("taboff_on"); 
     var myUloff_on = myTaboff_on.getElementsByTagName("ul")[0];
@@ -646,6 +664,11 @@ window.onload = function(){
             myDivoff_on[this.index].className = "box sho";
         }
     }
+    $("#taboff_on").find('ul').children('li').each(function(e){
+		  $(this).click(function(){
+				 $(this).addClass(color[e]);
+		 	  });
+	})
 }
 $(function(){
 	var demo=$(".Machineryfrom").Validform({

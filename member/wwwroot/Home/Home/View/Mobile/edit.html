@@ -140,7 +140,7 @@ function aa(){
                   	<!--开关联动开-->
 					 <div id="tabon" class="box tab">
 					 	        <ul>
-							        <li class="on">{$Think.lang.key1}</li>
+							        <li class="on active">{$Think.lang.key1}</li>
 							        <li class="off" >{$Think.lang.key2}</li>
 							        <li class="off">{$Think.lang.key3}</li>
 						        </ul>
@@ -179,7 +179,7 @@ function aa(){
                   	<!--开关联动关-->
 					 <div id="taboff" class="box tab">
 					 	        <ul>
-							        <li class="on">{$Think.lang.key1}</li>
+							        <li class="on active">{$Think.lang.key1}</li>
 							        <li class="off" >{$Think.lang.key2}</li>
 							        <li class="off">{$Think.lang.key3}</li>
 						        </ul>
@@ -218,7 +218,7 @@ function aa(){
 	                 <!--开关反联动关-->
 					 <div id="tabon_off" class="box tab">
 					 	        <ul>
-							        <li class="on">{$Think.lang.key1}</li>
+							        <li class="on active">{$Think.lang.key1}</li>
 							        <li class="off" >{$Think.lang.key2}</li>
 							        <li class="off">{$Think.lang.key3}</li>
 						        </ul>
@@ -258,7 +258,7 @@ function aa(){
                   	 <!--开关反联动关-->
 					   <div id="taboff_on" class="box tab">
 					 	        <ul>
-							        <li class="on">{$Think.lang.key1}</li>
+							        <li class="on active">{$Think.lang.key1}</li>
 							        <li class="off" >{$Think.lang.key2}</li>
 							        <li class="off">{$Think.lang.key3}</li>
 						        </ul>
@@ -316,6 +316,7 @@ function aa(){
 	    for(var i = 0; i<myLi.length;i++){
 	        myLi[i].index = i;
 	        myLi[i].onclick = function(){
+				
 	            for(var j = 0; j < myLi.length; j++){
 	                myLi[j].className="off";
 	                myDiv[j].className = "box hid";
@@ -324,7 +325,15 @@ function aa(){
 	            myDiv[this.index].className = "box sho";
 	        }
 	      }
-		  
+		var color = new Array();
+		color[0] = "keyon1";
+		color[1] = "keyon2";
+		color[2] = "keyon3";
+		$("#tabon").find('ul').children('li').each(function(e){
+			  $(this).click(function(){
+   				 $(this).addClass(color[e]);
+ 		 	  });
+		})
 	 	var myTaboff = document.getElementById("taboff"); 
 	    var myUloff = myTaboff.getElementsByTagName("ul")[0];
 	    var myLioff = myUloff.getElementsByTagName("li"); 
@@ -340,6 +349,32 @@ function aa(){
 	            myDivoff[this.index].className = "box sho";
 	        }
 	    }
+	 	$("#taboff").find('ul').children('li').each(function(e){
+			  $(this).click(function(){
+   				 $(this).addClass(color[e]);
+ 		 	  });
+		})
+
+	    var myTabon_off = document.getElementById("tabon_off"); 
+	    var myUlon_off = myTabon_off.getElementsByTagName("ul")[0];
+	    var myLion_off = myUlon_off.getElementsByTagName("li"); 
+	    var myDivon_off = myTabon_off.getElementsByTagName("div");
+	    for(var i = 0; i<myLion_off.length;i++){
+	        myLion_off[i].index = i;
+	        myLion_off[i].onclick = function(){
+	            for(var j = 0; j < myLion_off.length; j++){
+	                myLion_off[j].className="off";
+	                myDivon_off[j].className = "box hid";
+	            }
+	            this.className = "on";
+	            myDivon_off[this.index].className = "box sho";
+	        }
+	    }
+	 	$("#tabon_off").find('ul').children('li').each(function(e){
+			  $(this).click(function(){
+   				 $(this).addClass(color[e]);
+ 		 	  });
+		})
 	 
 	 	var myTaboff_on = document.getElementById("taboff_on"); 
 	    var myUloff_on = myTaboff_on.getElementsByTagName("ul")[0];
@@ -357,22 +392,11 @@ function aa(){
 	        }
 	    }
 		
-	    var myTabon_off = document.getElementById("tabon_off"); 
-	    var myUlon_off = myTabon_off.getElementsByTagName("ul")[0];
-	    var myLion_off = myUlon_off.getElementsByTagName("li"); 
-	    var myDivon_off = myTabon_off.getElementsByTagName("div");
-	    for(var i = 0; i<myLion_off.length;i++){
-	        myLion_off[i].index = i;
-	        myLion_off[i].onclick = function(){
-	            for(var j = 0; j < myLion_off.length; j++){
-	                myLion_off[j].className="off";
-	                myDivon_off[j].className = "box hid";
-	            }
-	            this.className = "on";
-	            myDivon_off[this.index].className = "box sho";
-	        }
-	    }
-	 
+	    $("#taboff_on").find('ul').children('li').each(function(e){
+			  $(this).click(function(){
+   				 $(this).addClass(color[e]);
+ 		 	  });
+		})
 	 }
 $(function(){
 	var demo=$(".Machineryfrom").Validform({
