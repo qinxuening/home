@@ -405,4 +405,11 @@ return array(
 	'service_hotline' =>'Hotline  ',
 	'Logout' => 'Logout',
 	'SHLB' => '',
+		
+	'equipment_on' =>'Equipment On',
+	'equipment_off' =>'Equipment Off',
+		
+	'key1' =>'key01',
+	'key2' =>'key02',
+	'key3' =>'key03',
 );

@@ -394,4 +394,10 @@ return array(
 	'Logout' => '退出',
 	'SHLB' => '智能家居领导品牌',
 		
+	'equipment_on' =>'设备开',
+	'equipment_off' =>'设备关',
+		
+	'key1' =>'按键1',
+	'key2' =>'按键2',
+	'key3' =>'按键3',
 );

@@ -248,28 +248,7 @@ input, button, select, textarea {
 
 .chengyuan_con .c3{width:640px;float:left;text-align:left;line-height:60px;font-size:20px;background-color:#f1f1f1;}
 
-.chengyuan_con .tb2{width:600px;float:left;margin:0px auto auto 20px;}
-.chengyuan_con .tb2_Irin{
-	width:600px;float:left;margin:30px auto auto 20px;
-	height:37px;
-	line-height:37px;
-}
-.chengyuan_con .tb2_Irin .KeyVar{
-	/*clear:both;*/
-	position:relative;
-	float:left;
-}
-.chengyuan_con .tb2_Irin .KeyVar select{
-	width:300px;
-	height:37px !important;
-	text-align:center;
-	border:solid 1px #d0d0d0;
-	background:none;
-}
-.chengyuan_con .tb2_Irin .KeyVar option{
-	font-size:14px;
-	color: #999999;
-}
+.chengyuan_con .tb2{width:600px;float:left;margin:30px auto auto 20px;}
 .chengyuan_con .t_{float:left;padding-left:10px;font-weight:bold;}
 
 .chengyuan_con .s_1{float:right;text-align:right;/*color:#6eb805;*/padding-right:10px;}
@@ -289,92 +268,6 @@ input, button, select, textarea {
 .chengyuan_con .xq_btn{width:50px;height:30px;float:left;margin-right:10px;background-color:#a4a4a4;border-radius:4px;}/*==============================改变================================*/        
 .chengyuan_con .xq_btn_a{width:50px;height:30px;float:left;margin-right:10px;background-color:#2bbbe7;border-radius:4px;}
 
-.chengyuan_con .btnb{width:auto;height:auto;float:left;background: url("images/edshebei_11.jpg") no-repeat 5px 15px;padding-left:30px;padding-right:30px;line-height:50px;color:#999999;font-size:20px;}
-.chengyuan_con .btn4_b{width:auto;height:auto;float:left;background: url("images/edshebei_11a.jpg") no-repeat 5px 15px;padding-left:30px;padding-right:30px;line-height:50px;color:#2bbbe7;font-size:20px;}
-.chengyuan_con .touch{display:block;line-height:50px;margin-right:10px;font-size:20px;}
-.box{
-	border: solid 1px #d0d0d0;
-	display:inline-block;
-	margin:0;
-    border-radius: 8px;
-	padding: 10px;
-}
-.keyon1{
-	background:#00b7ee;
-	color:#fff;
-}
-.keyon2{
-	background:#f39800 ;
-	color:#fff;
-}
-.keyon3{
-	background:#13b5b1;
-	color:#fff;
-}
-#keyon1{
-	border: solid 1px #00b7ee;
-}
-#keyon2{
-	border: solid 1px #f39800;
-}
-#keyon3{
-	border: solid 1px #13b5b1;
-}
-.tab ul{
-	diplay:block;
-	border:solid 1px #dadada;
-	border-radius:2px;
-	width:572px;
-	height:40px;
-	margin:15px 0;
-	line-height:35px;
-}
-.tab ul li{
-	float:left;
-	cursor:pointer;
-	height:40px;
-	line-height:40px;
-	width:190px;
-	border-radius:2px;
-	text-align:center;
-	border-right:solid 1px #dadada;
-}
-.tab ul li.on{
-	/*background-color: #20b1dd;*/
-	color: #fff;
-	height:40px;
-	-webkit-box-shadow: 0 1px 1px #aaa;
-	border-right:none;
-	border-radius:2px;
-}
-.tab ul li.active{
-	background-color: #00b7ee;
-}
-.tab ul li.off{
-	background-color:none !important;
-}
-.hid{display:none;}
-.chengyuan_con select{
-	height:30px;
-	background:none;
-	border-radius:4px;
-	border: solid 1px #d0d0d0;
-	margin-bottom:2px;
-	color: #999999;
-	width:40%;
-	font-size:18px;
-	padding:2px 0;
-}
-.chengyuan_con .option{
-	color: #999999;
-    height: 20px;
-	font: 14px/1.8 \5FAE\8F6F\96C5\9ED1, Helvetica, Arial, sans-serif;
-	background:none;
-	font-weight:bolder;
-	border-bottom:solid 1px #d0d0d0;
-	padding:2px 0;
-	text-indent:10px; 
-}
 .chengyuan_con .line1{width:640px;float:left;border-bottom:solid 1px #f3f3f3;margin-top:40px;}
 
 

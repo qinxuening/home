@@ -47,13 +47,13 @@ class LoginController extends Controller{
 							$this->users->wMB= $mob;
 							$Pid = $this->users->add();
 	
-							$DefaultModel[] = array('wUseID'=>$uname,'wName'=>L('Security_Mode'), 'wType'=>1);
-							$DefaultModel[] = array('wUseID'=>$uname,'wName'=>L('Sleeping_Mode'), 'wType'=>0);
-							$DefaultModel[] = array('wUseID'=>$uname,'wName'=>L('Entertainment'), 'wType'=>1);
-							$DefaultModel[] = array('wUseID'=>$uname,'wName'=>L('Home_Mode'), 'wType'=>1);
-							$DefaultModel[] = array('wUseID'=>$uname,'wName'=>L('Napping_Mode'), 'wType'=>0);
-							$DefaultModel[] = array('wUseID'=>$uname,'wName'=>L('Away_Home'), 'wType'=>0);
-							$DefaultModel[] = array('wUseID'=>$uname,'wName'=>L('Awake_Mode'), 'wType'=>1);
+							$DefaultModel[] = array('wUseID'=>$uname,'wName'=>L('Security_Mode'));
+							$DefaultModel[] = array('wUseID'=>$uname,'wName'=>L('Sleeping_Mode'));
+							$DefaultModel[] = array('wUseID'=>$uname,'wName'=>L('Entertainment'));
+							$DefaultModel[] = array('wUseID'=>$uname,'wName'=>L('Home_Mode'));
+							$DefaultModel[] = array('wUseID'=>$uname,'wName'=>L('Napping_Mode'));
+							$DefaultModel[] = array('wUseID'=>$uname,'wName'=>L('Away_Home'));
+							$DefaultModel[] = array('wUseID'=>$uname,'wName'=>L('Awake_Mode'));
 							$this->modeltypehead->addAll($DefaultModel);
 	
 							session('wUseID',$uname);

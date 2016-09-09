@@ -59,7 +59,7 @@ textarea {
 	margin-top:140px;
 }
 .article, .intro, .download, .document, .developer {
-	margin:180px 0 40px 0;
+	margin:40px 0px;
 	border:1px solid #c7cdd6;/*border-radius:8px;*/
 	background:#f5f6f7;
 	box-shadow:0px 1px 3px #ccc;
@@ -214,6 +214,9 @@ textarea {
     width: 997px;
 	background-color: #FFFFFF;
 	min-height:450px;
+}
+.content .pagea a{
+	padding:2px;
 }
 .tableContent .content h4{
 	font-size:16px;
@@ -513,38 +516,8 @@ TABLE.ListProduct .edit{
 	line-height: 1.5;
 	padding: 8px 0;
 }
-
-.userinfoArea td.touch,.userinfoArea td.touch1{
-	display:inline-block !important;
-	padding-left:0;
-}
-.userinfoArea td.touch label{
-	color:#333;
-}
-.userinfoArea td.touch select{
-	height: 31px;
-    line-height: 36px;
-	width:140px;
-	color:#333;
-}
-.userinfoArea td.touch option{
-	text-indent:20px;
-		
-}
-.userinfoArea td.touch1{
-	width:320px;
-}
-
-.userinfoArea td.touch input[type=checkbox]{
-	margin:0;
-	margin-right:5px;
-}
-
-.userinfoArea td.touch  label{
-	margin:0;font-size:14px;font-weight:normal;
-}
 .userinfoArea td {
-    display: block;
+    /*display: block;*/
     margin-left: 10px;
     padding: 8px 0;
 	color:#666;
