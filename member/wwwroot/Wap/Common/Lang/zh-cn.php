@@ -339,4 +339,6 @@ return array(
 	'key1' =>'按键1',
 	'key2' =>'按键2',
 	'key3' =>'按键3',
+		
+	'Default_Temperature' => '默认温度',
 );

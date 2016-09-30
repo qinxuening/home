@@ -338,4 +338,6 @@ return array(
 	'key1' =>'key01',
 	'key2' =>'key02',
 	'key3' =>'key03',
+		
+	'Default_Temperature' => 'Default Temperature',		
 );

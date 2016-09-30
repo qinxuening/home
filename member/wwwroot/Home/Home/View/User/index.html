@@ -111,7 +111,6 @@
 		var name = $('#data_'+id).attr("dataName");
 		$('.jumppage > .tx1').html('{$Think.lang.Confirm_delete}  '+'['+name+']');
 		$('.jumppage_bg, .jumppage').show();
-		//ajax_del(id);
 		$('#Jq_sure').click(function(){
 			var url = "__URL__/del/id/"+id;
 			//$('.jumppage_bg, .jumppage').hide();

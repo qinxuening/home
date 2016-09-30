@@ -5,11 +5,13 @@ class CheckloginController extends Controller{
 	public function index(){
 		$wUseID = I('wUseID');
 		$wPassWord = I('wPassWord');
+		writelog('log',I('post.'));
 		if($wUseID!=''&&$wPassWord!=''){
 			$Data=D('users');
 			$condition['wUseID']=$wUseID;
 			$condition['wPassWord']=md5($wPassWord);
 			$users=$Data->where($condition)->field('wUseID, wName, wMB, serverID')->find();
+			writelog('log',$users);
 			if($users){
 				$sdata = '{"ret": 0,"errcode": 0,"msg": "登陆成功","data": {"wUseID": "'.$users['wUseID'].'","wName": "'.$users['wName'].'","wMB": "'.$users['wMB'].'","serverID": '.$users['serverID'].'}}';
 				$sdata = trim($sdata);
