@@ -67,7 +67,7 @@ class MobileController extends CommonController{
 			$find = $this->mobilemanager->where(array("Pid" => $Pid))->field('Pid , McName , IsMsg , left(`McID`,2) as McID1 , left(`McID`,2) as McID2 , McID')->find();
 			if($find){
 				if('14' == $find['McID1']){
-					$touchlist = $this->linklist_s->where(array('Pid' => $Pid))->field('Key01 , Key02 , Key03 ,McID , wModeltype')->select();
+					$touchlist = $this->linklist_s->join("LEFT JOIN `linklist_child` c on `linklist_s`.wID = c.wID and c.mark = 2")->where(array("`linklist_s`".".Pid" =>$find['Pid']))->field('Key01 , Key02 , Key03 , `linklist_s`.McID , wModeltype')->select();
 					foreach ($touchlist as $key => $value){
 						if(1 == $value['wModeltype']){$touchon[] = $touchlist[$key];}
 						if(2 == $value['wModeltype']){$touchoff[] = $touchlist[$key];}
@@ -116,10 +116,10 @@ class MobileController extends CommonController{
 					}
 					$this->assign('McID1' , $find['McID1']);
 				}else{
-					$findLinkOn = $this->linklist->join("LEFT JOIN `linklist_child` c on `linklist`.wID = c.wID")->where(array("`linklist`".".McID" =>$find['Pid'],wModeltype=>1))->field('Pid, Key01, Key02, Key03')->select();//联动开
-					$findLinkOff = $this->linklist->join("LEFT JOIN `linklist_child` c on `linklist`.wID = c.wID")->where(array("`linklist`".".McID" =>$find['Pid'],wModeltype=>2))->field('Pid, Key01, Key02, Key03')->select();//联动关
-					$findLinkOn_Off = $this->linklist->join("LEFT JOIN `linklist_child` c on `linklist`.wID = c.wID")->where(array("`linklist`".".McID" =>$find['Pid'],wModeltype=>3))->field('Pid, Key01, Key02, Key03')->select();//反联动开
-					$findLinkOff_On = $this->linklist->join("LEFT JOIN `linklist_child` c on `linklist`.wID = c.wID")->where(array("`linklist`".".McID" =>$find['Pid'],wModeltype=>4))->field('Pid, Key01, Key02, Key03')->select();//反联动关
+					$findLinkOn = $this->linklist->join("LEFT JOIN `linklist_child` c on `linklist`.wID = c.wID and c.mark = 1")->where(array("`linklist`".".McID" =>$find['Pid'],wModeltype=>1))->field('Pid, Key1, Key2, Key3')->select();//联动开
+					$findLinkOff = $this->linklist->join("LEFT JOIN `linklist_child` c on `linklist`.wID = c.wID and c.mark = 1")->where(array("`linklist`".".McID" =>$find['Pid'],wModeltype=>2))->field('Pid, Key1, Key2, Key3')->select();//联动关
+					$findLinkOn_Off = $this->linklist->join("LEFT JOIN `linklist_child` c on `linklist`.wID = c.wID and c.mark = 1")->where(array("`linklist`".".McID" =>$find['Pid'],wModeltype=>3))->field('Pid, Key1, Key2, Key3')->select();//反联动开
+					$findLinkOff_On = $this->linklist->join("LEFT JOIN `linklist_child` c on `linklist`.wID = c.wID and c.mark = 1")->where(array("`linklist`".".McID" =>$find['Pid'],wModeltype=>4))->field('Pid, Key1, Key2, Key3')->select();//反联动关
 										
 					$mLinkOn = TarrayToOarray($findLinkOn, 'Pid');
 					$mLinkOff = TarrayToOarray($findLinkOff, 'Pid');
@@ -239,57 +239,58 @@ class MobileController extends CommonController{
 				 		$idon = $this->linklist->add(array('McID' => $Pid , 'Pid' => $key_on , 'wModeltype' => 1));
 				 		$linklist_child_on['wID'] = $idon;
 				 		$linklist_child_on['McID'] = $Pid;
-				 		$linklist_child_on['Key01'] = in_array('Key01', $value_on)? 1:0;
-				 		$linklist_child_on['Key02'] = in_array('Key02', $value_on)? 1:0;
-				 		$linklist_child_on['Key03'] = in_array('Key03', $value_on)? 1:0;
+				 		$linklist_child_on['Key1'] = in_array('Key1', $value_on)? 1:0;
+				 		$linklist_child_on['Key2'] = in_array('Key2', $value_on)? 1:0;
+				 		$linklist_child_on['Key3'] = in_array('Key3', $value_on)? 1:0;
+				 		$linklist_child_on['mark'] = 1;
 				 		$this->linklist_child->add($linklist_child_on); 		
 				 	}else{
 				 		$this->linklist->add(array('McID' => $Pid , 'Pid' => $value_on , 'wModeltype' => 1));
 				 	}
 				 }
-				 for($i=0;$i<count($wModelLinkOff);$i++){
-				 	if(is_array($wModelLinkOff[$i])){
-				 		foreach ($wModelLinkOff[$i] as $koff => $voff){
-				 			$idoff = $this->linklist->add(array('McID' => $Pid , 'Pid' => $koff , 'wModeltype' => 2));
-				 			$linklist_child_off['wID'] = $idoff;
-				 			$linklist_child_off['McID'] = $Pid;
-				 			$linklist_child_off['Key01'] = ($voff == "Key01")? 1:0;
-				 			$linklist_child_off['Key02'] = ($voff == "Key02")? 1:0;
-				 			$linklist_child_off['Key03'] = ($voff == "Key03")? 1:0;
-				 			$this->linklist_child->add($linklist_child_off);
-				 		}
+				 
+				 foreach ($wModelLinkOff as $key_off => $value_off){
+				 	if(is_array($value_off)){
+				 		$idoff = $this->linklist->add(array('McID' => $Pid , 'Pid' => $key_off , 'wModeltype' => 2));
+				 		$linklist_child_off['wID'] = $idoff;
+				 		$linklist_child_off['McID'] = $Pid;
+				 		$linklist_child_off['Key1'] = in_array('Key1', $value_off)? 1:0;
+				 		$linklist_child_off['Key2'] = in_array('Key2', $value_off)? 1:0;
+				 		$linklist_child_off['Key3'] = in_array('Key3', $value_off)? 1:0;
+				 		$linklist_child_off['mark'] = 1;
+				 		$this->linklist_child->add($linklist_child_off);
 				 	}else{
-						$this->linklist->add(array('McID' => $Pid , 'Pid' => $wModelLinkOff[$i] , 'wModeltype' => 2));
+				 		$this->linklist->add(array('McID' => $Pid , 'Pid' => $value_off , 'wModeltype' => 2));
 				 	}
 				 }
-				 for($i=0;$i<count($wModelLinkOn_Off);$i++){
-				 	if(is_array($wModelLinkOn_Off[$i])){
-				 		foreach ($wModelLinkOn_Off[$i] as $kon_off => $von_off){
-				 			$idon_off = $this->linklist->add(array('McID' => $Pid , 'Pid' => $kon_off , 'wModeltype' => 3));
-				 			$linklist_child_on_off['wID'] = $idon_off;
-				 			$linklist_child_on_off['McID'] = $Pid;
-				 			$linklist_child_on_off['Key01'] = ($von_off == "Key01")? 1:0;
-				 			$linklist_child_on_off['Key02'] = ($von_off == "Key02")? 1:0;
-				 			$linklist_child_on_off['Key03'] = ($von_off == "Key03")? 1:0;
-				 			$this->linklist_child->add($linklist_child_on_off);
-				 		}
+				 
+				 foreach ($wModelLinkOn_Off as $key_on_off => $value_on_off){
+				 	if(is_array($value_on_off)){
+				 		$id_on_off = $this->linklist->add(array('McID' => $Pid , 'Pid' => $key_on_off , 'wModeltype' => 3));
+				 		$linklist_child_on_off['wID'] = $id_on_off;
+				 		$linklist_child_on_off['McID'] = $Pid;
+				 		$linklist_child_on_off['Key1'] = in_array('Key1', $value_on_off)? 1:0;
+				 		$linklist_child_on_off['Key2'] = in_array('Key2', $value_on_off)? 1:0;
+				 		$linklist_child_on_off['Key3'] = in_array('Key3', $value_on_off)? 1:0;
+				 		$linklist_child_on_off['mark'] = 1;
+				 		$this->linklist_child->add($linklist_child_on_off);
 				 	}else{
-						$this->linklist->add(array('McID' => $Pid , 'Pid' => $wModelLinkOn_Off[$i] , 'wModeltype' => 3));
+				 		$this->linklist->add(array('McID' => $Pid , 'Pid' => $value_on_off , 'wModeltype' => 3));
 				 	}
-				 }
-				 for($i=0;$i<count($wModelLinkOff_On);$i++){
-				 	if(is_array($wModelLinkOff_On[$i])){
-				 		foreach ($wModelLinkOff_On[$i] as $koff_on => $voff_on){
-				 			$idoff_on = $this->linklist->add(array('McID' => $Pid , 'Pid' => $koff_on , 'wModeltype' => 4));
-				 			$linklist_child_off_on['wID'] = $idoff_on;
-				 			$linklist_child_off_on['McID'] = $Pid;
-				 			$linklist_child_off_on['Key01'] = ($voff_on == "Key01")? 1:0;
-				 			$linklist_child_off_on['Key02'] = ($voff_on == "Key02")? 1:0;
-				 			$linklist_child_off_on['Key03'] = ($voff_on == "Key03")? 1:0;
-				 			$this->linklist_child->add($linklist_child_off_on);
-				 		}
-				 	}else{				 	
-						$this->linklist->add(array('McID' => $Pid , 'Pid' => $wModelLinkOff_On[$i] , 'wModeltype' => 4));
+				 }				 
+				 
+				 foreach ($wModelLinkOff_On as $key_off_on => $value_off_on){
+				 	if(is_array($value_off_on)){
+				 		$id_off_on = $this->linklist->add(array('McID' => $Pid , 'Pid' => $key_off_on , 'wModeltype' => 4));
+				 		$linklist_child_off_on['wID'] = $id_off_on;
+				 		$linklist_child_off_on['McID'] = $Pid;
+				 		$linklist_child_off_on['Key1'] = in_array('Key1', $value_off_on)? 1:0;
+				 		$linklist_child_off_on['Key2'] = in_array('Key2', $value_off_on)? 1:0;
+				 		$linklist_child_off_on['Key3'] = in_array('Key3', $value_off_on)? 1:0;
+				 		$linklist_child_off_on['mark'] = 1;
+				 		$this->linklist_child->add($linklist_child_off_on);
+				 	}else{
+				 		$this->linklist->add(array('McID' => $Pid , 'Pid' => $value_off_on , 'wModeltype' => 4));
 				 	}
 				 }
 			}
