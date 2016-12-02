@@ -108,10 +108,10 @@
 	/**
 	 * @author qxn
 	 * @param unknown $linklist_s 开关设备主表
-	 * @param unknown $linklist_child  开关设备副表
+	 * @param unknown $linklist_child  副表
 	 * @param unknown $arr 提交联动数据
 	 * @param unknown $Pid 主设备id
-	 * @param unknown $wModeltype 联动方式
+	 * @param unknown $wModeltype 联动类型
 	 * @param unknown $Key01
 	 * @param unknown $Key02
 	 * @param unknown $Key03
@@ -129,6 +129,31 @@
 				$linklist_child->add($linklist_child_on);
 			}else{
 				$linklist_s->add(array('Pid' => $Pid , 'McID' => $value_on , 'wModeltype' => $wModeltype , 'Key01'=>$Key01,'Key02'=>$Key02,'Key03'=>$Key03));
+			}
+		}
+	}
+	
+	/**
+	 * @author qxn 
+	 * @param unknown $linklist 非开关类主设备
+	 * @param unknown $linklist_child  副表
+	 * @param unknown $arr 提交联动数据
+	 * @param unknown $Pid 主设备id
+	 * @param unknown $wModeltype 联动类型
+	 */
+	function  add_linklist2_linklist_child($linklist, $linklist_child ,$arr, $Pid, $wModeltype){
+		foreach ($arr as $key_on => $value_on){
+			if(is_array($value_on)){
+				$idon = $linklist->add(array('McID' => $Pid , 'Pid' => $key_on , 'wModeltype' => $wModeltype));
+				$linklist_child_on['wID'] = $idon;
+				$linklist_child_on['McID'] = $Pid;
+				$linklist_child_on['Key1'] = in_array('Key1', $value_on)? 1:0;
+				$linklist_child_on['Key2'] = in_array('Key2', $value_on)? 1:0;
+				$linklist_child_on['Key3'] = in_array('Key3', $value_on)? 1:0;
+				$linklist_child_on['mark'] = 1;
+				$linklist_child->add($linklist_child_on);
+			}else{
+				$linklist->add(array('McID' => $Pid , 'Pid' => $value_on , 'wModeltype' => $wModeltype));
 			}
 		}
 	}

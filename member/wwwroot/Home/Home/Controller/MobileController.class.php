@@ -235,65 +235,10 @@ class MobileController extends CommonController{
 				 $wModelLinkOn_Off = I('post.LinkOn_Off', null);
 				 $wModelLinkOff_On = I('post.LinkOff_On', null); 
 				 
-				 foreach ($wModelLinkOn as $key_on => $value_on){
-				 	if(is_array($value_on)){
-				 		$idon = $this->linklist->add(array('McID' => $Pid , 'Pid' => $key_on , 'wModeltype' => 1));
-				 		$linklist_child_on['wID'] = $idon;
-				 		$linklist_child_on['McID'] = $Pid;
-				 		$linklist_child_on['Key1'] = in_array('Key1', $value_on)? 1:0;
-				 		$linklist_child_on['Key2'] = in_array('Key2', $value_on)? 1:0;
-				 		$linklist_child_on['Key3'] = in_array('Key3', $value_on)? 1:0;
-				 		$linklist_child_on['mark'] = 1;
-				 		$this->linklist_child->add($linklist_child_on); 		
-				 	}else{
-				 		$this->linklist->add(array('McID' => $Pid , 'Pid' => $value_on , 'wModeltype' => 1));
-				 	}
-				 }
-				 
-				 foreach ($wModelLinkOff as $key_off => $value_off){
-				 	if(is_array($value_off)){
-				 		$idoff = $this->linklist->add(array('McID' => $Pid , 'Pid' => $key_off , 'wModeltype' => 2));
-				 		$linklist_child_off['wID'] = $idoff;
-				 		$linklist_child_off['McID'] = $Pid;
-				 		$linklist_child_off['Key1'] = in_array('Key1', $value_off)? 1:0;
-				 		$linklist_child_off['Key2'] = in_array('Key2', $value_off)? 1:0;
-				 		$linklist_child_off['Key3'] = in_array('Key3', $value_off)? 1:0;
-				 		$linklist_child_off['mark'] = 1;
-				 		$this->linklist_child->add($linklist_child_off);
-				 	}else{
-				 		$this->linklist->add(array('McID' => $Pid , 'Pid' => $value_off , 'wModeltype' => 2));
-				 	}
-				 }
-				 
-				 foreach ($wModelLinkOn_Off as $key_on_off => $value_on_off){
-				 	if(is_array($value_on_off)){
-				 		$id_on_off = $this->linklist->add(array('McID' => $Pid , 'Pid' => $key_on_off , 'wModeltype' => 3));
-				 		$linklist_child_on_off['wID'] = $id_on_off;
-				 		$linklist_child_on_off['McID'] = $Pid;
-				 		$linklist_child_on_off['Key1'] = in_array('Key1', $value_on_off)? 1:0;
-				 		$linklist_child_on_off['Key2'] = in_array('Key2', $value_on_off)? 1:0;
-				 		$linklist_child_on_off['Key3'] = in_array('Key3', $value_on_off)? 1:0;
-				 		$linklist_child_on_off['mark'] = 1;
-				 		$this->linklist_child->add($linklist_child_on_off);
-				 	}else{
-				 		$this->linklist->add(array('McID' => $Pid , 'Pid' => $value_on_off , 'wModeltype' => 3));
-				 	}
-				 }				 
-				 
-				 foreach ($wModelLinkOff_On as $key_off_on => $value_off_on){
-				 	if(is_array($value_off_on)){
-				 		$id_off_on = $this->linklist->add(array('McID' => $Pid , 'Pid' => $key_off_on , 'wModeltype' => 4));
-				 		$linklist_child_off_on['wID'] = $id_off_on;
-				 		$linklist_child_off_on['McID'] = $Pid;
-				 		$linklist_child_off_on['Key1'] = in_array('Key1', $value_off_on)? 1:0;
-				 		$linklist_child_off_on['Key2'] = in_array('Key2', $value_off_on)? 1:0;
-				 		$linklist_child_off_on['Key3'] = in_array('Key3', $value_off_on)? 1:0;
-				 		$linklist_child_off_on['mark'] = 1;
-				 		$this->linklist_child->add($linklist_child_off_on);
-				 	}else{
-				 		$this->linklist->add(array('McID' => $Pid , 'Pid' => $value_off_on , 'wModeltype' => 4));
-				 	}
-				 }
+				 add_linklist2_linklist_child($this->linklist, $this->linklist_child, $wModelLinkOn, $Pid, 1);
+				 add_linklist2_linklist_child($this->linklist, $this->linklist_child, $wModelLinkOff, $Pid, 2);
+				 add_linklist2_linklist_child($this->linklist, $this->linklist_child, $wModelLinkOn_Off, $Pid, 3);
+				 add_linklist2_linklist_child($this->linklist, $this->linklist_child, $wModelLinkOff_On, $Pid, 4);
 			}
 			$url = 'http://'.$_SERVER['HTTP_HOST'].__APP__.'/Mobile/';
 			header("Location:$url");
