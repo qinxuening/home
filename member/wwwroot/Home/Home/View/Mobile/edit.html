@@ -164,9 +164,22 @@ function aa(){
 					  <!--开关联动开-->
 					 <else/>
 					 <!--非开关联动开-->
-						 <volist name="myMobile" id="vo" >
-	               	 	   <span class="bbox1"><label><input type="checkbox" name="LinkOn[]" id="LinkOn[]" <foreach name="mLinkOn" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
-	                     </volist>
+					 <volist name="myMobile" id="vo" >
+					 	
+					 	 <eq name="vo.McID3" value="14">
+							<span class="bbox1"><label style="margin-bottom:0!important;">
+								&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;
+								<label ><input class="px" name="LinkOn[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLinkOn["$vo[Pid]"][0]){echo "checked";}</php> value="Key01">&nbsp;键1&nbsp;</label>
+								<label ><input class="px" name="LinkOn[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLinkOn["$vo[Pid]"][1]){echo "checked";}</php> value="Key02">&nbsp;键2&nbsp;</label>
+								<label ><input class="px" name="LinkOn[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLinkOn["$vo[Pid]"][2]){echo "checked";}</php> value="Key03">&nbsp;键3&nbsp;</label>
+							</label></span>
+						 <else/>
+               	 	     <span class="bbox1"><label><input type="checkbox" name="LinkOn[]" id="LinkOn[]" <foreach name="mLinkOn" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">
+ 							&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label>
+						 </span>						  
+					  </eq>  
+
+                     </volist>
 					<!--非开关联动开-->
 					</eq>
 				  </td>
@@ -204,8 +217,19 @@ function aa(){
 					<else/>
 					 <!--非开关联动关-->
 						<volist name="myMobile" id="vo" >
-	                  	 <span class="bbox1"><label><input type="checkbox" name="LinkOff[]" id="LinkOff[]" <foreach name="mLinkOff" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
-						</volist>
+						<eq name="vo.McID3" value="14">
+							<span class="bbox1"><label style="margin-bottom:0!important;">
+								&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;
+								<label ><input class="px" name="LinkOff[][{$vo.Pid}]" type="radio" <php>if($Key_mLinkOff["$vo[Pid]"][0]){echo "checked";}</php> value="Key01">&nbsp;键1&nbsp;</label>
+								<label ><input class="px" name="LinkOff[][{$vo.Pid}]" type="radio" <php>if($Key_mLinkOff["$vo[Pid]"][1]){echo "checked";}</php> value="Key02">&nbsp;键2&nbsp;</label>
+								<label ><input class="px" name="LinkOff[][{$vo.Pid}]" type="radio" <php>if($Key_mLinkOff["$vo[Pid]"][2]){echo "checked";}</php> value="Key03">&nbsp;键3&nbsp;</label>
+							</label></span>
+						 <else/>
+               	 	     <span class="bbox1"><label><input type="checkbox" name="LinkOff[]" id="LinkOff[]" <foreach name="mLinkOff" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">
+ 							&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label>
+						 </span>						  
+					   </eq>  
+					  </volist>
 					 <!--非开关联动关-->
 					</eq>
 				</td>
@@ -243,7 +267,20 @@ function aa(){
 					<else/>
 					<!--非开关反联动开-->
 						<volist name="myMobile" id="vo" >
-                  		 <span class="bbox1"><label><input type="checkbox" name="LinkOn_Off[]" id="LinkOn_Off[]" <foreach name="mLinkOn_Off" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
+							
+						<eq name="vo.McID3" value="14">
+							<span class="bbox1"><label style="margin-bottom:0!important;">
+								&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;
+								<label ><input class="px" name="LinkOn_Off[][{$vo.Pid}]" type="radio" <php>if($Key_mLinkOn_Off["$vo[Pid]"][0]){echo "checked";}</php> value="Key01">&nbsp;键1&nbsp;</label>
+								<label ><input class="px" name="LinkOn_Off[][{$vo.Pid}]" type="radio" <php>if($Key_mLinkOn_Off["$vo[Pid]"][1]){echo "checked";}</php> value="Key02">&nbsp;键2&nbsp;</label>
+								<label ><input class="px" name="LinkOn_Off[][{$vo.Pid}]" type="radio" <php>if($Key_mLinkOn_Off["$vo[Pid]"][2]){echo "checked";}</php> value="Key03">&nbsp;键3&nbsp;</label>
+							</label></span>
+						 <else/>
+               	 	     <span class="bbox1"><label><input type="checkbox" name="LinkOn_Off[]" id="LinkOn_Off[]" <foreach name="mLinkOn_Off" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">
+ 							&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label>
+						 </span>						  
+					   </eq> 
+					    							
 						 </volist>	
 				    <!--非开反联动开-->			
 					</eq>
@@ -282,8 +319,21 @@ function aa(){
 					  <!--开关反联动关-->
 					 <else/>
                   	<volist name="myMobile" id="vo" >
-                  	 <span class="bbox1"><label><input type="checkbox" name="LinkOff_On[]" id="LinkOff_On[]" <foreach name="mLinkOff_On" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span></volist>
-					 </eq>
+						<eq name="vo.McID3" value="14">
+							<span class="bbox1"><label style="margin-bottom:0!important;">
+								&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;
+								<label ><input class="px" name="LinkOff_On[][{$vo.Pid}]" type="radio" <php>if($Key_mLinkOff_On["$vo[Pid]"][0]){echo "checked";}</php> value="Key01">&nbsp;键1&nbsp;</label>
+								<label ><input class="px" name="LinkOff_On[][{$vo.Pid}]" type="radio" <php>if($Key_mLinkOff_On["$vo[Pid]"][1]){echo "checked";}</php> value="Key02">&nbsp;键2&nbsp;</label>
+								<label ><input class="px" name="LinkOff_On[][{$vo.Pid}]" type="radio" <php>if($Key_mLinkOff_On["$vo[Pid]"][2]){echo "checked";}</php> value="Key03">&nbsp;键3&nbsp;</label>
+							</label></span>
+						 <else/>
+               	 	     <span class="bbox1"><label><input type="checkbox" name="LinkOff_On[]" id="LinkOff_On[]" <foreach name="mLinkOff_On" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">
+ 							&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label>
+						 </span>						  
+					   </eq> 	
+					   					
+					 </volist>
+				     </eq>
 					 </td>
                 </tr>
                 <tr>
@@ -398,6 +448,24 @@ function aa(){
  		 	  });
 		})
 	 }
+	 
+	//实现radio点击取消
+	$("input[type=radio]").bind("click",function(){  
+	    var $radio = $(this);  
+	    // if this was previously checked  
+	    if ($radio.data('waschecked') == true)  
+	    {  
+	        $radio.prop('checked', false);  
+	        $radio.data('waschecked', false);  
+	    }  
+	    else  
+	    {  
+	         $radio.prop('checked', true);  
+	         $radio.data('waschecked', true);  
+	    }  
+	    // remove was checked from other radios  
+	    $radio.siblings('input[type="radio"]').data('waschecked', false);  
+	});  
 $(function(){
 	var demo=$(".Machineryfrom").Validform({
 			tiptype:3,

@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no"/>
+<script type="text/javascript">
+var _width = parseInt(window.screen.width);
+var scale = _width/640;
+var ua = navigator.userAgent.toLowerCase();
+var result = /android (\d+\.\d+)/.exec(ua);
+if (result){
+var version = parseFloat(result[1]);
+if(version>2.3){
+document.write('<meta name="viewport" content="width=640, minimum-scale = '+scale+', maximum-scale = '+scale+', target-densitydpi=device-dpi">');
+}else{
+document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+}
+} else {
+document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+}
+</script>
+<title>{$Think.lang.Login}</title>
+
+<link rel="stylesheet" href="__PUBLIC__/wap/css/css_wap2.css" >
+<link rel="stylesheet" href="__PUBLIC__/resource/common/js/validform/style.css" >
+<link rel="shortcut icon" href="__PUBLIC__/resource/common/images/favicon.ico" type="image/x-icon" />
+</head>
+<style> 
+	body{
+		{$Think.lang.font}
+	}
+	#Allrong {
+		margin:10px 0px 0px 100px !important;
+		height:20px;
+		line-height:20px;
+		font-size: 20px !important;
+		color:#ff2a00,
+	}
+	#Validform_msg {
+		display:none !important;
+	}
+</style>
+<body>
+
+<div class="jumppage_lang" style="display:none;">
+    <div class="til_">Language</div>
+    <div class="btn1"><a href="./?l=zh-cn" style="color:#000">Chinese</a></div>
+    <div class="btn2"><a href="./?l=en-us" style="color:#000">English</a></div>
+</div>
+<div class="jumppage_bg" style="display:none;"></div>
+
+<div class="topper">
+    <div class="con">
+        <div class="back_btn" style="background-image:none"></div>
+        <div class="t_1">{$Think.lang.LOGIN}</div>
+        <div style="float:left;height: 57px; line-height:57px"><a id="Jq_change_l" href="javascript:;" style="color:#FFF">Language</a></div>
+    </div>
+</div>
+<div class="con_index">
+	<div class="mainpage">
+        <form method="post" action="__APP__/Login/logincheck/" class="loginform JQ_sub"  >
+        <div class="login_con">
+            <div class="img1" style="background:url(__PUBLIC__/wap/css/images/{$Think.lang.p_lg_cn}) no-repeat 50% 50%;">
+            	<a href="{$Think.lang.langue_link}" class="logo_btn0"></a>
+            </div>
+            
+            <div class="c1" style="margin-top:0; margin-left:60px">
+            	<div class="t_" style="padding-left:80px;"></div>
+            	<div class="s_1 Validform_checktip" style="padding-right:80px">{$Think.lang.Case_sensitive}</div>
+            	<input type="text"  id="regneme" name="regneme"  style="margin:10px 0" maxlength="16" class="inp1" sucmsg="{$Think.lang.Crepass}" authsuc=""  autherr="" datatype="*3-16" errormsg="{$Think.lang.Cuser_l_e}" nullmsg="{$Think.lang.Cuser_l_n}" />
+        	</div>
+            
+            <div class="c1" style="margin-top:0; margin-left:60px">
+            	<div class="t_" style="padding-left:80px;"></div>
+            	<div class="s_1 Validform_checktip" style="padding-right:80px"></div>
+            	<input type="password" id="password" name="password" style="margin:10px 0" class="inp2" maxlength="16" datatype="*6-16" sucmsg="{$Think.lang.Crepass}" nullmsg="{$Think.lang.Cpass_l_n}" errormsg="{$Think.lang.Cpass_l_e}" />
+       		</div>
+            <span id ="Allrong"class="Validform_checktip  Validform_wrong"></span>
+            <div class="c1" style="margin-left:70px" >
+            	<a href="__APP__/Lostpassword/" class="tx4" style="text-decoration:none">{$Think.lang.FORGOTPASS}</a>
+            	<!--<div class="ds_btn_a"></div>
+            	<div class="tx1">记住帐户</div>-->
+            </div>
+            
+            <!--<div class="c1">
+                <div class="tx3" style="visibility:hidden;">帐号不存在或者密码错误！</div>
+            </div>-->
+            <input type="hidden" name="jz"  value="1" />
+            <input type="hidden" name="wUseID" id="wUseID">
+		  	<input type="hidden" name="wPassWord" id="wPassWord">
+            <a href="javascript:submitForm(this);" class="btn1" >{$Think.lang.Login}<!--登&#12288;&#12288;陆--></a>
+            <a href="__APP__/Login/" class="btn2">{$Think.lang.Registered}<!--注&#12288;&#12288;册--></a>
+        </form>
+    	</div>
+    </div>   
+</div>
+<include file="Public:footer" />
+<script language="JavaScript" type="text/javascript" src="__PUBLIC__/resource/js/jsbn.js"></script>
+<script language="JavaScript" type="text/javascript" src="__PUBLIC__/resource/js/prng4.js"></script>
+<script language="JavaScript" type="text/javascript" src="__PUBLIC__/resource/js/rng.js"></script>
+<script language="JavaScript" type="text/javascript" src="__PUBLIC__/resource/js/rsa.js"></script>
+<script language="JavaScript" type="text/javascript" src="__PUBLIC__/resource/js/base64.js"></script>
+<script language="JavaScript" type="text/javascript" src="__PUBLIC__/resource/js/md5.js"></script>
+<script language="JavaScript" type="text/javascript" src="__PUBLIC__/resource/common/js/jquery.js"></script>
+<script language="JavaScript" type="text/javascript" src="__PUBLIC__/resource/js/jquery.cookie.js"></script>
+
+<script language="JavaScript"> 
+
+var public_key="{$Think.config.public_key}";
+var public_length="{$Think.config.public_length}";
+
+function do_encrypt() {
+	
+  var before = new Date();
+  var rsa = new RSAKey();
+  rsa.setPublic(public_key, public_length);
+  
+  document.getElementById("wUseID").value = rsa.encrypt(document.getElementById("regneme").value);
+  document.getElementById("regneme").value ='';
+  document.getElementById("wPassWord").value = hex_md5(document.getElementById("password").value);
+  document.getElementById("password").value ='';
+  
+}
+
+</script>
+<script src="__PUBLIC__/resource/common/js/Validform.js"></script>
+<script type="text/javascript">
+$(function(){
+var demo=$(".loginform").Validform({
+		tiptype:3,
+		showAllError:false,
+		datatype:{
+			"zh1-6":/^[\u4E00-\u9FA5\uf900-\ufa2d]{1,6}$/
+		},
+		beforeSubmit:do_encrypt,
+		ajaxPost:false,
+		beforeCheck:function(curform){
+	  		$.cookie('regneme', $("#regneme").val()); 	
+		},
+	});
+	demo.tipmsg.c = "{$Think.lang.Cmobile_check}";
+	$("#regneme").val($.cookie('regneme'));
+})
+</script>
+</body>
+</html>

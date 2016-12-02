@@ -1,0 +1,102 @@
+<link rel="stylesheet" type="text/css" href="http://HOST_URL/skin/css/head.css"/>
+<link rel="shortcut icon" href="__PUBLIC__/resource/common/images/favicon.ico" type="image/x-icon" />
+		 <eq name="langue" value="cn">
+			<div class="language_box" id="lang_box">
+			<div class="btn1" >Language</div>
+			<a class="btn2" href="./?l=zh-cn">Chinese</a>
+			<a class="btn3" href="./?l=en-us">English</a>
+			</div>
+		<else/>
+			<div class="language_box" id="lang_box">
+			<div class="btn1" >Language</div>
+			<a class="btn2" href="./?l=zh-cn">Chinese</a>
+			<a class="btn3" href="./?l=en-us/">English</a>
+			</div>
+		</eq>
+<header class="header">
+	    <div class="wapper">
+	    <eq name="langue" value="cn">
+  	    <h1>来诚科技</h1>
+  	    <ul>
+  	    	<li class="active"><a href="http://HOST_URL/">{$Think.lang.Home}</a></li>
+  	    	       <li ><a href="http://HOST_URL/index.php?c=article&a=type&tid=24">{$Think.lang.Solution}</a></li>
+                   <li ><a href="http://HOST_URL/index.php?c=channel&a=type&tid=33">{$Think.lang.Products}</a></li>
+                   <li ><a href="http://HOST_URL/index.php?c=product&a=type&tid=25">{$Think.lang.Download}</a></li>
+                   <li ><a href="http://HOST_URL/index.php?c=article&a=type&tid=27">{$Think.lang.About_Us}</a></li>
+                   <li ><a href="http://HOST_URL/index.php?c=article&a=type&tid=26">{$Think.lang.Join_Us}</a></li>
+                   <li ><a href="http://HOST_URL/index.php?c=article&a=type&tid=34">{$Think.lang.Recent_News}</a></li>
+                   <li ><a href="http://HOST_URL/index.php?c=article&a=type&tid=29">{$Think.lang.Service}</a></li>
+        </ul>
+  	    <a class="login" href="http://REG_URL/?l=zh-cn">{$Think.lang.Login}</a>		
+		<a class="register" href="http://REG_URL/index.php/Login/?l=zh-cn">{$Think.lang.Register}</a>
+		
+			<!--<div class="language_box" id="lang_box">
+			<div class="btn1" >Language</div>
+			<a class="btn2" href="./?l=zh-cn">Chinese</a>
+			<a class="btn3" href="./?l=en-us/">English</a>
+			</div>
+			-->
+		<else/>
+		
+		<h1>Loyalty</h1>
+  	    <ul>
+  	    	<li class="active"><a href="http://HOST_ENURL/">{$Think.lang.Home}</a></li>
+  	    	       <li ><a href="http://HOST_ENURL/index.php?c=article&a=type&tid=24">{$Think.lang.Solution}</a></li>
+                   <li ><a href="http://HOST_ENURL/index.php?c=channel&a=type&tid=33">{$Think.lang.Products}</a></li>
+                   <li ><a href="http://HOST_ENURL/index.php?c=product&a=type&tid=25">{$Think.lang.Download}</a></li>
+                   <li ><a href="http://HOST_ENURL/index.php?c=article&a=type&tid=27">{$Think.lang.About_Us}</a></li>
+                   <li ><a href="http://HOST_ENURL/index.php?c=article&a=type&tid=26">{$Think.lang.Join_Us}</a></li>
+                   <li ><a href="http://HOST_ENURL/index.php?c=article&a=type&tid=34">{$Think.lang.Recent_News}</a></li>
+                   <li ><a href="http://HOST_ENURL/index.php?c=article&a=type&tid=29">{$Think.lang.Service}</a></li>
+        </ul>
+  	    <a class="login" href="http://REG_URL/?l=en-us">{$Think.lang.Login}</a>
+		<a class="register" href="http://REG_URL/index.php/Login/?l=en-us">{$Think.lang.Register}</a>
+		
+		<!--<div class="language_box" id="lang_box"> 
+		<div class="btn1" >Language</div>
+		<a class="btn2" href="./?l=zh-cn">Chinese</a>
+		<a class="btn3" href="./?l=en-us/">English</a>
+		</div>
+		-->
+		</eq>
+	    </div>
+		
+</header>
+
+<style> 
+body{ {$Think.lang.font}}
+
+</style>
+<div class="jumppage_lang" style="display:none;">
+    <div class="til_">Language</div>
+    <div class="btn1"><a href="./?l=zh-cn" style="color:#000">Chinese</a></div>
+    <div class="btn2"><a href="./?l=en-us" style="color:#000">English</a></div>
+</div>
+<div class="jumppage_bg" style="display:none;"></div>
+ <script type="text/javascript" src="http://HOST_URL/skin/js/jquery1.42.min.js"></script>
+    <script  type="text/javascript">
+		$('#Jq_change_l').click(function(){
+			$('.jumppage_lang, .jumppage_bg').show();
+			$('.jumppage_bg').click(function(){
+				$('.jumppage_lang, .jumppage_bg').hide();	
+			});	
+		});
+</script>
+
+<script>
+function setLanguageMenu(){
+	var box1 = $("#lang_box");
+	
+	box1.bind("mouseenter", function(){
+		box1.animate({height:"93px"},{duration: 150, easing:"linear"});
+	});
+	box1.bind("mouseleave", function(){
+		box1.animate({height:"29px"},{duration: 150, easing:"linear"});
+	});
+	
+}
+
+setLanguageMenu();
+
+</script>
+

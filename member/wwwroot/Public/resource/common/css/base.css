@@ -141,7 +141,72 @@ a.m_btn_blue_s,a.m_btn_blue_l,a.m_btn_orange_l{ color: #fff; text-decoration: no
 	border:dashed 1px red !important;
 }
 /*===============================check修改================================*/
-.bbox1{padding:4px 6px 4px 6px;;border:solid 1px #dadada;margin-right:10px;margin-bottom:10px;border-radius:2px;float:left;}
+.box{
+	border: solid 1px #d0d0d0;
+	display:inline-block;
+	margin:0;
+    border-radius: 8px;
+	padding: 10px;
+}
+.keyon1{
+	background:#00b7ee;
+	color:#fff;
+}
+.keyon2{
+	background:#f39800 ;
+	color:#fff;
+}
+.keyon3{
+	background:#13b5b1;
+	color:#fff;
+}
+#keyon1{
+	border: solid 1px #00b7ee;
+}
+#keyon2{
+	border: solid 1px #f39800;
+}
+#keyon3{
+	border: solid 1px #13b5b1;
+}
+.tab ul{
+	diplay:block;
+	border:solid 1px #dadada;
+	border-radius:2px;
+	height:35px;
+	width:299px;
+	margin:5px 0;
+}
+.tab ul li{
+	float:left;
+	padding:2px 8px;
+	cursor:pointer;
+	height:35px;
+	line-height:35px;
+	width:99px;
+	border-radius:2px;
+	text-align:center;
+	border-right:solid 1px #dadada;
+	display:block;
+}
+.tab ul li.active{
+	background-color: #00b7ee;
+}
+.tab ul li.on{
+	/*background-color: #f39800;*/
+	color: #fff;
+    font-size: 14px;
+	height:35px;
+	-webkit-box-shadow: 0 1px 1px #aaa;
+	border-right:none;
+	border-radius:2px;
+}
+.tab ul li.off{
+	background-color:none !important;
+}
+.hid{display:none;}
+.bbox1{padding:4px 6px 4px 6px;border:solid 1px #dadada;margin-right:10px;margin-bottom:10px;border-radius:2px;float:left;}
+.touch{margin-bottom:6px !important;}
 .bbox1 .px{margin-top:-4px;}
 
 span.Validform_loading {
@@ -150,6 +215,26 @@ span.Validform_loading {
 .Validform_checktip{
 	font-size:14px !important;
 }
+/*=======================================同行复选框==================================*/
+.stouch{
+	float:right;
+	display:inline-block;
+	color:#666;
+	font-weight:700;
+}
+.stouch input[type=checkbox]{margin:0 5px 3px 0;}
+.stouch label{margin:0;color:#797979;font-weight:normal;display: inline-block;max-width: 100%;}
+
+/*=======================================开关多选框=============================*/
+/*.sjumppage{width:300px;height:136px;float:left;border-radius:8px;z-index:210;background-color:#f6f6f6;position:fixed;top:50%;margin-top:-150px;left:50%;margin-left:-200px;}
+.sjumppage .stx1{width:300px;float:left;font-size:26px;padding:40px 0px 40px 0px;text-align:center;font-size:16px;}
+.sjumppage .stx1 input[type=checkbox]{margin-right:5px;}
+.sjumppage .stx1 label{margin:0;color:#797979;font-size:14px;font-weight:normal;}
+.sjumppage .sbtn2{width:150px;height:50px;float:left;border-bottom-left-radius:8px;border:1px solid  #c0bcbc;background-color:#f6f6f6;line-height:30px;margin:0px auto 0px 0px;color:#242323;font-size:16px;text-align:center;cursor:pointer;}
+.sjumppage .sbtn3{width:150px;height:50px;float:right;border-bottom-right-radius:8px;border:1px solid #c0bcbc;background-color:#f6f6f6;line-height:30px;margin:0px 0px 0px auto;color:#242323;font-size:16px;text-align:center;cursor:pointer;}
+*/
+
+
 /*==============================弹出框================================*/
 .jumppage{width:360px;height:250px;float:left;border-radius:8px;z-index:210;background-color:#f6f6f6;position:fixed;top:50%;margin-top:-150px;left:50%;margin-left:-200px;}
 .jumppage .t_1{width:360px;padding-left:20px;height:30px;float:left;background-color:#429ddd;border-radius:8px 8px 0px 0px;color:#ffffff;font-size:20px;line-height:30px;text-align:left;}
@@ -158,7 +243,7 @@ span.Validform_loading {
 
 .jumppage .btn1{width:260px;height:30px;float:left;border-radius:4px;background-color:#56aeec;line-height:40px;margin:0px auto 0px 70px;color:#ffffff;font-size:16px;}
 .jumppage .btn2{width:90px;height:30px;float:left;border-radius:4px;background-color:#757575;line-height:30px;margin:0px auto 0px 70px;color:#ffffff;font-size:16px;text-align:center;cursor:pointer;border:0px}
-.jumppage .btn3{width:90px;height:30px;float:right;border-radius:4px;background-color:#56aeec;line-height:30px;margin:0px 70px 0px auto;color:#ffffff;font-size:16px;text-align:center;cursor:pointer;border:0px}
+.jumppage .btn3{width:90px;height:30px;float:right;border-radius:4px;background-color:#56aeec;line-height:30px;margin:0px 70px 0px auto;color:#ffffff;font-size:16px;text-align:center;cursor:pointer;border:0px;z-index:211;}
 
 .jumppage_lang{width:440px;height:320px;float:left;border-radius:10px;z-index:210;background-color:#eeeeee;position:fixed;top:50%;margin-top:-160px;left:50%;margin-left:-220px;color:#000000;font-size:24px;text-align:left;}
 .jumppage_lang .til_{width:300px;float:left;margin:30px auto auto 30px;}

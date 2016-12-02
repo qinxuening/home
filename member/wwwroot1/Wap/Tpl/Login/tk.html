@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no"/>
+<script>
+var _width = parseInt(window.screen.width);
+var scale = _width/640;
+var ua = navigator.userAgent.toLowerCase();
+var result = /android (\d+\.\d+)/.exec(ua);
+if (result){
+var version = parseFloat(result[1]);
+if(version>2.3){
+document.write('<meta name="viewport" content="width=640, minimum-scale = '+scale+', maximum-scale = '+scale+', target-densitydpi=device-dpi">');
+}else{
+document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+}
+} else {
+document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+}
+</script>
+<title>{$Think.lang.xy_title}</title>
+<link rel="stylesheet" href="__PUBLIC__/wap/css/css_wap2.css" >
+<link rel="shortcut icon" href="__PUBLIC__/resource/common/images/favicon.ico" type="image/x-icon" />
+<style>
+.service_con{width:640px;float:left;background-color:#ffffff;border:solid 1px #d0d0d0;}
+.service_con .tx1{text-align:center;width:100%;float:left;font-size:30px;font-weight:bold;line-height:100px;margin-top:40px;}
+.service_con .tx2{text-align:left;width:600px;padding:20px 20px 50px 20px;float:left;line-height:40px;}
+</style>
+</head>
+<body>
+<style> 
+body{
+	{$Think.lang.font}
+}
+</style>
+
+<div class="topper" style=" background-color: white;">
+    <div class="con">
+        <a href="{$Think.lang.langue_link}" class="logo" style=" background-color: white;"></a>
+    </div>
+</div>
+
+<div class="con_index">
+    <div class="mainpage">
+        <div class="service_con">
+            <div class="tx1">{$Think.lang.xy_title}</div>
+            
+            <div class="tx2">
+                {$Think.lang.xy}
+            </div>
+        </div>
+    </div>
+</div>
+<include file="Public:footer" />
+
+</body>
+</html>

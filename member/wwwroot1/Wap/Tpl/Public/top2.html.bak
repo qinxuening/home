@@ -1,0 +1,21 @@
+<style> 
+body{
+	{$Think.lang.font}
+}
+</style>
+<div class="jumppage_lang" style="display:none;">
+    <div class="til_">Language</div>
+    <div class="btn1"><a href="./?l=zh-cn" style="color:#000">Chinese</a></div>
+    <div class="btn2"><a href="./?l=en-us" style="color:#000">English</a></div>
+</div>
+<div class="jumppage_bg" style="display:none;"></div>
+
+<div class="topper" style="background-color:#fbfbfb">
+    <div class="con">
+        <div class="logo" style="background-color:#fbfbfb"></div>
+        <div class="signup" style="background-color:#fbfbfb; margin-right:60px">
+        	<a href="{$Think.lang.langue_m_l_link}" style=" color:#3f3f3f">{$Think.lang.L_t}</a>&#12288;
+            <a href="{$Think.lang.langue_m_r_link}" style=" color:#3f3f3f">{$Think.lang.R_t}</a>&#12288;<a id="Jq_change_l" href="javascript:;" style=" color:#3f3f3f">Lang</a>
+        </div>
+    </div>
+</div>

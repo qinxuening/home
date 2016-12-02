@@ -287,7 +287,7 @@ return array(
 	'Identity' => '身份验证',
 	'Re_pw' => '重置密码',
 	'Y_mobile' => '您的手机号码',
-	'Y_user' => '请输入用户名',
+	'Y_user' => '请输入用户名或手机号',
 	'Y_user_ex' => '用户名不存在',
 	'Y_user_e' => '请输入正确的用户名',
 	'Y_user_n' => '用户名不能为空',
@@ -307,6 +307,9 @@ return array(
 	'Equipment_position_z' => '设备位置已被占用',
 	
 	//短信验证
+	'FindSMS1' => "尊敬的 ",
+	'FindSMS2' =>"：您的验证码为",
+	'NotReveal3' =>',请勿向他人泄露.',
 	'FindSMS' => '尊敬的用户，您正在进行找回密码操作， 验证码：',
 	'RedSMS' => '尊敬的用户，您正在注册o-home管理系统，验证码为：',
 	'NotReveal' =>'，请勿向任何人提供收到的验证码。',

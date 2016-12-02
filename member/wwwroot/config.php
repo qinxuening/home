@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 return array(
     'TOKEN_ON'=>true,  // 是否开启令牌验证   
     'TOKEN_NAME'=>'__hash__',    // 令牌验证的表单隐藏字段名称   
@@ -9,9 +9,9 @@ return array(
 	'DEFAULT_FILTER'=>'strip_tags,stripslashes,htmlspecialchars',
 	'DB_TYPE' => 'mysql', //数据库类型
 	'DB_HOST' => '127.0.0.1',//数据库服务器
-	'DB_NAME' => '',  //数据库名称
-	'DB_USER' => '',   //数据库用户
-	'DB_PWD' => '',  //数据库密码
+	'DB_NAME' => 'ob_home',  //数据库名称
+	'DB_USER' => 'root',   //数据库用户
+	'DB_PWD' => '314233',  //数据库密码
 	'DB_PORT' => '3306',   //端口
 	'DB_PREFIX' => '',     //表前缀
 	'SHOW_ERROR_MSG' => false, // 显示错误信息
@@ -27,9 +27,9 @@ return array(
 		
 	//模板替换变量
 	'TMPL_PARSE_STRING' => array(
-		'HOST_URL' =>'',
-		'HOST_ENURL' =>'',
-		'REG_URL' => '',
+		'HOST_URL' =>'www.ob-hom.com',
+		'HOST_ENURL' =>'eng.ob-hom.com',
+		'REG_URL' => 'member.ob-hom.com',
 	),
 	'URL_HTML_SUFFIX'=>'', 
 );

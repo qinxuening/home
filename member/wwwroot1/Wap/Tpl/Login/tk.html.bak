@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no"/>
+<script>
+var _width = parseInt(window.screen.width);
+var scale = _width/640;
+var ua = navigator.userAgent.toLowerCase();
+var result = /android (\d+\.\d+)/.exec(ua);
+if (result){
+var version = parseFloat(result[1]);
+if(version>2.3){
+document.write('<meta name="viewport" content="width=640, minimum-scale = '+scale+', maximum-scale = '+scale+', target-densitydpi=device-dpi">');
+}else{
+document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+}
+} else {
+document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+}
+</script>
+<title>服务条款</title>
+<link rel="stylesheet" href="__PUBLIC__/wap/css/css_wap2.css" >
+<style>
+.service_con{width:640px;float:left;background-color:#ffffff;border:solid 1px #d0d0d0;}
+.service_con .tx1{text-align:center;width:100%;float:left;font-size:30px;font-weight:bold;line-height:100px;margin-top:40px;}
+.service_con .tx2{text-align:left;width:600px;padding:20px 20px 50px 20px;float:left;line-height:40px;}
+</style>
+</head>
+<body>
+
+<div class="topper">
+    <div class="con">
+        <a href="http://m.loysmarthome.com/" class="logo"></a>
+    </div>
+</div>
+
+<div class="con_index">
+    <div class="mainpage">
+    	<div class="service_con">
+    
+    <div class="tx1">瓯宝服务条款</div>
+    
+    <div class="tx2">
+    &#12288;&#12288;欢迎申请使用瓯宝安防科技股份有限公司（下面简称"瓯宝"）所提供的服务。请您仔细阅读以下全部内容。如您不同意本服务条款任意内容，请勿注册或使用瓯宝的服务。如您通过进入注册程序并勾选"我同意瓯宝服务条款"，即表示您与瓯宝公司已达成协议，自愿接受本服务条款的所有内容。此后，您不得以未阅读本服务条款内容作任何形式的抗辩。<br><br>
+    <strong>1.服务条款的确认和接纳</strong><br>
+    &#12288;&#12288;瓯宝服务涉及到的瓯宝产品的所有权以及相关软件的知识产权归瓯宝公司所有。瓯宝公司所提供的服务必须按照其发布的公司章程，服务条款和操作规则严格执行。本服务条款的效力范围及于瓯宝公司的一切产品和服务，您在享受瓯宝公司任何服务时，应当受本服务条款的约束。<br><br>
+    <strong>2. 帐号与密码安全</strong><br>
+    &#12288;&#12288;您在使用瓯宝服务时可能需要注册一个帐号，您应妥善保管您的帐号和密码。当您使用完毕后，应安全退出。因您保管不善可能导致遭受盗号或密码失窃，责任由您自行承担。<br><br>
+    <strong>3. 帐号注册规则</strong><br>
+    &#12288;&#12288;不得在瓯宝注册资料中出现违法和不良信息，且用户保证其在注册和使用帐号时，不得有以下情形：<br>
+    （1）违反宪法或法律法规规定的；<br>
+    （2）危害国家安全，泄露国家秘密，颠覆国家政权，破坏国家统一的；<br>
+    （3）损害国家荣誉和利益的，损害公共利益的；<br>
+    （4）煽动民族仇恨、民族歧视，破坏民族团结的；<br>
+    （5）破坏国家宗教政策，宣扬邪教和封建迷信的；<br>
+    （6）散布谣言，扰乱社会秩序，破坏社会稳定的；<br>
+    （7）散布淫秽、色情、赌博、暴力、凶杀、恐怖或者教唆犯罪的；<br>
+    （8）侮辱或者诽谤他人，侵害他人合法权益的；<br>
+    （9）含有法律、行政法规禁止的其他内容的。<br><br>
+    <strong>4. 用户个人信息保护</strong><br>
+    （1）您在注册帐号或使用本服务的过程中，可能需要填写一些必要的信息。若国家法律法规有特殊规定的，您需要填写真实的身份信息。若您填写的信息不完整，则无法使用本服务或在使用过程中受到限制。<br>
+    （2）瓯宝不会将您的个人信息转移或披露给任何非关联的第三方，除非：<br>
+    （a）用户授权本网站透露这些信息；<br>
+    （b）相关法律法规或法院、政府机关要求；<br>
+    （c）为提供您要求的服务所必需。<br><br>
+    <strong>5.自备设备</strong><br>
+    （1）您使用瓯宝的服务需自行准备与相关服务有关的终端设备（如电脑、手机、调制解调器等装置），并承担所需的费用（如电话费、上网费等费用）。<br>
+    （2）您使用本服务时会耗用您的终端设备和带宽等资源。<br><br>
+    <strong>6.基于软件提供的服务</strong><br>
+    （1）您在使用本服务的过程中可能需要下载软件，对于这个软件，瓯宝给予您一项个人的、不可转让及非排他性的许可。您仅可为访问或使用本服务的目的而使用这些软件。<br>
+    （2）为了改善用户体验、保证服务的安全性及产品功能的一致性，瓯宝可能会对软件进行更新。您应该将相关软件更新到最新版本，否则瓯宝并不保证其能正常使用。<br>
+    （3）瓯宝可能为不同的终端设备开发不同的软件版本，您应当根据实际情况选择下载合适的版本进行安装。您可以直接从瓯宝的网站上获取软件，也可以从得到瓯宝授权的第三方获取。如果您从未经瓯宝授权的第三方获取软件或与软件名称相同的安装程序，瓯宝无法保证该软件能够正常使用，并对因此给您造成的损失不予负责。<br><br>
+    <strong>7.不可抗力及其他免责事由</strong><br>
+    （1）在使用本服务的过程中，可能会遇到不可抗力等风险因素，使本服务发生中断。不可抗力是指不能预见、不能克服并不能避免且对一方或双方造成重大影响的客观事件，包括但不限于自然灾害如洪水、地震、瘟疫流行和风暴等以及社会事件如战争、动乱、政府行为等。出现上述情况时，瓯宝将努力在第一时间与相关单位配合，及时进行修复，但是由此给您造成的损失瓯宝在法律允许的范围内免责。<br>
+    （2）在法律允许的范围内，瓯宝对以下情形导致的服务中断或受阻不承担责任：<br>
+    （a）受到计算机病毒、木马或其他恶意程序、黑客攻击的破坏；<br>
+    （b）用户或瓯宝的电脑软件、系统、硬件和通信线路出现故障；<br>
+    （c）用户操作不当；<br>
+    （d）用户通过非瓯宝授权的方式使用本服务；<br>
+    （e）其他瓯宝无法控制或合理预见的情形。<br><br>
+    <strong>8.服务条款的变更，中断，终止</strong><br>
+    （1）瓯宝不断的在改进并完善其服务，所以在必要时会变更本服务条款。您可以在相关服务页面查阅最新版本的服务条款。<br>
+    （2）本服务条款变更后，如果您继续使用瓯宝提供的服务，即视为您已接受修改后的条款。如果您不接受修改后的条款，应当停止使用瓯宝提供的服务。<br>
+    （3）瓯宝因经营需要，有可能会中断或终止此服务。<br>
+    （4）如发生下列任何一种情形，瓯宝有权不经通知而中断或终止向您提供的服务：<br>
+    （a）根据法律规定您应提交真实信息，而您提供的个人资料不真实、或与注册时信息不一致又未能提供合理证明；<br>
+    （b）您违反相关法律法规或本协议的约定；<br>
+    （c）按照法律规定或主管部门的要求。<br><br>
+    <strong>9.信息内容所有权</strong><br>
+    &#12288;&#12288;本网站的信息内容（如文字、图表、软件、相片等）受版权、商标、标签和其他财产所有权法律的保护。用户只能在本网站授权下使用这些内容，不得擅自挪用。<br><br>
+    <strong>10.法律</strong><br>
+    &#12288;&#12288;本服务条款与中国人民共和国的法律一致。用户和本网站一致同意服从本网站所在地有管辖权的法院管辖。如发生本网站服务条款与中华人民共和国法律抵触时，则这些条款将按法律规定重新解释，而其他条款则依旧保持对用户的约束力。<br>
+    </div>
+    
+    
+    </div>
+    </div>
+</div>
+<include file="Public:footer" />
+
+</body>
+</html>

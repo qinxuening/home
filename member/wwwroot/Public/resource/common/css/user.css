@@ -20,7 +20,7 @@ li.pw_nav_3_a{ background:url("../images/nav_3_a.jpg") no-repeat; color:#fff}
 li.pw_nav_4_a{ background:url("../images/nav_4_a.jpg") no-repeat; color:#fff}
 .pw_form{ margin:25px 0 25px 240px}
 .pw_form_row{ margin:10px 0}
-.pw_label{ display:inline-block; text-align:right; width:84px;}
+.pw_label{ display:inline-block; text-align:right; width:180px;}
 .pw_text{ width:230px; height:30px; line-height:30px; padding:0 5px; border:1px solid #5DA9DA}
 .pw_mobile{ width:150px; height:30px; line-height:30px; padding:0 5px; border:1px solid #5DA9DA}
 .pw_desc{ border-top:1px dashed #999; font-size:12px; line-height:2; padding:5px 10px; margin:0 160px}

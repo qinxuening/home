@@ -22,9 +22,12 @@ class LostpasswordController extends Controller{
 	
 	public function mobile(){
 		if(trim(I('post.wUseID')) != ''){
-			$mdata = $this->users->where(array('wUseID' => trim(I('post.wUseID'))))->field('wMB, intl')->find();
+			$_where['wUseID'] =  trim(I('post.wUseID'));
+			$_where['wMB'] =  trim(I('post.wUseID'));
+			$_where['_logic'] = 'OR';
+			$mdata = $this->users->where($_where)->field('wMB, wUseID, intl')->find();
 			if($mdata){
-				session('passID', trim(I('post.wUseID')));
+				session('passID', $mdata['wUseID']);
 				session('passwMB',$mdata['wMB']);
 				session('intl',$mdata['intl']);
 				$this->assign('wMB',mobile($mdata['wMB']));
@@ -46,10 +49,13 @@ class LostpasswordController extends Controller{
 				$data["mb"] = session('passwMB');
 				$this->mobilevercode->data($data)->add();
 				if (session('intl') == '86'){
-					$SendMSG='尊敬的用户，您正在进行找回密码操作， 验证码：'.$data["vercode"].'， 请勿向任何人提供收到的验证码。';
-					$smsok=smsto(session('passwMB'),$SendMSG);
-				}else{
-					$SendMSG="Dear user,you're now  in the process of retrieving your password,verification code: ".$data["vercode"].",please don't provide the code to anyone else!";
+					//$SendMSG='尊敬的用户，您正在进行找回密码操作， 验证码：'.$data["vercode"].'， 请勿向任何人提供收到的验证码。';
+					//$SendMSG="尊敬的  ".session('passID').": 您的验证码为：".$data["vercode"].",请勿向任何人提供收到的验证码。";
+					$SendMSG = L('FindSMS1').session('passID').L('FindSMS2').$data["vercode"].L('NotReveal3');
+					$smsok=smsto(session('passwMB') , $SendMSG);
+				}else{			
+					//$SendMSG="Dear user,you're now  in the process of retrieving your password,verification code: ".$data["vercode"].",please don't provide the code to anyone else!";
+					$SendMSG="Dear ".session('passID').": your verification code is ".$data["vercode"].",Please do not disclose to others.";
 					$smsok=intlsmsto(session('intl').session('passwMB') , $SendMSG,$data["vercode"]);
 				}
 					
@@ -60,11 +66,15 @@ class LostpasswordController extends Controller{
 					$data["mb"] = session('passwMB');
 					$this->mobilevercode->where(array('mb' => $mdata['mb']))->save($data);
 					if (session('intl') == '86'){
-						$SendMSG='尊敬的用户，您正在进行找回密码操作， 验证码：'.$data["vercode"].'， 请勿向任何人提供收到的验证码。';
-						$smsok=smsto(session('passwMB'),$SendMSG);
+						//$SendMSG = '尊敬的用户，您正在进行找回密码操作， 验证码：'.$data["vercode"].'， 请勿向任何人提供收到的验证码。';
+						//$SendMSG="尊敬的  ".session('passID').": 您的验证码为：".$data["vercode"]."， 请勿向任何人提供收到的验证码。";
+						$SendMSG = L('FindSMS1').session('passID').L('FindSMS2').$data["vercode"].L('NotReveal3');
+						$smsok = smsto(session('passwMB') , $SendMSG);
 					}else{
-						$SendMSG="Dear user,you're now  in the process of retrieving your password,verification code: ".$data["vercode"].",please don't provide the code to anyone else!";
-						$smsok=intlsmsto(session('intl').session('passwMB') , $SendMSG,$data["vercode"]);
+						//$SendMSG = "Dear user,you're now  in the process of retrieving your password,verification code: ".$data["vercode"].",please don't provide the code to anyone else!";
+						//$SendMSG="Dear ".session('passID').": your verification code is: ".$data["vercode"].",please don't provide the code to anyone else!";
+						$SendMSG="Dear ".session('passID').": your verification code is ".$data["vercode"].",Please do not disclose to others.";
+						$smsok = intlsmsto(session('intl').session('passwMB') , $SendMSG,$data["vercode"]);
 					}
 				}
 			}
@@ -106,7 +116,10 @@ class LostpasswordController extends Controller{
 	}
 	
 	public function CheckMobile() {
-		$mdata=$this->users->where(array('wUseID' => trim(I('post.param'))))->field('pid')->find();
+		$_where['wUseID'] =  trim(I('post.param'));
+		$_where['wMB'] =  trim(I('post.param'));
+		$_where['_logic'] = 'OR';
+		$mdata=$this->users->where($_where)->field('pid')->find();
 		if($mdata){
 			echo '{"status":"y"}';
 		} else {

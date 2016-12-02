@@ -1,0 +1,44 @@
+<!--<footer class="footer">
+	    <ul>
+
+	    </ul>
+	    <p>{$Think.lang.Tell} {$Think.lang.Adress}</p>
+	    <p>{$Think.lang.Company} © {$Think.lang.All_Reserved} {$Think.lang.Copy} </p>
+	  </footer>
+-->
+<div class="footer">
+<div class="con">
+
+<div class="logo"></div>
+
+<div class="txt">{$Think.lang.Company}<br />
+	  <eq name="langue" value="cn">
+	 	  <a href="http://HOST_URL/index.php?c=article&a=type&tid=24" target="_parent">{$Think.lang.Solution}</a>&#12288;/&#12288;
+	  	  <a href="http://HOST_URL/index.php?c=channel&a=type&tid=33" target="_parent">{$Think.lang.Products}</a>&#12288;/&#12288;
+		  <a href="http://HOST_URL/index.php?c=product&a=type&tid=25" target="_parent">{$Think.lang.Download}</a>&#12288;/&#12288;
+		  <a href="http://HOST_URL/index.php?c=article&a=type&tid=26" target="_parent">{$Think.lang.Join_Us}</a>&#12288;/&#12288;
+		  <a href="http://HOST_URL/index.php?c=article&a=type&tid=34" target="_parent">{$Think.lang.Recent_News}</a>&#12288;/&#12288;
+		  <a href="http://HOST_URL/index.php?c=article&a=type&tid=29" target="_parent">{$Think.lang.Service}</a>&#12288;/&#12288;
+		  <a href="http://HOST_URL/index.php?c=article&a=type&tid=27" target="_parent">{$Think.lang.About_Us}</a><br />
+      <else/>
+	 	  <a href="http://HOST_ENURL/index.php?c=article&a=type&tid=24" target="_parent">{$Think.lang.Solution}</a>&nbsp;/&nbsp;
+	  	  <a href="http://HOST_ENURL/index.php?c=channel&a=type&tid=33" target="_parent">{$Think.lang.Products}</a>&nbsp;/&nbsp;
+		  <a href="http://HOST_ENURL/index.php?c=product&a=type&tid=25" target="_parent">{$Think.lang.Download}</a>&nbsp;/&nbsp;
+		  <a href="http://HOST_ENURL/index.php?c=article&a=type&tid=26" target="_parent">{$Think.lang.Join_Us}</a>&nbsp;/&nbsp;
+		  <a href="http://HOST_ENURL/index.php?c=article&a=type&tid=34" target="_parent">{$Think.lang.Recent_News}</a>&nbsp;/&nbsp;
+		  <a href="http://HOST_ENURL/index.php?c=article&a=type&tid=29" target="_parent">{$Think.lang.Service}</a>&nbsp;/&nbsp;
+		  <a href="http://HOST_ENURL/index.php?c=article&a=type&tid=27" target="_parent">{$Think.lang.About_Us}</a><br />
+      </eq>
+{$Think.lang.Adress}&#12288;{$Think.lang.Tell}<br />
+{$Think.lang.Company_S} © {$Think.lang.All_Reserved} {$Think.lang.Copy}
+</div>
+
+<eq name="langue" value="cn">
+<div class="ewm"></div>
+<else/>
+<div class="ewmeng"></div>
+</eq>
+
+
+</div>
+</div>

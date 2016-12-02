@@ -1,0 +1,139 @@
+<?php
+
+require('./Include/function.php');
+require('./Include/ip.class.php');
+require('./Include/rsa.php');
+require('./Include/encrypt.class.php');
+//rsa支持中文
+function convert($hexString) 
+        { 
+                $hexLenght = strlen($hexString); 
+                // only hex numbers is allowed 
+                if ($hexLenght % 2 != 0 || preg_match("/[^\da-fA-F]/",$hexString)) return FALSE; 
+
+                unset($binString); 
+                for ($x = 1; $x <= $hexLenght/2; $x++) 
+                { 
+                        $binString .= chr(hexdec(substr($hexString,2 * $x - 2,2))); 
+                } 
+
+                return $binString; 
+        } 
+
+//手机号码星号处理
+function mobile($phone){
+$p = substr($phone,0,3)."****".substr($phone,7,4);
+return $p;
+}
+
+
+function Postg($post_data, $target) {
+
+		$url_info = parse_url($target);
+		$httpheader = "POST " . $url_info['path'] . " HTTP/1.0\r\n";
+		$httpheader .= "Host:" . $url_info['host'] . "\r\n";
+		$httpheader .= "Content-Type:application/x-www-form-urlencoded\r\n";
+		$httpheader .= "Content-Length:" . strlen($data) . "\r\n";
+		$httpheader .= "Connection:close\r\n\r\n";
+		//$httpheader .= "Connection:Keep-Alive\r\n\r\n";
+		$httpheader .= $data;
+		$fd = fsockopen($url_info['host'], 80);
+		fwrite($fd, $httpheader);
+		$gets = "";
+		while(!feof($fd)) {
+			$gets .= fread($fd, 128);
+		}
+		fclose($fd);
+		return $gets;
+	}
+
+//发送短信函数
+function smsto($telphone,$message,$vercode)  
+{  
+
+
+       //$target = "http://sms.106jiekou.com/utf8/sms.aspx";
+		
+		//$post_data = "account=maorongcai&password=maorongcai&mobile=".$telphone."&content=".rawurlencode("Dear user, you are now registering the O-home Management System,the verification code is "+$vercode+",please do not provide the code to anyone else!");
+		//echo $post_data;
+		//echo '<hr />';
+		
+		//$gets = Postg($post_data, $target);
+		
+		//echo $gets;
+		//return $gets;
+
+
+//短信接口用户名 $uid  
+$uid = 'maorongcai';  
+//短信接口密码 $passwd  
+$pwd = 'maorongcai';  
+//$message =urlencode(iconv('UTF-8', 'GB2312', $message));  
+$message=urlencode($message);
+$sendurl="http://service.winic.org/sys_port/gateway/?id=".$uid."&pwd=".$pwd."&to=".$telphone."&content=".$message."&time=";
+$sendurl="http://sms.106jiekou.com/utf8/sms.aspx?account=".$uid."&password=".$pwd."&mobile=".$telphone."&content=".$message."";
+$result = file_get_contents($sendurl);
+return $result;
+
+
+}
+
+
+
+
+
+
+function Post($curlPost,$url){
+
+        $curl = curl_init();
+
+        curl_setopt($curl, CURLOPT_URL, $url);
+
+        curl_setopt($curl, CURLOPT_HEADER, false);
+
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+        curl_setopt($curl, CURLOPT_NOBODY, true);
+
+        curl_setopt($curl, CURLOPT_POST, true);
+
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $curlPost);
+
+        $return_str = curl_exec($curl);
+
+        curl_close($curl);
+
+        return $return_str;
+
+}
+
+
+function intlsmsto($telphone,$message,$vercode)  
+{  
+
+		$target = "http://sms.106jiekou.com/utf8/worldapi.aspx";
+		
+		
+		$post_data = "account=maorongcai&password=maorongcai&mobile=".$telphone."&content=".rawurlencode($message);
+		//echo $post_data;
+		//echo '<hr />';
+		
+		$gets = Post($post_data, $target);
+		
+		//echo $gets;
+		return $gets;
+
+
+//短信接口用户名 $uid  
+//$uid = 'maorongcai';  
+//短信接口密码 $passwd  
+//$pwd = 'maorongcai';  
+//$message =urlencode(iconv('UTF-8', 'GB2312', $message));  
+//$message=urlencode($message);
+//$sendurl="http://service.winic.org/sys_port/gateway/?id=".$uid."&pwd=".$pwd."&to=".$telphone."&content=".$message."&time=";
+//$sendurl="http://sms.106jiekou.com/utf8/worldapi.aspx?account=".$uid."&password=".$pwd."&mobile=".$telphone."&content=".$message."";
+//$result = file_get_contents($sendurl);
+//return $result;
+
+}  
+?>

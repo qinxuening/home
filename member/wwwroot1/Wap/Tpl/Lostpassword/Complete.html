@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no"/>
+<script type="text/javascript">
+var _width = parseInt(window.screen.width);
+var scale = _width/640;
+var ua = navigator.userAgent.toLowerCase();
+var result = /android (\d+\.\d+)/.exec(ua);
+if (result){
+var version = parseFloat(result[1]);
+if(version>2.3){
+document.write('<meta name="viewport" content="width=640, minimum-scale = '+scale+', maximum-scale = '+scale+', target-densitydpi=device-dpi">');
+}else{
+document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+}
+} else {
+document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+}
+</script>
+<title>{$Think.lang.Complete}</title>
+<link rel="stylesheet" href="__PUBLIC__/wap/css/css_wap2.css" >
+<link rel="shortcut icon" href="__PUBLIC__/resource/common/images/favicon.ico" type="image/x-icon" />
+</head>
+
+<body>
+<!--header-->
+<include file="Public:top2" />
+<!--end header--> 
+<!--main-->
+<div class="con_index">
+	<div class="mainpage">
+    	<div class="getkey_con" style="display:block;">
+            <div class="jc">
+            	<div class="pa1">{$Think.lang.Find_pw}</div>
+                <div class="pa1">{$Think.lang.Identity}</div>
+                <div class="pa1_a">{$Think.lang.Re_pw}</div>
+            </div>
+            
+            <div class="c2">
+                <div class="c1">
+                    <div class="tx2">{$Think.lang.Pw_reset_s}<br><span class="p1"><span id="mes">3</span>{$Think.lang.Jump_to}</span></div>
+                </div>
+            </div>
+            
+        </div>	
+	</div>
+</div>
+<!--end main--> 
+<!--footer-->
+<include file="Public:footer" />
+<script language="javascript" type="text/javascript"> 
+		var i = 3; 
+		var intervalid; 
+		intervalid = setInterval("fun()", 1000); 
+		function fun(){ 
+			if(i == 0){ 
+				//window.location.href = "http://member.loysmarthome.com/index.php/"; 
+				window.location.href = "{$Think.lang.langue_m_l_link}"; 
+				clearInterval(intervalid); 
+			}
+			$('#mes').empty().wrapInner(i); 
+			//document.getElementById("mes").innerHTML = i; 
+			i--; 
+		} 
+</script> 
+<!--end footer--> 
+</body>
+</html>

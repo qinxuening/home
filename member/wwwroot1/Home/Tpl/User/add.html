@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$Think.lang.Add_member}</title>
+<link rel="stylesheet" href="__PUBLIC__/resource/common/css/base.css" >
+<link rel="stylesheet" href="__PUBLIC__/resource/common/css/user.css">
+<link rel="stylesheet" href="__PUBLIC__/resource/common/js/validform/style.css" >
+<link rel="shortcut icon" href="__PUBLIC__/resource/common/images/favicon.ico" type="image/x-icon" />
+<script src="__PUBLIC__/resource/common/js/jquery.js"></script>
+<script language="JavaScript"> 
+$(document).ready(function() {
+            $('#edituser input').keyup(trimkeyup);
+});
+function trimkeyup(e) {
+    lucene_objInput = $(this);
+    if (e.keyCode != 38 && e.keyCode != 40 && e.keyCode != 13) {
+        var im = $.trim(lucene_objInput.val());
+        lucene_objInput.val(im); 
+    }
+} 
+</script>
+</head>
+
+<body>
+<!--header-->
+<include file="Public:header" />
+<!--end header--> 
+<!--main-->
+<div id="wp" class="wp"><link href="__PUBLIC__/user/css/style.css" rel="stylesheet" type="text/css" />
+ <div class="contentmanage">
+    <div class="developer">
+       <div class="appTitle normalTitle" style="padding: 20px;">
+        <h2>{$Think.lang.Center}</h2>
+        <div class="accountInfo">
+        
+        </div>
+        <div class="clr"></div>
+      </div>
+      <div class="tableContent">
+        <!--左侧功能菜单-->
+        <div class="sideBar">
+          <div class="catalogList">
+            <ul>				
+				<li class="subCatalogList" > <a href="__APP__/User/">{$Think.lang.Member}</a></li>
+				<li class=" selected "> <a href="__APP__/User/add/">{$Think.lang.Add_member}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/Mobile/">{$Think.lang.Equipment}</a> </li>
+				
+				<li class=" subCatalogList "> <a href="__APP__/Type/">{$Think.lang.Model}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/Type/add/">{$Think.lang.Add_model}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/Time/">{$Think.lang.Time}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/Time/add/">{$Think.lang.Add_time}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/User/useredit/">{$Think.lang.Information}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/User/pwd/">{$Think.lang.Change_password}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/Mobile/usermobile/">{$Think.lang.UserMobile}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/User/out/">{$Think.lang.Exit}</a> </li>				
+            </ul>
+          </div>
+        </div>
+
+<div class="content">
+          <div class="cLineB"><h4>{$Think.lang.Add_member}</h4></div>
+          <form method="post" action="__URL__/familyadd/" enctype="multipart/form-data" class="familyform"  id="edituser">
+          <div class="msgWrap">
+            <table class="userinfoArea" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                <tr>
+                  <th><span class="red">*</span><label class="m_label c_label">{$Think.lang.Member_name}：</label></th>
+                  <td><input type="text" class="px" name="familyname" name="name"  datatype="*1-10" nullmsg="{$Think.lang.Member_name_n}"  sucmsg="{$Think.lang.Crepass}" maxlength="10"  value="" tabindex="1" size="25">
+                  </td>
+                </tr>
+				<tr>
+                  <th><span class="red">*</span><label class="m_label c_label">{$Think.lang.Member_id}：</label></th>
+                  <td><input type="text" class="px" name="familyid" datatype="checkid" sucmsg="{$Think.lang.Crepass}" nullmsg="{$Think.lang.Member_id_n}"  errormsg="{$Think.lang.Member_id_e}" value="" tabindex="1" size="25" maxlength="2">
+                  </td>
+                </tr>
+				<tr>
+                  <th><input type="hidden" name="wUseID" value="{$User.wUseID}"></th>
+                  <td><button type="submit" class="btnGreen" id="saveSetting">保存</button></td>
+                </tr>
+              </thead>
+            </table>
+            
+          </div>
+		  <input type="hidden" name="wUseID" value="{$User.wUseID}">
+          </form>
+        </div>
+        
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+  <!--底部-->
+  	</div>
+<!--end main--> 
+<!--footer-->
+<script src="__PUBLIC__/resource/common/js/Validform.js"></script>
+<script type="text/javascript">
+$(function(){
+	var Member_id_n = "{$Think.lang.Member_id_n}";
+	var Member_id_e = "{$Think.lang.Member_id_e}";
+    var demo=$(".familyform").Validform({
+		tiptype:3,
+		label:".m_label",
+		showAllError:false,
+		datatype:{
+			"zh1-6":/^[\u4E00-\u9FA5\uf900-\ufa2d]{1,6}$/,
+			"checkid":function(gets, obj, curform, regxp) {	
+				var reg1 = /^0?[1-99]{1,2}$/;
+				if(!gets||parseInt(gets)>99||parseInt(gets)<1) {return Member_id_n;}
+				if(!reg1.test(gets)) {return Member_id_e;}
+			}
+		},
+		ajaxPost:false
+	});
+	demo.tipmsg.c = "{$Think.lang.Cmobile_check}";
+})
+</script>
+<include file="Public:footer" />
+<!--end footer--> 
+</body>
+</html>

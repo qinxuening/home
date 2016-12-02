@@ -52,12 +52,12 @@ document.write('<meta name="viewport" content="width=640, user-scalable=no, targ
                 <div class="tb2">
                     <div class="t_">{$Think.lang.Member_name}：</div>
                     <div class="s_1 Validform_checktip"></div>
-                    <input type="text" class="inp1" datatype="*1-10" nullmsg="{$Think.lang.Member_name_n}" sucmsg="{$Think.lang.Crepass}" name="familyname" value="{$family.familyname}" tabindex="1" maxlength="10">
+                    <input type="text" class="inp1" datatype="*1-10" nullmsg="{$Think.lang.Member_name_n}" sucmsg="{$Think.lang.Crepass}" name="familyname" value="{$family.familyname}" tabindex="1" maxlength="10" autocomplete="off">
                 </div>
                 <div class="tb2">
                     <div class="t_">{$Think.lang.Member_id}：</div>
                     <div class="s_1 Validform_checktip"></div>
-                    <input type="text" class="inp1" name="familyid" datatype="n1-99" sucmsg="{$Think.lang.Crepass}" nullmsg="{$Think.lang.Member_id_n}"  errormsg="{$Think.lang.Member_id_e}" value="{$family.familyid}" tabindex="1" maxlength="2">
+                    <input type="text" class="inp1" name="familyid" datatype="n1-99" sucmsg="{$Think.lang.Crepass}" nullmsg="{$Think.lang.Member_id_n}"  errormsg="{$Think.lang.Member_id_e}" value="{$family.familyid}" tabindex="1" maxlength="2" autocomplete="off">
                 </div>
                 
                 <input type="submit" class="btn3"  value="{$Think.lang.Save}">

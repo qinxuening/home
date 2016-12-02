@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+/*下拉框样式*/
+.dropdown { outline: none; display: inline-block;*display:inline;*zoom:1; vertical-align: middle; }
+.dropdown h4 { cursor: pointer; text-indent: 5px; margin: 0; padding: 0; font-weight: normal; font-size: 12px }
+/*.dropdown * {-moz-user-select:none;}*/
+.dropdown div {/*display:block; fix bug*/ }
+.dropdown ul { position: absolute; display: none; margin: 0; padding: 0; float: left; clear: both; overflow: hidden }
+.dropdown ul li { text-indent: 5px; margin: 0; padding: 0; list-style: none; display: block; cursor: default; white-space: nowrap }
+.dropselectbox { display: inline-block; vertical-align: middle; margin-right: 5px }
+.dropselectbox { *display:inline;
+}
+.dropdown h4 { height: 23px; line-height: 23px; border: solid 1px #E0E0E0; background: url("../images/sprite/triangle.jpg"/*tpa=http://www.keepc.com/resource/common/js/images/sprite/triangle.jpg*/) no-repeat right -29px #fff; padding-right: 18px; overflow: hidden; }
+.dropdown ul { border: 1px solid #E1E1E1; background: #FFF; overflow-y: auto }
+.dropdown ul li { background: #FFF; line-height: 30px }
+.dropdown ul li.over { background: #ddd; }

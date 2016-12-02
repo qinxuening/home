@@ -78,7 +78,7 @@ body{
         <div class="c1">
             <div class="t_">{$Think.lang.User}:</div>
             <div class="s_1 Validform_checktip">{$Think.lang.Cuser}</div>
-            <input type="text" class="inp4" id="regneme" name="regneme" datatype="z3-16" ajaxurl="__URL__/ckuser/" sucmsg="{$Think.lang.Crepass}" maxlength="16" errormsg="{$Think.lang.Cuser_e}" nullmsg="{$Think.lang.Cuser_n}">
+            <input type="text" class="inp4" id="regneme" name="regneme" datatype="/^(?![0-9]+$)[0-9A-Za-z]{3,20}$/" ajaxurl="__URL__/ckuser/" sucmsg="{$Think.lang.Crepass}" maxlength="16" errormsg="{$Think.lang.Cuser_e}" nullmsg="{$Think.lang.Cuser_n}">
             <input type="hidden" name="wUseID" id="wUseID">
         </div>
         

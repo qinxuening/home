@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$Think.lang.Login}</title>
+<link rel="stylesheet" href="__PUBLIC__/resource/common/css/base.css" >
+<link rel="stylesheet" href="__PUBLIC__/resource/common/css/user.css">
+<link rel="stylesheet" href="__PUBLIC__/resource/common/js/validform/style.css" >
+<link rel="shortcut icon" href="__PUBLIC__/resource/common/images/favicon.ico" type="image/x-icon" />
+<script language="JavaScript" type="text/javascript" src="__PUBLIC__/resource/js/jsbn.js"></script>
+<script language="JavaScript" type="text/javascript" src="__PUBLIC__/resource/js/prng4.js"></script>
+<script language="JavaScript" type="text/javascript" src="__PUBLIC__/resource/js/rng.js"></script>
+<script language="JavaScript" type="text/javascript" src="__PUBLIC__/resource/js/rsa.js"></script>
+<script language="JavaScript" type="text/javascript" src="__PUBLIC__/resource/js/base64.js"></script>
+<script language="JavaScript" type="text/javascript" src="__PUBLIC__/resource/js/md5.js"></script>
+<script src="__PUBLIC__/resource/common/js/jquery.js"></script>
+<script language="JavaScript"> 
+var public_key="{$Think.config.public_key}";
+var public_length="{$Think.config.public_length}";
+function do_encrypt() {
+  var before = new Date();
+  var rsa = new RSAKey();
+  rsa.setPublic(public_key, public_length);
+  document.getElementById("wUseID").value = rsa.encrypt(document.getElementById("regneme").value);
+  document.getElementById("regneme").value ='';
+  document.getElementById("wPassWord").value = hex_md5(document.getElementById("password").value);
+  document.getElementById("password").value ='';
+}
+//-->
+</script>
+<style>
+	#Allrong {
+		margin:10px 0px 0px 100px !important;
+		height:20px;
+		line-height:20px;
+		/*background:#ccc;*/
+		display:block;
+		margin-top:0 !important;
+		margin-bottom:10px !important;
+	}
+	#Validform_msg {
+		display:none !important;
+	}
+</style>
+</head>
+<body>
+<!--header-->
+<include file="Public:header" />
+
+<!--end header--> 
+<!--main-->
+<div class="user_wrap">
+  <div class="user_con">
+    <h1>{$Think.lang.LOGIN}</h1>
+    <div class="user_box clearfix">
+      <div class="user_box_l log_box_l fl">
+        <form method="post" action="__APP__/Login/logincheck/" class="loginform">
+          <div class="m_form_row">
+            <label class="m_label">{$Think.lang.Username}：</label>
+            <input type="text"  id="regneme" name="regneme" class="m_input" sucmsg="{$Think.lang.Crepass}" authsuc=""  autherr="" datatype="*3-16" errormsg="{$Think.lang.Cuser_l_e}" nullmsg="{$Think.lang.Cuser_l_n}">
+          </div>
+          <div class="m_form_row ">
+            <label class="m_label">{$Think.lang.Password}：</label>
+            <input type="password" id="password" name="password"  class="m_input" datatype="*6-16" sucmsg="{$Think.lang.Crepass}" nullmsg="{$Think.lang.Cpass_l_n}" errormsg="{$Think.lang.Cpass_l_e}" >
+		  </div>
+		  <span id ="Allrong"class="Validform_checktip  Validform_wrong"></span>
+
+		 
+          <div class="u_btn_row">
+		  <input type="hidden" name="wUseID" id="wUseID">
+		  <input type="hidden" name="wPassWord" id="wPassWord">
+          <input type="submit" id="u_btn_blue" class="m_btn_blue_l" value="{$Think.lang.Login}">
+            &nbsp; <a href="/index.php/Lostpassword/" style ="margin-top: -20px;">{$Think.lang.FORGOTPASS}</a>
+            <p class="valid_tip"></p>
+          </div>
+        </form>
+      </div>
+      <div class="user_box_r log_box_r fr"><i class="sep_and"></i>
+        <p class="user_box_r_title">{$Think.lang.Notacount}?</p>
+        <p><a href="__APP__/Login/" >{$Think.lang.RegNow}?</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="__PUBLIC__/resource/common/js/Validform.js"></script>
+<script type="text/javascript">
+$(function(){
+var demo=$(".loginform").Validform({
+		tiptype:3,
+		label:".m_label",
+		showAllError:false,
+		datatype:{
+			"zh1-6":/^[\u4E00-\u9FA5\uf900-\ufa2d]{1,6}$/
+		},
+		beforeSubmit:do_encrypt,
+		ajaxPost:false,
+		/*beforeCheck:function(curform){
+			$(".Validform_right").text("");
+			$("#Allrong").text('');
+		},
+		callback:function (data){
+			var Rongmsg = "{$Think.lang.S_user_pw_n}";
+			if (data.status == "y"){
+				$("#Allrong").text('');
+				//window.location = "__APP__/User";
+				window.location =data.url;
+			}else if(data.status == "n") {
+				$(".Validform_right").text("");
+				$("#Allrong").text(data.info);
+			}
+		},*/
+	});
+})
+</script>
+<!--end main--> 
+<!--footer-->
+<include file="Public:footer" />
+<!--end footer--> 
+</body>
+</html>

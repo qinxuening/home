@@ -1,0 +1,302 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no"/>
+
+<script>
+var _width = parseInt(window.screen.width);
+var scale = _width/640;
+var ua = navigator.userAgent.toLowerCase();
+var result = /android (\d+\.\d+)/.exec(ua);
+if (result){
+var version = parseFloat(result[1]);
+if(version>2.3){
+document.write('<meta name="viewport" content="width=640, minimum-scale = '+scale+', maximum-scale = '+scale+', target-densitydpi=device-dpi">');
+}else{
+document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+}
+} else {
+document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+}
+</script>
+<title>{$Think.lang.Edit_models}</title>
+<link rel="stylesheet" href="__PUBLIC__/wap/css/css_wap2.css" >
+<link rel="stylesheet" href="__PUBLIC__/resource/common/js/validform/style.css" >
+<link rel="shortcut icon" href="__PUBLIC__/resource/common/images/favicon.ico" type="image/x-icon" />
+</head>
+
+<body>
+<!--header-->
+<include file="Public:header" />
+<!--end header--> 
+<div class="jumppage" style="display:none;">
+<div class="t_1">提示信息</div>
+<div class="tx1">保存成功。</div>
+<div class="btn1">确&#12288;&#12288;定</div>
+</div>
+
+<include file="Public:top" />
+
+<div class="con_index">
+    <div class="mainpage">
+        <div class="chengyuan_con">
+            
+            
+            <include file="Public:menu" />
+            
+            <div class="tb1">
+                <div class="title1">{$Think.lang.Edit_models}</div>
+                <form method="post" action="__URL__/update/id/{$type.Pid}" enctype="multipart/form-data" class="Machineryfrom">
+                <div class="tb2">
+                    <div class="t_">{$Think.lang.Model_name}：</div>
+                    <div class="s_1 Validform_checktip"></div>
+                    <input type="text" class="inp1" datatype="*1-18" nullmsg="{$Think.lang.Model_n}" sucmsg="{$Think.lang.Crepass}" name="wName" value="{$type.wName}" tabindex="1" maxlength="18">
+                </div>
+                <div class="line1"></div>
+            
+                <div class="tb2">
+                    <div class="t_">{$Think.lang.Add_equipment}：</div>
+                    <div class="box1">
+                    	
+                        <div>
+                            <volist name="myMobile" id="vo" key="k1">
+                                <label class="Jq_r Jq_m{$k1}" id="radio{$k1}">
+                                    <b class="btn4
+                                    <foreach name="checklist" item="vt">
+                            			<eq name="vt" value="$vo.McID">btn4_a</eq>
+                            		</foreach> 
+                                	 ">{$vo.McName}</b>
+                                </label>
+                            </volist>
+                        </div>
+                        <div class="none">
+                        	<volist name="myMobile" id="vo" key="k2">
+                        		<input type="checkbox" name="wModel[]" id="input{$k2}" <foreach name="checklist" item="vt">
+                            		<eq name="vt" value="$vo.McID">checked</eq>
+                            	</foreach> 
+                                value="{$vo.McID}" class="px">
+                            	&nbsp;{$vo.McName}&nbsp;
+                        	</volist>
+                        </div>
+                    
+                    </div>
+                </div>
+                <div class="line1"></div>
+            
+                <div class="tb2">
+                    <div class="t_">{$Think.lang.Equ_state}</div>
+                    <div class="fr Jq_tx2" id="Jq_tx">
+						<!--<b class="hx_btn <if condition="$type.wType eq 1">hx_btn_a</if>"></b>-->
+                        <div id="JQ_n" class="dx_btn <php> if($type[wType] =='0' ){echo 'dx_btn_a'; } ;</php>">{$Think.lang.Off}</div>
+						<div id="JQ_y" class="dx_btn <if condition="$type.wType eq 1">dx_btn_a</if>">{$Think.lang.Open}</div>
+                        <input type="radio" name="wType" class="none" id="wType"  value="{$type.wType}" />
+						<!--checked value="{$type.wType}"-->
+                    </div>
+                </div>
+				
+				<div class="tb2">
+                    <div class="t_">{$Think.lang.Other_Equ_state}</div>
+                    <div class="fr Jq_tx2" id="wJq_tx">
+						<!--<b class="hx_btn <if condition="$type.wType eq 1">hx_btn_a</if>"></b>-->
+                        <div id="wJQ_n" class="dx_btn  <php> if($type[wOtherType] =='0' ){echo 'dx_btn_a'; } ;</php>"><if condition="$type.wType eq '0'">{$Think.lang.Model_None}<else />{$Think.lang.Off}</if></div>
+						<div id="wJQ_y" class="dx_btn <if condition="$type.wOtherType eq 1">dx_btn_a</if>"><if condition="$type.wType eq 1">{$Think.lang.Model_None}<else />{$Think.lang.Open}</if></div>
+                        <input type="radio" name="wOtherType" class="none" id="wOtherType" value="{$type.wOtherType}" />
+						<!--id="wOtherType" checked value="{$type.wOtherType}"-->
+                    </div>
+                </div>
+               
+                <input type="submit" class="btn3"  onClick="aa()" value="{$Think.lang.Save}">
+                <input type="hidden" name="wUseID" value="{$User.wUseID}">
+          		</form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--footer-->
+
+<include file="Public:footer" />
+<script src="__PUBLIC__/resource/common/js/Validform.js"></script>
+<script type="text/javascript">
+$(function(){
+	var demo=$(".Machineryfrom").Validform({
+		tiptype:3,
+		showAllError:false,
+		datatype:{
+			"zh1-6":/^[\u4E00-\u9FA5\uf900-\ufa2d]{1,6}$/,
+			"ip":/^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/
+		},
+		ajaxPost:false
+	});
+})
+
+$(document).ready(function(){
+	//Jq_tx();
+		
+	var ob1 = $('.Jq_r');
+	for(var i = 1; i < ob1.length+1; i++){
+		if($('.Jq_m'+i).find('b').hasClass('btn4_a')){
+			r_bl('.Jq_m'+i,'#input'+i,'#radio'+i);
+		}else{
+			f_bl('.Jq_m'+i,'#input'+i,'#radio'+i);	
+		};
+	}
+	
+		
+});
+
+//正向
+function f_bl(obj1,obj2,obj3){
+	$(obj1).on("click",function(){
+			
+			$(obj1).find('b').addClass('btn4_a');
+			$(obj2).prop("checked",true);
+			$(obj1).off("click");
+			
+			$(obj3).on("click",function(){
+				$(obj3).find('b').removeClass('btn4_a');
+				$(obj2).prop("checked",false);
+				$(obj3).off("click");
+				f_bl(obj1,obj2,obj3);
+			});	
+	});
+}
+
+function r_bl(obj1,obj2,obj3){
+	$(obj1).on("click",function(){
+			
+			$(obj3).find('b').removeClass('btn4_a');
+			$(obj2).prop("checked",false);
+			$(obj1).off("click");
+			
+			$(obj3).on("click",function(){
+				$(obj1).find('b').addClass('btn4_a');
+				$(obj2).prop("checked",true);
+				$(obj3).off("click");
+				r_bl(obj1,obj2,obj3);
+			});	
+	});
+}
+
+$('#JQ_y').on("click",function(){
+	$('#JQ_y').addClass('dx_btn_a');
+	$('#JQ_n').removeClass('dx_btn_a');
+	$('#wType').attr("value",1);
+	$('#wType').attr("checked","checked" );
+	$('#wJQ_y').html('{$Think.lang.Model_None}');
+	$('#wJQ_n').html('{$Think.lang.Off}');
+});
+
+$('#JQ_n').on("click",function(){
+	$('#JQ_n').addClass('dx_btn_a');
+	$('#JQ_y').removeClass('dx_btn_a');
+	$('#wType').attr("value",0);
+	$('#wType').attr("checked","checked" );
+	$('#wJQ_y').html('{$Think.lang.Open}');
+	$('#wJQ_n').html('{$Think.lang.Model_None}');
+
+});
+
+$('#wJQ_y').on("click",function(){
+
+	$('#wJQ_y').addClass('dx_btn_a');
+	$('#wJQ_n').removeClass('dx_btn_a');
+	$('#wOtherType').attr("value",1);
+	$('#wOtherType').attr("checked","checked" );
+});
+
+$('#wJQ_n').on("click",function(){
+	$('#wJQ_n').addClass('dx_btn_a');
+	$('#wJQ_y').removeClass('dx_btn_a');
+	$('#wOtherType').attr("value",0);
+	$('#wOtherType').attr("checked","checked" );
+});
+
+function Jq_tx(){
+	/*if($('#Jq_tx').find('b').hasClass('hx_btn_a')){
+		 
+		 $('#Jq_tx').on("click",function(){
+		
+			$('#Jq_tx').find('b').removeClass('hx_btn_a');
+			$('#wType').attr("value",0);
+			$('#Jq_tx').off("click");
+			
+			$('.Jq_tx2').on("click",function(){
+				$('.Jq_tx2').find('b').addClass('hx_btn_a');
+				$('#wType').attr("value",1);
+				$('.Jq_tx2').off("click");
+				Jq_tx();
+			});	
+		});	
+		
+		
+	}else{
+		
+		$('#Jq_tx').on("click",function(){
+		
+			$('#Jq_tx').find('b').addClass('hx_btn_a');
+			$('#wType').attr("value",1);
+			$('#Jq_tx').off("click");
+			
+			$('.Jq_tx2').on("click",function(){
+				$('.Jq_tx2').find('b').removeClass('hx_btn_a');
+				$('#wType').attr("value",0);
+				$('.Jq_tx2').off("click");
+				Jq_tx();
+			});	
+		});	
+	}*/
+	
+	
+	
+}
+</script>
+<script language="javascript">
+$(document).ready(function(){
+$("#IsAllOpens").click(function(){ 
+     $("#IsAllCloses").attr('checked',false);
+     $(this).attr('checked',true);
+});
+$("#IsAllCloses").click(function(){ 
+     $("#IsAllOpens").attr('checked',false);
+     $(this).attr('checked',true);
+});
+});
+function aa(){
+    var r=document.getElementById("IsMsgs");
+         if(r.checked){
+        // r.value=1;
+		document.getElementById("IsMsg").value=1;
+		 //alert(r.value);
+       }else{
+	  document.getElementById("IsMsg").value=0;
+	  // alert(r.value);
+	   }
+   var m=document.getElementById("IsAllOpens");
+         if(m.checked){
+        // r.value=1;
+		document.getElementById("IsAllOpen").value=1;
+		document.getElementById("IsAllClose").value=0;
+		 //alert(m.value);
+       }else{
+	  document.getElementById("IsAllOpen").value=0;
+	  document.getElementById("IsAllClose").value=1;
+	  // alert(r.value);
+	   }
+	var k=document.getElementById("IsAllCloses");
+         if(k.checked){
+        // r.value=1;
+		document.getElementById("IsAllClose").value=1;
+		document.getElementById("IsAllOpen").value=0;
+		 //alert(r.value);
+       }else{
+	  document.getElementById("IsAllClose").value=0;
+	  document.getElementById("IsAllOpen").value=1;
+	  // alert(r.value);
+	   }
+}
+</script>
+<!--end footer-->
+</body>
+</html>

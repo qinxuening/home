@@ -88,6 +88,16 @@
 		return $arr;
 	}
 	
+	function key_Pid_value_Key($Array , $Field){
+		$arr = array();
+		foreach ($Array as $key=>$value) {
+			$arr["$value[Pid]"][]= $value["Key01"];
+			$arr["$value[Pid]"][] = $value["Key02"];
+			$arr["$value[Pid]"][] = $value["Key03"];
+		}
+		return $arr;
+	}
+	
 	function CheckLength($data, $Min, $Max){
 		if(mb_strlen($data)< $Min || mb_strlen($data)> $Max){
 			return true;

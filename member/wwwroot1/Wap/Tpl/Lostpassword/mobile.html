@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8;" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no"/>
+<script type="text/javascript">
+var _width = parseInt(window.screen.width);
+var scale = _width/640;
+var ua = navigator.userAgent.toLowerCase();
+var result = /android (\d+\.\d+)/.exec(ua);
+if (result){
+var version = parseFloat(result[1]);
+if(version>2.3){
+document.write('<meta name="viewport" content="width=640, minimum-scale = '+scale+', maximum-scale = '+scale+', target-densitydpi=device-dpi">');
+}else{
+document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+}
+} else {
+document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+}
+</script>
+<title>{$Think.lang.Identity}</title>
+<link rel="stylesheet" href="__PUBLIC__/wap/css/css_wap2.css" >
+<link rel="stylesheet" href="__PUBLIC__/resource/common/js/validform/style.css" >
+<link rel="shortcut icon" href="__PUBLIC__/resource/common/images/favicon.ico" type="image/x-icon" />
+</head>
+<body>
+<!--header-->
+<include file="Public:top2" />
+<!--end header--> 
+<!--main-->
+<div class="con_index">
+	<div class="mainpage">
+    
+    <div class="getkey_con" style="display:block;">
+        <div class="jc">
+            <div class="pa1">{$Think.lang.Find_pw}</div>
+            <div class=" pa1_a">{$Think.lang.Identity} 》</div>
+            <div class="pa1">{$Think.lang.Re_pw}</div>
+    	</div>
+    	
+        <div class="c2">
+            <form method="post" action="__APP__/Lostpassword/Password/" class="code_form">
+            <div class="c1">
+                <div class="tx1">{$Think.lang.Y_mobile}：{$wMB}</div>
+                <input class="btn3" type="button" value="{$Think.lang.Gain_Code}" sucmsg="{$Think.lang.Crepass}" id="btnSubmit">	
+           
+		     <script type="text/javascript">
+				var wait=60;
+				document.getElementById("btnSubmit").disabled = false;   
+				function time(o) {
+						if(o.getAttribute("disabled") ==null || o.getAttribute("disabled") == '' || o.getAttribute("disabled") == 'null') {
+							$.ajax({
+							      url: "/index.php/Lostpassword/mob/",
+							      type: "Post",
+							      data: "mobile=1",
+							      success: function(msg) {}
+							  })
+						}
+				        if (wait == 0) {
+				            o.removeAttribute("disabled");           
+				            o.value="{$Think.lang.Gain_Code}";
+				            wait = 60;
+				        } else {
+				            o.setAttribute("disabled", true);
+				            o.value="" + wait + "{$Think.lang.Cmobile_send}";
+				            wait--;
+				            setTimeout(function() {
+				                time(o)
+				            },
+				            1000)
+				        }
+				    }
+				document.getElementById("btnSubmit").onclick=function(){time(this);}
+		</script> 				
+		   
+		   
+		    </div>
+        
+            <div class="c1">
+                <div class="t_">{$Think.lang.Code}：</div>
+                <div class="s_2 Validform_checktip"></div>
+                <input type="text" class="inp4"  id="authCode" name="authCode"  datatype="n" maxlength="6" sucmsg="{$Think.lang.Crepass}"  errormsg="{$Think.lang.Ccode_e}" nullmsg="{$Think.lang.Ccode_n}">
+            </div>
+        	<input type="submit" id="u_btn_blue" class="btn1" value="{$Think.lang.Next}">
+        	</form>
+        </div>
+    
+    </div> 
+
+</div>
+</div>
+<!--end main--> 
+<!--footer-->
+<include file="Public:footer" />
+<script language="JavaScript"> 
+function updateTimeLabel(time) {  
+    var btn = $("#btnSubmit"); 
+	//canSubmit = true;  
+    btn.fadeIn(1000);
+	btn.attr("disabled", true).addClass('btn3_a');
+	
+	  
+    btn.val(time <= 0 ? "{$Think.lang.Gain_Code}" : ("" + (time) + "{$Think.lang.Cmobile_send}"));  
+    var hander = setInterval(function() {  
+        if (time <= 0) { 
+            canSubmit = true;
+            hander = null;
+            btn.val("{$Think.lang.Gain_Code}");  
+            btn.css({ "cursor": "hand" }); 
+			btn.attr("disabled",false).removeClass('btn3_a'); 
+			//time = null;
+        } else {  
+            canSubmit = false;  
+            btn.val("" + (time--) + "{$Think.lang.Cmobile_send}");
+			//btn.val("获取验证码5"); 
+			//btn.attr("disabled", true) ;
+        }  
+    }, 1000);
+	$.ajax({
+      //url: "http://localhost/m/index.php/Lostpassword/mob/",
+	  //url: "/index.php/Lostpassword/mob/",
+      type: "Post",
+      data: "mobile=1",
+      success: function(msg) {
+         /* if (msg == "ok") {
+              alert("生成成功!请等侍短信提示。")
+              return;
+          }
+          if (msg == "error") {
+              alert("生成失败!请联系管理员")
+              return;
+          }*/
+          //alert(msg);
+      }
+  })
+}  
+</script>
+<script src="__PUBLIC__/resource/common/js/Validform.js"></script>
+<script type="text/javascript">
+$(function(){
+var demo=$(".code_form").Validform({
+		tiptype:3,
+		datatype:{
+			"zh1-6":/^[\u4E00-\u9FA5\uf900-\ufa2d]{1,6}$/
+		},
+		//beforeSubmit:do_encrypt,
+		ajaxPost:false
+	});
+})
+</script>
+<!--end footer--> 
+</body>
+</html>

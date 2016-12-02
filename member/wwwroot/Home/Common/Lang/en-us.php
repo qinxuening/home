@@ -134,7 +134,8 @@ return array(
 	'SUBMIT' => 'Submit',
 	'FORGOTPASS' => 'Forgot Your Password?',
 	'Case_sensitive' => 'Case Sensitive!',
-	'Username' =>'Username',
+	'Username' =>'Username or Cellphone',
+	'Username1' =>'Username',
 	'Password' =>'Password',
 	'Notacount' =>'No Account',
 	'RegNow' =>'Reg Now',
@@ -346,7 +347,10 @@ return array(
 	'Jump_to' => 'Seconds Skip To Login Page',
 	
 	//短信验证
-	'FindSMS' => "Dear user,you're now  in the process of retrieving your password,verification code: ",
+	//'FindSMS' => "Dear user,you're now  in the process of retrieving your password,verification code: ",
+	'FindSMS1' => "尊敬的 ",
+	'FindSMS2' =>"：您的验证码为",
+	'NotReveal3' =>',请勿向他人泄露.',
 	'RedSMS' => "Dear user,you are now registering the O-home Management System,the verification code is ",
 	'NotReveal' =>",please don't provide the code to anyone else!",
 		

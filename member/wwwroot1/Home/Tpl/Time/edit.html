@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$Think.lang.Edit_times}</title>
+<link rel="stylesheet" href="__PUBLIC__/resource/common/css/base.css" >
+<link rel="stylesheet" href="__PUBLIC__/resource/common/css/user.css">
+<link rel="stylesheet" href="__PUBLIC__/resource/common/js/validform/style.css" >
+<link rel="shortcut icon" href="__PUBLIC__/resource/common/images/favicon.ico" type="image/x-icon" />
+<script src="__PUBLIC__/resource/common/js/jquery.js"></script>
+<script src="__PUBLIC__/resource/js/My97Date/WdatePicker.js"></script>
+<script language="javascript">
+function aa(){
+  var ra=document.getElementById("wSundays");
+         if(ra.checked){
+		document.getElementById("wSunday").value=1;
+       }else{
+	  document.getElementById("wSunday").value=0;
+	   }
+	   
+ var rb=document.getElementById("wMons");
+         if(rb.checked){
+		document.getElementById("wMon").value=1;
+       }else{
+	  document.getElementById("wMon").value=0;
+	   }
+	   
+var rc=document.getElementById("wTuess");
+         if(rc.checked){
+		document.getElementById("wTues").value=1;
+       }else{
+	  document.getElementById("wTues").value=0;
+	   }
+	   
+	var rd=document.getElementById("wWeds");
+         if(rd.checked){
+		document.getElementById("wWed").value=1;
+       }else{
+	  document.getElementById("wWed").value=0;
+	   }
+	   
+	   var re=document.getElementById("wThurs");
+         if(re.checked){
+		document.getElementById("wThur").value=1;
+       }else{
+	  document.getElementById("wThur").value=0;
+	   }
+	   
+	   var rf=document.getElementById("wFris");
+         if(rf.checked){
+		document.getElementById("wFri").value=1;
+       }else{
+	  document.getElementById("wFri").value=0;
+	   }
+	   
+	  var rg=document.getElementById("wSats");
+         if(rg.checked){
+		document.getElementById("wSat").value=1;
+       }else{
+	  document.getElementById("wSat").value=0;
+	   }
+   
+}
+</script>
+</head>
+
+<body>
+<!--header-->
+<include file="Public:header" />
+<!--end header--> 
+<!--main-->
+<div id="wp" class="wp"><link href="__PUBLIC__/user/css/style.css" rel="stylesheet" type="text/css" />
+ <div class="contentmanage">
+    <div class="developer">
+       <div class="appTitle normalTitle" style="padding: 20px;">
+        <h2>{$Think.lang.Center}</h2>
+        <div class="accountInfo">
+        
+        </div>
+        <div class="clr"></div>
+      </div>
+      <div class="tableContent">
+        <!--左侧功能菜单-->
+        <div class="sideBar">
+          <div class="catalogList">
+            <ul>
+			    <li class="subCatalogList" > <a href="__APP__/User/">{$Think.lang.Member}</a></li>
+				<li class=" subCatalogList "> <a href="__APP__/User/add/">{$Think.lang.Add_member}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/Mobile/">{$Think.lang.Equipment}</a> </li>
+				
+				<li class=" subCatalogList "> <a href="__APP__/Type/">{$Think.lang.Model}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/Type/add/">{$Think.lang.Add_model}</a> </li>
+				<li class=" selected "> <a href="__APP__/Time/">{$Think.lang.Time}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/Time/add/">{$Think.lang.Add_time}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/User/useredit/">{$Think.lang.Information}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/User/pwd/">{$Think.lang.Change_password}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/Mobile/usermobile/">{$Think.lang.UserMobile}</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/User/out/">{$Think.lang.Exit}</a> </li>
+            </ul>
+          </div>
+        </div>
+
+<div class="content">
+          <div class="cLineB"><h4>{$Think.lang.Edit_times}</h4></div>
+         <form method="post" action="__URL__/update/id/{$type.Pid}" enctype="multipart/form-data" class="Machineryfrom">
+          <div class="msgWrap">
+            <table class="userinfoArea" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                <tr>
+                  <th><span class="red">*</span>{$Think.lang.Times_name}：</th>
+                  <td><input type="text" class="px" datatype="*1-10" nullmsg="{$Think.lang.Times_n}" sucmsg="{$Think.lang.Crepass}"name="wName" value="{$type.wName}" tabindex="1" size="25" maxlength="10">
+                  </td>
+                </tr>
+              </thead>
+			  <tbody>
+                <tr>
+                  <th><span class="red">*</span>{$Think.lang.Add_equipment}：</th>
+                  <td>
+                  	<volist name="myMobile" id="vo" >
+                  		 <span class="bbox1"><label><input type="checkbox" name="wModel[]" id="wModel[]" <foreach name="checklist" item="vt"><eq name="vt" value="$vo.McID">checked</eq></foreach> value="{$vo.McID}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
+					</volist></td>
+                </tr>
+				<tr>
+                  <th><span class="red">*</span>{$Think.lang.Week}：</th>
+                  <td>
+                  	
+                    <span class="bbox1"><label><input type="checkbox" name="wSundays" id="wSundays" value="" class="px" <eq name="type['wSunday']" value="1">checked</eq>>&nbsp;&nbsp;{$Think.lang.SUN}&nbsp;&nbsp;</label></span>
+					<span class="bbox1"><label><input type="checkbox" name="wMons" id="wMons" value="" class="px" <eq name="type['wMon']" value="1">checked</eq>>&nbsp;&nbsp;{$Think.lang.MON}&nbsp;&nbsp;</label></span>
+					<span class="bbox1"><label><input type="checkbox" name="wTuess" id="wTuess" value="" class="px" <eq name="type['wTues']" value="1">checked</eq>>&nbsp;&nbsp;{$Think.lang.TUE}&nbsp;&nbsp;</label></span>
+					<span class="bbox1"><label><input type="checkbox" name="wWeds" id="wWeds" value="" class="px" <eq name="type['wWed']" value="1">checked</eq>>&nbsp;&nbsp;{$Think.lang.WED}&nbsp;&nbsp;</label></span>
+					<span class="bbox1"><label><input type="checkbox" name="wThurs" id="wThurs" value="" class="px" <eq name="type['wThur']" value="1">checked</eq>>&nbsp;&nbsp;{$Think.lang.THU}&nbsp;&nbsp;</label></span>
+					<span class="bbox1"><label><input type="checkbox" name="wFris" id="wFris" value="" class="px" <eq name="type['wFri']" value="1">checked</eq>>&nbsp;&nbsp;{$Think.lang.FRI}&nbsp;&nbsp;</label></span>
+					<span class="bbox1"><label><input type="checkbox" name="wSats" id="wSats" value="" class="px" <eq name="type['wSat']" value="1">checked</eq>>&nbsp;&nbsp;{$Think.lang.SAT}&nbsp;&nbsp;</label></span>
+					
+				   <input type="hidden" name="wSunday" id="wSunday"> <input type="hidden" name="wMon" id="wMon"> <input type="hidden" name="wTues" id="wTues"> <input type="hidden" name="wThur" id="wThur"> <input type="hidden" name="wFri" id="wFri"> <input type="hidden" name="wSat" id="wSat"> <input type="hidden" name="wWed" id="wWed">
+                  </td>
+                </tr>
+				<tr>
+                  <th><span class="red">*</span>{$Think.lang.Times}：</th>
+                  <td>
+                  	<input type="text" class="px"  datatype="sj" nullmsg="{$Think.lang.Times_n}" errormsg="{$Think.lang.Times_e}" name="wTime" sucmsg="{$Think.lang.Crepass}" onClick="WdatePicker({dateFmt:'HH:mm'});" value="{$type.wTime}" tabindex="1" size="25">
+                  </td>
+                </tr>
+				<tr>
+                  <th><span class="red"></span>{$Think.lang.Equ_state}：</th>
+                  <td align="left"><input type="radio" name="wType" id="wType" value="1" <if condition="$type.wType eq 1">checked</if> class="px">&nbsp;{$Think.lang.Open}
+				   &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="wType" id="wType" value="0" <php> if($type[wType] =='0' ){echo 'checked'; } ;</php> class="px">&nbsp;{$Think.lang.Off}
+				  </td>
+				  
+                </tr>
+                <tr>
+                  <th></th>
+                  <td><button type="submit" class="btnGreen" id="saveSetting" onClick="aa()">{$Think.lang.Save}</button></td>
+                </tr>
+              </tbody>
+            </table>
+            
+          </div>
+		  <input type="hidden" name="wUseID" value="{$User.wUseID}">
+          </form>
+        </div>
+        
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+  <!--底部-->
+  	</div>
+<!--end main--> 
+<!--footer-->
+<script src="__PUBLIC__/resource/common/js/Validform.js"></script>
+<script type="text/javascript">
+$(function(){
+var demo=$(".Machineryfrom").Validform({
+		tiptype:3,
+		label:".m_label",
+		showAllError:false,
+		datatype:{
+			"zh1-6":/^[\u4E00-\u9FA5\uf900-\ufa2d]{1,6}$/,
+			"sj":/^((1|0?)[0-9]|2[0-3]):([0-5][0-9])/,
+			"ip":/^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/
+		},
+		ajaxPost:false
+	});
+})
+</script>
+<include file="Public:footer" />
+<!--end footer--> 
+</body>
+</html>

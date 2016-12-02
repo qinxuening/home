@@ -1,0 +1,222 @@
+<?php
+class UserAction extends Action{
+	
+	public function _initialize(){
+		
+		header("Content-Type:text/html;charset=utf-8");
+		//var_export($_SESSION);
+		//echo session('?wUseID');
+		//exit;
+		if(!session('?wUseID')){
+			header("Location:".__APP__."/");
+		}else{
+			$User=M('Users');
+			$where['pid']=session('pid');
+			$user=$User->where($where)->find();
+			
+			if($user){
+				session('pid',$user['pid']);
+				session('wUseID',$user['wUseID']);
+				$this->assign("User",$user);
+			}
+		}
+		
+	}
+	
+	public function index(){
+		//$User=D("Users");
+		//获取成员列表
+		$Usermanager=D("usermanager");
+		$where['wUseID']=session('wUseID');
+		//$usermanagercount=$Usermanager->where('wUseID='.session('wUseID'))->count();
+		$list=$Usermanager->where($where)->order('Pid desc')->select();
+		
+		$this->assign('my1','btn0_a');
+		$this->assign("myfamily",$list);
+		//$this->assign("myfamilycount",$usermanagercount);
+		$this->display();
+	}
+	
+	public function add(){
+		$this->assign('my2','btn0_a');
+		$this->display();	
+	}
+	
+	public function pwd(){
+		$this->assign('my9','btn0_a');
+		$this->display();
+	}
+	
+  	//删除成员
+	public function del(){
+		$id=$this->_param('id');
+		$Data=D("Usermanager");
+		$map['pid']=array('eq',$id);
+		if($Data->where($map)->delete()){
+			//echo "Location:".__APP__."/";exit;
+			//Location:/m/index.php/
+			//header("Location:".__APP__."/");
+			header("Location:".__APP__."/");
+			//$this->success('删除成功');
+		}else{
+			$this->error(L('S_del_e'));        //'删除失败'
+		}
+	}
+	
+	public function del2(){
+		$id=$this->_param('id');
+		$Data=D("Usermanager");
+		$map['pid']=array('eq',$id);
+		if($Data->where($map)->delete())
+			echo 1; 
+		else 
+			echo 0;
+	}
+	
+	
+	//编辑成员
+	public function edit(){
+		$id=$this->_param('id');
+		$Data=D("Usermanager");
+		$map['pid']=array('eq',$id);
+		$find=$Data->where($map)->find();
+		if($find){
+			$this->assign('family',$find);
+			$this->assign('my1','btn0_a');
+			$this->display();
+		}else{
+			$this->error(L('S_parameter_e'));         //'参数错误'
+		}
+	}
+	//更新成员
+	public function update(){
+		$pid=$this->_get('id');
+		$Data=M("Usermanager");
+		$data=$Data->create();
+		
+		$map['pid']=array('eq',$pid);
+		
+		//print_r($map);exit;
+		
+		if($Data->where($map)->save($data)){
+			header("Location:".__APP__."/User/");
+		}else{
+			$this->error(L('S_update_n'));       //'无更新数据'
+		}
+	}
+	
+	//添加成员
+	public function familyadd(){
+		
+		$User=D("Usermanager");
+		$familyname = I('post.familyname');
+		$familyid = I('post.familyid');
+		if($familyname && $familyid){
+			if($User->create()){
+				$User->add();
+				header("Location:".__APP__."/User/");
+			}else{
+				$this->error($User->getError());
+			}
+		}else{
+			$this->error(L('S_parameter_e'));          //'参数错误'
+		}
+		
+	}
+	
+	//更新个人资料
+	public function useredit(){
+		
+		$User=M("users");
+		$data=$User->where('pid='.session('pid'))->find();
+		if($data){
+			//$decrypt = new encrypt(); //调用解密
+			$this->assign('wUseID',$data['wUseID']);
+			$this->assign('wName',$data['wName']);
+			$this->assign('wMB',$data['wMB']);
+			$this->assign('my8','btn0_a');
+			$this->display();
+		}else{
+			//echo 2222222222;exit;
+			$this->error(L('S_parameter_e'));      //'参数错误'
+		}
+	
+	
+	}
+	
+	//更新个人资料
+	public function accountsave(){
+		
+		$User=M("Users");
+		
+		$mapmob['wMB']=array('eq',$_POST['wMB']);
+		$datamob=$User->where($mapmob)->find();
+		//print_r($session('pid'));exit;
+		//$datamob['wMB'] == $mapmob['wMB']
+		//print_r($datamob);
+		
+		
+		if($datamob['pid'] == session('pid') || empty($datamob)){
+					
+			$mdata=$User->where('pid='.session('pid'))->find();     //通过PID获取其数据
+			$Mobilemanager=M("mobilemanager");    //调整手机号码
+			$Mobile=$Mobilemanager->create();
+			$Mobile['wMB']= $_POST['wMB'];
+			$where['wMB']=$mdata['wMB'];
+			$Mobilesave=$Mobilemanager->where($where)->save($Mobile);        //更新手机号
+			
+			$data=$User->create();
+			//$encrypt = new encrypt(); //调用加密
+			//$data->wUseID = $encrypt->encrypt($_POST['wUseID']);
+			$data['wMB'] = $_POST['wMB'];
+			$data['wName'] = $_POST['wName'];
+			//$map['pid']=array('eq',session('pid'));
+			$save=$User->where('pid='.session('pid'))->save($data);      //更新姓名
+			
+			
+			if($save){
+				$this->success(L('S_update'));                     //"更新成功"
+			}else{
+				header("Location:".__APP__."/User/useredit/");
+				//$this->success("更新成功");
+				//$this->error($User->getError());
+			}
+			
+		}else{
+			$this->error(L('S_binding'), '__APP__/User/useredit/');	    //手机已经绑定到其他用户上
+		} 
+	
+	}
+	
+	//更新密码
+	public function pwdsave(){
+		if($_POST['oldpwd']!=''&&$_POST['pwd']!=''&&$_POST['repwd']!=''){
+			if($_POST['pwd']!=$_POST['repwd']){
+				$this->error(L('S_pass_c'));    //'两次密码输入不一致'
+			}else{
+				$User=M("Users");
+				$data=$User->where('pid='.session('pid'))->find();
+				if($data['wPassWord']!=md5(md5($_POST['oldpwd']))){
+					$this->error(L('S_pass_e'));        //'原始密码错误'
+				}else{
+					$User->where('pid='.session('pid'))->setField('wPassWord',md5(md5($_POST['pwd'])));
+					$this->success(L('S_edit'), '__APP__/User/out/');     //修改成功！
+				}
+			}
+		}else{
+			$this->error(L('S_pass_n'));    //'密码不能为空'
+		}
+		
+		
+	}
+	
+	//退出管理
+	public function out(){
+		session(null);
+		$url = 'http://'.$_SERVER['HTTP_HOST'].__APP__.'/';
+		header("Location:$url");
+		header("Location:".__APP__."/");
+	}
+
+}
+?>

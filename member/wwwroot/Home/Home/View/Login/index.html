@@ -134,7 +134,7 @@ function trimkeyup(e) {
                 </div>-->
                 <div class="m_form_row">
                   <label class="m_label">{$Think.lang.User}：</label>
-                  <input type="text" class="m_input m_input_email" id="regneme" name="regneme" datatype="z3-16"  ajaxurl="__URL__/ckuser/" autherr="{$Think.lang.S_user_r}" sucmsg="{$Think.lang.Crepass}"  errormsg="{$Think.lang.Cuser_e}" nullmsg="{$Think.lang.Cuser_n}">
+                  <input type="text" class="m_input m_input_email" id="regneme" name="regneme" datatype="/^(?![0-9]+$)[0-9A-Za-z]{3,20}$/"  ajaxurl="__URL__/ckuser/" autherr="{$Think.lang.S_user_r}" sucmsg="{$Think.lang.Crepass}"  errormsg="{$Think.lang.Cuser_e}" nullmsg="{$Think.lang.Cuser_n}">
 				  <input type="hidden" name="wUseID" id="wUseID">
                 </div>
                 <div class="m_form_row">

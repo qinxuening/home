@@ -123,7 +123,8 @@ return array(
 	'SUBMIT' => '提&#12288;&#12288;交',
 	'FORGOTPASS' => '忘记密码？',
 	'Case_sensitive' => '区分大小写!',
-	'Username' =>'用户名',
+	'Username' =>'用户名或手机号',
+	'Username1' =>'用户名',
 	'Password' =>'密&#12288;码',
 	'Notacount' =>'还没有注册帐号',
 	'RegNow' =>'立即注册',
@@ -131,7 +132,7 @@ return array(
 	'Registerede' => '提交注册',
 	'ExAcount' => '已有帐号?',
 	'Dlogin' => '直接登陆',
-	'Ename' => '输入会员名',
+	'Ename' => '输入用户名',
 	//'ExAcount' =>　'已有帐号?',	
 		
 		
@@ -332,6 +333,9 @@ return array(
 	'Jump_to' => '秒后跳转到登陆页面',
 	
 	//短信验证
+	'FindSMS1' => "尊敬的 ",
+	'FindSMS2' =>"：您的验证码为",
+	'NotReveal3' =>',请勿向他人泄露.',
 	'FindSMS' => '尊敬的用户，您正在进行找回密码操作， 验证码：',
 	'RedSMS' => '尊敬的用户，您正在注册o-home管理系统，验证码为：',
 	'NotReveal' =>'，请勿向任何人提供收到的验证码。',

@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no"/>
+<script>
+var _width = parseInt(window.screen.width);
+var scale = _width/640;
+var ua = navigator.userAgent.toLowerCase();
+var result = /android (\d+\.\d+)/.exec(ua);
+if (result){
+var version = parseFloat(result[1]);
+if(version>2.3){
+document.write('<meta name="viewport" content="width=640, minimum-scale = '+scale+', maximum-scale = '+scale+', target-densitydpi=device-dpi">');
+}else{
+document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+}
+} else {
+document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+}
+</script>
+<style> html{display : none ; } </style> 
+<script>
+if( self == top ) {
+          document.documentElement.style.display = 'block' ;
+   } else {
+       top.location = self.location ;
+   }
+</script>
+<title>{$Think.lang.Center}</title>
+<meta name="description" content="瓯宝官网" />
+<meta name="keywords" content="瓯宝官网"/>
+<link rel="stylesheet" href="__PUBLIC__/wap/css/css_wap2.css" >
+<link rel="shortcut icon" href="__PUBLIC__/resource/common/images/favicon.ico" type="image/x-icon" />
+</head>
+<body>
+
+<!--header-->
+<include file="Public:header" />
+<!--end header-->
+ <!--交互提示-->
+<div class="jumppage" style="display:none;">
+    <div class="t_1">{$Think.lang.Box_name}</div>
+    <div class="tx1"></div>
+    <!--<div class="btn2" id="Jq_sure">{$Think.lang.Sure}</div>
+    <div class="btn3" id="Jq_no">{$Think.lang.Cancel}</div>-->
+    <input type="button" class="btn2" id="Jq_sure" value="{$Think.lang.Sure}">
+	<input type="button" class="btn3" id="Jq_no" value="{$Think.lang.Cancel}">
+</div>
+
+<include file="Public:top" />
+
+<div class="con_index">
+	<div class="mainpage">
+        <div class="chengyuan_con">
+            <!-- ad-->
+            <include file="Public:menu" />
+            
+            <div class="tb1">
+                <div class="title">{$Think.lang.Member}</div>
+            	
+                <div class="c1">
+                	<div class="tx1">{$Think.lang.Member_management}</div>
+                	<div class="tx2">{$Think.lang.Identification_id}</div>
+                	<div class="tx3">{$Think.lang.Operation}</div>
+                </div>
+                
+                <volist name="myfamily" id="vo" key="k">
+                	<div class="c{$k%2+2}" id="data_{$vo.pid}" dataName="{$vo.familyname}">
+                        <div class="tx4">{$vo.familyname}</div>
+                        <div class="tx5">{$vo.familyid}</div>
+                        <div class="tx6">
+                            <div class="btn1"><a href="__URL__/edit/id/{$vo.pid}/" >{$Think.lang.Edit}</a></div>
+                            <div class="btn2"><a href="javascript:Jq_del({$vo.pid},this)">{$Think.lang.Delete}</a></div>
+                        </div>
+                    </div>
+                </volist>
+                
+              </div>
+        </div>
+	</div>
+</div>
+
+<!--footer-->
+<include file="Public:footer" />
+<script type="text/javascript">
+	var p1 = 0;
+	var p2 =0;
+	$("#wins_toolbar").hide();
+	$(".wins_toolbar").hide();
+	function Jq_del(id){
+		//var name = name;
+		var name = $('#data_'+id).attr("dataName");
+		//return alert(name);
+		$('.jumppage > .tx1').html('{$Think.lang.Confirm_delete} '+name);
+		$('.jumppage_bg, .jumppage').show();
+		//ajax_del(id);
+		$('#Jq_sure').click(function(){
+			var url = "__URL__/del/id/"+id;
+			//$('.jumppage_bg, .jumppage').hide();
+			//$('#data_'+id).remove();
+			window.location.href = url;	
+			$(this).attr("disabled","disabled");		
+		});
+	};
+
+	//function ajax_del(id){
+//		$('#Jq_sure').click(function(){
+//			var url = "__URL__/del2/";
+//			$.ajax({
+//				type:'post',
+//				url:url,
+//				data:"id="+id,
+//				success:function(msg){
+//					if(msg == 1){
+//						$('.jumppage_bg, .jumppage').hide();
+//						$('#data_'+id).remove();
+//					}else{
+//						alert('服务器繁忙！请稍后重试');
+//					}
+//				}	
+//			});	
+//		});	
+//	}
+	$('#Jq_no').click(function(){
+		$('.jumppage_bg, .jumppage').hide();
+	});
+</script>
+<!--end footer--> 
+</body>
+</html>

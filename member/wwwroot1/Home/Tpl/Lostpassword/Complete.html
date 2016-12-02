@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$Think.lang.Complete}</title>
+<link rel="stylesheet" href="__PUBLIC__/resource/common/css/base.css" >
+<link rel="stylesheet" href="__PUBLIC__/resource/common/css/user.css">
+<link rel="stylesheet" href="__PUBLIC__/resource/common/js/validform/style.css" >
+<link rel="shortcut icon" href="__PUBLIC__/resource/common/images/favicon.ico" type="image/x-icon" />
+<script src="__PUBLIC__/resource/common/js/jquery.js"></script>
+</head>
+
+<body>
+<!--header-->
+<include file="Public:header" />
+<!--end header--> 
+<!--main-->
+
+<div class="user_wrap">
+  <div class="user_con">
+    <div class="user_box clearfix" id="pw_wrap">
+      <div class="pw_pathway"><a href="__APP__/Lostpassword/" >{$Think.lang.Find_pw}</a> >{$Think.lang.Complete} </div>
+      <ul class="pw_nav">
+        <li class="pw_nav_1">{$Think.lang.Ename}</li>
+        <li class="pw_nav_2">{$Think.lang.Identity}</li>
+        <li class="pw_nav_3">{$Think.lang.Re_pw}</li>
+        <li class="pw_nav_4_a">{$Think.lang.Complete}</li>
+      </ul>
+      <!--第1步-->
+      <div class="pw_step1">
+	  <div class="pw_form">
+          <div class="pw_form_row">
+           <img src="__PUBLIC__/resource/common/images/ok.png">
+          </div>
+          <div>
+           
+            <span class="valid_tip" style="font-size:13px; text-align:center;">{$Think.lang.Pw_reset_s}<a href="__APP__/">{$Think.lang.LoginIm}</a>{$Think.lang.ManageAc}</span> </div>
+</div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<!--end main--> 
+<!--footer-->
+<include file="Public:footer" />
+<!--end footer--> 
+</body>
+</html>

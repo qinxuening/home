@@ -287,7 +287,7 @@ return array(
 	'Identity' => 'Identify',
 	'Re_pw' => 'Reset Password',
 	'Y_mobile' => 'Cellphone Number',
-	'Y_user' => 'Please Enter Your ID',
+	'Y_user' => 'Please Enter Your ID Or Cellphone',
 	'Y_user_ex' => 'ID Is Not Exist',
 	'Y_user_e' => 'Please Enter Correct ID',
 	'Y_user_n' => "ID Cant't Be Empty",

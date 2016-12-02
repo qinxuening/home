@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>添加设备</title>
+<link rel="stylesheet" href="__PUBLIC__/resource/common/css/base.css" >
+<link rel="stylesheet" href="__PUBLIC__/resource/common/css/user.css">
+<link rel="stylesheet" href="__PUBLIC__/resource/common/js/validform/style.css" >
+<link rel="shortcut icon" href="__PUBLIC__/resource/common/images/favicon.ico" type="image/x-icon" />
+<script src="__PUBLIC__/resource/common/js/jquery.js"></script>
+<script src="__PUBLIC__/resource/js/My97Date/WdatePicker.js"></script>
+
+</head>
+
+<body>
+<!--header-->
+<include file="Public:header" />
+<!--end header--> 
+<!--main-->
+<div id="wp" class="wp"><link href="__PUBLIC__/user/css/style.css" rel="stylesheet" type="text/css" />
+ <div class="contentmanage">
+    <div class="developer">
+       <div class="appTitle normalTitle" style="padding: 20px;">
+        <h2>管理平台</h2>
+        <div class="accountInfo">
+        
+        </div>
+        <div class="clr"></div>
+      </div>
+      <div class="tableContent">
+        <!--左侧功能菜单-->
+        <div class="sideBar">
+          <div class="catalogList">
+            <ul>
+				<li class="subCatalogList" > <a href="__APP__/User/">我的成员</a></li>
+				<li class=" subCatalogList "> <a href="__APP__/User/add/">添加成员</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/Mobile/">我的设备</a> </li>
+				<li class=" selected "> <a href="__APP__/Mobile/add/">添加设备</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/Type/">我的模式</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/Type/add/">添加模式</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/Time/">我的时间</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/Time/add/">添加时间</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/User/useredit/">我的资料</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/User/pwd/">修改密码</a> </li>
+				<li class=" subCatalogList "> <a href="__APP__/User/out/">退出管理</a> </li>
+            </ul>
+          </div>
+        </div>
+
+<div class="content">
+          <div class="cLineB"><h4>添加设备</h4></div>
+          <form method="post" action="__URL__/mobileadd/" enctype="multipart/form-data" class="Machineryfrom">
+          <div class="msgWrap">
+            <table class="userinfoArea" border="0" cellspacing="0" cellpadding="0" width="100%">
+              <thead>
+                <tr>
+                  <th><span class="red">*</span>设备位置：</th>
+                  <td><input type="text" class="px" datatype="*" nullmsg="设备位置不能为空" name="McName" value="" tabindex="1" size="25">
+                  </td>
+                </tr>
+              </thead>
+			  <tbody>
+                <tr>
+                  <th><span class="red">*</span>识别ID：</th>
+                  <td><input type="text" datatype="s" nullmsg="识别ID不能为空" name="McID" value="" errormsg="识别ID像写得不对！比如：01" class="px" tabindex="1" size="25"></td>
+                </tr>
+                <tr>
+                  <th><span class="red">*</span>设备编码：</th>
+                  <td><input type="text" datatype="*" nullmsg="设备编码不能为空" errormsg="设备编码好像写得不对！比如：7366555843142671" name="McNumID" value="" class="px" tabindex="1" size="25"></td>
+                </tr>
+				  <tr>
+                  <th><span class="red">*</span>短信：</th>
+                  <td><input type="checkbox" value="1" name="IsMsg" class="px" >&nbsp;是否短信通知</td>
+                </tr>
+				
+				
+				   <tr>
+                  <th>联动开：</th>
+                  <td><volist name="myMobile" id="vo" ><input type="checkbox" name="LinkOn[]" id="LinkOn[]" value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</volist></td>
+                </tr>
+				<tr>
+                  <th>联动关：</th>
+                  <td><volist name="myMobile" id="vo" ><input type="checkbox" name="LinkOff[]" id="LinkOff[]" value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</volist></td>
+                </tr>
+				<tr>
+                  <th>反联动开：</th>
+                  <td><volist name="myMobile" id="vo" ><input type="checkbox" name="LinkOn_Off[]" id="LinkOn_Off[]" value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</volist></td>
+                </tr>
+                <tr>
+				<tr>
+                  <th>反联动关：</th>
+                  <td><volist name="myMobile" id="vo" ><input type="checkbox" name="LinkOff_On[]" id="LinkOff_On[]" value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</volist></td>
+                </tr>
+                <tr>
+                  <th></th>
+                  <td><button type="submit" class="btnGreen" id="saveSetting">保存</button></td>
+                </tr>
+              </tbody>
+            </table>
+            
+          </div>
+		  <input type="hidden" name="wMB" value="{$User.wMB}">
+		  <input type="hidden" name="wUseID" value="{$User.wUseID}">
+          </form>
+        </div>
+        
+        <div class="clr"></div>
+      </div>
+    </div>
+  </div>
+  <!--底部-->
+  	</div>
+<!--end main--> 
+<!--footer-->
+<script src="__PUBLIC__/resource/common/js/Validform.js"></script>
+<script type="text/javascript">
+$(function(){
+var demo=$(".Machineryfrom").Validform({
+		tiptype:3,
+		label:".m_label",
+		showAllError:false,
+		datatype:{
+			"zh1-6":/^[\u4E00-\u9FA5\uf900-\ufa2d]{1,6}$/,
+			"ip":/^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/
+		},
+		ajaxPost:false
+	});
+})
+</script>
+<include file="Public:footer" />
+<!--end footer--> 
+</body>
+</html>

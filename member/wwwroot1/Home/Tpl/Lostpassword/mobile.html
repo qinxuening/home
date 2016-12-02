@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title> {$Think.lang.Identity}</title>
+<link rel="stylesheet" href="__PUBLIC__/resource/common/css/base.css" >
+<link rel="stylesheet" href="__PUBLIC__/resource/common/css/user.css">
+<link rel="stylesheet" href="__PUBLIC__/resource/common/js/validform/style.css" >
+<link rel="shortcut icon" href="__PUBLIC__/resource/common/images/favicon.ico" type="image/x-icon" />
+<script src="__PUBLIC__/resource/common/js/jquery.js"></script>
+</head>
+
+<body>
+<!--header-->
+<include file="Public:header" />
+<!--end header--> 
+<!--main-->
+
+<div class="user_wrap">
+  <div class="user_con">
+    <div class="user_box clearfix" id="pw_wrap">
+      <div class="pw_pathway"><a href="__APP__/Lostpassword/" >{$Think.lang.Find_pw}</a> > {$Think.lang.Identity}</div>
+      <ul class="pw_nav">
+        <li class="pw_nav_1">{$Think.lang.Ename}</li>
+        <li class="pw_nav_2_a">{$Think.lang.Identity}</li>
+        <li class="pw_nav_3">{$Think.lang.Re_pw}</li>
+        <li class="pw_nav_4">{$Think.lang.Complete}</li>
+      </ul>
+      <!--第1步-->
+      <div class="pw_step1 pw_form">
+       
+          <div class="pw_form_row">
+            <label class="pw_label">{$Think.lang.Y_mobile}：</label>
+           <span class="">{$wMB}</span>
+		   </div>
+		   <form action="__APP__/Lostpassword/mobile/" method="post">
+		   <div class="pw_form_row pw_form">
+		   <label class="pw_label"></label>  
+			<input class="btn_graylong" type="button" value="{$Think.lang.Gain_Code}" id="btnSubmit">		
+		   <script type="text/javascript">
+				var wait=60;
+				document.getElementById("btnSubmit").disabled = false;   
+				function time(o) {
+						if(o.getAttribute("disabled") ==null || o.getAttribute("disabled") == '' || o.getAttribute("disabled") == 'null') {
+							$.ajax({
+							      url: "/index.php/Lostpassword/mob/",
+							      type: "Post",
+							      data: "mobile=1",
+							      success: function(msg) {
+							        /*  if (msg == "ok") {
+							              alert("生成成功!请等侍短信提示。")
+							              return;
+							          }
+							          if (msg == "error") {
+							              alert("生成失败!请联系管理员")
+							              return;
+							          }
+							          //alert(msg);*/
+							      }
+							  })
+						}
+				        if (wait == 0) {
+				            o.removeAttribute("disabled");           
+				            o.value="{$Think.lang.Gain_Code}";
+				            wait = 60;
+				        } else {
+				            o.setAttribute("disabled", true);
+				            o.value="" + wait + "{$Think.lang.Cmobile_send}";
+				            wait--;
+				            setTimeout(function() {
+				                time(o)
+				            },
+				            1000)
+				        }
+				    }
+				document.getElementById("btnSubmit").onclick=function(){time(this);}
+		</script> 								</select>
+          </div>
+		  </form>	
+		   <form class="code_form" action="__APP__/Lostpassword/Password/" method="post">
+		  <div class="pw_form_row Validform_right_hide">
+            <label class="pw_label">{$Think.lang.Code}：</label>
+            <input type="text" class="pw_text" style="width:60px;" id="authCode" name="authCode" maxlength="6"  datatype="n" sucmsg="{$Think.lang.Crepass}"  errormsg="{$Think.lang.Ccode_e}" nullmsg="{$Think.lang.Ccode_n}"></div>
+          <div>
+            <input type="submit" value="{$Think.lang.Next}"   class="m_btn_blue_s" id="pw_btn_1">
+            <span class="valid_tip"></span> </div>
+        </form>
+        <p class="pw_tips"> {$Think.lang.Warmt}：<br>
+          {$Think.lang.TryCode}<br>
+		  {$Think.lang.IfPhone}<a href="http://<eq name="langue" value="en">HOST_ENURL<else/>HOST_URL</eq>/index.php?c=article&a=type&tid=27">{$Think.lang.IfConnect}</a><br>
+          </p>
+      </div>
+      
+    </div>
+  </div>
+</div>
+<script src="__PUBLIC__/resource/common/js/Validform.js"></script>
+<script type="text/javascript">
+$(function(){
+var demo=$(".code_form").Validform({
+		tiptype:3,
+		label:".label",
+		showAllError:false,
+		datatype:{
+			"zh1-6":/^[\u4E00-\u9FA5\uf900-\ufa2d]{1,6}$/
+		},
+		//beforeSubmit:do_encrypt,
+		ajaxPost:false
+	});
+	demo.tipmsg.c = "{$Think.lang.Cmobile_check}";
+})
+</script>
+<!--end main--> 
+<!--footer-->
+<include file="Public:footer" />
+<!--end footer--> 
+</body>
+</html>

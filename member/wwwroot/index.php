@@ -2,7 +2,7 @@
     //判断是否属手机
 	//error_reporting(E_ALL^E_NOTICE);
 	ini_set('max_execution_time', 0);//设置不限制时间运行
-	ini_set('session.cookie_domain', '');
+	ini_set('session.cookie_domain', '.ob-hom.com');
 	define('APP_DEBUG', true);
     function is_mobile(){
         $user_agent = $_SERVER['HTTP_USER_AGENT'];
