@@ -24,8 +24,8 @@
 	//国内
 	function smsto($telphone,$message)
 	{
-		$uid = '';
-		$pwd = '';
+		$uid = 'maorongcai';
+		$pwd = 'xgf8889';
 		$message=urlencode($message);
 		$sendurl="http://sms.106jiekou.com/utf8/sms.aspx?account=".$uid."&password=".$pwd."&mobile=".$telphone."&content=".$message."";
 		$result = file_get_contents($sendurl);
@@ -36,9 +36,9 @@
 	function intlsmsto($telphone,$message,$vercode)
 	{
 	
-		$username = '';
-		$password = '';
-		$apikey = '';
+		$username = 'laichengkeji';
+		$password = 'xgfQAZ2121';
+		$apikey = '269262be3fe42ed2d529caea548b16f8';
 		$mobile	 = $telphone;
 		$content = $message;
 		$result = sendSMS($username,$password,$telphone,$content,$apikey);
@@ -88,14 +88,49 @@
 		return $arr;
 	}
 	
+	/**
+	 * 
+	 * @author qxn
+	 * @param unknown $Array
+	 * @param unknown $Field
+	 * @return Ambigous <multitype:, unknown>
+	 */
 	function key_Pid_value_Key($Array , $Field){
 		$arr = array();
 		foreach ($Array as $key=>$value) {
-			$arr["$value[Pid]"][]= $value["Key01"];
-			$arr["$value[Pid]"][] = $value["Key02"];
-			$arr["$value[Pid]"][] = $value["Key03"];
+			$arr["$value[$Field]"][]= $value["Key1"];
+			$arr["$value[$Field]"][] = $value["Key2"];
+			$arr["$value[$Field]"][] = $value["Key3"];
 		}
 		return $arr;
+	}
+	
+	/**
+	 * @author qxn
+	 * @param unknown $linklist_s 开关设备主表
+	 * @param unknown $linklist_child  开关设备副表
+	 * @param unknown $arr 提交联动数据
+	 * @param unknown $Pid 主设备id
+	 * @param unknown $wModeltype 联动方式
+	 * @param unknown $Key01
+	 * @param unknown $Key02
+	 * @param unknown $Key03
+	 */
+	function add_linklist_linklist_child($linklist_s, $linklist_child ,$arr, $Pid, $wModeltype, $Key01, $Key02, $Key03){
+		foreach ($arr as $key_on => $value_on){
+			if(is_array($value_on)){
+				$idon = $linklist_s->add(array('Pid' => $Pid , 'McID' => $key_on , 'wModeltype' => $wModeltype , 'Key01'=>$Key01,'Key02'=>$Key02,'Key03'=>$Key03));
+				$linklist_child_on['wID'] = $idon;
+				$linklist_child_on['McID'] = $Pid;
+				$linklist_child_on['Key1'] = in_array('Key1', $value_on)? 1:0;
+				$linklist_child_on['Key2'] = in_array('Key2', $value_on)? 1:0;
+				$linklist_child_on['Key3'] = in_array('Key3', $value_on)? 1:0;
+				$linklist_child_on['mark'] = 2;
+				$linklist_child->add($linklist_child_on);
+			}else{
+				$linklist_s->add(array('Pid' => $Pid , 'McID' => $value_on , 'wModeltype' => $wModeltype , 'Key01'=>$Key01,'Key02'=>$Key02,'Key03'=>$Key03));
+			}
+		}
 	}
 	
 	function CheckLength($data, $Min, $Max){

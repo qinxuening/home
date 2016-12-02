@@ -128,8 +128,8 @@ function aa(){
 			  <tbody>
 				 <tr style="border-top:1px solid #eeeeee;background-color:#fcfcfc; padding:10px 0px">
                   <th>{$Think.lang.SMS}：</th>
-                  <td><input type="checkbox" name="IsMsgs" id="IsMsgs" value="" class="px" <eq name="mobile['IsMsg']" value="1">checked</eq>>&nbsp;{$Think.lang.Sms_notification}
-				  <input type="hidden" name="IsMsg" id="IsMsg">  <div class="s_1" style="color:#6eb805">{$Think.lang.Main_opening}</div></td>
+                  <td><label><input type="checkbox" name="IsMsgs" id="IsMsgs" value="" class="px" style="margin-top:0 !important;" <eq name="mobile['IsMsg']" value="1">checked</eq>>&nbsp;{$Think.lang.Sms_notification}
+				  <input type="hidden" name="IsMsg" id="IsMsg"></label>  <div class="s_1" style="color:#6eb805">{$Think.lang.Main_opening}</div></td>
                 </tr>
 				
 				  <tr style="border-top:1px solid #eeeeee;background-color:#fcfcfc; padding:10px 0px">
@@ -149,9 +149,9 @@ function aa(){
 							 	 <eq name="vo.McID3" value="14">
 									<span class="bbox1"><label style="margin-bottom:0!important;">
 										&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;
-										<label ><input class="px" name="LinkOn01[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLinkOn["$vo[Pid]"][0]){echo "checked";}</php> value="Key01">&nbsp;键1&nbsp;</label>
-										<label ><input class="px" name="LinkOn01[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLinkOn["$vo[Pid]"][1]){echo "checked";}</php> value="Key02">&nbsp;键2&nbsp;</label>
-										<label ><input class="px" name="LinkOn01[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLinkOn["$vo[Pid]"][2]){echo "checked";}</php> value="Key03">&nbsp;键3&nbsp;</label>
+										<label ><input class="px" name="LinkOn01[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLinkOn01["$vo[Pid]"][0]){echo "checked";}</php> value="Key1">&nbsp;键1&nbsp;</label>
+										<label ><input class="px" name="LinkOn01[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLinkOn01["$vo[Pid]"][1]){echo "checked";}</php> value="Key2">&nbsp;键2&nbsp;</label>
+										<label ><input class="px" name="LinkOn01[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLinkOn01["$vo[Pid]"][2]){echo "checked";}</php> value="Key3">&nbsp;键3&nbsp;</label>
 									</label></span>
 								 <else/>
 									<span class="bbox1"><label><input type="checkbox" name="LinkOn01[]" id="LinkOn01[]" <foreach name="mLinkOn01" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>						  
@@ -161,13 +161,31 @@ function aa(){
 						  
 						  <div class="box hid" id="keyon2">
 							  <volist name="myMobile" id="vo" >
-			               	 	   <span class="bbox1"><label><input type="checkbox" name="LinkOn02[]" id="LinkOn02[]" <foreach name="mLinkOn02" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
+							  	  <eq name="vo.McID3" value="14">
+									<span class="bbox1"><label style="margin-bottom:0!important;">
+										&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;
+										<label ><input class="px" name="LinkOn02[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLinkOn02["$vo[Pid]"][0]){echo "checked";}</php> value="Key1">&nbsp;键1&nbsp;</label>
+										<label ><input class="px" name="LinkOn02[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLinkOn02["$vo[Pid]"][1]){echo "checked";}</php> value="Key2">&nbsp;键2&nbsp;</label>
+										<label ><input class="px" name="LinkOn02[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLinkOn02["$vo[Pid]"][2]){echo "checked";}</php> value="Key3">&nbsp;键3&nbsp;</label>
+									</label></span>
+								 <else/>
+									 <span class="bbox1"><label><input type="checkbox" name="LinkOn02[]" id="LinkOn02[]" <foreach name="mLinkOn02" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
+								 </eq>    
 			                  </volist>
 						  </div>
 						  
 						  <div class="box hid" id="keyon3">
 							  <volist name="myMobile" id="vo" >
-			               	 	   <span class="bbox1"><label><input type="checkbox" name="LinkOn03[]" id="LinkOn03[]" <foreach name="mLinkOn03" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
+							  	 <eq name="vo.McID3" value="14">
+									<span class="bbox1"><label style="margin-bottom:0!important;">
+										&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;
+										<label ><input class="px" name="LinkOn03[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLinkOn03["$vo[Pid]"][0]){echo "checked";}</php> value="Key1">&nbsp;键1&nbsp;</label>
+										<label ><input class="px" name="LinkOn03[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLinkOn03["$vo[Pid]"][1]){echo "checked";}</php> value="Key2">&nbsp;键2&nbsp;</label>
+										<label ><input class="px" name="LinkOn03[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLinkOn03["$vo[Pid]"][2]){echo "checked";}</php> value="Key3">&nbsp;键3&nbsp;</label>
+									</label></span>
+								 <else/>
+									  <span class="bbox1"><label><input type="checkbox" name="LinkOn03[]" id="LinkOn03[]" <foreach name="mLinkOn03" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
+								 </eq>   
 			                  </volist>
 						  </div>
 					  </div>
@@ -208,18 +226,51 @@ function aa(){
 						        </ul>
 						  <div class="box sho" id="keyon1">
 							  <volist name="myMobile" id="vo" >
-			               	 	   <span class="bbox1"><label><input type="checkbox" name="LinkOff01[]" id="LinkOff01[]" <foreach name="mLinkOff01" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
+							  	
+								<eq name="vo.McID3" value="14">
+									<span class="bbox1"><label style="margin-bottom:0!important;">
+										&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;
+										<label ><input class="px" name="LinkOff01[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLinkOff01["$vo[Pid]"][0]){echo "checked";}</php> value="Key1">&nbsp;键1&nbsp;</label>
+										<label ><input class="px" name="LinkOff01[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLinkOff01["$vo[Pid]"][1]){echo "checked";}</php> value="Key2">&nbsp;键2&nbsp;</label>
+										<label ><input class="px" name="LinkOff01[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLinkOff01["$vo[Pid]"][2]){echo "checked";}</php> value="Key3">&nbsp;键3&nbsp;</label>
+									</label></span>
+								 <else/>
+									  <span class="bbox1"><label><input type="checkbox" name="LinkOff01[]" id="LinkOff01[]" <foreach name="mLinkOff01" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
+								 </eq>   
+											               	 	   
 			                  </volist>
 						  </div>
 						  <div class="box hid" id="keyon2">
 							  <volist name="myMobile" id="vo" >
-			               	 	   <span class="bbox1"><label><input type="checkbox" name="LinkOff02[]" id="LinkOff02[]" <foreach name="mLinkOff02" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
+							  	
+								<eq name="vo.McID3" value="14">
+									<span class="bbox1"><label style="margin-bottom:0!important;">
+										&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;
+										<label ><input class="px" name="LinkOff02[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLinkOff02["$vo[Pid]"][0]){echo "checked";}</php> value="Key1">&nbsp;键1&nbsp;</label>
+										<label ><input class="px" name="LinkOff02[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLinkOff02["$vo[Pid]"][1]){echo "checked";}</php> value="Key2">&nbsp;键2&nbsp;</label>
+										<label ><input class="px" name="LinkOff02[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLinkOff02["$vo[Pid]"][2]){echo "checked";}</php> value="Key3">&nbsp;键3&nbsp;</label>
+									</label></span>
+								 <else/>
+									   <span class="bbox1"><label><input type="checkbox" name="LinkOff02[]" id="LinkOff02[]" <foreach name="mLinkOff02" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
+								 </eq>  								
+										               	 	  
 			                  </volist>
 						  </div>
 						  
 						  <div class="box hid" id="keyon3">
 							  <volist name="myMobile" id="vo" >
-			               	 	   <span class="bbox1"><label><input type="checkbox" name="LinkOff03[]" id="LinkOff03[]" <foreach name="mLinkOff03" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
+							  	
+							  	 <eq name="vo.McID3" value="14">
+									<span class="bbox1"><label style="margin-bottom:0!important;">
+										&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;
+										<label ><input class="px" name="LinkOff03[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLinkOff03["$vo[Pid]"][0]){echo "checked";}</php> value="Key1">&nbsp;键1&nbsp;</label>
+										<label ><input class="px" name="LinkOff03[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLinkOff03["$vo[Pid]"][1]){echo "checked";}</php> value="Key2">&nbsp;键2&nbsp;</label>
+										<label ><input class="px" name="LinkOff03[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLinkOff03["$vo[Pid]"][2]){echo "checked";}</php> value="Key3">&nbsp;键3&nbsp;</label>
+									</label></span>
+								 <else/>
+									    <span class="bbox1"><label><input type="checkbox" name="LinkOff03[]" id="LinkOff03[]" <foreach name="mLinkOff03" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
+								 </eq>  
+
 			                  </volist>
 						  </div>
 					  </div>
@@ -258,18 +309,49 @@ function aa(){
 						        </ul>
 						  <div class="box sho" id="keyon1">
 							  <volist name="myMobile" id="vo" >
-			               	 	   <span class="bbox1"><label><input type="checkbox" name="Linkon_off01[]" id="Linkon_off01[]" <foreach name="mLinkon_off01" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
+							  	
+							  	 <eq name="vo.McID3" value="14">
+									<span class="bbox1"><label style="margin-bottom:0!important;">
+										&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;
+										<label ><input class="px" name="Linkon_off01[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLink_On_Off01["$vo[Pid]"][0]){echo "checked";}</php> value="Key1">&nbsp;键1&nbsp;</label>
+										<label ><input class="px" name="Linkon_off01[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLink_On_Off01["$vo[Pid]"][1]){echo "checked";}</php> value="Key2">&nbsp;键2&nbsp;</label>
+										<label ><input class="px" name="Linkon_off01[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLink_On_Off01["$vo[Pid]"][2]){echo "checked";}</php> value="Key3">&nbsp;键3&nbsp;</label>
+									</label></span>
+								 <else/>
+									  <span class="bbox1"><label><input type="checkbox" name="Linkon_off01[]" id="Linkon_off01[]" <foreach name="mLinkon_off01" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
+								 </eq> 
+											               	 	  
 			                  </volist>
 						  </div>
 						  <div class="box hid" id="keyon2">
 							  <volist name="myMobile" id="vo" >
-			               	 	   <span class="bbox1"><label><input type="checkbox" name="Linkon_off02[]" id="Linkon_off02[]" <foreach name="mLinkon_off02" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
+							  	 <eq name="vo.McID3" value="14">
+									<span class="bbox1"><label style="margin-bottom:0!important;">
+										&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;
+										<label ><input class="px" name="Linkon_off02[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLink_On_Off02["$vo[Pid]"][0]){echo "checked";}</php> value="Key1">&nbsp;键1&nbsp;</label>
+										<label ><input class="px" name="Linkon_off02[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLink_On_Off02["$vo[Pid]"][1]){echo "checked";}</php> value="Key2">&nbsp;键2&nbsp;</label>
+										<label ><input class="px" name="Linkon_off02[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLink_On_Off02["$vo[Pid]"][2]){echo "checked";}</php> value="Key3">&nbsp;键3&nbsp;</label>
+									</label></span>
+								 <else/>
+									  <span class="bbox1"><label><input type="checkbox" name="Linkon_off02[]" id="Linkon_off02[]" <foreach name="mLinkon_off02" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
+								 </eq> 
+								 
 			                  </volist>
 						  </div>
 						  
 						  <div class="box hid" id="keyon3">
 							  <volist name="myMobile" id="vo" >
-			               	 	   <span class="bbox1"><label><input type="checkbox" name="Linkon_off03[]" id="Linkon_off03[]" <foreach name="mLinkon_off03" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
+							  	 <eq name="vo.McID3" value="14">
+									<span class="bbox1"><label style="margin-bottom:0!important;">
+										&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;
+										<label ><input class="px" name="Linkon_off03[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLink_On_Off03["$vo[Pid]"][0]){echo "checked";}</php> value="Key1">&nbsp;键1&nbsp;</label>
+										<label ><input class="px" name="Linkon_off03[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLink_On_Off03["$vo[Pid]"][1]){echo "checked";}</php> value="Key2">&nbsp;键2&nbsp;</label>
+										<label ><input class="px" name="Linkon_off03[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLink_On_Off03["$vo[Pid]"][2]){echo "checked";}</php> value="Key3">&nbsp;键3&nbsp;</label>
+									</label></span>
+								 <else/>
+									  <span class="bbox1"><label><input type="checkbox" name="Linkon_off03[]" id="Linkon_off03[]" <foreach name="mLinkon_off03" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
+								 </eq> 							  	
+								               	 	   
 			                  </volist>
 						  </div>
 					  </div>
@@ -310,19 +392,50 @@ function aa(){
 							        <li class="off">{$Think.lang.key3}</li>
 						        </ul>
 						  <div class="box sho" id="keyon1">
+						  	
 							  <volist name="myMobile" id="vo" >
-			               	 	   <span class="bbox1"><label><input type="checkbox" name="Linkoff_on01[]" id="Linkoff_on01[]" <foreach name="mLinkoff_on01" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
+							  	 <eq name="vo.McID3" value="14">
+									<span class="bbox1"><label style="margin-bottom:0!important;">
+										&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;
+										<label ><input class="px" name="Linkoff_on01[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLink_Off_On01["$vo[Pid]"][0]){echo "checked";}</php> value="Key1">&nbsp;键1&nbsp;</label>
+										<label ><input class="px" name="Linkoff_on01[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLink_Off_On01["$vo[Pid]"][1]){echo "checked";}</php> value="Key2">&nbsp;键2&nbsp;</label>
+										<label ><input class="px" name="Linkoff_on01[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLink_Off_On01["$vo[Pid]"][2]){echo "checked";}</php> value="Key3">&nbsp;键3&nbsp;</label>
+									</label></span>
+								 <else/>
+									  <span class="bbox1"><label><input type="checkbox" name="Linkoff_on01[]" id="Linkoff_on01[]" <foreach name="mLinkoff_on01" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
+								 </eq> 							  	
+
 			                  </volist>
 						  </div>
 						  <div class="box hid" id="keyon2">
 							  <volist name="myMobile" id="vo" >
-			               	 	   <span class="bbox1"><label><input type="checkbox" name="Linkoff_on02[]" id="Linkoff_on02[]" <foreach name="mLinkoff_on02" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
+							  	
+							  <volist name="myMobile" id="vo" >
+							  	 <eq name="vo.McID3" value="14">
+									<span class="bbox1"><label style="margin-bottom:0!important;">
+										&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;
+										<label ><input class="px" name="Linkoff_on02[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLink_Off_On02["$vo[Pid]"][0]){echo "checked";}</php> value="Key1">&nbsp;键1&nbsp;</label>
+										<label ><input class="px" name="Linkoff_on02[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLink_Off_On02["$vo[Pid]"][1]){echo "checked";}</php> value="Key2">&nbsp;键2&nbsp;</label>
+										<label ><input class="px" name="Linkoff_on02[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLink_Off_On02["$vo[Pid]"][2]){echo "checked";}</php> value="Key3">&nbsp;键3&nbsp;</label>
+									</label></span>
+								 <else/>
+									  <span class="bbox1"><label><input type="checkbox" name="Linkoff_on02[]" id="Linkoff_on02[]" <foreach name="mLinkoff_on02" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
+								</eq>  
 			                  </volist>
 						  </div>
 						  
 						  <div class="box hid" id="keyon3">
 							  <volist name="myMobile" id="vo" >
-			               	 	   <span class="bbox1"><label><input type="checkbox" name="Linkoff_on03[]" id="Linkoff_on03[]" <foreach name="mLinkoff_on03" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
+							  	 <eq name="vo.McID3" value="14">
+									<span class="bbox1"><label style="margin-bottom:0!important;">
+										&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;
+										<label ><input class="px" name="Linkoff_on03[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLink_Off_On03["$vo[Pid]"][0]){echo "checked";}</php> value="Key1">&nbsp;键1&nbsp;</label>
+										<label ><input class="px" name="Linkoff_on03[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLink_Off_On03["$vo[Pid]"][1]){echo "checked";}</php> value="Key2">&nbsp;键2&nbsp;</label>
+										<label ><input class="px" name="Linkoff_on03[{$vo.Pid}][]" type="checkbox" <php>if($Key_mLink_Off_On03["$vo[Pid]"][2]){echo "checked";}</php> value="Key3">&nbsp;键3&nbsp;</label>
+									</label></span>
+								 <else/>
+									   <span class="bbox1"><label><input type="checkbox" name="Linkoff_on03[]" id="Linkoff_on03[]" <foreach name="mLinkoff_on03" item="vt"><eq name="vt" value="$vo.Pid">checked</eq></foreach> value="{$vo.Pid}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
+								</eq> 							  	 
 			                  </volist>
 						  </div>
 					  </div>
