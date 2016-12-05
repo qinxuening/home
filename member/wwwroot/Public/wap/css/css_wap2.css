@@ -277,12 +277,76 @@ input, button, select, textarea {
 
 .chengyuan_con .s_3{float:right;text-align:right;color:#999999;padding-right:10px;}
 .chengyuan_con .inp1{width:580px;height:70px;padding:0px 10px 0px 10px;border-radius:8px;border:solid 1px #d0d0d0;float:left;margin-top:10px;font-size:20px;line-height:70px;}
-.chengyuan_con .box1{width:580px;height:auto;padding:0px 10px 0px 10px;border-radius:8px;border:solid 1px #d0d0d0;float:left;margin-top:10px;font-size:20px;line-height:70px;}
+.chengyuan_con .box1{width:580px;height:auto;padding:10px 10px 0px 10px;border-radius:8px;border:solid 1px #d0d0d0;float:left;margin-top:10px;font-size:20px;line-height:70px;}
 .chengyuan_con .btn3{width:580px;height:70px;padding:0px 10px 0px 10px;text-align:center;border-radius:8px;border:solid 0px #d0d0d0;float:left;margin:80px auto 100px 20px;font-size:24px;line-height:70px;color:#ffffff;background-color:#429ddd;}
 .chengyuan_con .hx_btn{width:40px;height:20px;float:right;background: url("images/edshebei_07.jpg") no-repeat 0px 0px;margin-right:20px;}
 .chengyuan_con .hx_btn_a{width:40px;height:20px;float:right;background: url("images/edshebei_07a.jpg") no-repeat 0px 0px;margin-right:20px;}
-.chengyuan_con .btn4{width:auto;height:auto;float:left;background: url("images/edshebei_11.jpg") no-repeat 5px 25px;padding-left:30px;padding-right:30px;line-height:70px;color:#999999;font-size:20px;}
-.chengyuan_con .btn4_a{width:auto;height:auto;float:left;background: url("images/edshebei_11a.jpg") no-repeat 5px 25px;padding-left:30px;padding-right:30px;line-height:70px;color:#2bbbe7;font-size:20px;}
+.chengyuan_con .btn4{
+	width:auto;height:auto;float:left;background: url("images/edshebei_11.jpg") no-repeat 5px 12px;
+	padding-left:30px;
+	padding-right:10px;
+	line-height:40px;
+	color:#999999;
+	font-size:20px;
+	border-radius: 6px;
+    border: solid 1px #dadada;
+	margin-bottom:10px;
+	margin-right:10px;
+	float:left;
+}
+.chengyuan_con .touche{
+	width:auto;
+	height:auto;
+	float:left;
+	padding-left:4px;
+	padding-right:4px;
+	line-height:40px;
+	color:#999999;
+	font-size:20px;
+    border-radius: 6px;
+    border: solid 1px #dadada;
+	margin-bottom:10px;
+	margin-right:10px;
+	float:left;
+}
+.chengyuan_con .btn4_touche{
+	width:auto;
+	height:auto;
+	float:left;
+	background: url("images/edshebei_11.jpg") no-repeat 5px 12px;
+	padding-left:30px;
+	padding-right:10px;
+	line-height:40px;
+	color:#999999;
+	font-size:20px;	
+	
+}
+.chengyuan_con .btn4_a_touche{
+    width: auto;
+    height: auto;
+    float: left;
+    background: url("images/edshebei_11a.jpg") no-repeat 5px 12px;
+    padding-left: 30px;
+    padding-right: 10px;
+    line-height: 40px;
+    color: #2bbbe7;
+    font-size: 20px;
+}
+.chengyuan_con .btn4_a{
+	width:auto;
+	height:auto;
+	float:left;
+	background: url("images/edshebei_11a.jpg") no-repeat 5px 12px;
+	border: solid 1px #2bbbe7;
+	padding-left:30px;
+	padding-right:10px;
+	line-height:40px;
+	color:#2bbbe7;
+	font-size:20px;
+	}
+.green_active{
+	border: solid 1px #2bbbe7 !important;
+}
 .chengyuan_con .dx_btn{width:100px;height:22px;float:right;background: url("images/moshi_13.jpg") no-repeat 54px 0px;margin-right:10px;}
 .chengyuan_con .dx_btn_a{width:100px;height:22px;float:right;background: url("images/moshi_13a.jpg") no-repeat 54px 0px;margin-right:10px;}
 .chengyuan_con .xq_box{float:left;margin-left:80px;color:#ffffff;text-align:center;line-height:30px;}
