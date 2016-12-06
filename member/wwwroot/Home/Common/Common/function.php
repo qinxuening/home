@@ -24,8 +24,8 @@
 	//国内
 	function smsto($telphone,$message)
 	{
-		$uid = 'maorongcai';
-		$pwd = 'xgf8889';
+		$uid = '';
+		$pwd = '';
 		$message=urlencode($message);
 		$sendurl="http://sms.106jiekou.com/utf8/sms.aspx?account=".$uid."&password=".$pwd."&mobile=".$telphone."&content=".$message."";
 		$result = file_get_contents($sendurl);
@@ -36,9 +36,9 @@
 	function intlsmsto($telphone,$message,$vercode)
 	{
 	
-		$username = 'laichengkeji';
-		$password = 'xgfQAZ2121';
-		$apikey = '269262be3fe42ed2d529caea548b16f8';
+		$username = '';
+		$password = '';
+		$apikey = '';
 		$mobile	 = $telphone;
 		$content = $message;
 		$result = sendSMS($username,$password,$telphone,$content,$apikey);
