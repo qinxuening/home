@@ -19,6 +19,7 @@ class TypeController extends CommonController{
 	  	$Page->setConfig('theme', '%FIRST%%UP_PAGE%%LINK_PAGE%%DOWN_PAGE%%END%%HEADER%');
 	  	$show       = $Page->show();
 		$list = $this->modeltype_head->where(array("wUseID" => session('wUseID')))->order(array('Pid'=>'desc'))->field('wName, Pid')->limit($Page->firstRow.','.$Page->listRows)->select();
+		writelog('log',$list);
 		$this->assign("mytype",$list);
 		$this->assign('page',$show);
 		$this->display();

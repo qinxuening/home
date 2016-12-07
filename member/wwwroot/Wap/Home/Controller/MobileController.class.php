@@ -6,6 +6,7 @@ class MobileController extends CommonController{
 	protected $linklist;
 	protected $timeaction;
 	protected $linklist_s;
+	protected $linklist_child;
 	
 	public function _initialize(){
 		parent::_initialize();
@@ -14,6 +15,7 @@ class MobileController extends CommonController{
 		$this->linklist = D("Linklist");
 		$this->timeaction = D("Timeaction");
 		$this->linklist_s = D("linklist_s");
+		$this->linklist_child = D("linklist_child");
 	}
 	
 	public function index(){	
@@ -173,7 +175,7 @@ class MobileController extends CommonController{
 	
 	public function update(){
 		$Pid = intval(I('get.id'));
-		print_r(I('post.'));die();
+		//print_r(I('post.'));die();
 		if($this->mobilemanager->CheckPid($Pid)){
 			$data = I('post.');
 			$data['wMB'] = session('wMB');

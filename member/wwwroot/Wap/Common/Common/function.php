@@ -7,6 +7,7 @@
 	function convert($hexString) 
 	{ 
 		$hexLenght = strlen($hexString); 
+		// only hex numbers is allowed 
 		if ($hexLenght % 2 != 0 || preg_match("/[^\da-fA-F]/",$hexString)) return FALSE; 
 	
 		unset($binString);
@@ -14,6 +15,7 @@
 		{ 
 			$binString .= chr(hexdec(substr($hexString,2 * $x - 2,2))); 
 		} 
+	
 		return $binString;
 	} 
 	//手机号码星号处理
@@ -23,13 +25,16 @@
 	}
 
 	//国内
-	function smsto($telphone,$message)
+	function intlsmsto1($telphone,$message,$vercode)
 	{
-		$uid = '';
-		$pwd = '';
-		$message=urlencode($message);
-		$sendurl="http://sms.106jiekou.com/utf8/sms.aspx?account=".$uid."&password=".$pwd."&mobile=".$telphone."&content=".$message."";
-		$result = file_get_contents($sendurl);
+	
+		$username = '';		//用户账号
+		$password = '';	//密码
+		$apikey = '';	//密码
+		$mobile	 = $telphone;	//号手机码
+		$content = $message;//内容
+		//即时发送
+		$result = sendSMS($username,$password,$telphone,$content,$apikey);
 		return $result;
 	}
 
@@ -37,11 +42,12 @@
 	function intlsmsto($telphone,$message,$vercode)
 	{
 	
-		$username = '';
-		$password = '';
-		$apikey = '';
-		$mobile	 = $telphone;
-		$content = $message;
+		$username = '';		//用户账号
+		$password = '';	//密码
+		$apikey = '';	//密码
+		$mobile	 = $telphone;	//号手机码
+		$content = $message;//内容
+		//即时发送
 		$result = sendSMS($username,$password,$telphone,$content,$apikey);
 		return $result;
 	}
@@ -51,13 +57,13 @@
 		$url = 'http://m.5c.com.cn/api/send/?';
 		$data = array
 		(
-				'username'=>$username,				
-				'password'=>$password,			
-				'mobile'=>$mobile,	
-				'content'=>$content,	
-				'apikey'=>$apikey,	
+				'username'=>$username,					//用户账号
+				'password'=>$password,				//密码
+				'mobile'=>$mobile,					//号码
+				'content'=>$content,				//内容
+				'apikey'=>$apikey,				    //apikey
 		);
-		$result= curlSMS($url,$data);
+		$result= curlSMS($url,$data);			//POST方式提交
 		return $result;
 	}
 	
