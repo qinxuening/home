@@ -52,7 +52,7 @@ document.write('<meta name="viewport" content="width=640, user-scalable=no, targ
                 <div class="tb2">
                     <div class="t_">{$Think.lang.Model_name}：</div>
                     <div class="s_1 Validform_checktip">{$Think.lang.Model_format}</div>
-                    <input type="text" class="inp1" datatype="*1-18" nullmsg="{$Think.lang.Model_n}" sucmsg="{$Think.lang.Crepass}" name="wName" value="" tabindex="1" maxlength="18">
+                    <input type="text" class="inp1" datatype="*1-18" nullmsg="{$Think.lang.Model_n}" sucmsg="{$Think.lang.Crepass}" name="wName" value="" tabindex="1" maxlength="18" autocomplete="off">
                 </div>
             
             	<div class="line1"></div>
@@ -62,14 +62,33 @@ document.write('<meta name="viewport" content="width=640, user-scalable=no, targ
                     <div class="box1">
                         <div>
                             <volist name="myMobile" id="vo" key="k1">
-                                <label class="Jq_r Jq_m{$k1}" id="radio{$k1}">
-                                    <b class="btn4">{$vo.McName}</b>
-                                </label>
+                            	<eq name="vo.McID3" value="14">
+	                                <label class="touche Jq_r Jq_m{$k1}" id="radio{$k1}">
+                                   	    <b style="float:left;">{$vo.McName}</b>
+										<label><b onclick="click_touch('#Key1_On_{$vo[McID]}');" id="Key1_On_{$vo[McID]}" class="btn4_touche">{$Think.lang.key1}</b>
+											<input  style="display:none" class="px" name="wModelOn[{$vo.McID}][]"  type="checkbox" value="Key1">
+										</label>
+										<label><b onclick="click_touch('#Key2_On_{$vo[McID]}');" id="Key2_On_{$vo[McID]}" class="btn4_touche">{$Think.lang.key2}</b>
+											<input  style="display:none" class="px" name="wModelOn[{$vo.McID}][]"  type="checkbox"  value="Key2">
+										</label>
+										<label><b onclick="click_touch('#Key3_On_{$vo[McID]}');" id="Key3_On_{$vo[McID]}" class="btn4_touche">{$Think.lang.key3}</b>
+											<input  style="display:none" class="px" name="wModelOn[{$vo.McID}][]"  type="checkbox" value="Key3">
+										</label>
+	                                </label>
+								<else/>                           	
+	                                <label class="Jq_r Jq_m{$k1}" id="radio{$k1}">
+	                                    <b class="btn4">{$vo.McName}</b>
+	                                </label>
+								</eq>
                             </volist>
                         </div>
                         <div class="none">
                         	<volist name="myMobile" id="vo" key="k2">
-                        		<input type="checkbox" name="wModelOn[]" id="input{$k2}" value="{$vo.McID}" class="px">{$vo.McName}&nbsp;&nbsp;
+                        		<eq name="vo.McID3" value="14">
+                        			
+                        		<else/>    	
+                        			<input type="checkbox" name="wModelOn[]" id="input{$k2}" value="{$vo.McID}" class="px">{$vo.McName}&nbsp;&nbsp;
+								</eq>
                         	</volist>
                         </div>
                     </div>
@@ -80,39 +99,37 @@ document.write('<meta name="viewport" content="width=640, user-scalable=no, targ
                     <div class="box1">
                         <div>
                             <volist name="myMobile" id="vo" key="k1">
-                                <label class="Jqoff_r Jqoff_m{$k1}" id="radiooff{$k1}">
-                                    <b class="btn4">{$vo.McName}</b>
-                                </label>
+                             	<eq name="vo.McID3" value="14">
+	                                <label class="touche Jqoff_r Jqoff_m{$k1}" id="radiooff{$k1}">
+                                   	    <b style="float:left;">{$vo.McName}</b>
+										<label><b onclick="click_touch('#Key1_Off_{$vo[McID]}');" id="Key1_Off_{$vo[McID]}" class="btn4_touche">{$Think.lang.key1}</b>
+											<input  style="display:none" class="px" name="wModelOff[{$vo.McID}][]"  type="checkbox" value="Key1">
+										</label>
+										<label><b onclick="click_touch('#Key2_Off_{$vo[McID]}');" id="Key2_Off_{$vo[McID]}" class="btn4_touche">{$Think.lang.key2}</b>
+											<input  style="display:none" class="px" name="wModelOff[{$vo.McID}][]"  type="checkbox" value="Key2">
+										</label>
+										<label><b onclick="click_touch('#Key3_Off_{$vo[McID]}');" id="Key3_Off_{$vo[McID]}" class="btn4_touche">{$Think.lang.key3}</b>
+											<input  style="display:none" class="px" name="wModelOff[{$vo.McID}][]"  type="checkbox" value="Key3">
+										</label>
+	                                </label>
+								<else/>                             	
+	                                <label class="Jqoff_r Jqoff_m{$k1}" id="radiooff{$k1}">
+	                                    <b class="btn4">{$vo.McName}</b>
+	                                </label>
+								</eq>
                             </volist>
                         </div>
                         <div class="none">
                         	<volist name="myMobile" id="vo" key="k2">
-                        		<input type="checkbox" name="wModelOff[]" id="inputoff{$k2}" value="{$vo.McID}" class="px">{$vo.McName}&nbsp;&nbsp;
+                        		<eq name="vo.McID3" value="14">
+                        			
+                        		<else/> 	
+                        			<input type="checkbox" name="wModelOff[]" id="inputoff{$k2}" value="{$vo.McID}" class="px">{$vo.McName}&nbsp;&nbsp;
+								</eq>
                         	</volist>
                         </div>
                     </div>
-                </div>
-                <!--<div class="tb2">
-                	<div class="t_">{$Think.lang.Equ_state}</div>
-                	<div class="fr Jq_tx2" id="Jq_tx">
-						<!--<b class="hx_btn "></b>-->
-                        <!--<div id="JQ_n" class="dx_btn">{$Think.lang.Off}</div>
-						<div id="JQ_y" class="dx_btn">{$Think.lang.Open}</div>
-                    	<input type="radio" name="wType" class="none" id="wType"  />
-                    </div>
-                </div>
-				
-				
-				 <div class="tb2">
-                	<div class="t_">{$Think.lang.Other_Equ_state}</div>
-                	<div class="fr Jq_tx2" id="wJq_tx">
-						<!--<b class="hx_btn "></b>-->
-                        <!--<div id="wJQ_n" class="dx_btn">{$Think.lang.Off}</div>
-						<div id="wJQ_y" class="dx_btn">{$Think.lang.Open}</div>
-                    	<input type="radio" name="wOtherType" class="none" id="wOtherType"  />
-                    </div>
-                </div>-->
-            
+                </div>            
             	<input type="submit" class="btn3"  value="{$Think.lang.Save}">
                 	<input type="hidden" name="wUseID" value="{$User.wUseID}">
   				</form>
@@ -157,46 +174,76 @@ $(function(){
 </script>
 <script type="text/javascript">
 	$(document).ready(function(){	
-		var obj = $('.Jq_r');
-		for(var i = 1; i < obj.length+1; i++){
-			f_bl(i);
-		}
-	   var obj2 = $('.Jqoff_r');
-		for(var i = 1; i < obj2.length+1; i++){
-			f_bl2(i);
-		}
-	});
+	display_checked($('.Jq_r'), '.Jq_m', '#input', '#radio', 'btn4_a');//模式开关开
+	display_checked($('.Jqoff_r'), '.Jqoff_m', '#inputoff', '#radiooff', 'btn4_a');//模式开关开
 	
-	function f_bl(k){
-		$('.Jq_m'+k).on("click",function(){
-				
-				$('.Jq_m'+k).find('b').addClass('btn4_a');
-				$('#input'+k).prop("checked",true);
-				$('.Jq_m'+k).off("click");
-				
-				$('#radio'+k).on("click",function(){
-					$('#radio'+k).find('b').removeClass('btn4_a');
-					$('#input'+k).prop("checked",false);
-					$('#radio'+k).off("click");
-					f_bl(k);
-				});	
-		});
+	//开关全选状态	
+	 $(".touche").each(function(e){
+		if($(this).find('.btn4_a_touche').length == 3){
+			$(this).addClass('green_active');
+		}else{
+			$(this).removeClass('green_active');
+		}
+	})
+	
+});
+
+function click_touch(id){
+	if($(id).hasClass('btn4_a_touche')){
+		$(id).removeClass('btn4_a_touche');
+		if($(id).parent().parent().find('.btn4_a_touche').length == 3){
+			$(id).parent().parent().addClass('green_active');
+		}else{
+			$(id).parent().parent().removeClass('green_active');
+		}
+	}else{
+		$(id).addClass('btn4_a_touche');
+		if($(id).parent().parent().find('.btn4_a_touche').length == 3){
+			$(id).parent().parent().addClass('green_active');
+		}else{
+			$(id).parent().parent().removeClass('green_active');
+		}
 	}
-	function f_bl2(k){
-		$('.Jqoff_m'+k).on("click",function(){
-				
-				$('.Jqoff_m'+k).find('b').addClass('btn4_a');
-				$('#inputoff'+k).prop("checked",true);
-				$('.Jq_moff'+k).off("click");
-				
-				$('#radiooff'+k).on("click",function(){
-					$('#radiooff'+k).find('b').removeClass('btn4_a');
-					$('#inputoff'+k).prop("checked",false);
-					$('#radiooff'+k).off("click");
-					f_bl2(k);
-				});	
-		});
+}
+
+function display_checked(ob, Jq_m, input, radio, btn4_a){
+	for(var i = 1; i < ob.length+1; i++){
+		if($(Jq_m+i).find('b').hasClass(btn4_a)){
+			r_bl(Jq_m+i,input+i,radio+i, btn4_a);
+		}else{
+			f_bl(Jq_m+i,input+i,radio+i, btn4_a);	
+		};
 	}	
+}
+//正向
+function f_bl(obj1,obj2,obj3,btn4){
+	$(obj1).on("click",function(){			
+			$(obj1).find('b').addClass(btn4);
+			$(obj2).prop("checked",true);
+			$(obj1).off("click");
+			
+			$(obj3).on("click",function(){
+				$(obj3).find('b').removeClass(btn4);
+				$(obj2).prop("checked",false);
+				$(obj3).off("click");
+				f_bl(obj1,obj2,obj3,btn4);
+			});	
+	});
+}
+function r_bl(obj1,obj2,obj3,btn4){
+	$(obj1).on("click",function(){			
+			$(obj3).find('b').removeClass(btn4);
+			$(obj2).prop("checked",false);
+			$(obj1).off("click");
+			
+			$(obj3).on("click",function(){
+				$(obj1).find('b').addClass(btn4);
+				$(obj2).prop("checked",true);
+				$(obj3).off("click");
+				r_bl(obj1,obj2,obj3,btn4);
+			});	
+	});
+}
 	$('#JQ_y').on("click",function(){
 		$('#JQ_y').addClass('dx_btn_a');
 		$('#JQ_n').removeClass('dx_btn_a');

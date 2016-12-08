@@ -75,33 +75,34 @@ $("#IsAllClose").click(function(){
                 <tr style="border-top:1px solid #eeeeee;background-color:#fcfcfc; padding:20px 0px">
                   <th><span class="red">*</span>{$Think.lang.equipment_on}：</th>
                   <td><volist name="myMobile" id="vo" >
-                  	 <span class="bbox1"><label><input type="checkbox" name="wModelOn[]" id="wModelOn[]" value="{$vo.McID}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
+                  	 <eq name="vo.McID3" value="14">
+         	     		<span class="bbox1"><label style="margin-bottom:0!important;">
+							&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;
+							<label ><input class="px" name="wModelOn[{$vo.McID}][]" type="checkbox" value="Key1">&nbsp;{$Think.lang.key1}&nbsp;</label>
+							<label ><input class="px" name="wModelOn[{$vo.McID}][]" type="checkbox" value="Key2">&nbsp;{$Think.lang.key2}&nbsp;</label>
+							<label ><input class="px" name="wModelOn[{$vo.McID}][]" type="checkbox" value="Key3">&nbsp;{$Think.lang.key3}&nbsp;</label>
+						</label></span>
+					 <else/>
+                  	 	<span class="bbox1"><label><input type="checkbox" name="wModelOn[]" id="wModelOn[]" value="{$vo.McID}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
+					</eq>
 					</volist></td>
                 </tr>
 				<tr style="margin:20px 0;height:20px;"></tr>
 				<tr style="border-top:1px solid #eeeeee;background-color:#fcfcfc; padding:20px 0px">
                   <th><span class="red">*</span>{$Think.lang.equipment_off}：</th>
                   <td><volist name="myMobile" id="vo" >
-                  	 <span class="bbox1"><label><input type="checkbox" name="wModelOff[]" id="wModelOff[]" value="{$vo.McID}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
+                  	 <eq name="vo.McID3" value="14">
+             	         <span class="bbox1"><label style="margin-bottom:0!important;">
+							&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;
+							<label ><input class="px" name="wModelOff[{$vo.McID}][]" type="checkbox" value="Key1">&nbsp;{$Think.lang.key1}&nbsp;</label>
+							<label ><input class="px" name="wModelOff[{$vo.McID}][]" type="checkbox" value="Key2">&nbsp;{$Think.lang.key2}&nbsp;</label>
+							<label ><input class="px" name="wModelOff[{$vo.McID}][]" type="checkbox" value="Key3">&nbsp;{$Think.lang.key3}&nbsp;</label>
+						</label></span>	
+					<else/>
+                  		 <span class="bbox1"><label><input type="checkbox" name="wModelOff[]" id="wModelOff[]" value="{$vo.McID}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
+					</eq>
 					</volist></td>
-                </tr>
-				<!--
-				<tr>
-                  <th><span class="red"></span>{$Think.lang.Equ_state}：</th>
-                  <td align="left"><input type="radio" class="JQ_y" name="wType"  id="wType" value="1"  class="px">&nbsp;{$Think.lang.Open}
-				   &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" class="JQ_n" name="wType" id="wType" value="0" checked class="px">&nbsp;{$Think.lang.Off}
-				  </td>
-				  
-                </tr>
-				
-				<tr>
-                  <th style="width:180px !important;"><span class="red"></span>{$Think.lang.Other_Equ_state}：</th>
-                  <td align="left"><input type="radio" class="wJQ_y" name="wOtherType"  id="wOtherType" value="1"  class="px">&nbsp;<span id="Qopen">{$Think.lang.Open}</span>
-				   &nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" class="wJQ_n" name="wOtherType" id="wOtherType" value="0" class="px">&nbsp;<span id="Qoff">{$Think.lang.Off}</span>
-				  </td>
-                </tr>
-				-->
-				
+                </tr>				
                 <tr>
                   <th></th>
                   <td><button type="submit" class="btnGreen" id="saveSetting">{$Think.lang.Save}</button></td>

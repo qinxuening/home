@@ -4,12 +4,14 @@ class TimeController extends CommonController{
 	protected $timeaction_head;
 	protected $mobilemanager;
 	protected $timeaction;
+	protected $timeaction_child;
 	
 	public function _initialize(){
 		parent::_initialize();
 		$this->timeaction_head = D("TimeactionHead");
 		$this->mobilemanager = D('Mobilemanager');
 		$this->timeaction = D('Timeaction');
+		$this->timeaction_child = D('timeaction_child');
 	}
 	
 	public function index(){
@@ -27,6 +29,7 @@ class TimeController extends CommonController{
 	public function del(){
 		$Pid=intval(I('get.id'));
 		if($this->timeaction_head->CheckPid($Pid)){
+			$this->timeaction_child->where(array('wModel'=>$Pid))->delete();
 			$result = $this->timeaction_head->relation(true)->where(array('Pid' => $Pid))->delete();
 			if($result){
 				$url = 'http://'.$_SERVER['HTTP_HOST'].__APP__.'/Time/';
@@ -44,14 +47,14 @@ class TimeController extends CommonController{
 		if($this->timeaction_head->CheckPid($Pid)){
 			$wMB=session('wMB');
 			$wUseID=session('wUseID');
-			$list = $this->mobilemanager->query("select * from `mobilemanager` where `wUseID` ='$wUseID' AND `wMB`='$wMB' AND left(`McID`,2) not in ('12')");
-			//$list = $this->mobilemanager->where(array('wUseID' => session('wUseID')))->field('McID, McName')->select();
+			$list = $this->mobilemanager->query("select `McID`, `McName`, left(`McID`,2) as McID3  from `mobilemanager` where `wUseID` ='$wUseID' AND `wMB`='$wMB' AND left(`McID`,2) not in ('12')");
 			$find = $this->timeaction_head->where(array('Pid' => $Pid))->field("wUseID",true)->find();
 			if($find){
-				$findmodel = $this->timeaction->where(array('wModel' => $find['Pid']))->field('McID')->select();
+				$findmodel=$this->timeaction->join("LEFT JOIN `timeaction_child` m on `timeaction`.Pid = m.Pid")->where(array("`timeaction`".".wModel" => $find['Pid']))->field("`timeaction`.`McID` , Key1, Key2, Key3")->select();
 				$m = TarrayToOarray($findmodel, 'McID');
 				$this->assign("checklist",$m);
 				$this->assign("myMobile",$list);
+				$this->assign("Key_mLinkOn", key_timeaction_value_Key($findmodel, 'McID'));
 				$this->assign('type',$find);
 				$this->display();
 			}else{
@@ -70,15 +73,10 @@ class TimeController extends CommonController{
 			if($this->timeaction_head->create($HeadInfo)){
 				$this->timeaction_head->where(array('Pid' => $Pid))->save();
 			}
+			$this->timeaction_child->where(array('wModel' => $Pid))->delete();
 			$this->timeaction->where(array('wModel' => $Pid))->delete();
 			$wModeldata=I('post.wModel',null);
-			for($i=0;$i<count($wModeldata);$i++){
-				$data['wModel']=$Pid;
-				$data['McID']=$wModeldata[$i];
-				$data['wUseID']=session('wUseID');
-				$this->timeaction->create();
-				$this->timeaction->add($data);
-			}
+			Do_Timeaction_child($this->timeaction, $this->timeaction_child, $wModeldata, $Pid);
 		}else{
 			$this->error(L('S_parameter_e'));
 		}
@@ -89,8 +87,7 @@ class TimeController extends CommonController{
 	public function add(){
 		$wMB=session('wMB');
 		$wUseID=session('wUseID');
-		$list = $this->mobilemanager->query("select `McID`, `McName` from `mobilemanager` where `wUseID` ='$wUseID' AND `wMB`='$wMB' AND left(`McID`,2) not in ('12')");
-		//$list = $this->mobilemanager->where(array('wUseID' => session('wUseID')))->field('McID, McName')->select();
+		$list = $this->mobilemanager->query("select `McID`, `McName`, left(`McID`,2) as McID3  from `mobilemanager` where `wUseID` ='$wUseID' AND `wMB`='$wMB' AND left(`McID`,2) not in ('12')");
 		$this->assign("myMobile",$list);
 		$this->display();
 	}
@@ -101,13 +98,7 @@ class TimeController extends CommonController{
 		if($this->timeaction_head->create($HeadInfo)){
 			$id=$this->timeaction_head->add();
 			$wModeldata=I('post.wModel',null);
-			for($i=0;$i<count($wModeldata);$i++){
-				$data['wModel']=$id;
-				$data['McID']=$wModeldata[$i];
-				$data['wUseID']=session('wUseID');
-				$this->timeaction->create();
-				$this->timeaction->add($data);
-			}
+			Do_Timeaction_child($this->timeaction, $this->timeaction_child, $wModeldata, $id);
 			$url = 'http://'.$_SERVER['HTTP_HOST'].__APP__.'/Time/';
 			header("Location:$url");
 		}else{

@@ -7,7 +7,6 @@
 	function convert($hexString) 
 	{ 
 		$hexLenght = strlen($hexString); 
-		// only hex numbers is allowed 
 		if ($hexLenght % 2 != 0 || preg_match("/[^\da-fA-F]/",$hexString)) return FALSE; 
 	
 		unset($binString);
@@ -15,7 +14,6 @@
 		{ 
 			$binString .= chr(hexdec(substr($hexString,2 * $x - 2,2))); 
 		} 
-	
 		return $binString;
 	} 
 	//手机号码星号处理
@@ -25,16 +23,13 @@
 	}
 
 	//国内
-	function intlsmsto1($telphone,$message,$vercode)
+	function smsto($telphone,$message)
 	{
-	
-		$username = '';		//用户账号
-		$password = '';	//密码
-		$apikey = '';	//密码
-		$mobile	 = $telphone;	//号手机码
-		$content = $message;//内容
-		//即时发送
-		$result = sendSMS($username,$password,$telphone,$content,$apikey);
+		$uid = '';
+		$pwd = '';
+		$message=urlencode($message);
+		$sendurl="http://sms.106jiekou.com/utf8/sms.aspx?account=".$uid."&password=".$pwd."&mobile=".$telphone."&content=".$message."";
+		$result = file_get_contents($sendurl);
 		return $result;
 	}
 
@@ -42,12 +37,11 @@
 	function intlsmsto($telphone,$message,$vercode)
 	{
 	
-		$username = '';		//用户账号
-		$password = '';	//密码
-		$apikey = '';	//密码
-		$mobile	 = $telphone;	//号手机码
-		$content = $message;//内容
-		//即时发送
+		$username = '';
+		$password = '';
+		$apikey = '';
+		$mobile	 = $telphone;
+		$content = $message;
 		$result = sendSMS($username,$password,$telphone,$content,$apikey);
 		return $result;
 	}
@@ -57,13 +51,13 @@
 		$url = 'http://m.5c.com.cn/api/send/?';
 		$data = array
 		(
-				'username'=>$username,					//用户账号
-				'password'=>$password,				//密码
-				'mobile'=>$mobile,					//号码
-				'content'=>$content,				//内容
-				'apikey'=>$apikey,				    //apikey
+				'username'=>$username,				
+				'password'=>$password,			
+				'mobile'=>$mobile,	
+				'content'=>$content,	
+				'apikey'=>$apikey,	
 		);
-		$result= curlSMS($url,$data);			//POST方式提交
+		$result= curlSMS($url,$data);
 		return $result;
 	}
 	
@@ -109,6 +103,44 @@
 			$arr["$value[$Field]"][]= $value["Key1"];
 			$arr["$value[$Field]"][] = $value["Key2"];
 			$arr["$value[$Field]"][] = $value["Key3"];
+		}
+		return $arr;
+	}
+
+	/**
+	 * @author
+	 * 整合模式开关按键
+	 * @param unknown $Array
+	 * @param unknown $Field
+	 * @param unknown $Type
+	 * @return Ambigous <multitype:, unknown>
+	 */
+	function key_wModel_value_Key($Array , $Field, $Type){
+		$arr = array();
+		foreach ($Array as $key=>$value) {
+			if($value['Type'] == $Type && substr($value['McID'], 0,2) == '14'){
+				$arr["$value[$Field]"][]= $value["Key1"];
+				$arr["$value[$Field]"][] = $value["Key2"];
+				$arr["$value[$Field]"][] = $value["Key3"];
+			}
+		}
+		return $arr;
+	}	
+
+	/**
+	 * @author 整合时间开关按键
+	 * @param unknown $Array
+	 * @param unknown $Field
+	 * @return Ambigous <multitype:, unknown>
+	 */
+	function key_timeaction_value_Key($Array , $Field){
+		$arr = array();
+		foreach ($Array as $key=>$value) {
+			if(substr($value['McID'], 0,2) == '14'){
+				$arr["$value[$Field]"][]= $value["Key1"];
+				$arr["$value[$Field]"][] = $value["Key2"];
+				$arr["$value[$Field]"][] = $value["Key3"];
+			}
 		}
 		return $arr;
 	}
@@ -166,6 +198,58 @@
 		}
 	}
 	
+	/**
+	 * @author qxn
+	 * 处理模式开关按键
+	 * @param unknown $modeltype
+	 * @param unknown $modeltype_child
+	 * @param unknown $arr
+	 * @param unknown $Pid
+	 * @param unknown $Type
+	 */
+	function Do_modeltype_child($modeltype, $modeltype_child, $arr, $Pid, $Type){
+		foreach ($arr as $key => $value){
+			if(is_array($value)){
+				$idon = $modeltype->add(array('wUseID' => session('wUseID'), 'wModel'=>$Pid, 'McID' => $key, 'Type' => $Type));
+				$modeltype_child_list['Pid'] = $idon;
+				$modeltype_child_list['wUseID'] = session('wUseID');
+				$modeltype_child_list['wModel'] = $Pid;
+				$modeltype_child_list['McID'] = $key;
+				$modeltype_child_list['Key1'] = in_array('Key1', $value)? 1:0;
+				$modeltype_child_list['Key2'] = in_array('Key2', $value)? 1:0;
+				$modeltype_child_list['Key3'] = in_array('Key3', $value)? 1:0;
+				$modeltype_child->add($modeltype_child_list);
+			}else{
+				$modeltype->add(array('wUseID' => session('wUseID'), 'wModel'=>$Pid, 'McID' => $value, 'Type' => $Type));
+			}
+		}
+	}
+
+	/**
+	 * @author qx
+	 * 处理时间开关按键
+	 * @param unknown $timeaction
+	 * @param unknown $timeacion_child
+	 * @param unknown $arr
+	 * @param unknown $Pid
+	 */
+	function Do_Timeaction_child($timeaction, $timeacion_child, $arr, $Pid){
+		foreach ($arr as $key => $value){
+			if(is_array($value)){
+				$id = $timeaction->add(array('wUseID' => session('wUseID'), 'wModel' => $Pid, 'McID' => $key));
+				$timeaction_child_list['Pid'] = $id;
+				$timeaction_child_list['wUseID'] = session('wUseID');
+				$timeaction_child_list['wModel'] = $Pid;
+				$timeaction_child_list['McID'] = $key;
+				$timeaction_child_list['Key1'] = in_array('Key1', $value)? 1:0;
+				$timeaction_child_list['Key2'] = in_array('Key2', $value)? 1:0;
+				$timeaction_child_list['Key3'] = in_array('Key3', $value)? 1:0;
+				$timeacion_child->add($timeaction_child_list);
+			}else{
+				$timeaction->add(array('wUseID' => session('wUseID'), 'wModel' => $Pid, 'McID' => $value));
+			}
+		}
+	}	
 	
 	function CheckLength($data, $Min, $Max){
 		if(mb_strlen($data)< $Min || mb_strlen($data)> $Max){

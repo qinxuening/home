@@ -59,23 +59,42 @@ document.write('<meta name="viewport" content="width=640, user-scalable=no, targ
                     	
                         <div>
                             <volist name="myMobile" id="vo" key="k1">
-                                <label class="Jq_r Jq_m{$k1}" id="radio{$k1}">
-                                    <b class="btn4
-                                    <foreach name="checklist" item="vt">
-                            			<eq name="vt" value="$vo.McID">btn4_a</eq>
-                            		</foreach> 
-                                	 ">{$vo.McName}</b>
-                                </label>
+                            	<eq name="vo.McID3" value="14">
+	                                <label class="touche Jq_r Jq_m{$k1}" id="radio{$k1}">
+                                   	    <b style="float:left;">{$vo.McName}</b>
+										<label><b onclick="click_touch('#Key1_On_{$vo[McID]}');" id="Key1_On_{$vo[McID]}" class="btn4_touche <php>if($Key_mLinkOn["$vo[McID]"][0]){echo "btn4_a_touche";}</php>">{$Think.lang.key1}</b>
+											<input  style="display:none" class="px" name="wModel[{$vo.McID}][]"  type="checkbox" <php>if($Key_mLinkOn["$vo[McID]"][0]){echo "checked";}</php> value="Key1">
+										</label>
+										<label><b onclick="click_touch('#Key2_On_{$vo[McID]}');" id="Key2_On_{$vo[McID]}" class="btn4_touche <php>if($Key_mLinkOn["$vo[McID]"][1]){echo "btn4_a_touche";}</php>">{$Think.lang.key2}</b>
+											<input  style="display:none" class="px" name="wModel[{$vo.McID}][]"  type="checkbox" <php>if($Key_mLinkOn["$vo[McID]"][1]){echo "checked";}</php> value="Key2">
+										</label>
+										<label><b onclick="click_touch('#Key3_On_{$vo[McID]}');" id="Key3_On_{$vo[McID]}" class="btn4_touche <php>if($Key_mLinkOn["$vo[McID]"][2]){echo "btn4_a_touche";}</php>">{$Think.lang.key3}</b>
+											<input  style="display:none" class="px" name="wModel[{$vo.McID}][]"  type="checkbox" <php>if($Key_mLinkOn["$vo[McID]"][2]){echo "checked";}</php> value="Key3">
+										</label>
+	                                </label>
+								<else/>                            	
+	                                <label class="Jq_r Jq_m{$k1}" id="radio{$k1}">
+	                                    <b class="btn4
+	                                    <foreach name="checklist" item="vt">
+	                            			<eq name="vt" value="$vo.McID">btn4_a</eq>
+	                            		</foreach> 
+	                                	 ">{$vo.McName}</b>
+	                                </label>
+								</eq>
                             </volist>
                         </div>
                         
                         <div class="none">
                         	<volist name="myMobile" id="vo" key="k2">
-                        		<input type="checkbox" name="wModel[]" id="input{$k2}" <foreach name="checklist" item="vt">
-                            		<eq name="vt" value="$vo.McID">checked</eq>
-                            	</foreach> 
-                                value="{$vo.McID}" class="px">
-                            	&nbsp;{$vo.McName}&nbsp;
+                        		<eq name="vo.McID3" value="14">
+                        			
+                        		<else/>   
+	                        		<input type="checkbox" name="wModel[]" id="input{$k2}" <foreach name="checklist" item="vt">
+	                            		<eq name="vt" value="$vo.McID">checked</eq>
+	                            	</foreach> 
+	                                value="{$vo.McID}" class="px">
+	                            	&nbsp;{$vo.McName}&nbsp;
+								</eq>
                         	</volist>
                         </div>
                     
@@ -154,7 +173,6 @@ document.write('<meta name="viewport" content="width=640, user-scalable=no, targ
 <script src="__PUBLIC__/resource/common/js/date/jquery.datetimepicker.js"></script>
 <script type="text/javascript">
 $(function(){
-
 var demo=$(".Machineryfrom").Validform({
 		tiptype:3,
 		label:".m_label",
@@ -176,47 +194,69 @@ $('#datetimepicker').datetimepicker({
 });
 
 $(document).ready(function(){
-	//Jq_tx();
-	var ob1 = $('.Jq_r');
-	for(var i = 1; i < ob1.length+1; i++){
-		if($('.Jq_m'+i).find('b').hasClass('btn4_a')){
-			r_bl('.Jq_m'+i,'#input'+i,'#radio'+i);
+	display_checked($('.Jq_r'), '.Jq_m', '#input', '#radio', 'btn4_a');
+	//开关全选状态	
+	 $(".touche").each(function(e){
+		if($(this).find('.btn4_a_touche').length == 3){
+			$(this).addClass('green_active');
 		}else{
-			f_bl('.Jq_m'+i,'#input'+i,'#radio'+i);	
-		};
-	}
-		
+			$(this).removeClass('green_active');
+		}
+	})
 });
+function click_touch(id){
+	if($(id).hasClass('btn4_a_touche')){
+		$(id).removeClass('btn4_a_touche');
+		if($(id).parent().parent().find('.btn4_a_touche').length == 3){
+			$(id).parent().parent().addClass('green_active');
+		}else{
+			$(id).parent().parent().removeClass('green_active');
+		}
+	}else{
+		$(id).addClass('btn4_a_touche');
+		if($(id).parent().parent().find('.btn4_a_touche').length == 3){
+			$(id).parent().parent().addClass('green_active');
+		}else{
+			$(id).parent().parent().removeClass('green_active');
+		}
+	}
+}
 
+function display_checked(ob, Jq_m, input, radio, btn4_a){
+	for(var i = 1; i < ob.length+1; i++){
+		if($(Jq_m+i).find('b').hasClass(btn4_a)){
+			r_bl(Jq_m+i,input+i,radio+i, btn4_a);
+		}else{
+			f_bl(Jq_m+i,input+i,radio+i, btn4_a);	
+		};
+	}	
+}
 //正向
-function f_bl(obj1,obj2,obj3){
-	$(obj1).on("click",function(){
-			
-			$(obj1).find('b').addClass('btn4_a');
+function f_bl(obj1,obj2,obj3,btn4){
+	$(obj1).on("click",function(){			
+			$(obj1).find('b').addClass(btn4);
 			$(obj2).prop("checked",true);
 			$(obj1).off("click");
 			
 			$(obj3).on("click",function(){
-				$(obj3).find('b').removeClass('btn4_a');
+				$(obj3).find('b').removeClass(btn4);
 				$(obj2).prop("checked",false);
 				$(obj3).off("click");
-				f_bl(obj1,obj2,obj3);
+				f_bl(obj1,obj2,obj3,btn4);
 			});	
 	});
 }
-
-function r_bl(obj1,obj2,obj3){
-	$(obj1).on("click",function(){
-			
-			$(obj3).find('b').removeClass('btn4_a');
+function r_bl(obj1,obj2,obj3,btn4){
+	$(obj1).on("click",function(){			
+			$(obj3).find('b').removeClass(btn4);
 			$(obj2).prop("checked",false);
 			$(obj1).off("click");
 			
 			$(obj3).on("click",function(){
-				$(obj1).find('b').addClass('btn4_a');
+				$(obj1).find('b').addClass(btn4);
 				$(obj2).prop("checked",true);
 				$(obj3).off("click");
-				r_bl(obj1,obj2,obj3);
+				r_bl(obj1,obj2,obj3,btn4);
 			});	
 	});
 }
@@ -234,52 +274,6 @@ $('#JQ_n').on("click",function(){
 	$('#wType').attr("value",0);
 	$('#wType').attr("checked","checked" );
 });
-
-/*function Jq_tx(){
-	if($('#Jq_tx').find('b').hasClass('hx_btn_a')){
-		 
-		 $('#Jq_tx').on("click",function(){
-		
-			$('#Jq_tx').find('b').removeClass('hx_btn_a');
-			$('#wType').attr("value",0);
-			$('#Jq_tx').off("click");
-			
-			$('.Jq_tx2').on("click",function(){
-				$('.Jq_tx2').find('b').addClass('hx_btn_a');
-				$('#wType').attr("value",1);
-				$('.Jq_tx2').off("click");
-				Jq_tx();
-			});	
-		});	
-		
-		
-	}else{
-		
-		$('#Jq_tx').on("click",function(){
-		
-			$('#Jq_tx').find('b').addClass('hx_btn_a');
-			$('#wType').attr("value",1);
-			$('#Jq_tx').off("click");
-			
-			$('.Jq_tx2').on("click",function(){
-				$('.Jq_tx2').find('b').removeClass('hx_btn_a');
-				$('#wType').attr("value",0);
-				$('.Jq_tx2').off("click");
-				Jq_tx();
-			});	
-		});	
-	}	
-	
-}
-*/
-
-/*fx('w1','wSunday');
-fx('w2','wMon');
-fx('w3','wTues');
-fx('w4','wWed');
-fx('w5','wThur');
-fx('w6','wFri');
-fx('w7','wSat');*/
 
 var obj = $('.xq_btn');
 for(var i = 1; i < obj.length+1; i++){

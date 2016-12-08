@@ -7,11 +7,13 @@ class MobileController extends CommonController{
 	protected $timeaction;
 	protected $linklist_s;
 	protected $linklist_child;
+	protected $modeltype_child;
 	
 	public function _initialize(){
 		parent::_initialize();
 		$this->mobilemanager = D("Mobilemanager");
 		$this->modeltype = D("Modeltype");
+		$this->modeltype_child = D("modeltype_child");
 		$this->linklist = D("Linklist");
 		$this->timeaction = D("Timeaction");
 		$this->linklist_s = D("linklist_s");
@@ -33,11 +35,18 @@ class MobileController extends CommonController{
 			$McID = $this->mobilemanager->where(array("Pid" => $Pid , "wUseID"=>session('wUseID')))->getField('McID');
 			
 			$this->modeltype->where(array('McID' => $McID , 'wUseID' => session('wUseID')))->delete();
+			$this->modeltype_child->where(array('McID' => $McID , 'wUseID' => session('wUseID')))->delete();
 			
 			$this->timeaction->where(array('McID' => $McID , 'wUseID' => session('wUseID')))->delete();
+			M('timeaction_child')->where(array('McID' => $McID , 'wUseID' => session('wUseID')))->delete();
 			
 			$this->linklist->where(array("Pid" => $Pid))->delete();
 			$this->linklist->where(array("McID" => $Pid))->delete();
+			
+			$this->linklist_s->where(array("Pid" => $Pid))->delete();
+			$this->linklist_s->where(array("McID" => $Pid))->delete();
+			
+			$this->linklist_child->where(array(array("McID" => $Pid)))->delete();
 			
 			if($this->mobilemanager->where(array("Pid" => $Pid , 'wUseID' => session('wUseID')))->delete()){
 				$url = 'http://'.$_SERVER['HTTP_HOST'].__APP__.'/Mobile/';
