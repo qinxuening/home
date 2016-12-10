@@ -51,9 +51,9 @@ class TypeController extends CommonController{
 			$list = $this->mobilemanager->query("select `McID`, `McName`, left(`McID`,2) as McID3  from `mobilemanager` where `wUseID` ='$wUseID' AND `wMB`='$wMB' AND left(`McID`,2) not in ('12')");
 			$find=$this->modeltype_head->where(array("Pid" => $Pid))->field("wUseID",true)->find();
 			if($find){
-				$findmodel=$this->modeltype->join("LEFT JOIN `modeltype_child` m on `modeltype`.Pid = m.Pid")->where(array("`modeltype`".".wModel" => $find['Pid']))->field("`modeltype`.`McID` ,Type, Key1, Key2, Key3")->select();
+				$findmodel=$this->modeltype->join("LEFT JOIN `modeltype_child` m on `modeltype`.Pid = m.Pid")->where(array("`modeltype`".".wModel" => $find['Pid']))->field("`modeltype`.`McID` ,wType, Key1, Key2, Key3")->select();
 				foreach ($findmodel as $k => $v){
-					if(1 == $v['Type']){
+					if(1 == $v['wType']){
 						$dataOn[] = $v['McID'];
 					}else{
 						$dataOff[] = $v['McID'];
@@ -89,10 +89,14 @@ class TypeController extends CommonController{
 			$this->modeltype_child->where(array("wModel" => $Pid))->delete();
 			
 			$wModelOndata=I('post.wModelOn',null);
+			$wModelOndata_touche=I('post.wModelOn_touche',null);
 			$wModelOffdata=I('post.wModelOff',null);
+			$wModelOffdata_touche=I('post.wModelOff_touche',null);
 			
 			Do_modeltype_child($this->modeltype, $this->modeltype_child, $wModelOndata, $Pid, 1);
+			Do_modeltype_child($this->modeltype, $this->modeltype_child, $wModelOndata_touche, $Pid, 1);
 			Do_modeltype_child($this->modeltype, $this->modeltype_child, $wModelOffdata, $Pid, 0);
+			Do_modeltype_child($this->modeltype, $this->modeltype_child, $wModelOffdata_touche, $Pid, 0);
 			
 			$url = 'http://'.$_SERVER['HTTP_HOST'].__APP__.'/Type/';
 			header("Location:$url");
@@ -115,10 +119,14 @@ class TypeController extends CommonController{
 		if($this->modeltype_head->create($HeadInfo)){
 			$id=$this->modeltype_head->add();
 			$wModelOndata=I('post.wModelOn',null);
+			$wModelOndata_touche=I('post.wModelOn_touche',null);
 			$wModelOffdata=I('post.wModelOff',null);
+			$wModelOffdata_touche=I('post.wModelOff_touche',null);
 			
 			Do_modeltype_child($this->modeltype, $this->modeltype_child, $wModelOndata, $id, 1);
+			Do_modeltype_child($this->modeltype, $this->modeltype_child, $wModelOndata_touche, $id, 1);
 			Do_modeltype_child($this->modeltype, $this->modeltype_child, $wModelOffdata, $id, 0);
+			Do_modeltype_child($this->modeltype, $this->modeltype_child, $wModelOffdata_touche, $id, 0);
 			
 			$url = 'http://'.$_SERVER['HTTP_HOST'].__APP__.'/Type/';
 			header("Location:$url");

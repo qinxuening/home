@@ -68,15 +68,26 @@ class TimeController extends CommonController{
 	public function update(){
 		$Pid=intval(I('get.id'));
 		if($this->timeaction_head->CheckPid($Pid)){
-			$HeadInfo = I('post.');
 			$HeadInfo['wUseID'] = session('wUseID');
-			if($this->timeaction_head->create($HeadInfo)){
-				$this->timeaction_head->where(array('Pid' => $Pid))->save();
+			$HeadInfo['wTime'] = I('post.wTime');
+			$HeadInfo['wName'] = I('post.wName');
+			$HeadInfo['wType'] = I('post.wType')?I('post.wType'):0;
+			$HeadInfo['wMon'] = I('post.wMon')?I('post.wMon'):0;
+			$HeadInfo['wTues'] = I('post.wTues')?I('post.wTues'):0;
+			$HeadInfo['wWed'] = I('post.wWed')?I('post.wWed'):0;
+			$HeadInfo['wThur'] = I('post.wThur')?I('post.wThur'):0;
+			$HeadInfo['wFri'] = I('post.wFri')?I('post.wFri'):0;
+			$HeadInfo['wSat'] = I('post.wSat')?I('post.wSat'):0;
+			$HeadInfo['wSunday'] = I('post.wSunday')?I('post.wSunday'):0;
+			if($this->timeaction_head->create()){
+				$this->timeaction_head->where(array('Pid' => $Pid))->save($HeadInfo);
 			}
 			$this->timeaction_child->where(array('wModel' => $Pid))->delete();
 			$this->timeaction->where(array('wModel' => $Pid))->delete();
-			$wModeldata=I('post.wModel',null);
+			$wModeldata=I('wModel',null);
+			$wModeldata_touch = I('wModel_touche',null);
 			Do_Timeaction_child($this->timeaction, $this->timeaction_child, $wModeldata, $Pid);
+			Do_Timeaction_child($this->timeaction, $this->timeaction_child, $wModeldata_touch, $Pid);
 		}else{
 			$this->error(L('S_parameter_e'));
 		}
@@ -98,7 +109,9 @@ class TimeController extends CommonController{
 		if($this->timeaction_head->create($HeadInfo)){
 			$id=$this->timeaction_head->add();
 			$wModeldata=I('post.wModel',null);
+			$wModeldata_touch = I('wModel_touche',null);
 			Do_Timeaction_child($this->timeaction, $this->timeaction_child, $wModeldata, $id);
+			Do_Timeaction_child($this->timeaction, $this->timeaction_child, $wModeldata_touch, $id);
 			$url = 'http://'.$_SERVER['HTTP_HOST'].__APP__.'/Time/';
 			header("Location:$url");
 		}else{
