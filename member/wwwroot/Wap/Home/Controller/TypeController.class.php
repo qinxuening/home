@@ -48,9 +48,9 @@ class TypeController extends CommonController{
 					 AND left(`McID`,2) not in ('12')");
 			$find=$this->modeltype_head->where(array("Pid" => $Pid))->field("wUseID",true)->find();
 			if($find){
-				$findmodel=$this->modeltype->join("LEFT JOIN `modeltype_child` m on `modeltype`.Pid = m.Pid")->where(array("`modeltype`".".wModel" => $find['Pid']))->field("`modeltype`.`McID` ,Type, Key1, Key2, Key3")->select();
+				$findmodel=$this->modeltype->join("LEFT JOIN `modeltype_child` m on `modeltype`.Pid = m.Pid")->where(array("`modeltype`".".wModel" => $find['Pid']))->field("`modeltype`.`McID` ,wType, Key1, Key2, Key3")->select();
 				foreach ($findmodel as $k => $v){
-					if(1 == $v['Type']){
+					if(1 == $v['wType']){
 						$dataOn[] = $v['McID'];
 					}else{
 						$dataOff[] = $v['McID'];

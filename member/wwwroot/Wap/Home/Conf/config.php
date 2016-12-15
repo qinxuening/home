@@ -12,13 +12,18 @@ return array(
 	//默认成功跳转对应的模板文件
 	'TMPL_ACTION_SUCCESS' => 'Public:success',
 		
+	'SESSION_AUTO_START' =>true,
+	'SESSION_OPTIONS'       =>  array(
+		'SESSION_EXPIRE'=>20
+	),
+		
 	//'TMPL_CACHE_ON' => false,      // 默认开启模板缓存
 
 	//开启缓存
-	'DATA_CACHE_TYPE' => 'Memcache',
+	/*'DATA_CACHE_TYPE' => 'Memcache',
 	'DATA_CACHE_TIME'       =>  600,
 	'DATA_CACHE_PREFIX'     =>  'oubao',
 	'MEMCACHE_HOST' => '127.0.0.1',
-	'MEMCACHE_PORT'	=>	'11211',
+	'MEMCACHE_PORT'	=>	'11211',*/
 		
 );

@@ -66,7 +66,7 @@ class MobileController extends CommonController{
 			$where['Pid'] = array('neq', $Pid);
 			$where['wUseID'] = array('eq', session("wUseID"));
 			$list = $this->mobilemanager->where($where)->field('Pid , McName, left(`McID`,2) as McID3')->order('Item ASC')->select();
-			$find = $this->mobilemanager->where(array("Pid" => $Pid))->field('Pid , McName , IsMsg , left(`McID`,2) as McID1 , left(`McID`,2) as McID2 , McID')->find();
+			$find = $this->mobilemanager->where(array("Pid" => $Pid))->field('Pid , McName , IsMsg , left(`McID`,2) as McID1 , left(`McID`,2) as McID2 , McID, shake')->find();
 			if($find){
 				if('14' == $find['McID1']){
 					$touchlist = $this->linklist_s->join("LEFT JOIN `linklist_child` c on `linklist_s`.wID = c.wID and c.mark = 2")->where(array("`linklist_s`".".Pid" =>$find['Pid']))->field('Key01 , Key02 , Key03 , Key1, Key2, Key3, `linklist_s`.McID , wModeltype')->select();
@@ -134,10 +134,10 @@ class MobileController extends CommonController{
 					}
 					$this->assign('McID1' , $find['McID1']);
 				}else{
-					$findLinkOn = $this->linklist->join("LEFT JOIN `linklist_child` c on `linklist`.wID = c.wID and c.mark = 1")->where(array("`linklist`".".McID" =>$find['Pid'],wModeltype=>1))->field('Pid, Key1, Key2, Key3')->select();//联动开
-					$findLinkOff = $this->linklist->join("LEFT JOIN `linklist_child` c on `linklist`.wID = c.wID and c.mark = 1")->where(array("`linklist`".".McID" =>$find['Pid'],wModeltype=>2))->field('Pid, Key1, Key2, Key3')->select();//联动关
-					$findLinkOn_Off = $this->linklist->join("LEFT JOIN `linklist_child` c on `linklist`.wID = c.wID and c.mark = 1")->where(array("`linklist`".".McID" =>$find['Pid'],wModeltype=>3))->field('Pid, Key1, Key2, Key3')->select();//反联动开
-					$findLinkOff_On = $this->linklist->join("LEFT JOIN `linklist_child` c on `linklist`.wID = c.wID and c.mark = 1")->where(array("`linklist`".".McID" =>$find['Pid'],wModeltype=>4))->field('Pid, Key1, Key2, Key3')->select();//反联动关
+					$findLinkOn = $this->linklist->join("LEFT JOIN `linklist_child` c on `linklist`.wID = c.wID and c.mark = 1")->where(array("`linklist`".".McID" =>$find['Pid'],wModeltype=>1))->field('linklist.Pid, Key1, Key2, Key3')->select();//联动开
+					$findLinkOff = $this->linklist->join("LEFT JOIN `linklist_child` c on `linklist`.wID = c.wID and c.mark = 1")->where(array("`linklist`".".McID" =>$find['Pid'],wModeltype=>2))->field('linklist.Pid, Key1, Key2, Key3')->select();//联动关
+					$findLinkOn_Off = $this->linklist->join("LEFT JOIN `linklist_child` c on `linklist`.wID = c.wID and c.mark = 1")->where(array("`linklist`".".McID" =>$find['Pid'],wModeltype=>3))->field('linklist.Pid, Key1, Key2, Key3')->select();//反联动开
+					$findLinkOff_On = $this->linklist->join("LEFT JOIN `linklist_child` c on `linklist`.wID = c.wID and c.mark = 1")->where(array("`linklist`".".McID" =>$find['Pid'],wModeltype=>4))->field('linklist.Pid, Key1, Key2, Key3')->select();//反联动关
 	
 					$mLinkOn = TarrayToOarray($findLinkOn, 'Pid');
 					$mLinkOff = TarrayToOarray($findLinkOff, 'Pid');
@@ -170,10 +170,11 @@ class MobileController extends CommonController{
 					$this->assign('IrinfoList' , $IrinfoList);
 					 
 				}
-					$this->assign('mobile',$find);
-					$this->assign("myMobile",$list);
-					$this->assign('my3','btn0_a');
-					$this->display();
+				$this->assign('shakelist',array('1'=>1,'2'=>2,'3'=>3,'4'=>4,'5'=>5,'6'=>6,'7'=>7,'8'=>8,'9'=>9));
+				$this->assign('mobile',$find);
+				$this->assign("myMobile",$list);
+				$this->assign('my3','btn0_a');
+				$this->display();
 			}else{
 			$this->error(L('S_parameter_e'));
 			}

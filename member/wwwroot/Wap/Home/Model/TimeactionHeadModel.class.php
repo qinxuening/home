@@ -5,15 +5,16 @@ class TimeactionHeadModel extends RelationModel{
 	//自动验证
 	protected $_validate=array(
 			array('wName','require','时间名称不能为空!'),
+			array('wTime', '/^((1|0?)[0-9]|2[0-3]):([0-5][0-9])/', '{%Times_e}', self::VALUE_VALIDATE, 'regex', self::MODEL_BOTH),
 			array('wTime', 'require','时间不能为空！'),
 	);
 	
 	//关联模型
 	protected $_link = array(
 			'timeaction'=>array(
-					'mapping_type'=>self::HAS_MANY,//一对一
-					'class_name'=>'timeaction',
-					'foreign_key'=>'wModel',
+				'mapping_type'=>self::HAS_MANY,//一对一
+				'class_name'=>'timeaction',
+				'foreign_key'=>'wModel',
 			),
 	);
 	

@@ -25,6 +25,11 @@ document.write('<meta name="viewport" content="width=640, user-scalable=no, targ
 <link rel="stylesheet" href="__PUBLIC__/resource/common/js/date/jquery.datetimepicker.css" >
 <link rel="shortcut icon" href="__PUBLIC__/resource/common/images/favicon.ico" type="image/x-icon" />
 </head>
+<style>
+	.xdsoft_datetimepicker, .xdsoft_timepicker{
+		display:none !important;
+	}
+</style>
 <body>
 <!--header-->
 <include file="Public:header" />
@@ -141,9 +146,9 @@ document.write('<meta name="viewport" content="width=640, user-scalable=no, targ
             	<div class="line1"></div>
             
                 <div class="tb2">
-                    <div class="t_">{$Think.lang.Times}：</div>
+                    <div class="t_">{$Think.lang.Times} ({$Think.lang.time_layout})</div>
                     <div class="s_1 Validform_checktip"></div>
-                    <input type="text" class="inp1" datatype="sj" nullmsg="{$Think.lang.Times_n}" name="wTime" sucmsg="{$Think.lang.Crepass}"  id="datetimepicker" value="{$type.wTime}" tabindex="1" maxlength="5" autocomplete="off">
+                    <input type="text" class="inp1" datatype="sj" nullmsg="{$Think.lang.Times_n}" name="wTime" errormsg="{$Think.lang.Times_e}"  sucmsg="{$Think.lang.Crepass}"  id="datetimepicker" value="{$type.wTime}" tabindex="1" maxlength="5" autocomplete="off">
                 </div>
             
             	<div class="line1"></div>
@@ -152,10 +157,9 @@ document.write('<meta name="viewport" content="width=640, user-scalable=no, targ
                     <div class="t_">{$Think.lang.Equ_state}</div>
                     
                     <div class="fr Jq_tx2" id="Jq_tx">
-						<!--<b class="hx_btn <if condition="$type.wType eq 1">hx_btn_a</if>"></b>  -->
                         <div id="JQ_n" class="dx_btn <php> if($type[wType] =='0' ){echo 'dx_btn_a'; } ;</php>">{$Think.lang.Off}</div>
 						<div id="JQ_y" class="dx_btn <if condition="$type.wType eq 1">dx_btn_a</if>" >{$Think.lang.Open}</div>
-                        <input type="radio" name="wType" class="none" id="wType"  value="{$type.wType}" />
+                        <input type="hidden" name="wType"  id="wType"  value="{$type.wType}" />
                     </div>
                     
                 </div>

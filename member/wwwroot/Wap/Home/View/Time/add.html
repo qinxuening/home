@@ -25,7 +25,11 @@ document.write('<meta name="viewport" content="width=640, user-scalable=no, targ
 <link rel="stylesheet" href="__PUBLIC__/resource/common/js/date/jquery.datetimepicker.css" >
 <link rel="shortcut icon" href="__PUBLIC__/resource/common/images/favicon.ico" type="image/x-icon" />
 </head>
-
+<style>
+	.xdsoft_datetimepicker, .xdsoft_timepicker{
+		display:none !important;
+	}
+</style>
 <body>
 <!--header-->
 <include file="Public:header" />
@@ -125,9 +129,9 @@ document.write('<meta name="viewport" content="width=640, user-scalable=no, targ
                 <div class="line1"></div>
             
                 <div class="tb2">
-                    <div class="t_">{$Think.lang.Times}：</div>
+                    <div class="t_">{$Think.lang.Times} ({$Think.lang.time_layout})</div>
                     <div class="s_1 Validform_checktip">{$Think.lang.Set_times}</div>
-                    <input type="text" class="inp1" datatype="sj" nullmsg="{$Think.lang.Times_n}" name="wTime" sucmsg="{$Think.lang.Crepass}"  id="datetimepicker" value="" tabindex="1" maxlength="5" autocomplete="off">
+                    <input type="text" class="inp1" datatype="sj" nullmsg="{$Think.lang.Times_n}" name="wTime" errormsg="{$Think.lang.Times_e}"  sucmsg="{$Think.lang.Crepass}"  id="datetimepicker" value="" tabindex="1" maxlength="5" autocomplete="off">
                 </div>
             
                 <div class="line1"></div>
@@ -138,7 +142,7 @@ document.write('<meta name="viewport" content="width=640, user-scalable=no, targ
 						
                         <div id="JQ_n" class="dx_btn" >{$Think.lang.Off}</div>
 						<div id="JQ_y" class="dx_btn" >{$Think.lang.Open}</div>
-                    	<input type="radio" name="wType" class="none" id="wType" />
+                    	<input type="hidden" name="wType"  id="wType" value="0"/>
                     </div>
                     
                 </div>

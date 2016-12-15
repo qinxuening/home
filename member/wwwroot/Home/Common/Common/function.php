@@ -116,7 +116,7 @@
 	function key_wModel_value_Key($Array , $Field, $Type){
 		$arr = array();
 		foreach ($Array as $key=>$value) {
-			if($value['Type'] == $Type && substr($value['McID'], 0,2) == '14'){
+			if($value['wType'] == $Type && substr($value['McID'], 0,2) == '14'){
 				$arr["$value[$Field]"][]= $value["Key1"];
 				$arr["$value[$Field]"][] = $value["Key2"];
 				$arr["$value[$Field]"][] = $value["Key3"];
@@ -208,7 +208,7 @@
 	function Do_modeltype_child($modeltype, $modeltype_child, $arr, $Pid, $Type){
 		foreach ($arr as $key => $value){
 			if(is_array($value)){
-				$idon = $modeltype->add(array('wUseID' => session('wUseID'), 'wModel'=>$Pid, 'McID' => $key, 'Type' => $Type));
+				$idon = $modeltype->add(array('wUseID' => session('wUseID'), 'wModel'=>$Pid, 'McID' => $key, 'wType' => $Type));
 				$modeltype_child_list['Pid'] = $idon;
 				$modeltype_child_list['wUseID'] = session('wUseID');
 				$modeltype_child_list['wModel'] = $Pid;
@@ -218,7 +218,7 @@
 				$modeltype_child_list['Key3'] = in_array('Key3', $value)? 1:0;
 				$modeltype_child->add($modeltype_child_list);
 			}else{
-				$modeltype->add(array('wUseID' => session('wUseID'), 'wModel'=>$Pid, 'McID' => $value, 'Type' => $Type));
+				$modeltype->add(array('wUseID' => session('wUseID'), 'wModel'=>$Pid, 'McID' => $value, 'wType' => $Type));
 			}
 		}		
 	}
@@ -246,7 +246,7 @@
 			}else{
 				$timeaction->add(array('wUseID' => session('wUseID'), 'wModel' => $Pid, 'McID' => $value));
 			}
-		}		
+		}
 	}
 	
 	function CheckLength($data, $Min, $Max){

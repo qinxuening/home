@@ -11,4 +11,8 @@ return array(
 	'TMPL_ACTION_ERROR' => 'Public:error',
 	//默认成功跳转对应的模板文件
 	'TMPL_ACTION_SUCCESS' => 'Public:success',
+	'SESSION_AUTO_START' =>true,
+	'SESSION_OPTIONS'       =>  array(
+			'SESSION_EXPIRE'=>20
+	),
 );
