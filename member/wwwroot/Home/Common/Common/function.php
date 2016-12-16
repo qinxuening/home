@@ -107,6 +107,27 @@
 	
 	/**
 	 * @author
+	 * 获取温湿度键值
+	 * @param unknown $Array
+	 * @param unknown $Field
+	 * @return Ambigous <multitype:, unknown>
+	 */
+	function key_Pid_value_Key_temp($Array , $Field, $k, $wModeltype){
+		$arr = array();
+		foreach ($Array as $key=>$value) {
+			if($value[$k] && $value['wModeltype'] == $wModeltype){
+				$arr["$value[$Field]"][]= $value["Th"];
+				$arr["$value[$Field]"][] = $value["Tl"];
+				$arr["$value[$Field]"][] = $value["Hh"];
+				$arr["$value[$Field]"][] = $value["Hl"];
+				$arr["$value[$Field]"][] = $value["Tf"];
+			}
+		}
+		return $arr;
+	}
+
+	/**
+	 * @author
 	 * 整合模式开关按键
 	 * @param unknown $Array
 	 * @param unknown $Field
@@ -154,21 +175,78 @@
 	 * @param unknown $Key02
 	 * @param unknown $Key03
 	 */
-	function add_linklist_linklist_child($linklist_s, $linklist_child ,$arr, $Pid, $wModeltype, $Key01, $Key02, $Key03){
+	function add_linklist_linklist_child($linklist_s, $linklist_child, $linklist_temp, $arr, $Pid, $wModeltype, $Key01, $Key02, $Key03){
 		foreach ($arr as $key_on => $value_on){
 			if(is_array($value_on)){
 				$idon = $linklist_s->add(array('Pid' => $Pid , 'McID' => $key_on , 'wModeltype' => $wModeltype , 'Key01'=>$Key01,'Key02'=>$Key02,'Key03'=>$Key03));
-				$linklist_child_on['wID'] = $idon;
-				$linklist_child_on['McID'] = $Pid;
-				$linklist_child_on['Key1'] = in_array('Key1', $value_on)? 1:0;
-				$linklist_child_on['Key2'] = in_array('Key2', $value_on)? 1:0;
-				$linklist_child_on['Key3'] = in_array('Key3', $value_on)? 1:0;
-				$linklist_child_on['mark'] = 2;
-				$linklist_child->add($linklist_child_on);
+				if(substr($value_on[0], 0,3) == 'Key'){
+					$linklist_child_on['wID'] = $idon;
+					$linklist_child_on['McID'] = $Pid;
+					$linklist_child_on['Key1'] = in_array('Key1', $value_on)? 1:0;
+					$linklist_child_on['Key2'] = in_array('Key2', $value_on)? 1:0;
+					$linklist_child_on['Key3'] = in_array('Key3', $value_on)? 1:0;
+					$linklist_child_on['mark'] = 2;
+					$linklist_child->add($linklist_child_on);
+				}else{
+					$linklist_child_on['wID'] = $idon;
+					$linklist_child_on['McID'] = $Pid;
+					$linklist_child_on['Th'] = in_array('T1', $value_on)? 1:0;
+					$linklist_child_on['Tl'] = in_array('T2', $value_on)? 1:0;
+					$linklist_child_on['Hh'] = in_array('T3', $value_on)? 1:0;
+					$linklist_child_on['Hl'] = in_array('T4', $value_on)? 1:0;
+					$linklist_child_on['Tf'] = in_array('T5', $value_on)? 1:0;
+					$linklist_child_on['mark'] = 2;
+					$linklist_temp->add($linklist_child_on);
+				}
 			}else{
 				$linklist_s->add(array('Pid' => $Pid , 'McID' => $value_on , 'wModeltype' => $wModeltype , 'Key01'=>$Key01,'Key02'=>$Key02,'Key03'=>$Key03));
 			}
 		}
+	}
+	
+	
+	/**
+	 * @author qxn
+	 * 添加联动数据：主设备是温湿度类
+	 * @param unknown $linklist_temp 温湿度主表
+	 * @param unknown $linklist_child 被联动开关的表
+	 * @param unknown $linklist_temp_child 被联动温湿度表
+	 * @param unknown $arr 
+	 * @param unknown $Pid主设备Pid
+	 * @param unknown $wModeltype 联动方式
+	 * @param unknown $Th0 
+	 * @param unknown $Tl0
+	 * @param unknown $Hh0
+	 * @param unknown $Hl0
+	 * @param unknown $Tf0
+	 */
+	function add_linklist_temp($linklist_temp, $linklist_child, $linklist_temp_child, $arr, $Pid, $wModeltype,$Th0, $Tl0, $Hh0, $Hl0, $Tf0 ){
+		foreach ($arr as $key_on => $value_on){
+			if(is_array($value_on)){
+				$idon = $linklist_temp->add(array('Pid' => $Pid , 'McID' => $key_on , 'wModeltype' => $wModeltype , 'Th0'=>$Th0,'Tl0'=>$Tl0,'Hh0'=>$Hh0, 'Hl0'=>$Hl0, 'Tf0'=>$Tf0));
+				if(substr($value_on[0], 0,3) == 'Key'){
+					$linklist_child_on['wID'] = $idon;
+					$linklist_child_on['McID'] = $Pid;
+					$linklist_child_on['Key1'] = in_array('Key1', $value_on)? 1:0;
+					$linklist_child_on['Key2'] = in_array('Key2', $value_on)? 1:0;
+					$linklist_child_on['Key3'] = in_array('Key3', $value_on)? 1:0;
+					$linklist_child_on['mark'] = 3;
+					$linklist_child->add($linklist_child_on);
+				}else{
+					$linklist_child_on['wID'] = $idon;
+					$linklist_child_on['McID'] = $Pid;
+					$linklist_child_on['Th'] = in_array('T1', $value_on)? 1:0;
+					$linklist_child_on['Tl'] = in_array('T2', $value_on)? 1:0;
+					$linklist_child_on['Hh'] = in_array('T3', $value_on)? 1:0;
+					$linklist_child_on['Hl'] = in_array('T4', $value_on)? 1:0;
+					$linklist_child_on['Tf'] = in_array('T5', $value_on)? 1:0;
+					$linklist_child_on['mark'] = 1;
+					$linklist_temp_child->add($linklist_child_on);
+				}
+			}else{
+				$linklist_temp->add(array('Pid' => $Pid , 'McID' => $value_on , 'wModeltype' => $wModeltype , 'Th0'=>$Th0,'Tl0'=>$Tl0,'Hh0'=>$Hh0, 'Hl0'=>$Hl0, 'Tf0'=>$Tf0));
+			}
+		}		
 	}
 	
 	/**
