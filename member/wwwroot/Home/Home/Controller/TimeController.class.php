@@ -5,6 +5,7 @@ class TimeController extends CommonController{
 	protected $mobilemanager;
 	protected $timeaction;
 	protected $timeaction_child;
+	protected $timeaction_temp;
 	
 	public function _initialize(){
 		parent::_initialize();
@@ -12,6 +13,7 @@ class TimeController extends CommonController{
 		$this->mobilemanager = D('Mobilemanager');
 		$this->timeaction = D('Timeaction');
 		$this->timeaction_child = D('timeaction_child');
+		$this->timeaction_temp = D('timeaction_temp');
 	}
 	
 	public function index(){
@@ -30,6 +32,7 @@ class TimeController extends CommonController{
 		$Pid=intval(I('get.id'));
 		if($this->timeaction_head->CheckPid($Pid)){
 			$this->timeaction_child->where(array('wModel'=>$Pid))->delete();
+			$this->timeaction_temp->where(array('wModel'=>$Pid))->delete();
 			$result = $this->timeaction_head->relation(true)->where(array('Pid' => $Pid))->delete();
 			if($result){
 				$url = 'http://'.$_SERVER['HTTP_HOST'].__APP__.'/Time/';
@@ -50,11 +53,13 @@ class TimeController extends CommonController{
 			$list = $this->mobilemanager->query("select `McID`, `McName`, left(`McID`,2) as McID3  from `mobilemanager` where `wUseID` ='$wUseID' AND `wMB`='$wMB' AND left(`McID`,2) not in ('12')");
 			$find = $this->timeaction_head->where(array('Pid' => $Pid))->field("wUseID",true)->find();
 			if($find){
-				$findmodel=$this->timeaction->join("LEFT JOIN `timeaction_child` m on `timeaction`.Pid = m.Pid")->where(array("`timeaction`".".wModel" => $find['Pid']))->field("`timeaction`.`McID` , Key1, Key2, Key3")->select();
+				$findmodel = $this->timeaction->join("LEFT JOIN `timeaction_child` m on `timeaction`.Pid = m.Pid")->where(array("`timeaction`".".wModel" => $find['Pid']))->field("`timeaction`.`McID` , Key1, Key2, Key3")->select();
+				$timeaction_temp_list = $this->timeaction->join("JOIN `timeaction_temp` m on `timeaction`.Pid = m.tid")->where(array("`timeaction`".".wModel" => $find['Pid']))->field("`timeaction`.`McID` ,Th, Tl, Hh, Hl, Tf")->select();
 				$m = TarrayToOarray($findmodel, 'McID');
 				$this->assign("checklist",$m);
 				$this->assign("myMobile",$list);
 				$this->assign("Key_mLinkOn", key_timeaction_value_Key($findmodel, 'McID'));
+				$this->assign("temp_mLinkOn", key_timeaction_temp($timeaction_temp_list, 'McID'));
 				$this->assign('type',$find);
 				$this->display();
 			}else{
@@ -83,11 +88,13 @@ class TimeController extends CommonController{
 				$this->timeaction_head->where(array('Pid' => $Pid))->save($HeadInfo);
 			}
 			$this->timeaction_child->where(array('wModel' => $Pid))->delete();
+			$this->timeaction_temp->where(array('wModel' => $Pid))->delete();
 			$this->timeaction->where(array('wModel' => $Pid))->delete();
+			
 			$wModeldata=I('wModel',null);
 			$wModeldata_touch = I('wModel_touche',null);
-			Do_Timeaction_child($this->timeaction, $this->timeaction_child, $wModeldata, $Pid);
-			Do_Timeaction_child($this->timeaction, $this->timeaction_child, $wModeldata_touch, $Pid);
+			Do_Timeaction_child($this->timeaction, $this->timeaction_child, '', $wModeldata, $Pid);
+			Do_Timeaction_child($this->timeaction, $this->timeaction_child, $this->timeaction_temp, $wModeldata_touch, $Pid);
 		}else{
 			$this->error(L('S_parameter_e'));
 		}
@@ -110,8 +117,8 @@ class TimeController extends CommonController{
 			$id=$this->timeaction_head->add();
 			$wModeldata=I('post.wModel',null);
 			$wModeldata_touch = I('wModel_touche',null);
-			Do_Timeaction_child($this->timeaction, $this->timeaction_child, $wModeldata, $id);
-			Do_Timeaction_child($this->timeaction, $this->timeaction_child, $wModeldata_touch, $id);
+			Do_Timeaction_child($this->timeaction, $this->timeaction_child, '',$wModeldata, $id);
+			Do_Timeaction_child($this->timeaction, $this->timeaction_child, $this->timeaction_temp, $wModeldata_touch, $id);
 			$url = 'http://'.$_SERVER['HTTP_HOST'].__APP__.'/Time/';
 			header("Location:$url");
 		}else{

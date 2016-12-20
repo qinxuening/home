@@ -126,9 +126,22 @@
 		return $arr;
 	}
 
+	function key_other_temp($Array , $Field, $wModeltype){
+		$arr = array();
+		foreach ($Array as $key=>$value) {
+			if($value['wModeltype'] == $wModeltype){
+				$arr["$value[$Field]"][]= $value["Th"];
+				$arr["$value[$Field]"][] = $value["Tl"];
+				$arr["$value[$Field]"][] = $value["Hh"];
+				$arr["$value[$Field]"][] = $value["Hl"];
+				$arr["$value[$Field]"][] = $value["Tf"];
+			}
+		}
+		return $arr;
+	}
 	/**
 	 * @author
-	 * 整合模式开关按键
+	 * 整合模式开关按键、温湿度按键
 	 * @param unknown $Array
 	 * @param unknown $Field
 	 * @param unknown $Type
@@ -146,6 +159,20 @@
 		return $arr;
 	}
 
+	function key_modeltype_temp($Array , $Field, $Type){
+		//print_r($Array);
+		$arr = array();
+		foreach ($Array as $key=>$value) {
+			if($value['wType'] == $Type && substr($value['McID'], 0,2) == '19'){
+				$arr["$value[$Field]"][]= $value["Th"];
+				$arr["$value[$Field]"][] = $value["Tl"];
+				$arr["$value[$Field]"][] = $value["Hh"];
+				$arr["$value[$Field]"][] = $value["Hl"];
+				$arr["$value[$Field]"][] = $value["Tf"];
+			}
+		}
+		return $arr;		
+	}
 	/**
 	 * @author 整合时间开关按键
 	 * @param unknown $Array
@@ -164,6 +191,20 @@
 		return $arr;
 	}
 	
+	
+	function key_timeaction_temp($Array , $Field){
+		$arr = array();
+		foreach ($Array as $key=>$value) {
+			if(substr($value['McID'], 0,2) == '19'){
+				$arr["$value[$Field]"][]= $value["Th"];
+				$arr["$value[$Field]"][] = $value["Tl"];
+				$arr["$value[$Field]"][] = $value["Hh"];
+				$arr["$value[$Field]"][] = $value["Hl"];
+				$arr["$value[$Field]"][] = $value["Tf"];
+			}
+		}
+		return $arr;
+	}	
 	/**
 	 * @author qxn
 	 * @param unknown $linklist_s 开关设备主表
@@ -251,23 +292,36 @@
 	
 	/**
 	 * @author qxn 
-	 * @param unknown $linklist 非开关类主设备
+	 * @param unknown $linklist 其他主设备
 	 * @param unknown $linklist_child  副表
 	 * @param unknown $arr 提交联动数据
 	 * @param unknown $Pid 主设备id
 	 * @param unknown $wModeltype 联动类型
 	 */
-	function  add_linklist2_linklist_child($linklist, $linklist_child ,$arr, $Pid, $wModeltype){
+	function  add_linklist2_linklist_child($linklist, $linklist_child, $linklist_temp_child, $arr, $Pid, $wModeltype){
 		foreach ($arr as $key_on => $value_on){
 			if(is_array($value_on)){
-				$idon = $linklist->add(array('McID' => $Pid , 'Pid' => $key_on , 'wModeltype' => $wModeltype));
-				$linklist_child_on['wID'] = $idon;
-				$linklist_child_on['McID'] = $Pid;
-				$linklist_child_on['Key1'] = in_array('Key1', $value_on)? 1:0;
-				$linklist_child_on['Key2'] = in_array('Key2', $value_on)? 1:0;
-				$linklist_child_on['Key3'] = in_array('Key3', $value_on)? 1:0;
-				$linklist_child_on['mark'] = 1;
-				$linklist_child->add($linklist_child_on);
+				if(substr($value_on[0], 0,3) == 'Key'){
+					$idon = $linklist->add(array('McID' => $Pid , 'Pid' => $key_on , 'wModeltype' => $wModeltype));
+					$linklist_child_on['wID'] = $idon;
+					$linklist_child_on['McID'] = $Pid;
+					$linklist_child_on['Key1'] = in_array('Key1', $value_on)? 1:0;
+					$linklist_child_on['Key2'] = in_array('Key2', $value_on)? 1:0;
+					$linklist_child_on['Key3'] = in_array('Key3', $value_on)? 1:0;
+					$linklist_child_on['mark'] = 1;
+					$linklist_child->add($linklist_child_on);
+				}else{
+					$idon = $linklist->add(array('McID' => $Pid , 'Pid' => $key_on , 'wModeltype' => $wModeltype));
+					$linklist_child_on['wID'] = $idon;
+					$linklist_child_on['McID'] = $Pid;
+					$linklist_child_on['Th'] = in_array('T1', $value_on)? 1:0;
+					$linklist_child_on['Tl'] = in_array('T2', $value_on)? 1:0;
+					$linklist_child_on['Hh'] = in_array('T3', $value_on)? 1:0;
+					$linklist_child_on['Hl'] = in_array('T4', $value_on)? 1:0;
+					$linklist_child_on['Tf'] = in_array('T5', $value_on)? 1:0;
+					$linklist_child_on['mark'] = 3;
+					$linklist_temp_child->add($linklist_child_on);
+				}
 			}else{
 				$linklist->add(array('McID' => $Pid , 'Pid' => $value_on , 'wModeltype' => $wModeltype));
 			}
@@ -276,25 +330,39 @@
 	
 	/**
 	 * @author qxn
-	 * 处理模式开关按键
+	 * 处理模式开关按键和温湿度按钮
 	 * @param unknown $modeltype
 	 * @param unknown $modeltype_child
 	 * @param unknown $arr
 	 * @param unknown $Pid
 	 * @param unknown $Type
 	 */
-	function Do_modeltype_child($modeltype, $modeltype_child, $arr, $Pid, $Type){
+	function Do_modeltype_child($modeltype, $modeltype_child, $modeltype_temp, $arr, $Pid, $Type){
 		foreach ($arr as $key => $value){
 			if(is_array($value)){
-				$idon = $modeltype->add(array('wUseID' => session('wUseID'), 'wModel'=>$Pid, 'McID' => $key, 'wType' => $Type));
-				$modeltype_child_list['Pid'] = $idon;
-				$modeltype_child_list['wUseID'] = session('wUseID');
-				$modeltype_child_list['wModel'] = $Pid;
-				$modeltype_child_list['McID'] = $key;
-				$modeltype_child_list['Key1'] = in_array('Key1', $value)? 1:0;
-				$modeltype_child_list['Key2'] = in_array('Key2', $value)? 1:0;
-				$modeltype_child_list['Key3'] = in_array('Key3', $value)? 1:0;
-				$modeltype_child->add($modeltype_child_list);
+				if(substr($value[0], 0,3) == 'Key'){
+					$idon = $modeltype->add(array('wUseID' => session('wUseID'), 'wModel'=>$Pid, 'McID' => $key, 'wType' => $Type));
+					$modeltype_child_list['Pid'] = $idon;
+					$modeltype_child_list['wUseID'] = session('wUseID');
+					$modeltype_child_list['wModel'] = $Pid;
+					$modeltype_child_list['McID'] = $key;
+					$modeltype_child_list['Key1'] = in_array('Key1', $value)? 1:0;
+					$modeltype_child_list['Key2'] = in_array('Key2', $value)? 1:0;
+					$modeltype_child_list['Key3'] = in_array('Key3', $value)? 1:0;
+					$modeltype_child->add($modeltype_child_list);
+				}else{
+					$idon = $modeltype->add(array('wUseID' => session('wUseID'), 'wModel'=>$Pid, 'McID' => $key, 'wType' => $Type));
+					$modeltype_temp_list['tid'] = $idon;
+					$modeltype_temp_list['wUseID'] = session('wUseID');
+					$modeltype_temp_list['wModel'] = $Pid;
+					$modeltype_temp_list['McID'] = $key;
+					$modeltype_temp_list['Th'] = in_array('T1', $value)? 1:0;
+					$modeltype_temp_list['Tl'] = in_array('T2', $value)? 1:0;
+					$modeltype_temp_list['Hh'] = in_array('T3', $value)? 1:0;
+					$modeltype_temp_list['Hl'] = in_array('T4', $value)? 1:0;
+					$modeltype_temp_list['Tf'] = in_array('T5', $value)? 1:0;
+					$modeltype_temp->add($modeltype_temp_list);					
+				}
 			}else{
 				$modeltype->add(array('wUseID' => session('wUseID'), 'wModel'=>$Pid, 'McID' => $value, 'wType' => $Type));
 			}
@@ -303,24 +371,38 @@
 	
 	/**
 	 * @author qx 
-	 * 处理时间开关按键
+	 * 处理时间开关按键、温湿度
 	 * @param unknown $timeaction
 	 * @param unknown $timeacion_child
 	 * @param unknown $arr
 	 * @param unknown $Pid
 	 */
-	function Do_Timeaction_child($timeaction, $timeacion_child, $arr, $Pid){
+	function Do_Timeaction_child($timeaction, $timeacion_child, $timeaction_temp, $arr, $Pid){
 		foreach ($arr as $key => $value){
 			if(is_array($value)){
-				$id = $timeaction->add(array('wUseID' => session('wUseID'), 'wModel' => $Pid, 'McID' => $key));
-				$timeaction_child_list['Pid'] = $id;
-				$timeaction_child_list['wUseID'] = session('wUseID');
-				$timeaction_child_list['wModel'] = $Pid;
-				$timeaction_child_list['McID'] = $key;
-				$timeaction_child_list['Key1'] = in_array('Key1', $value)? 1:0;
-				$timeaction_child_list['Key2'] = in_array('Key2', $value)? 1:0;
-				$timeaction_child_list['Key3'] = in_array('Key3', $value)? 1:0;
-				$timeacion_child->add($timeaction_child_list);
+				if(substr($value[0], 0,3) == 'Key'){
+					$id = $timeaction->add(array('wUseID' => session('wUseID'), 'wModel' => $Pid, 'McID' => $key));
+					$timeaction_child_list['Pid'] = $id;
+					$timeaction_child_list['wUseID'] = session('wUseID');
+					$timeaction_child_list['wModel'] = $Pid;
+					$timeaction_child_list['McID'] = $key;
+					$timeaction_child_list['Key1'] = in_array('Key1', $value)? 1:0;
+					$timeaction_child_list['Key2'] = in_array('Key2', $value)? 1:0;
+					$timeaction_child_list['Key3'] = in_array('Key3', $value)? 1:0;
+					$timeacion_child->add($timeaction_child_list);
+				}else{
+					$id = $timeaction->add(array('wUseID' => session('wUseID'), 'wModel' => $Pid, 'McID' => $key));
+					$timeaction_temp_list['tid'] = $id;
+					$timeaction_temp_list['wUseID'] = session('wUseID');
+					$timeaction_temp_list['wModel'] = $Pid;
+					$timeaction_temp_list['McID'] = $key;
+					$timeaction_temp_list['Th'] = in_array('T1', $value)? 1:0;
+					$timeaction_temp_list['Tl'] = in_array('T2', $value)? 1:0;
+					$timeaction_temp_list['Hh'] = in_array('T3', $value)? 1:0;
+					$timeaction_temp_list['Hl'] = in_array('T4', $value)? 1:0;
+					$timeaction_temp_list['Tf'] = in_array('T5', $value)? 1:0;
+					$timeaction_temp->add($timeaction_temp_list);					
+				}
 			}else{
 				$timeaction->add(array('wUseID' => session('wUseID'), 'wModel' => $Pid, 'McID' => $value));
 			}

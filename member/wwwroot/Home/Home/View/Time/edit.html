@@ -100,7 +100,7 @@ var rc=document.getElementById("wTuess");
           </div>
         </div>
 
-<div class="content">
+		<div class="content">
           <div class="cLineB"><h4>{$Think.lang.Edit_times}</h4></div>
          <form method="post" action="__URL__/update/id/{$type.Pid}" enctype="multipart/form-data" class="Machineryfrom">
           <div class="msgWrap">
@@ -117,16 +117,25 @@ var rc=document.getElementById("wTuess");
                   <th><span class="red">*</span>{$Think.lang.Add_equipment}：</th>
                   <td>
                   	<volist name="myMobile" id="vo" >
-	                  	<eq name="vo.McID3" value="14">
+	                  	 <if condition="$vo.McID3 eq 14">
 	         	     		<span class="bbox1"><label style="margin-bottom:0!important;">
 								&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;
 								<label ><input class="px" name="wModel_touche[{$vo.McID}][]" id="wModel_touche[{$vo.McID}][]" type="checkbox" <php>if($Key_mLinkOn["$vo[McID]"][0]){echo "checked";}</php> value="Key1">&nbsp;{$Think.lang.key1}&nbsp;</label>
 								<label ><input class="px" name="wModel_touche[{$vo.McID}][]" id="wModel_touche[{$vo.McID}][]" type="checkbox" <php>if($Key_mLinkOn["$vo[McID]"][1]){echo "checked";}</php> value="Key2">&nbsp;{$Think.lang.key2}&nbsp;</label>
 								<label ><input class="px" name="wModel_touche[{$vo.McID}][]" id="wModel_touche[{$vo.McID}][]" type="checkbox" <php>if($Key_mLinkOn["$vo[McID]"][2]){echo "checked";}</php> value="Key3">&nbsp;{$Think.lang.key3}&nbsp;</label>
 							</label></span>
+						<elseif condition="$vo.McID3 eq 19" />
+			 				<span class="bbox1"><label style="margin-bottom:0!important;">
+							 &nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;
+						 	<label ><input class="px" name="wModel_touche[{$vo.McID}][]" type="checkbox" <php>if($temp_mLinkOn["$vo[McID]"][0]){echo "checked";}</php> value="T1">&nbsp;{$Think.lang.Temper1}&nbsp;</label>
+							<label ><input class="px" name="wModel_touche[{$vo.McID}][]" type="checkbox" <php>if($temp_mLinkOn["$vo[McID]"][1]){echo "checked";}</php> value="T2">&nbsp;{$Think.lang.Temper2}&nbsp;</label>
+							<label ><input class="px" name="wModel_touche[{$vo.McID}][]" type="checkbox" <php>if($temp_mLinkOn["$vo[McID]"][2]){echo "checked";}</php> value="T3">&nbsp;{$Think.lang.Temper3}&nbsp;</label>
+							<label ><input class="px" name="wModel_touche[{$vo.McID}][]" type="checkbox" <php>if($temp_mLinkOn["$vo[McID]"][3]){echo "checked";}</php> value="T4">&nbsp;{$Think.lang.Temper4}&nbsp;</label>
+							<label ><input class="px" name="wModel_touche[{$vo.McID}][]" type="checkbox" <php>if($temp_mLinkOn["$vo[McID]"][4]){echo "checked";}</php> value="T5">&nbsp;{$Think.lang.Temper5}&nbsp;</label>
+						    </label></span>							
 						<else/>
                   		 <span class="bbox1"><label><input type="checkbox" name="wModel[]" id="wModel[]" <foreach name="checklist" item="vt"><eq name="vt" value="$vo.McID">checked</eq></foreach> value="{$vo.McID}" class="px">&nbsp;&nbsp;{$vo.McName}&nbsp;&nbsp;</label></span>
-						</eq>
+						</if>
 					</volist></td>
                 </tr>
 				<tr>
