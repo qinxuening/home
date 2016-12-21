@@ -398,11 +398,24 @@ input, button, select, textarea {
 .keyon2{
 	background:#f39800 ;
 	color:#fff;
+	/*border: solid 1px #f39800 !important;*/
 }
 .keyon3{
 	background:#13b5b1;
 	color:#fff;
+	/*border: solid 1px #13b5b1 !important;*/
 }
+.keyon4{
+	background:#b55eb0;
+	color:#fff;
+	/*border: solid 1px #b55eb0 !important;*/
+}
+.keyon5{
+	background:#ff4b4b;
+	color:#fff;
+	/*border: solid 1px #ff4b4b !important;*/
+}
+
 #keyon1{
 	border: solid 1px #00b7ee;
 }
@@ -411,6 +424,12 @@ input, button, select, textarea {
 }
 #keyon3{
 	border: solid 1px #13b5b1;
+}
+#keyon4{
+	border: solid 1px #b55eb0;
+}
+#keyon5{
+	border: solid 1px #ff4b4b;
 }
 .tab ul{
 	diplay:block;
@@ -443,6 +462,40 @@ input, button, select, textarea {
 	background-color: #00b7ee;
 }
 .tab ul li.off{
+	background-color:none !important;
+}
+
+.tab_temp ul{
+	diplay:block;
+	border:solid 1px #dadada;
+	border-radius:2px;
+	width:569px;
+	height:40px;
+	margin:15px 0;
+	line-height:35px;
+}
+.tab_temp ul li{
+	float:left;
+	cursor:pointer;
+	height:40px;
+	line-height:40px;
+	width:113px;
+	border-radius:2px;
+	text-align:center;
+	border-right:solid 1px #dadada;
+}
+.tab_temp ul li.on{
+	/*background-color: #20b1dd;*/
+	color: #fff;
+	height:40px;
+	-webkit-box-shadow: 0 1px 1px #aaa;
+	border-right:none;
+	border-radius:2px;
+}
+.tab_temp ul li.active{
+	background-color: #00b7ee;
+}
+.tab_temp ul li.off{
 	background-color:none !important;
 }
 .hid{display:none;}
