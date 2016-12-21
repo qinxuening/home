@@ -483,41 +483,41 @@ document.write('<meta name="viewport" content="width=640, user-scalable=no, targ
                         	<volist name="myMobile" id="vo" key="k1">
                         		<volist name="myMobile" id="vo" key="k1">
                         		<if condition="$vo.McID3 eq 14">
-	                                <label class="touche JqOn03_r JqOn03_m{$k1}" id="radioOn03{$k1}">
+	                                <label class="touche JqOn04_r JqOn04_m{$k1}" id="radioOn04{$k1}">
                                    	    <b style="float:left;">{$vo.McName}</b>
-										<label><b onclick="click_touch('#Key1_On03_{$vo[Pid]}');" id="Key1_On03_{$vo[Pid]}" class="btn4_touche <php>if($Key_mLinkOn03["$vo[Pid]"][0]){echo "btn4_a_touche";}</php>">{$Think.lang.key1}</b>
-											<input  style="display:none" class="px" name="LinkOn03[{$vo.Pid}][]"  type="checkbox" <php>if($Key_mLinkOn03["$vo[Pid]"][0]){echo "checked";}</php> value="Key1">
+										<label><b onclick="click_touch('#Key1_On04_{$vo[Pid]}');" id="Key1_On04_{$vo[Pid]}" class="btn4_touche <php>if($Key_mLinkOn04["$vo[Pid]"][0]){echo "btn4_a_touche";}</php>">{$Think.lang.key1}</b>
+											<input  style="display:none" class="px" name="LinkOn04[{$vo.Pid}][]"  type="checkbox" <php>if($Key_mLinkOn04["$vo[Pid]"][0]){echo "checked";}</php> value="Key1">
 										</label>
-										<label><b onclick="click_touch('#Key2_On03_{$vo[Pid]}');" id="Key2_On03_{$vo[Pid]}" class="btn4_touche <php>if($Key_mLinkOn03["$vo[Pid]"][1]){echo "btn4_a_touche";}</php>">{$Think.lang.key2}</b>
-											<input  style="display:none" class="px" name="LinkOn03[{$vo.Pid}][]"  type="checkbox" <php>if($Key_mLinkOn03["$vo[Pid]"][1]){echo "checked";}</php> value="Key2">
+										<label><b onclick="click_touch('#Key2_On04_{$vo[Pid]}');" id="Key2_On04_{$vo[Pid]}" class="btn4_touche <php>if($Key_mLinkOn04["$vo[Pid]"][1]){echo "btn4_a_touche";}</php>">{$Think.lang.key2}</b>
+											<input  style="display:none" class="px" name="LinkOn04[{$vo.Pid}][]"  type="checkbox" <php>if($Key_mLinkOn04["$vo[Pid]"][1]){echo "checked";}</php> value="Key2">
 										</label>
-										<label><b onclick="click_touch('#Key3_On03_{$vo[Pid]}');" id="Key3_On03_{$vo[Pid]}" class="btn4_touche <php>if($Key_mLinkOn03["$vo[Pid]"][2]){echo "btn4_a_touche";}</php>">{$Think.lang.key3}</b>
-											<input  style="display:none" class="px" name="LinkOn03[{$vo.Pid}][]"  type="checkbox" <php>if($Key_mLinkOn03["$vo[Pid]"][2]){echo "checked";}</php> value="Key3">
+										<label><b onclick="click_touch('#Key3_On04_{$vo[Pid]}');" id="Key3_On04_{$vo[Pid]}" class="btn4_touche <php>if($Key_mLinkOn04["$vo[Pid]"][2]){echo "btn4_a_touche";}</php>">{$Think.lang.key3}</b>
+											<input  style="display:none" class="px" name="LinkOn04[{$vo.Pid}][]"  type="checkbox" <php>if($Key_mLinkOn04["$vo[Pid]"][2]){echo "checked";}</php> value="Key3">
 										</label>
 	                                </label>
 								<elseif condition="$vo.McID3 eq 19" />
-	                                <label class="temp JqOn03_r JqOn03_m{$k1}" id="radioOn03{$k1}">
+	                                <label class="temp JqOn04_r JqOn04_m{$k1}" id="radioOn04{$k1}">
                                    	    <b style="float:left;">{$vo.McName}</b>
-										<label><b onclick="click_temp('#Key1_On03_{$vo[Pid]}');" id="Key1_On03_{$vo[Pid]}" class="btn4_touche <php>if($temp_mLinkOn03["$vo[Pid]"][0]){echo "btn4_a_touche";}</php>">{$Think.lang.Temper1}</b>
-											<input  style="display:none" class="px" name="LinkOn03[{$vo.Pid}][]"  type="checkbox" <php>if($temp_mLinkOn03["$vo[Pid]"][0]){echo "checked";}</php> value="T1">
+										<label><b onclick="click_temp('#Key1_On04_{$vo[Pid]}');" id="Key1_On04_{$vo[Pid]}" class="btn4_touche <php>if($temp_mLinkOn04["$vo[Pid]"][0]){echo "btn4_a_touche";}</php>">{$Think.lang.Temper1}</b>
+											<input  style="display:none" class="px" name="LinkOn04[{$vo.Pid}][]"  type="checkbox" <php>if($temp_mLinkOn04["$vo[Pid]"][0]){echo "checked";}</php> value="T1">
 										</label>
-										<label><b onclick="click_temp('#Key2_On03_{$vo[Pid]}');" id="Key2_On03_{$vo[Pid]}" class="btn4_touche <php>if($temp_mLinkOn03["$vo[Pid]"][1]){echo "btn4_a_touche";}</php>">{$Think.lang.Temper2}</b>
-											<input  style="display:none" class="px" name="LinkOn03[{$vo.Pid}][]"  type="checkbox" <php>if($temp_mLinkOn03["$vo[Pid]"][1]){echo "checked";}</php> value="T2">
+										<label><b onclick="click_temp('#Key2_On04_{$vo[Pid]}');" id="Key2_On04_{$vo[Pid]}" class="btn4_touche <php>if($temp_mLinkOn04["$vo[Pid]"][1]){echo "btn4_a_touche";}</php>">{$Think.lang.Temper2}</b>
+											<input  style="display:none" class="px" name="LinkOn04[{$vo.Pid}][]"  type="checkbox" <php>if($temp_mLinkOn04["$vo[Pid]"][1]){echo "checked";}</php> value="T2">
 										</label>
-										<label><b onclick="click_temp('#Key3_On03_{$vo[Pid]}');" id="Key3_On03_{$vo[Pid]}" class="btn4_touche <php>if($temp_mLinkOn03["$vo[Pid]"][2]){echo "btn4_a_touche";}</php>">{$Think.lang.Temper3}</b>
-											<input  style="display:none" class="px" name="LinkOn03[{$vo.Pid}][]"  type="checkbox" <php>if($temp_mLinkOn03["$vo[Pid]"][2]){echo "checked";}</php> value="T3">
+										<label><b onclick="click_temp('#Key3_On04_{$vo[Pid]}');" id="Key3_On04_{$vo[Pid]}" class="btn4_touche <php>if($temp_mLinkOn04["$vo[Pid]"][2]){echo "btn4_a_touche";}</php>">{$Think.lang.Temper3}</b>
+											<input  style="display:none" class="px" name="LinkOn04[{$vo.Pid}][]"  type="checkbox" <php>if($temp_mLinkOn04["$vo[Pid]"][2]){echo "checked";}</php> value="T3">
 										</label>
-										<label><b onclick="click_temp('#Key4_On03_{$vo[Pid]}');" id="Key4_On03_{$vo[Pid]}" class="btn4_touche <php>if($temp_mLinkOn03["$vo[Pid]"][3]){echo "btn4_a_touche";}</php>">{$Think.lang.Temper4}</b>
-											<input  style="display:none" class="px" name="LinkOn03[{$vo.Pid}][]"  type="checkbox" <php>if($temp_mLinkOn03["$vo[Pid]"][3]){echo "checked";}</php> value="T4">
+										<label><b onclick="click_temp('#Key4_On04_{$vo[Pid]}');" id="Key4_On04_{$vo[Pid]}" class="btn4_touche <php>if($temp_mLinkOn04["$vo[Pid]"][3]){echo "btn4_a_touche";}</php>">{$Think.lang.Temper4}</b>
+											<input  style="display:none" class="px" name="LinkOn04[{$vo.Pid}][]"  type="checkbox" <php>if($temp_mLinkOn04["$vo[Pid]"][3]){echo "checked";}</php> value="T4">
 										</label>
-										<label><b onclick="click_temp('#Key5_On03_{$vo[Pid]}');" id="Key5_On03_{$vo[Pid]}" class="btn4_touche <php>if($temp_mLinkOn03["$vo[Pid]"][4]){echo "btn4_a_touche";}</php>">{$Think.lang.Temper5}</b>
-											<input  style="display:none" class="px" name="LinkOn03[{$vo.Pid}][]"  type="checkbox" <php>if($temp_mLinkOn03["$vo[Pid]"][4]){echo "checked";}</php> value="T5">
+										<label><b onclick="click_temp('#Key5_On04_{$vo[Pid]}');" id="Key5_On04_{$vo[Pid]}" class="btn4_touche <php>if($temp_mLinkOn04["$vo[Pid]"][4]){echo "btn4_a_touche";}</php>">{$Think.lang.Temper5}</b>
+											<input  style="display:none" class="px" name="LinkOn04[{$vo.Pid}][]"  type="checkbox" <php>if($temp_mLinkOn04["$vo[Pid]"][4]){echo "checked";}</php> value="T5">
 										</label>																				
 	                                </label>								
 								<else/>
-	                                <label class="JqOn03_r JqOn03_m{$k1}" id="radioOn03{$k1}">
+	                                <label class="JqOn03_r JqOn04_m{$k1}" id="radioOn04{$k1}">
 	                                    <b class="btn4
-	                                    <foreach name="mLinkOn03" item="vt">
+	                                    <foreach name="mLinkOn04" item="vt">
 	                            			<eq name="vt" value="$vo.Pid">btn4_a</eq>
 	                            		</foreach> 
 	                                	 ">{$vo.McName}</b>
@@ -529,7 +529,7 @@ document.write('<meta name="viewport" content="width=640, user-scalable=no, targ
                         		<if condition="($vo.McID3 eq 19) OR ($vo.McID3 eq 14) ">
                         			
                         		<else/>
-	                        		<input type="checkbox" name="LinkOn03[]" id="inputOn03{$k2}" <foreach name="mLinkOn03" item="vt">
+	                        		<input type="checkbox" name="LinkOn04[]" id="inputOn04{$k2}" <foreach name="mLinkOn04" item="vt">
 	                            		<eq name="vt" value="$vo.Pid">checked</eq>
 	                            	</foreach> 
 	                                value="{$vo.Pid}" class="px">
@@ -542,41 +542,41 @@ document.write('<meta name="viewport" content="width=640, user-scalable=no, targ
                         	<volist name="myMobile" id="vo" key="k1">
                         		<volist name="myMobile" id="vo" key="k1">
                         		<if condition="$vo.McID3 eq 14">
-	                                <label class="touche JqOn03_r JqOn03_m{$k1}" id="radioOn03{$k1}">
+	                                <label class="touche JqOn05_r JqOn05_m{$k1}" id="radioOn05{$k1}">
                                    	    <b style="float:left;">{$vo.McName}</b>
-										<label><b onclick="click_touch('#Key1_On03_{$vo[Pid]}');" id="Key1_On03_{$vo[Pid]}" class="btn4_touche <php>if($Key_mLinkOn03["$vo[Pid]"][0]){echo "btn4_a_touche";}</php>">{$Think.lang.key1}</b>
-											<input  style="display:none" class="px" name="LinkOn03[{$vo.Pid}][]"  type="checkbox" <php>if($Key_mLinkOn03["$vo[Pid]"][0]){echo "checked";}</php> value="Key1">
+										<label><b onclick="click_touch('#Key1_On05_{$vo[Pid]}');" id="Key1_On05_{$vo[Pid]}" class="btn4_touche <php>if($Key_mLinkOn05["$vo[Pid]"][0]){echo "btn4_a_touche";}</php>">{$Think.lang.key1}</b>
+											<input  style="display:none" class="px" name="LinkOn05[{$vo.Pid}][]"  type="checkbox" <php>if($Key_mLinkOn05["$vo[Pid]"][0]){echo "checked";}</php> value="Key1">
 										</label>
-										<label><b onclick="click_touch('#Key2_On03_{$vo[Pid]}');" id="Key2_On03_{$vo[Pid]}" class="btn4_touche <php>if($Key_mLinkOn03["$vo[Pid]"][1]){echo "btn4_a_touche";}</php>">{$Think.lang.key2}</b>
-											<input  style="display:none" class="px" name="LinkOn03[{$vo.Pid}][]"  type="checkbox" <php>if($Key_mLinkOn03["$vo[Pid]"][1]){echo "checked";}</php> value="Key2">
+										<label><b onclick="click_touch('#Key2_On05_{$vo[Pid]}');" id="Key2_On05_{$vo[Pid]}" class="btn4_touche <php>if($Key_mLinkOn05["$vo[Pid]"][1]){echo "btn4_a_touche";}</php>">{$Think.lang.key2}</b>
+											<input  style="display:none" class="px" name="LinkOn05[{$vo.Pid}][]"  type="checkbox" <php>if($Key_mLinkOn05["$vo[Pid]"][1]){echo "checked";}</php> value="Key2">
 										</label>
-										<label><b onclick="click_touch('#Key3_On03_{$vo[Pid]}');" id="Key3_On03_{$vo[Pid]}" class="btn4_touche <php>if($Key_mLinkOn03["$vo[Pid]"][2]){echo "btn4_a_touche";}</php>">{$Think.lang.key3}</b>
-											<input  style="display:none" class="px" name="LinkOn03[{$vo.Pid}][]"  type="checkbox" <php>if($Key_mLinkOn03["$vo[Pid]"][2]){echo "checked";}</php> value="Key3">
+										<label><b onclick="click_touch('#Key3_On05_{$vo[Pid]}');" id="Key3_On05_{$vo[Pid]}" class="btn4_touche <php>if($Key_mLinkOn05["$vo[Pid]"][2]){echo "btn4_a_touche";}</php>">{$Think.lang.key3}</b>
+											<input  style="display:none" class="px" name="LinkOn05[{$vo.Pid}][]"  type="checkbox" <php>if($Key_mLinkOn05["$vo[Pid]"][2]){echo "checked";}</php> value="Key3">
 										</label>
 	                                </label>
 								<elseif condition="$vo.McID3 eq 19" />
-	                                <label class="temp JqOn03_r JqOn03_m{$k1}" id="radioOn03{$k1}">
+	                                <label class="temp JqOn05_r JqOn05_m{$k1}" id="radioOn05{$k1}">
                                    	    <b style="float:left;">{$vo.McName}</b>
-										<label><b onclick="click_temp('#Key1_On03_{$vo[Pid]}');" id="Key1_On03_{$vo[Pid]}" class="btn4_touche <php>if($temp_mLinkOn03["$vo[Pid]"][0]){echo "btn4_a_touche";}</php>">{$Think.lang.Temper1}</b>
-											<input  style="display:none" class="px" name="LinkOn03[{$vo.Pid}][]"  type="checkbox" <php>if($temp_mLinkOn03["$vo[Pid]"][0]){echo "checked";}</php> value="T1">
+										<label><b onclick="click_temp('#Key1_On05_{$vo[Pid]}');" id="Key1_On05_{$vo[Pid]}" class="btn4_touche <php>if($temp_mLinkOn05["$vo[Pid]"][0]){echo "btn4_a_touche";}</php>">{$Think.lang.Temper1}</b>
+											<input  style="display:none" class="px" name="LinkOn05[{$vo.Pid}][]"  type="checkbox" <php>if($temp_mLinkOn05["$vo[Pid]"][0]){echo "checked";}</php> value="T1">
 										</label>
-										<label><b onclick="click_temp('#Key2_On03_{$vo[Pid]}');" id="Key2_On03_{$vo[Pid]}" class="btn4_touche <php>if($temp_mLinkOn03["$vo[Pid]"][1]){echo "btn4_a_touche";}</php>">{$Think.lang.Temper2}</b>
-											<input  style="display:none" class="px" name="LinkOn03[{$vo.Pid}][]"  type="checkbox" <php>if($temp_mLinkOn03["$vo[Pid]"][1]){echo "checked";}</php> value="T2">
+										<label><b onclick="click_temp('#Key2_On05_{$vo[Pid]}');" id="Key2_On05_{$vo[Pid]}" class="btn4_touche <php>if($temp_mLinkOn05["$vo[Pid]"][1]){echo "btn4_a_touche";}</php>">{$Think.lang.Temper2}</b>
+											<input  style="display:none" class="px" name="LinkOn05[{$vo.Pid}][]"  type="checkbox" <php>if($temp_mLinkOn05["$vo[Pid]"][1]){echo "checked";}</php> value="T2">
 										</label>
-										<label><b onclick="click_temp('#Key3_On03_{$vo[Pid]}');" id="Key3_On03_{$vo[Pid]}" class="btn4_touche <php>if($temp_mLinkOn03["$vo[Pid]"][2]){echo "btn4_a_touche";}</php>">{$Think.lang.Temper3}</b>
-											<input  style="display:none" class="px" name="LinkOn03[{$vo.Pid}][]"  type="checkbox" <php>if($temp_mLinkOn03["$vo[Pid]"][2]){echo "checked";}</php> value="T3">
+										<label><b onclick="click_temp('#Key3_On05_{$vo[Pid]}');" id="Key3_On05_{$vo[Pid]}" class="btn4_touche <php>if($temp_mLinkOn05["$vo[Pid]"][2]){echo "btn4_a_touche";}</php>">{$Think.lang.Temper3}</b>
+											<input  style="display:none" class="px" name="LinkOn05[{$vo.Pid}][]"  type="checkbox" <php>if($temp_mLinkOn05["$vo[Pid]"][2]){echo "checked";}</php> value="T3">
 										</label>
-										<label><b onclick="click_temp('#Key4_On03_{$vo[Pid]}');" id="Key4_On03_{$vo[Pid]}" class="btn4_touche <php>if($temp_mLinkOn03["$vo[Pid]"][3]){echo "btn4_a_touche";}</php>">{$Think.lang.Temper4}</b>
-											<input  style="display:none" class="px" name="LinkOn03[{$vo.Pid}][]"  type="checkbox" <php>if($temp_mLinkOn03["$vo[Pid]"][3]){echo "checked";}</php> value="T4">
+										<label><b onclick="click_temp('#Key4_On05_{$vo[Pid]}');" id="Key4_On05_{$vo[Pid]}" class="btn4_touche <php>if($temp_mLinkOn05["$vo[Pid]"][3]){echo "btn4_a_touche";}</php>">{$Think.lang.Temper4}</b>
+											<input  style="display:none" class="px" name="LinkOn05[{$vo.Pid}][]"  type="checkbox" <php>if($temp_mLinkOn05["$vo[Pid]"][3]){echo "checked";}</php> value="T4">
 										</label>
-										<label><b onclick="click_temp('#Key5_On03_{$vo[Pid]}');" id="Key5_On03_{$vo[Pid]}" class="btn4_touche <php>if($temp_mLinkOn03["$vo[Pid]"][4]){echo "btn4_a_touche";}</php>">{$Think.lang.Temper5}</b>
-											<input  style="display:none" class="px" name="LinkOn03[{$vo.Pid}][]"  type="checkbox" <php>if($temp_mLinkOn03["$vo[Pid]"][4]){echo "checked";}</php> value="T5">
+										<label><b onclick="click_temp('#Key5_On05_{$vo[Pid]}');" id="Key5_On05_{$vo[Pid]}" class="btn4_touche <php>if($temp_mLinkOn05["$vo[Pid]"][4]){echo "btn4_a_touche";}</php>">{$Think.lang.Temper5}</b>
+											<input  style="display:none" class="px" name="LinkOn05[{$vo.Pid}][]"  type="checkbox" <php>if($temp_mLinkOn05["$vo[Pid]"][4]){echo "checked";}</php> value="T5">
 										</label>																				
 	                                </label>								
 								<else/>
-	                                <label class="JqOn03_r JqOn03_m{$k1}" id="radioOn03{$k1}">
+	                                <label class="JqOn05_r JqOn05_m{$k1}" id="radioOn05{$k1}">
 	                                    <b class="btn4
-	                                    <foreach name="mLinkOn03" item="vt">
+	                                    <foreach name="mLinkOn05" item="vt">
 	                            			<eq name="vt" value="$vo.Pid">btn4_a</eq>
 	                            		</foreach> 
 	                                	 ">{$vo.McName}</b>
@@ -588,7 +588,7 @@ document.write('<meta name="viewport" content="width=640, user-scalable=no, targ
                         		<if condition="($vo.McID3 eq 19) OR ($vo.McID3 eq 14) ">
                         			
                         		<else/>
-	                        		<input type="checkbox" name="LinkOn03[]" id="inputOn03{$k2}" <foreach name="mLinkOn03" item="vt">
+	                        		<input type="checkbox" name="LinkOn05[]" id="inputOn05{$k2}" <foreach name="mLinkOn05" item="vt">
 	                            		<eq name="vt" value="$vo.Pid">checked</eq>
 	                            	</foreach> 
 	                                value="{$vo.Pid}" class="px">
@@ -1496,24 +1496,40 @@ $(function(){
 	display_checked($('.JqOn01_r'), '.JqOn01_m', '#inputOn01', '#radioOn01', 'btn4_a');
 	display_checked($('.JqOn02_r'), '.JqOn02_m', '#inputOn02', '#radioOn02', 'btn4_a');
 	display_checked($('.JqOn03_r'), '.JqOn03_m', '#inputOn03', '#radioOn03', 'btn4_a');
+	/*温湿度*/
+	display_checked($('.JqOn04_r'), '.JqOn04_m', '#inputOn04', '#radioOn04', 'btn4_a');
+	display_checked($('.JqOn05_r'), '.JqOn05_m', '#inputOn05', '#radioOn05', 'btn4_a');
+	/*温湿度*/
 	/*开关联动开*/
 		
 	/*开关联动关*/
 	display_checked($('.JqOff01_r'), '.JqOff01_m', '#inputOff01', '#radioOff01', 'btn4_a');
 	display_checked($('.JqOff02_r'), '.JqOff02_m', '#inputOff02', '#radioOff02', 'btn4_a');
 	display_checked($('.JqOff03_r'), '.JqOff03_m', '#inputOff03', '#radioOff03', 'btn4_a');
+	/*温湿度*/
+	display_checked($('.JqOff04_r'), '.JqOff04_m', '#inputOff04', '#radioOff04', 'btn4_a');
+	display_checked($('.JqOff05_r'), '.JqOff05_m', '#inputOff05', '#radioOff05', 'btn4_a');
+	/*温湿度*/
 	/*开关联动关*/
 	
 	/*开关反联动关*/
 	display_checked($('.JqOn_Off01_r'), '.JqOn_Off01_m', '#inputOn_Off01', '#radioOn_Off01', 'btn4_a');
 	display_checked($('.JqOn_Off02_r'), '.JqOn_Off02_m', '#inputOn_Off02', '#radioOn_Off02', 'btn4_a');
 	display_checked($('.JqOn_Off03_r'), '.JqOn_Off03_m', '#inputOn_Off03', '#radioOn_Off03', 'btn4_a');
+	/*温湿度*/
+	display_checked($('.JqOn_Off04_r'), '.JqOn_Off04_m', '#inputOn_Off04', '#radioOn_Off04', 'btn4_a');
+	display_checked($('.JqOn_Off05_r'), '.JqOn_Off05_m', '#inputOn_Off05', '#radioOn_Off05', 'btn4_a');
+	/*温湿度*/
 	/*开关反联动关*/		
 	
 	/*开关反联动关*/
 	display_checked($('.JqOff_On01_r'), '.JqOff_On01_m', '#inputOff_On01', '#radioOff_On01', 'btn4_a');
 	display_checked($('.JqOff_On02_r'), '.JqOff_On02_m', '#inputOff_On02', '#radioOff_On02', 'btn4_a');
 	display_checked($('.JqOff_On03_r'), '.JqOff_On03_m', '#inputOff_On03', '#radioOff_On03', 'btn4_a');
+	/*温湿度*/
+	display_checked($('.JqOff_On04_r'), '.JqOff_On04_m', '#inputOff_On04', '#radioOff_On04', 'btn4_a');
+	display_checked($('.JqOff_On05_r'), '.JqOff_On05_m', '#inputOff_On05', '#radioOff_On05', 'btn4_a');
+	/*温湿度*/
 	/*开关反联动关*/
 	//alert();
 	//开关全选状态	
