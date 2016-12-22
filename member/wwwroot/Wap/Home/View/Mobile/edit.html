@@ -1125,7 +1125,7 @@ document.write('<meta name="viewport" content="width=640, user-scalable=no, targ
 										</label>
 	                                </label>
 								<elseif condition="$vo.McID3 eq 19" />
-	                                <label class="temp JqOff03_r JqOff03_m{$k1}" id="radioOff03{$k1}">
+	                                <label class="temp JqOff05_r JqOff05_m{$k1}" id="radioOff05{$k1}">
                                    	    <b style="float:left;">{$vo.McName}</b>
 										<label><b onclick="click_temp('#Key1_Off05_{$vo[Pid]}');" id="Key1_Off05_{$vo[Pid]}" class="btn4_touche <php>if($temp_mLinkOff05["$vo[Pid]"][0]){echo "btn4_a_touche";}</php>">{$Think.lang.Temper1}</b>
 											<input  style="display:none" class="px" name="LinkOff05[{$vo.Pid}][]"  type="checkbox" <php>if($temp_mLinkOff05["$vo[Pid]"][0]){echo "checked";}</php> value="T1">
@@ -1705,7 +1705,7 @@ document.write('<meta name="viewport" content="width=640, user-scalable=no, targ
 										<label><b onclick="click_temp('#Key3_On_Off05_{$vo[Pid]}');" id="Key3_On_Off05_{$vo[Pid]}" class="btn4_touche <php>if($temp_mLink_On_Off05["$vo[Pid]"][2]){echo "btn4_a_touche";}</php>">{$Think.lang.Temper3}</b>
 											<input  style="display:none" class="px" name="Linkon_off05[{$vo.Pid}][]"  type="checkbox" <php>if($temp_mLink_On_Off05["$vo[Pid]"][2]){echo "checked";}</php> value="T3">
 										</label>
-										<label><b onclick="click_temp('#Key4_On_Off03_{$vo[Pid]}');" id="Key4_On_Off05_{$vo[Pid]}" class="btn4_touche <php>if($temp_mLink_On_Off05["$vo[Pid]"][3]){echo "btn4_a_touche";}</php>">{$Think.lang.Temper4}</b>
+										<label><b onclick="click_temp('#Key4_On_Off05_{$vo[Pid]}');" id="Key4_On_Off05_{$vo[Pid]}" class="btn4_touche <php>if($temp_mLink_On_Off05["$vo[Pid]"][3]){echo "btn4_a_touche";}</php>">{$Think.lang.Temper4}</b>
 											<input  style="display:none" class="px" name="Linkon_off05[{$vo.Pid}][]"  type="checkbox" <php>if($temp_mLink_On_Off05["$vo[Pid]"][3]){echo "checked";}</php> value="T4">
 										</label>
 										<label><b onclick="click_temp('#Key5_On_Off05_{$vo[Pid]}');" id="Key5_On_Off05_{$vo[Pid]}" class="btn4_touche <php>if($temp_mLink_On_Off05["$vo[Pid]"][4]){echo "btn4_a_touche";}</php>">{$Think.lang.Temper5}</b>
