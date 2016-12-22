@@ -339,9 +339,19 @@ return array(
 	'equipment_on' =>'设备开',
 	'equipment_off' =>'设备关',
 
-	'key1' =>'按键1',
-	'key2' =>'按键2',
-	'key3' =>'按键3',
+	'key1' =>'键1',
+	'key2' =>'键2',
+	'key3' =>'键3',
+		
+	'Temper1' => '温度高',
+	'Temper2' => '温度低',
+	'Temper3' => '湿度高',
+	'Temper4' => '湿度低',
+	'Temper5' => '周期循环',		
+		
+	'time_layout' => '格式 XX:XX 如 08:30',
 		
 	'Default_Temperature' => '默认温度',
+
+	'Shake'=>'摇一摇',
 );

@@ -335,9 +335,19 @@ return array(
 	'equipment_on' =>'Equipment On',
 	'equipment_off' =>'Equipment Off',
 		
-	'key1' =>'key01',
-	'key2' =>'key02',
-	'key3' =>'key03',
+	'key1' =>'key1',
+	'key2' =>'key2',
+	'key3' =>'key3',
+
+	'Temper1' => 'High Temp',
+	'Temper2' => 'Low Temp',
+	'Temper3' => 'High Humi',
+	'Temper4' => 'Low Humi',
+	'Temper5' => 'Feedback',		
+		
+	'time_layout' => 'Format XX:XX Example 08:30',
 		
 	'Default_Temperature' => 'Default Temperature',		
+		
+	'Shake'=>'Shake',
 );
