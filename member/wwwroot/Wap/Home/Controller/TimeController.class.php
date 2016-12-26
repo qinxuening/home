@@ -105,9 +105,11 @@ class TimeController extends CommonController{
 	
 	public function typeadd(){
 		$HeadInfo = I('post.');
+		//print_r($HeadInfo);die();
 		$HeadInfo['wUseID'] = session('wUseID');
 		if($this->timeaction_head->create($HeadInfo)){
 			$id=$this->timeaction_head->add();
+			//echo $this->timeaction_head->getLastSql();die();
 			$wModeldata=I('post.wModel',null);
 			Do_Timeaction_child($this->timeaction, $this->timeaction_child,$this->timeaction_temp, $wModeldata, $id);
 			$url = 'http://'.$_SERVER['HTTP_HOST'].__APP__.'/Time/';

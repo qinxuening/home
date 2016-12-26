@@ -410,9 +410,9 @@ return array(
 	'Temper3' => '湿度高',
 	'Temper4' => '湿度低',
 	'Temper5' => '周期循环',		
-		
+	'Shake'=>'摇一摇',
 	'Service_support' =>'技术支持',
 	'Default_Temperature' => '默认温度',
 		
-	'Shake'=>'摇一摇',
+
 );

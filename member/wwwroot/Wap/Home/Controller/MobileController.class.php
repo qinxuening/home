@@ -40,9 +40,11 @@ class MobileController extends CommonController{
 			
 			$this->modeltype->where(array('McID' => $McID , 'wUseID' => session('wUseID')))->delete();
 			$this->modeltype_child->where(array('McID' => $McID , 'wUseID' => session('wUseID')))->delete();
+			M('modeltype_temp')->where(array('McID' => $McID , 'wUseID' => session('wUseID')))->delete();
 			
 			$this->timeaction->where(array('McID' => $McID , 'wUseID' => session('wUseID')))->delete();
 			M('timeaction_child')->where(array('McID' => $McID , 'wUseID' => session('wUseID')))->delete();
+			M('timeaction_temp')->where(array('McID' => $McID , 'wUseID' => session('wUseID')))->delete();
 			
 			$this->linklist->where(array("Pid" => $Pid))->delete();
 			$this->linklist->where(array("McID" => $Pid))->delete();

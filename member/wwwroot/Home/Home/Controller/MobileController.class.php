@@ -9,7 +9,7 @@ class MobileController extends CommonController{
 	protected $linklist_child;
 	protected $modeltype_child;
 	protected $linklist_temp;
-	protected $linklist_temp_child;	
+	protected $linklist_temp_child;
 	
 	public function _initialize(){
 		parent::_initialize();
@@ -21,13 +21,20 @@ class MobileController extends CommonController{
 		$this->linklist_s = D("linklist_s");
 		$this->linklist_child = D("linklist_child");
 		$this->linklist_temp = D("linklist_temp");
-		$this->linklist_temp_child = D("linklist_temp_child");		
+		$this->linklist_temp_child = D("linklist_temp_child");
 	}
 	
 	public function index(){	
-	  	$list = $this->mobilemanager->where(array('wUseID' => session('wUseID')))->field('Pid, McName ,McID')->order(array('Pid'=>'desc'))->select();
+	  	$where['wUseID']=session('wUseID');
+	  	$count      = $this->mobilemanager->where($where)->count();
+	  	$Page       = new \Think\Page($count,10);
+	  	$Page->setConfig('header',L('All').'<b>%TOTAL_ROW%</b>'.L('Records').'&nbsp;&nbsp;'.L('The').'<b>%NOW_PAGE%</b>/<b>%TOTAL_PAGE%</b>'.L('Page'));
+	  	$Page->setConfig('theme', '%FIRST%%UP_PAGE%%LINK_PAGE%%DOWN_PAGE%%END%%HEADER%');
+	  	$show       = $Page->show(); 
+	  	$list = $this->mobilemanager->where($where)->field('Pid, McName, McID')->order(array('Pid'=>'desc'))->limit($Page->firstRow.','.$Page->listRows)->select();
 	  	$this->assign('my3','btn0_a');
 	  	$this->assign("myMobile",$list);
+	  	$this->assign('page',$show);
 	  	$this->display();
 	}	
 
@@ -40,9 +47,11 @@ class MobileController extends CommonController{
 			
 			$this->modeltype->where(array('McID' => $McID , 'wUseID' => session('wUseID')))->delete();
 			$this->modeltype_child->where(array('McID' => $McID , 'wUseID' => session('wUseID')))->delete();
+			M('modeltype_temp')->where(array('McID' => $McID , 'wUseID' => session('wUseID')))->delete();
 			
 			$this->timeaction->where(array('McID' => $McID , 'wUseID' => session('wUseID')))->delete();
 			M('timeaction_child')->where(array('McID' => $McID , 'wUseID' => session('wUseID')))->delete();
+			M('timeaction_temp')->where(array('McID' => $McID , 'wUseID' => session('wUseID')))->delete();
 			
 			$this->linklist->where(array("Pid" => $Pid))->delete();
 			$this->linklist->where(array("McID" => $Pid))->delete();
@@ -107,10 +116,10 @@ class MobileController extends CommonController{
 						$this->assign("mLinkOff01",$KeyOff01);
 						$this->assign("mLinkOff02",$KeyOff02);
 						$this->assign("mLinkOff03",$KeyOff03);
-						//print_r(key_Pid_value_Key_temp($touchlist_temp, 'McID', 'Key01', 2));
+						
 						$this->assign("Key_mLinkOff01", key_Pid_value_Key($Key_mLinkOff01, 'McID'));$this->assign("temp_mLinkOff01", key_Pid_value_Key_temp($touchlist_temp, 'McID', 'Key01', 2));
 						$this->assign("Key_mLinkOff02", key_Pid_value_Key($Key_mLinkOff02, 'McID'));$this->assign("temp_mLinkOff02", key_Pid_value_Key_temp($touchlist_temp, 'McID', 'Key02', 2));
-						$this->assign("Key_mLinkOff03", key_Pid_value_Key($Key_mLinkOff03, 'McID'));$this->assign("temp_mLinkOff03", key_Pid_value_Key_temp($touchlist_temp, 'McID', 'Key03', 2));
+						$this->assign("Key_mLinkOff03", key_Pid_value_Key($Key_mLinkOff03, 'McID'));$this->assign("temp_mLinkOff03", key_Pid_value_Key_temp($touchlist_temp, 'McID', 'Key03', 2));																		
 					}
 					if($touchon_off){
 						foreach ($touchon_off as $k => $v){
@@ -121,10 +130,10 @@ class MobileController extends CommonController{
 						$this->assign("mLinkon_off01",$KeyOn_Off01);
 						$this->assign("mLinkon_off02",$KeyOn_Off02);
 						$this->assign("mLinkon_off03",$KeyOn_Off03);
-	
+						
 						$this->assign("Key_mLink_On_Off01", key_Pid_value_Key($Key_mLink_On_Off01, 'McID'));$this->assign("temp_mLink_On_Off01", key_Pid_value_Key_temp($touchlist_temp, 'McID', 'Key01', 3));
 						$this->assign("Key_mLink_On_Off02", key_Pid_value_Key($Key_mLink_On_Off02, 'McID'));$this->assign("temp_mLink_On_Off02", key_Pid_value_Key_temp($touchlist_temp, 'McID', 'Key02', 3));
-						$this->assign("Key_mLink_On_Off03", key_Pid_value_Key($Key_mLink_On_Off03, 'McID'));$this->assign("temp_mLink_On_Off03", key_Pid_value_Key_temp($touchlist_temp, 'McID', 'Key03', 3));
+						$this->assign("Key_mLink_On_Off03", key_Pid_value_Key($Key_mLink_On_Off03, 'McID'));$this->assign("temp_mLink_On_Off03", key_Pid_value_Key_temp($touchlist_temp, 'McID', 'Key03', 3));					
 					}
 					if($touchoff_on){
 						foreach ($touchoff_on as $k => $v){
@@ -135,10 +144,10 @@ class MobileController extends CommonController{
 						$this->assign("mLinkoff_on01",$KeyOff_On01);
 						$this->assign("mLinkoff_on02",$KeyOff_On02);
 						$this->assign("mLinkoff_on03",$KeyOff_On03);
-	
+										
 						$this->assign("Key_mLink_Off_On01", key_Pid_value_Key($Key_mLink_Off_On01, 'McID'));$this->assign("temp_mLink_Off_On01", key_Pid_value_Key_temp($touchlist_temp, 'McID', 'Key01', 4));
 						$this->assign("Key_mLink_Off_On02", key_Pid_value_Key($Key_mLink_Off_On02, 'McID'));$this->assign("temp_mLink_Off_On02", key_Pid_value_Key_temp($touchlist_temp, 'McID', 'Key02', 4));
-						$this->assign("Key_mLink_Off_On03", key_Pid_value_Key($Key_mLink_Off_On03, 'McID'));$this->assign("temp_mLink_Off_On03", key_Pid_value_Key_temp($touchlist_temp, 'McID', 'Key03', 4));
+						$this->assign("Key_mLink_Off_On03", key_Pid_value_Key($Key_mLink_Off_On03, 'McID'));$this->assign("temp_mLink_Off_On03", key_Pid_value_Key_temp($touchlist_temp, 'McID', 'Key03', 4));							
 					}
 				}else if ('19' == $find['McID1']){
 					$touchlist = $this->linklist_temp->join("LEFT JOIN `linklist_child` c on `linklist_temp`.wID = c.wID and c.mark = 3")->where(array("`linklist_temp`".".Pid" =>$find['Pid']))->field('Th0 , Tl0 , Hh0 , Hl0, Tf0, Key1, Key2, Key3, `linklist_temp`.McID , wModeltype')->select();
@@ -181,7 +190,7 @@ class MobileController extends CommonController{
 						$this->assign("mLinkOff03",$KeyOff03);
 						$this->assign("mLinkOff04",$KeyOff04);
 						$this->assign("mLinkOff05",$KeyOff05);
-							
+					
 						$this->assign("Key_mLinkOff01", key_Pid_value_Key($Key_mLinkOff01, 'McID'));$this->assign("temp_mLinkOff01", key_Pid_value_Key_temp($touchlist_temp, 'McID', 'Th0', 2));
 						$this->assign("Key_mLinkOff02", key_Pid_value_Key($Key_mLinkOff02, 'McID'));$this->assign("temp_mLinkOff02", key_Pid_value_Key_temp($touchlist_temp, 'McID', 'Tl0', 2));
 						$this->assign("Key_mLinkOff03", key_Pid_value_Key($Key_mLinkOff03, 'McID'));$this->assign("temp_mLinkOff03", key_Pid_value_Key_temp($touchlist_temp, 'McID', 'Hh0', 2));
@@ -201,7 +210,7 @@ class MobileController extends CommonController{
 						$this->assign("mLinkon_off03",$KeyOn_Off03);
 						$this->assign("mLinkon_off04",$KeyOn_Off04);
 						$this->assign("mLinkon_off05",$KeyOn_Off05);
-							
+					
 						$this->assign("Key_mLink_On_Off01", key_Pid_value_Key($Key_mLink_On_Off01, 'McID'));$this->assign("temp_mLink_On_Off01", key_Pid_value_Key_temp($touchlist_temp, 'McID', 'Th0', 3));
 						$this->assign("Key_mLink_On_Off02", key_Pid_value_Key($Key_mLink_On_Off02, 'McID'));$this->assign("temp_mLink_On_Off02", key_Pid_value_Key_temp($touchlist_temp, 'McID', 'Tl0', 3));
 						$this->assign("Key_mLink_On_Off03", key_Pid_value_Key($Key_mLink_On_Off03, 'McID'));$this->assign("temp_mLink_On_Off03", key_Pid_value_Key_temp($touchlist_temp, 'McID', 'Hh0', 3));
@@ -221,7 +230,7 @@ class MobileController extends CommonController{
 						$this->assign("mLinkoff_on03",$KeyOff_On03);
 						$this->assign("mLinkoff_on04",$KeyOff_On04);
 						$this->assign("mLinkoff_on05",$KeyOff_On05);
-							
+					
 						$this->assign("Key_mLink_Off_On01", key_Pid_value_Key($Key_mLink_Off_On01, 'McID'));$this->assign("temp_mLink_Off_On01", key_Pid_value_Key_temp($touchlist_temp, 'McID', 'Th0', 4));
 						$this->assign("Key_mLink_Off_On02", key_Pid_value_Key($Key_mLink_Off_On02, 'McID'));$this->assign("temp_mLink_Off_On02", key_Pid_value_Key_temp($touchlist_temp, 'McID', 'Tl0', 4));
 						$this->assign("Key_mLink_Off_On03", key_Pid_value_Key($Key_mLink_Off_On03, 'McID'));$this->assign("temp_mLink_Off_On03", key_Pid_value_Key_temp($touchlist_temp, 'McID', 'Hh0', 4));
@@ -234,12 +243,12 @@ class MobileController extends CommonController{
 					$findLinkOn_Off = $this->linklist->join("LEFT JOIN `linklist_child` c on `linklist`.wID = c.wID and c.mark = 1")->where(array("`linklist`".".McID" =>$find['Pid'],wModeltype=>3))->field('linklist.Pid, Key1, Key2, Key3')->select();//反联动开
 					$findLinkOff_On = $this->linklist->join("LEFT JOIN `linklist_child` c on `linklist`.wID = c.wID and c.mark = 1")->where(array("`linklist`".".McID" =>$find['Pid'],wModeltype=>4))->field('linklist.Pid, Key1, Key2, Key3')->select();//反联动关
 					$touchlist_temp = $this->linklist->join("JOIN `linklist_temp_child` c on `linklist`.wID = c.wID and c.mark = 3")->where(array("`linklist`".".McID" =>$find['Pid']))->field('Th, Tl, Hh, Hl, Tf, `linklist`.Pid , wModeltype')->select();
-	
+
 					$mLinkOn = TarrayToOarray($findLinkOn, 'Pid');
 					$mLinkOff = TarrayToOarray($findLinkOff, 'Pid');
 					$mLinkOn_Off = TarrayToOarray($findLinkOn_Off, 'Pid');
 					$mLinkOff_On = TarrayToOarray($findLinkOff_On, 'Pid');
-						
+					
 					$this->assign("mLinkOn",$mLinkOn);
 					$this->assign("mLinkOff",$mLinkOff);
 					$this->assign("mLinkOn_Off",$mLinkOn_Off);
@@ -249,28 +258,27 @@ class MobileController extends CommonController{
 					$this->assign("Key_mLinkOn_Off",key_Pid_value_Key($findLinkOn_Off, 'Pid'));$this->assign("temp_mLinkOn_Off", key_other_temp($touchlist_temp, 'Pid', 3));
 					$this->assign("Key_mLinkOff_On",key_Pid_value_Key($findLinkOff_On, 'Pid'));$this->assign("temp_mLinkOff_On", key_other_temp($touchlist_temp, 'Pid', 4));
 				}
-				if('01' == $find['McID2']){
-					$username = session('wUseID');
-					$McID = $find['McID'];
-					$sql = "select a.wUserID,a.MCID,a.KeyID,b.KeyName,a.KeyVar
-					from irinfo a left join ircodeinfo b on a.KeyID=right(b.KeyID,7)
-					where a.wUserID='$username'
-					and a.MCID='$McID'
-					and BrandNO='RN51F/BG'
-					and left(b.KeyName,2)='模式' ORDER BY KeyID;";
-					$IrinfoList = M()->query($sql);
-					$SelectIfi = M('irinfo')->where(array('KeyID' => '0000001' , 'wUserID' => session('wUseID') , 'MCID' => $McID))->field('KeyVar')->find();
-							$this->assign('McID2' , $find['McID']);
-					$this->assign('KeyVar' , $SelectIfi['KeyVar']);
-					$this->assign('IrinfoList' , $IrinfoList);
-					 
-				}
-				 
-				$this->assign('shakelist',array('1'=>1,'2'=>2,'3'=>3,'4'=>4,'5'=>5,'6'=>6,'7'=>7,'8'=>8,'9'=>9));
+			   if('01' == $find['McID2']){
+			   		$username = session('wUseID');
+			   		$McID = $find['McID'];
+			   		$sql = "select a.wUserID,a.MCID,a.KeyID,b.KeyName,a.KeyVar 
+			   			    from irinfo a left join ircodeinfo b on a.KeyID=right(b.KeyID,7) 
+  							where a.wUserID='$username'  
+			   				and a.MCID='$McID'  
+			   				and BrandNO='RN51F/BG' 
+			   				and left(b.KeyName,2)='模式' ORDER BY KeyID;";
+			   		$IrinfoList = M()->query($sql);
+			   		$SelectIfi = M('irinfo')->where(array('KeyID' => '0000001' , 'wUserID' => session('wUseID') , 'MCID' => $McID))->field('KeyVar')->find();
+			   		$this->assign('McID2' , $find['McID']);
+			   		$this->assign('KeyVar' , $SelectIfi['KeyVar']);
+			   		$this->assign('IrinfoList' , $IrinfoList);
+			   	
+			    }
+			    
+			    $this->assign('shakelist',array('1'=>1,'2'=>2,'3'=>3,'4'=>4,'5'=>5,'6'=>6,'7'=>7,'8'=>8,'9'=>9));
 				$this->assign('mobile',$find);
 				$this->assign('McID1' , $find['McID1']);
 				$this->assign("myMobile",$list);
-				$this->assign('my3','btn0_a');
 				$this->display();
 			}else{
 				$this->error(L('S_parameter_e'));
@@ -278,7 +286,7 @@ class MobileController extends CommonController{
 		}else{
 			$this->error(L('S_parameter_e'));
 		}
-	}	
+	}
 	
 	public function update(){
 		$Pid = intval(I('get.id'));
@@ -370,12 +378,10 @@ class MobileController extends CommonController{
 				and a.`wUseID` <>'$wUseID')
 				order by  a.`wUseID` ,a.`Item`");
 		foreach ($UserMobile as $k => $v){
-		if(empty($v['wName'])) { $UserMobile[$k]['wName']= 'null';}
+			if(empty($v['wName'])) { $UserMobile[$k]['wName']= 'null';}
 		}
-		error_log($UserMobile);
-		$this->assign('my11','btn0_a');
 		$this->assign('UserMobile' , $UserMobile);
-			$this->display();
+		$this->display();
 	}
 	
 	public function delusermobile(){
@@ -398,6 +404,6 @@ class MobileController extends CommonController{
 		AND wUseID='$wUseID'")){
 		$url = 'http://'.$_SERVER['HTTP_HOST'].__APP__.'/Mobile/usermobile';
 				header("Location:$url");
-			}
+		}
 	}
 }
